@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CocosNet">
+      <UniqueIdentifier>{ab57a751-497e-4b2e-8ae6-89e2dde27c33}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CocosNet\CCBuffer.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CocosNet\CCInetAddress.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CocosNet\CCNetDelegate.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CocosNet\CCSocket.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosNet\CCBuffer.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosNet\CCInetAddress.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosNet\CCNetDelegate.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosNet\CCNetMacros.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosNet\CCSocket.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosNet\cocos-net.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
