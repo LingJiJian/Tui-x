@@ -15,7 +15,7 @@ Tui是一个创建cocos2d-x UI界面的解决方案，而builder用的则是Flas
 
 说明:
 本项目中有个叫HelloTui的演示工程，需要自己放置引擎代码到相应的位置。
-具体操作为：下载好的cocos2dx3.0的引擎，然后把里面的核心文件目录cocos，复制到Tui-x/HelloTui 下，然后打
+具体操作为：下载好的cocos2dx3.0的引擎，然后把里面的cocos2d目录，复制到Tui-x/HelloTui 下，然后打
 开cocos/ui/UILayoutDefine.h , 注释掉 54行 //const Margin MarginZero = Margin(); 接下来就可以开始编译了！
 
 （为什么要这么做？这是因为我们不需要用到官方的UI库，我们只用CocosWidget的组件就能完全替代它，如果你不注释
