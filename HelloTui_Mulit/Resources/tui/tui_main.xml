@@ -1,0 +1,25 @@
+
+	<control tag="1" type="panel" name="panel_main" x="400" y="240" width="827.45" height="518" rotation="0">
+		<control tag="2" type="image" name="img_bg" image="main/img_mainbg.png" x="0" y="0" width="480" height="320" rotation="0"></control>
+		<control tag="3" type="particle" name="ptl_flower" plist="main/ptl_flower.plist" x="-165" y="-111.65" width="24" height="35" rotation="0"></control>
+		<control tag="4" type="button" name="btn_ok" normal="main/btn_ok_normal.png" select="main/btn_ok_select.png" disable="main/btn_ok_disable.png" x="298.5" y="132.9" width="196" height="68" rotation="0"></control>
+		<control tag="5" type="armature" name="armature_boss1" xml="main/armature_boss1.xml" png="main/armature_boss1.png" plist="main/armature_boss1.plist" x="-227.45" y="50.95" width="407" height="374" rotation="0"></control>
+		<control tag="6" type="controlView" name="ctlv_left" baseboard="main/ctlv_left_baseboard.png" joystick="main/ctlv_left_joystick.png" x="-310.95" y="159.95" width="128" height="128" rotation="0"></control>
+		<control tag="7" type="toggleView" name="tgv_a" normal="main/tgv_test_normal.png" select="main/tgv_test_select.png" disable="main/tgv_test_disable.png" exclusion="1" x="-35.5" y="91.4" width="221" height="89" rotation="0"></control>
+		<control tag="8" type="toggleView" name="tgv_b" normal="main/tgv_test_normal.png" select="main/tgv_test_select.png" disable="main/tgv_test_disable.png" exclusion="1" x="-33.5" y="190.4" width="221" height="89" rotation="0"></control>
+		<control tag="9" type="anim" name="anim_coin" png="main/anim_coin.png" plist="main/anim_coin.plist" x="137.6" y="-17.75" width="37" height="45" rotation="0"></control>
+		<control tag="10" type="checkBox" name="ckb_test" normal1="main/ckb_test_normal1.png" select1="main/ckb_test_select1.png" disable1="main/ckb_test_disable1.png" normal2="main/ckb_test_normal2.png" select2="main/ckb_test_select2.png" disable2="main/ckb_test_disable2.png" x="-205" y="120.95" width="56" height="56" rotation="0"></control>
+		<control tag="11" type="numStep" name="numStep_test" lnormal="main/numStep_test_lnomal.png" lselect="main/numStep_test_lselect.png" ldisable="main/numStep_test_ldisable.png" rnormal="main/numStep_test_rnomal.png" rselect="main/numStep_test_rselect.png" rdisable="main/numStep_test_rdisable.png" stepBg="main/numStep_test_stepbg.png" x="192.75" y="55.9" width="67.5" height="17" rotation="0"></control>
+		<control tag="12" type="editBox" name="edit_login" image="main/edit_login.png" x="278.55" y="-204.05" width="227.9" height="55" rotation="0"></control>
+		<control tag="13" type="button" name="btn_go" normal="main/btn_ok_normal.png" select="main/btn_ok_select.png" disable="main/btn_ok_disable.png" x="298.5" y="202.95" width="196" height="68" rotation="0"></control>
+		<control tag="14" type="label" text="This is Normal" textSize="20" textFont="fonts/Arial.ttf" red="102" green="153" blue="255" strokeRed="0" strokeGreen="0" strokeBlue="0" strokeSize="0" shadowDistance="0" shadowBlur="0" name="lab_test1" x="143" y="-90.15" width="78" height="56.1" rotation="0"></control>
+		<control tag="15" type="label" text="OutLine" textSize="20" textFont="fonts/Arial.ttf" red="0" green="255" blue="0" strokeRed="51" strokeGreen="51" strokeBlue="204" strokeSize="2" shadowDistance="0" shadowBlur="0" name="lab_outline" x="142.75" y="-155.85" width="86.25" height="29.05" rotation="0"></control>
+		<control tag="16" type="label" text="Shadow" textSize="20" textFont="fonts/Arial.ttf" red="255" green="0" blue="0" strokeRed="0" strokeGreen="0" strokeBlue="0" strokeSize="0" shadowDistance="2" shadowBlur="5" name="lab_shadow" x="142" y="-123.2" width="91" height="29.05" rotation="0"></control>
+	</control>
+	<control tag="17" type="panel" name="panel_msgbox" x="400" y="240" width="619.7" height="268.1" rotation="0">
+		<control tag="18" type="image9" name="img9_boxbg" image="main/dialog/img9_boxbg.png" up="20" down="20" left="20" right="20" x="0" y="0" width="619.7" height="268.1" rotation="0"></control>
+		<control tag="19" type="button" name="btn_close" normal="main/dialog/btn_close_normal.png" select="main/dialog/btn_close_select.png" disable="main/dialog/btn_close_disable.png" x="266" y="-92" width="68" height="73" rotation="0"></control>
+		<control tag="20" type="labelAtlas" name="labAtlas_num" image="main/dialog/labAtlas_num.png" x="-0.95" y="-45.5" width="312" height="34" rotation="0"></control>
+		<control tag="21" type="slider" name="slider_test" bg="main/dialog/slider_test_bg.png" progress="main/dialog/slider_test_progress.png" thumb="main/dialog/slider_test_thumb.png" x="0" y="5.35" width="500" height="52" rotation="0"></control>
+		<control tag="22" type="progress" name="prog_hp" bg="main/dialog/prog_hp_bg.png" progress="main/dialog/prog_hp_progress.png" x="0" y="66.35" width="300" height="23" rotation="0"></control>
+	</control>

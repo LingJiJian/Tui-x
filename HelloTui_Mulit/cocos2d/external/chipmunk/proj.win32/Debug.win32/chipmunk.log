@@ -1,0 +1,47 @@
+﻿生成启动时间为 2014-05-12 7:40:02。
+     1>项目“F:\WorkSpace\C++WorkSpace\cocos2d-x-3.0\projects\HelloTui\cocos2d\external\chipmunk\proj.win32\chipmunk.vcxproj”在节点 3 上(Build 个目标)。
+     1>PrepareForBuild:
+         正在创建目录“F:\WorkSpace\C++WorkSpace\cocos2d-x-3.0\projects\HelloTui\proj.win32\Debug.win32\”。
+       InitializeBuildStatus:
+         正在创建“Debug.win32\libchipmunk.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         所有输出均为最新。
+       Lib:
+         D:\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"F:\WorkSpace\C++WorkSpace\cocos2d-x-3.0\projects\HelloTui\proj.win32\Debug.win32\libchipmunk.lib" /NOLOGO Debug.win32\chipmunk.obj
+         Debug.win32\cpArbiter.obj
+         Debug.win32\cpArray.obj
+         Debug.win32\cpBB.obj
+         Debug.win32\cpBBTree.obj
+         Debug.win32\cpBody.obj
+         Debug.win32\cpCollision.obj
+         Debug.win32\cpHashSet.obj
+         Debug.win32\cpPolyShape.obj
+         Debug.win32\cpShape.obj
+         Debug.win32\cpSpace.obj
+         Debug.win32\cpSpaceComponent.obj
+         Debug.win32\cpSpaceHash.obj
+         Debug.win32\cpSpaceQuery.obj
+         Debug.win32\cpSpaceStep.obj
+         Debug.win32\cpSpatialIndex.obj
+         Debug.win32\cpSweep1D.obj
+         Debug.win32\cpVect.obj
+         Debug.win32\cpConstraint.obj
+         Debug.win32\cpDampedRotarySpring.obj
+         Debug.win32\cpDampedSpring.obj
+         Debug.win32\cpGearJoint.obj
+         Debug.win32\cpGrooveJoint.obj
+         Debug.win32\cpPinJoint.obj
+         Debug.win32\cpPivotJoint.obj
+         Debug.win32\cpRatchetJoint.obj
+         Debug.win32\cpRotaryLimitJoint.obj
+         Debug.win32\cpSimpleMotor.obj
+         Debug.win32\cpSlideJoint.obj
+         chipmunk.vcxproj -> F:\WorkSpace\C++WorkSpace\cocos2d-x-3.0\projects\HelloTui\proj.win32\Debug.win32\libchipmunk.lib
+       FinalizeBuildStatus:
+         正在删除文件“Debug.win32\libchipmunk.unsuccessfulbuild”。
+         正在对“Debug.win32\libchipmunk.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“F:\WorkSpace\C++WorkSpace\cocos2d-x-3.0\projects\HelloTui\cocos2d\external\chipmunk\proj.win32\chipmunk.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:08.38
