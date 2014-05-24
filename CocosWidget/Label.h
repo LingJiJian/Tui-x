@@ -46,12 +46,12 @@ public:
 	CLabel();
 	~CLabel();
 	static CLabel* create();
-	static CLabel* createWithTTF(const TTFConfig& ttfConfig, const std::string& text, TextHAlignment alignment = TextHAlignment::LEFT, int maxLineWidth = 0);
+	static CLabel* createWithTTF(const TTFConfig& ttfConfig, const std::string& text, TextHAlignment alignment = TextHAlignment::CENTER, int maxLineWidth = 0);
 	static CLabel* createWithTTF(const std::string& text, const std::string& fontFile, float fontSize,
-		const Size& dimensions = Size::ZERO, TextHAlignment hAlignment = TextHAlignment::LEFT,
+		const Size& dimensions = Size::ZERO, TextHAlignment hAlignment = TextHAlignment::CENTER,
 		TextVAlignment vAlignment = TextVAlignment::TOP);
 	static CLabel* createWithSystemFont(const std::string& text, const std::string& font, float fontSize,
-		const Size& dimensions = Size::ZERO, TextHAlignment hAlignment = TextHAlignment::LEFT,
+		const Size& dimensions = Size::ZERO, TextHAlignment hAlignment = TextHAlignment::CENTER,
 		TextVAlignment vAlignment = TextVAlignment::TOP);
 	virtual void draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated);
 	

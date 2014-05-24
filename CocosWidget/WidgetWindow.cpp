@@ -28,6 +28,8 @@ THE SOFTWARE.
 #if USING_LUA
 #include "CCLuaEngine.h"
 #endif
+#include "GUI/CCControlExtension/CCControl.h"
+
 using namespace std;
 
 NS_CC_WIDGET_BEGIN
@@ -283,6 +285,14 @@ void CWidgetWindow::setMultiTouchEnabled(bool bEnabled)
 void CWidgetWindow::setModalable(bool bModalable)
 {
 	m_bModalable = bModalable;
+	for (Node* pChild : _children)
+	{
+		CWidgetWindow *pWindow = dynamic_cast<CWidgetWindow *>(pChild);
+		if (pWindow != nullptr) pWindow->setModalable(bModalable);
+		//混用组件EidtBox等
+		extension::Control *pControl = dynamic_cast<extension::Control*>(pChild);
+		if (pControl != nullptr) pControl->setEnabled(!bModalable);
+	}
 }
 
 bool CWidgetWindow::isModalable() const

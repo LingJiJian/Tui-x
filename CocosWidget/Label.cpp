@@ -65,7 +65,7 @@ CLabel* CLabel::createWithTTF(const TTFConfig& ttfConfig, const std::string& tex
 	return ret;
 }
 
-CLabel* CLabel::createWithTTF(const std::string& text, const std::string& fontFile, float fontSize, const Size& dimensions /* = Size::ZERO */, TextHAlignment hAlignment /* = TextHAlignment::LEFT */, TextVAlignment vAlignment /* = TextVAlignment::TOP */)
+CLabel* CLabel::createWithTTF(const std::string& text, const std::string& fontFile, float fontSize, const Size& dimensions /* = Size::ZERO */, TextHAlignment hAlignment /* = TextHAlignment::CENTER */, TextVAlignment vAlignment /* = TextVAlignment::TOP */)
 {
 	CLabel *ret = NULL;
 	if(FileUtils::getInstance()->isFileExist(fontFile)){
@@ -79,7 +79,6 @@ CLabel* CLabel::createWithTTF(const std::string& text, const std::string& fontFi
 
 		ret->setDimensions(dimensions.width,dimensions.height);
 		ret->setString(text.c_str());
-
 		ret->setTouchEnabled(false);
 		ret->setAnchorPoint(CCWIDGET_BASIC_DEFAULT_ANCHOR_POINT);
 	}else{
@@ -88,7 +87,7 @@ CLabel* CLabel::createWithTTF(const std::string& text, const std::string& fontFi
 	return ret;
 }
 
-CLabel* CLabel::createWithSystemFont(const std::string& text, const std::string& font, float fontSize, const Size& dimensions /* = Size::ZERO */, TextHAlignment hAlignment /* = TextHAlignment::LEFT */, TextVAlignment vAlignment /* = TextVAlignment::TOP */)
+CLabel* CLabel::createWithSystemFont(const std::string& text, const std::string& font, float fontSize, const Size& dimensions /* = Size::ZERO */, TextHAlignment hAlignment /* = TextHAlignment::CENTER */, TextVAlignment vAlignment /* = TextVAlignment::TOP */)
 {
 	auto ret = new CLabel();
 	ret->autorelease();

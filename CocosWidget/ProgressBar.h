@@ -50,6 +50,12 @@ enum CProgressBarDirection
 	eProgressBarDirectionBottomToTop,
 	eProgressBarDirectionTopToBottom
 };
+//文本格式
+enum eLabFormat
+{
+	kPercent,
+	kRatio
+};
 
 /**
  * class  : CProgressBar
@@ -72,6 +78,7 @@ public:
 	virtual void initText(const std::string& text, const std::string& fontFile, float fontSize,
 		const Size& dimensions,const Color3B &color);
 	CLabel* getLabel();
+	CC_SYNTHESIZE(eLabFormat,m_eLabelFormat,LabelFormat);
 
 	virtual void setContentSize(const Size& tSize);
 	void setValue(int nValue);
@@ -124,7 +131,6 @@ protected:
 	CProgressBarDirection m_eDirection;
 
 private:
-	bool m_bShowValueLabel;
 	CLabel *m_pLabel;
 };
 

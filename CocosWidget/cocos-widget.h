@@ -66,6 +66,7 @@ class CTextRich;
 class CToggleView;
 class ArmatureBtn;
 class NumericStepper;
+class MovieView;
 
 NS_CC_WIDGET_END
 
@@ -98,5 +99,6 @@ NS_CC_WIDGET_END
 
 #include "ArmatureBtn.h"
 #include "NumericStepper.h"
+#include "MovieView.h"
 
 #endif //__CCWIDGET_H__

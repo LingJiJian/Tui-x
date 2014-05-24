@@ -1,0 +1,9 @@
+
+	<control tag="1" type="panel" name="panel_charactor" x="399.5" y="239.55" width="800" height="480" rotation="0">
+		<control tag="2" type="image" name="img_bgcharactor" image="res/opening/img_bgcharactor.png" x="0.5" y="0.45" width="800" height="480" rotation="0"></control>
+		<control tag="3" type="editBox" name="edit_nickname" image="res/opening/edit_nickname.png" inputMode="6" inputFlag="4" x="22.5" y="124.45" width="206" height="47" rotation="0"></control>
+		<control tag="4" type="label" text="角色名:" textSize="25" textFont="fonts/Times New Roman.ttf" red="255" green="255" blue="0" strokeRed="0" strokeGreen="0" strokeBlue="0" strokeSize="0" shadowDistance="0" shadowBlur="0" name="lab_charactor" x="-196.95" y="109.95" width="104" height="31.7" rotation="0"></control>
+	</control>
+	<control tag="5" type="panel" name="panel_openmovie" x="400" y="240" width="378" height="273" rotation="0">
+		<control tag="6" type="movieView" name="movie_opening" png="res/opening/dialog/movie_opening.png" plist="res/opening/dialog/movie_opening.plist" json="res/opening/dialog/movie_opening.json" x="0" y="0" width="378" height="273" rotation="0"></control>
+	</control>

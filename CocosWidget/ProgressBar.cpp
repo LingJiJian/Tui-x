@@ -45,8 +45,8 @@ CProgressBar::CProgressBar()
 , m_pBackgroundImage(NULL)
 , m_pBackgroundColor(NULL)
 , m_pBackgroundGradient(NULL)
-, m_bShowValueLabel(false)
 , m_pLabel(NULL)
+, m_eLabelFormat(kRatio)
 {
 	
 }
@@ -107,8 +107,15 @@ void CProgressBar::setValue(int nValue)
 
 	if(getLabel()->isVisible()){
 		char buf[128] = {0};
-		sprintf(buf,"%d/%d",nValue,m_nMaxValue);
-		
+		switch (m_eLabelFormat)
+		{
+		case kRatio:	
+			sprintf(buf,"%d/%d",nValue,m_nMaxValue);	
+			break;
+		case kPercent:	
+			sprintf(buf,"%.1f%%",nValue/m_nMaxValue);	
+			break;
+		}
 		getLabel()->setString(buf);
 	}
 }
@@ -357,6 +364,7 @@ void CProgressBar::setProgressImage(const char* pFile)
 
 void CProgressBar::setShowValueLabel(bool b){
 	getLabel()->setVisible(b);
+	if(b) setValue(getValue());
 }
 
 void CProgressBar::setProgressTexture(Texture2D* pTexture)
@@ -421,6 +429,7 @@ CLabel* CProgressBar::getLabel()
 	if(!m_pLabel)
 	{
 		m_pLabel = CLabel::create();
+		m_pLabel->setVisible(false);
 		m_pLabel->setLocalZOrder(10);
 		m_pLabel->setPosition(Point(m_tProgressSize.width/2,m_tProgressSize.height/2));
 		addChild(m_pLabel);
