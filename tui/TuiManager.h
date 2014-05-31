@@ -26,12 +26,12 @@ public:
 
 public:
 
-	CWidgetWindow *createPanel(float tag,float x,float y,float rotation);
+	CWidgetWindow *createPanel(float tag,float x,float y,int w,int h,float rotation);
 	CLayout *createLayout(float tag,float x,float y,float w,float h,float rotation);
-	CScrollView *createScrollView(float tag,float x,float y,float w,float h,float rotation);
+	CScrollView *createScrollView(float tag,int direction,float x,float y,float w,float h,float rotation);
 	CListView *createListView(float tag,const char* img,float x,float y,float w,float h,float rotation);
 	CPageView *createPageView(float tag,float x,float y,float w,float h,float rotation);
-	CImageView *createImage(float tag,const char* file,float x,float y,float rotation);
+	CImageView *createImage(float tag,const char* file,float scaleX,float scaleY ,float x,float y,float rotation);
 	CImageViewScale9 *createImage9(float tag,const char* file,float x,float y,float w,float h,float up,float down,float left, float right,float rotation);
 	CButton *createBtn(float tag,const char* normal,const char* select,const char* disable,float x,float y, float w,float h,float rotation);
 	CToggleView *createToggleView(float tag,int exclusion,const char* normal,const char* select,const char* disable,float x,float y,float rotation);
@@ -47,6 +47,7 @@ public:
 	NumericStepper *createNumStep(float tag,const char* lnormal,const char* lselect,const char* ldisable,const char* rnormal,const char* rselect,const char* rdisable,const char* stepBg,float x,float y,float rotation);
 	ParticleSystemQuad *createParticle(float tag,const char* plist,float x,float y);
 	CTableView *createTableView(float tag,float x,float y,float w,float h,float rotation);
+	CGridView *createGridView(float tag, float x, float y, float w, float h, float rotation);
 	EditBox *createEditBox(float tag,const char* file,int inputMode,int inputFlag,float x,float y,float w,float h,float rotation);
 	MovieView *createMovieView(float tag, const char* json, const char* plist, const char* png, float x, float y, float rotation);
 

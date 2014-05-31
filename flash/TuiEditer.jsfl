@@ -206,7 +206,7 @@ setY = function(element, y){
 /////////////////////////////////////////////////////////////////////
 /* tag映射头文件 */
 TH = function(){
-	this.obj = [];			//实体
+	this.obj = {};			//实体
 	this.nameSpaceDic = {};	//组件命名空间集
 	this.flaPath;			//fla文件路径
 	this.parseContent = function(){
@@ -216,8 +216,8 @@ TH = function(){
 		var middle = "";
 		for(var frameName in this.nameSpaceDic){
 			middle += "namespace "+frameName+" { \r\n";
-			for(var j=0;j<this.obj.length;j++){
-				var item = this.obj[j];
+			for(var controlName in this.obj){
+				var item = this.obj[controlName];
 				if(item["frameName"] == frameName){
 					middle += "	static const int "+item["controlName"].toUpperCase()+" = "+item["index"]+" ;\r\n";
 				}
@@ -396,6 +396,7 @@ UIControlType.kToggleView = "toggleView";
 UIControlType.kListView = "listView";
 UIControlType.kPageView = "pageView";
 UIControlType.kTableView = "tableView";
+UIControlType.kGridView = "gridView";
 UIControlType.kScrollView = "scrollView";
 UIControlType.kLayout = "layout";
 UIControlType.kRelativeLayout = "relativeLayout";
@@ -487,6 +488,8 @@ UIControlAttribute.kScaleX = "scaleX";
 UIControlAttribute.kScaleY = "scaleY";
 /** 角度 */
 UIControlAttribute.kRotation = "rotation";
+/** 方向 */
+UIControlAttribute.kDirection = "direction";
 /**
  @brief 控件基类
  */
@@ -636,6 +639,15 @@ UIPageView.extend( UIControl );
 UIPageView.prototype.init = function(){
 	UIPageView.superClass.prototype.init.call(this);
 	this.setAttribute( UIControlAttribute.kType, UIControlType.kPageView );
+}
+/////////////////GridView//////////////////////////////////////////////
+UIGridView = function(){
+	UIGridView.superClass.call(this);
+}
+UIGridView.extend( UIControl );
+UIGridView.prototype.init = function(){
+	UIGridView.superClass.prototype.init.call(this);
+	this.setAttribute( UIControlAttribute.kType, UIControlType.kGridView );
 }
 /////////////////ArmatureBtn//////////////////////////////////////////////
 UIArmatureBtn = function(){
@@ -918,7 +930,7 @@ FlaToXML.prototype.fullNormalAttirbute = function( xml,th, element ,elementIndex
 	xml.setAttribute( UIControlAttribute.kY, formatNumber( element.y) );
 	xml.setAttribute( UIControlAttribute.kRotation, formatNumber( element.rotation) );
 	
-	th.obj.push({"controlName":element.name,"index":elementIndex,"frameName":frameName});
+	th.obj[element.name] = {"controlName":element.name,"index":elementIndex,"frameName":frameName};
 
 	xml.setAttribute( UIControlAttribute.kWidth, formatNumber(element.width) );
 	xml.setAttribute( UIControlAttribute.kHeight, formatNumber(element.height) );
@@ -972,6 +984,9 @@ FlaToXML.prototype.convertMC = function( mc ,elementIndex ,frameName){
 			break;
 		case "scrol":
 			control_xml = this.convertScrollView(mc,elementIndex ,frameName);
+			break;
+		case "gv":
+			control_xml = this.convertGridView(mc,elementIndex ,frameName);
 			break;
 		case "labAtlas":
 			control_xml = this.convertLabAtlas(mc,elementIndex ,frameName);
@@ -1036,6 +1051,8 @@ FlaToXML.prototype.convertLayout = function(layout,elementIndex ,frameName){
 /** 转换image */
 FlaToXML.prototype.convertImg = function( image , elementIndex ,frameName){
 	var xml_img = new UIImage();
+	xml_img.setAttribute( UIControlAttribute.kScaleX,formatNumber(image.scaleX));
+	xml_img.setAttribute( UIControlAttribute.kScaleY,formatNumber(image.scaleY));
 	xml_img.setAttribute( UIControlAttribute.kImage, image.libraryItem.name + ".png" );
 	this.fullNormalAttirbute( xml_img,this.th, image ,elementIndex ,frameName);
 	return xml_img;
@@ -1043,13 +1060,23 @@ FlaToXML.prototype.convertImg = function( image , elementIndex ,frameName){
 /** 转换image9 */
 FlaToXML.prototype.convertImg9 = function( image9 , elementIndex ,frameName){
 	var xml_img9 = new UIImage9();
+	var up=0;
+	var down=0;
+	var left=0;
+	var right=0;
 	var oldName = image9.name;
 	var nameArr = image9.name.split("_");		//img9_test_10_10_10_10
+	if(nameArr.length == 6){
+		up = nameArr[2];
+		down = nameArr[3];
+		left = nameArr[4];
+		right = nameArr[5];
+	}
 	var imgName = nameArr[0]+"_"+nameArr[1];
-	xml_img9.setAttribute( UIControlAttribute.kUp,nameArr[2]);
-	xml_img9.setAttribute( UIControlAttribute.kDown,nameArr[3]);
-	xml_img9.setAttribute( UIControlAttribute.kLeft,nameArr[4]);
-	xml_img9.setAttribute( UIControlAttribute.kRight,nameArr[5]);
+	xml_img9.setAttribute( UIControlAttribute.kUp,up);
+	xml_img9.setAttribute( UIControlAttribute.kDown,down);
+	xml_img9.setAttribute( UIControlAttribute.kLeft,left);
+	xml_img9.setAttribute( UIControlAttribute.kRight,right);
 	xml_img9.setAttribute( UIControlAttribute.kImage, image9.libraryItem.name + ".png" );
 	image9.name = imgName;
 	this.fullNormalAttirbute( xml_img9,this.th, image9 ,elementIndex ,frameName);
@@ -1201,11 +1228,14 @@ FlaToXML.prototype.convertToggleView = function(toggleView,elementIndex ,frameNa
 	var xml_toggleView = new UIToggleView();
 	var oldName = toggleView.name;
 	var nameArr = toggleView.name.split("_");//tgv_test_1
-	var exclusionId = nameArr.pop();//切割掉最后的_1
-	var viewName = nameArr.join("_");
-	toggleView.name = viewName;//xml中的名字
+	var exclusionId = -1;
+	if(nameArr.length == 3){
+		exclusionId = nameArr.pop();
+	}
+	var viewName = nameArr[0]+"_"+nameArr[1];
+	toggleView.name = viewName;
 	this.fullNormalAttirbute( xml_toggleView, this.th,toggleView ,elementIndex ,frameName);
-	toggleView.name = oldName;//还原名字
+	toggleView.name = oldName;
 	xml_toggleView.setAttribute(UIControlAttribute.kExclusion,exclusionId);
 	xml_toggleView.setAttribute( UIControlAttribute.kbtnImg_normal, toggleView.libraryItem.name + "_normal.png" );
 	xml_toggleView.setAttribute( UIControlAttribute.kbtnImg_select, toggleView.libraryItem.name + "_select.png" );
@@ -1217,12 +1247,12 @@ FlaToXML.prototype.convertListView = function(listView,elementIndex ,frameName){
 	var xml_listView = new UIListView();
 	var oldName = listView.name;
 	var nameArr = listView.name.split("_");
-	var num = 1;
+	var num = 0;
 	if(nameArr.length == 3){
 		num = nameArr.pop();//复制item
-		xml_listView.setAttribute(UIControlAttribute.kNum,num);
 		listView.name = nameArr.join("_");
 	}
+	xml_listView.setAttribute(UIControlAttribute.kNum,num);
 	this.fullNormalAttirbute( xml_listView,this.th, listView ,elementIndex ,frameName);
 	listView.name = oldName;
 	xml_listView.setAttribute(UIControlAttribute.kImage,listView.libraryItem.name + ".png");
@@ -1236,6 +1266,12 @@ FlaToXML.prototype.convertPageView = function(pageView,elementIndex ,frameName){
 	var xml_pageView = new UIPageView();
 	this.fullNormalAttirbute( xml_pageView,this.th, pageView ,elementIndex ,frameName);
 	return xml_pageView;
+}
+/** 转换gridView */
+FlaToXML.prototype.convertGridView = function(gridView,elementIndex,frameName){
+	var xml_gridView = new UIGridView();
+	this.fullNormalAttirbute(xml_gridView,this.th, gridView,elementIndex ,frameName);
+	return xml_gridView;
 }
 /** 转换armatureBtn */
 FlaToXML.prototype.convertArmatureBtn = function(armatureBtn,elementIndex ,frameName){
@@ -1262,7 +1298,20 @@ FlaToXML.prototype.convertNumberStepper = function(numStep,elementIndex ,frameNa
 /** 转换scrollView */
 FlaToXML.prototype.convertScrollView = function(scrollView,elementIndex ,frameName){
 	var xml_scrollView = new UIScrollView();
+	var oldName = scrollView.name;
+	var nameArr = scrollView.name.split("_");
+	var newName = nameArr[0]+"_"+nameArr[1];
+	var dir = 2;
+	if(nameArr.length == 3) dir = nameArr[2];
+	xml_scrollView.setAttribute( UIControlAttribute.kDirection,dir);
+	scrollView.name = newName;
 	this.fullNormalAttirbute( xml_scrollView,this.th, scrollView ,elementIndex ,frameName);
+	scrollView.name = oldName;
+	
+	//获取mc的timeline
+	var timeline = scrollView.libraryItem.timeline;
+	this.fetchElement( timeline, xml_scrollView ,frameName);
+	
 	return xml_scrollView;
 }
 /** 转换粒子 */

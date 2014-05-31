@@ -34,14 +34,16 @@ void TuiManager::parseScene(TuiBase* pScene ,const char* sceneName,const char* x
 }
 ////////////////////解析组件/////////////////////////////////////////////
 void TuiManager::parseControl(Node* container,xml_node<char> *item)
-{
+{ 
 	int tag = atof(item->first_attribute("tag")->value());
 	int x = atof(item->first_attribute("x")->value());
 	int y = atof(item->first_attribute("y")->value());
+	int w = atoi(item->first_attribute("width")->value());
+	int h = atoi(item->first_attribute("height")->value());
 	int rotation = atof(item->first_attribute("rotation")->value());
 
 	if(strcmp(item->first_attribute("type")->value(), kTuiContainerPanel) == 0){//panel
-		CWidgetWindow* pPanel = createPanel(tag,x,y,rotation);
+		CWidgetWindow* pPanel = createPanel(tag,x,y,w,h,rotation);
 		container->addChild(pPanel);
 		//递归
 		for( xml_node<char> *iitem = item->first_node( kTuiNodeControl );iitem != NULL; iitem = iitem->next_sibling()){
@@ -50,7 +52,9 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlImage) == 0){//image
 		const char* file = item->first_attribute("image")->value();
-		CImageView *pImg = createImage(tag,file,x,y,rotation);
+		float scaleX = atof(item->first_attribute("scaleX")->value());
+		float scaleY = atof(item->first_attribute("scaleY")->value());
+		CImageView *pImg = createImage(tag, file, scaleX, scaleY, x, y, rotation);
 		container->addChild(pImg);
 	
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlImage9) == 0){//image9
@@ -143,11 +147,30 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		CControlView *pControl = createControl(tag,baseboard,joystick,x,y,rotation);
 		container->addChild(pControl);
 
-	}else if(strcmp(item->first_attribute("type")->value(),kTuiContainerScroll) == 0){//scrollView
+	}else if (strcmp(item->first_attribute("type")->value(), kTuiContainerScroll) == 0){//scrollView
 		float w = atof(item->first_attribute("width")->value());
 		float h = atof(item->first_attribute("height")->value());
-		CScrollView *pView = createScrollView(tag,x,y,w,h,rotation);
+		int direction = atof(item->first_attribute("direction")->value());
+		CScrollView *pView = createScrollView(tag, direction, x, y, w, h, rotation);
 		container->addChild(pView);
+		//递归
+		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
+			parseControl(pView->getContainer(), iitem);
+		}
+
+	}else if (strcmp(item->first_attribute("type")->value(), kTuiContainerLayout) == 0){//layout
+		float w = atof(item->first_attribute("width")->value());
+		float h = atof(item->first_attribute("height")->value());
+		CLayout *pLayout = createLayout(tag, x, y, w, h, rotation);
+		container->addChild(pLayout);
+		//递归
+		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
+			parseControl(pLayout, iitem);
+		}
+		Vector<Node*> vet = pLayout->getChildren();
+		for (Node *pChild : vet){//偏移坐标 因为CLayout的零点在左下角
+			pChild->setPosition(pChild->getPosition() + Point(w / 2, h / 2));
+		}
 
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlListView) == 0){//listView
 		float w = atof(item->first_attribute("width")->value());
@@ -214,10 +237,16 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		ParticleSystem *pPartical = createParticle(tag,plist,x,y);
 		container->addChild(pPartical);
 
-	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlTable) == 0){//TableView
+	}else if (strcmp(item->first_attribute("type")->value(), kTuiControlTable) == 0){//TableView
 		float w = atof(item->first_attribute("width")->value());
 		float h = atof(item->first_attribute("height")->value());
-		CTableView *pView = createTableView(tag,x,y,w,h,rotation);
+		CTableView *pView = createTableView(tag, x, y, w, h, rotation);
+		container->addChild(pView);
+
+	}else if (strcmp(item->first_attribute("type")->value(),kTuiControlGridView) == 0){//GridView
+		float w = atof(item->first_attribute("width")->value());
+		float h = atof(item->first_attribute("height")->value());
+		CGridView *pView = createGridView(tag, x, y, w, h, rotation);
 		container->addChild(pView);
 
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlEditBox) == 0){//EditBox
@@ -240,8 +269,9 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 }
 
 ///创建组件 ////////////////////////////////////////////////////////////////
-CWidgetWindow *TuiManager::createPanel(float tag,float x,float y,float rotation){
+CWidgetWindow *TuiManager::createPanel(float tag, float x, float y, int w, int h,float rotation){
 	CWidgetWindow *pPanel = CWidgetWindow::create();
+	pPanel->setContentSize(Size(w, h));
 	pPanel->setPosition(Point(x,y));
 	pPanel->setRotation(rotation);
 	pPanel->setTag(tag);
@@ -250,17 +280,17 @@ CWidgetWindow *TuiManager::createPanel(float tag,float x,float y,float rotation)
 
 CLayout *TuiManager::createLayout(float tag,float x,float y,float w,float h,float rotation){
 	CLayout *pLayout = CLayout::create(Size(w,h));
-	pLayout->setPosition(Point(x,y));
+	pLayout->setPosition(Point(x,-y));
 	pLayout->setRotation(rotation);
 	pLayout->setTag(tag);
 	return pLayout;
 }
 
-CScrollView *TuiManager::createScrollView(float tag,float x,float y,float w,float h,float rotation){
+CScrollView *TuiManager::createScrollView(float tag, int direction, float x, float y, float w, float h, float rotation){
 	CScrollView *pView = CScrollView::create(Size(Point(w,h)));
 	pView->setPosition(Point(x,-y));
 	pView->setContainerSize(Size(w,h));
-	pView->setDirection(eScrollViewDirectionBoth);
+	pView->setDirection((CScrollViewDirection)direction);
 	pView->setRotation(rotation);
 	pView->setTag(tag);
 	return pView;
@@ -285,13 +315,14 @@ CPageView *TuiManager::createPageView(float tag,float x,float y,float w,float h,
 	return pPage;
 }
 
-CImageView *TuiManager::createImage(float tag, const char* file,float x,float y,float rotation){
-	CImageView *pSprite = m_isUseSpriteFrame ? CImageView::createWithSpriteFrameName(file) : CImageView::create(file);
-	Size size = pSprite->getContentSize();
-	pSprite->setPosition(Point(x,-y));
-	pSprite->setRotation(rotation);
-	pSprite->setTag(tag);
-	return pSprite;
+CImageView *TuiManager::createImage(float tag, const char* file, float scaleX, float scaleY,float x, float y, float rotation){
+	CImageView *pImg = m_isUseSpriteFrame ? CImageView::createWithSpriteFrameName(file) : CImageView::create(file);
+	Size size = pImg->getContentSize();
+	pImg->setPosition(Point(x,-y));
+	pImg->setScale(scaleX, scaleY);
+	pImg->setRotation(rotation);
+	pImg->setTag(tag);
+	return pImg;
 }
 
 CImageViewScale9 *TuiManager::createImage9(float tag,const char* file,float x,float y,float w,float h,float up,float down,float left, float right,float rotation){
@@ -509,7 +540,7 @@ NumericStepper* TuiManager::createNumStep(float tag,const char* lnormal,const ch
 	}
 	Size size = pNumStep->getContentSize();
 	pNumStep->setRotation(rotation);
-	pNumStep->setPosition(Point(x - size.width/2,-y - size.height/2));
+	pNumStep->setPosition(Point(x,-y));
 	pNumStep->setTag(tag);
 	return pNumStep;
 }
@@ -529,6 +560,14 @@ CTableView* TuiManager::createTableView(float tag,float x,float y,float w,float 
 	return pView;
 }
 
+CGridView * TuiManager::createGridView(float tag, float x, float y, float w, float h, float rotation){
+	CGridView* pView = CGridView::create(Size(w, h));
+	pView->setAutoRelocate(true);
+	pView->setRotation(rotation);
+	pView->setPosition(x, -y);
+	pView->setTag(tag);
+	return pView;
+}
 
 EditBox* TuiManager::createEditBox(float tag,const char* file,int inputMode,int inputFlag,float x,float y,float w,float h,float rotation){
 	EditBox *pEditBox = NULL;
