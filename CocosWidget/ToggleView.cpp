@@ -103,7 +103,12 @@ void CToggleView::onTouchEnded(Touch *pTouch, float fDuration)
 	Point touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
 	if( getBoundingBox().containsPoint(touchPointInView) )
 	{
-		setChecked(!m_bChecked);
+		if (m_nExclusion == CC_WIDGET_NONE_EXCLUSION){//只有一个tgv
+			setChecked(!m_bChecked);
+		}
+		else{//多个tgv 作为单选组
+			setChecked(true);
+		}
 		executeClickHandler(this);
 	}
 }

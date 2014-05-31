@@ -155,12 +155,13 @@ void NumericStepper::event_btn_right(Ref* s){
 void NumericStepper::resetSelf(){
 	CLayout::setContentSize(Size(m_btnLeft->getContentSize().width+m_bg->getContentSize().width+m_btnRight->getContentSize().width,
 		m_bg->getContentSize().height));
-
+	
 	m_btnLeft->setPosition(m_btnLeft->getContentSize().width/2,m_btnLeft->getContentSize().height/2);
 	m_bg->setPosition(Point(m_btnLeft->getPositionX()+m_btnLeft->getContentSize().width/2+m_bg->getContentSize().width/2,
 		m_btnLeft->getPositionY()));
 	m_labNum->setPosition(m_bg->getPosition());
 	m_btnRight->setPosition((m_bg->getPositionX()+m_bg->getContentSize().width/2+m_btnRight->getContentSize().width/2),m_btnLeft->getPositionY());
+	
 }
 /************************************************************************/
 //	GET/SET/IS

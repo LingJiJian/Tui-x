@@ -239,6 +239,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\scene\Store\Storeui.h" />
     <ClInclude Include="..\Classes\scene\Welcome\WelcomeCfg.h" />
     <ClInclude Include="..\Classes\scene\Welcome\Welcomeui.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_adaption.h" />
     <ClInclude Include="..\Classes\tui\tagMap\tuiTag_main.h" />
     <ClInclude Include="..\Classes\tui\tagMap\tuiTag_store.h" />
     <ClInclude Include="..\Classes\tui\tagMap\tuiTag_welcome.h" />

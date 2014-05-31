@@ -649,4 +649,5 @@ CWidgetWindow* CWidgetWindow::create()
 }
 
 
+
 NS_CC_WIDGET_END

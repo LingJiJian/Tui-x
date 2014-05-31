@@ -4,6 +4,7 @@
 #include "scene/Main/Mainui.h"
 #include "scene/Main/dialog/MessageBox.h"
 #include "scene/Store/Storeui.h"
+#include "scene/Adaption/Adaptionui.h"
 
 bool ResoureMgr::init(){
 	return true;

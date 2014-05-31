@@ -131,7 +131,7 @@ protected:
 
 	Ref* m_pLongClickedWidgetObject;
 	CWidget* m_pSelectedWidget;
-	//modify
+
 	EventListener* m_pEventLister;
 
     Ref* m_pTouchMovedAfterLongClickListener;

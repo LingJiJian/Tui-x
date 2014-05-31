@@ -57,6 +57,7 @@ public:
 
 	CC_WIDGET_BACKGROUND
 
+	virtual void visit(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated);
 public:
     virtual CWidgetTouchModel onTouchBegan(Touch* pTouch);
     virtual void onTouchMoved(Touch* pTouch, float fDuration);

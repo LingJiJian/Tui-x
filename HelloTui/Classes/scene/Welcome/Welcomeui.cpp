@@ -8,17 +8,29 @@ void Welcomeui::onLoadScene()
 {
 	setAutoRemoveUnusedTexture(true);
 	TuiManager::getInstance()->parseScene(this,"panel_welcome",PATH_WELCOME);
+	
+	Size size = Director::getInstance()->getOpenGLView()->getFrameSize();
+	float psX = (float) size.width / 800;
+	float psY = (float) size.height / 480;
+	for (Node *pChild : this->getChildren()){
+		pChild->setPosition(pChild->getPositionX()*psX, pChild->getPositionY()*psY);
+		CWidgetWindow *pWindow = dynamic_cast<CWidgetWindow*>(pChild);
+		if (pWindow != nullptr){
+			for (Node *pChild : pWindow->getChildren()){
+				pChild->setPosition(pChild->getPositionX()*psX, pChild->getPositionY()*psY);
+			}
+		}
+	}
+	
 
-	DelayTime *pDelayAct = DelayTime::create(1.5f);
-	CallFunc *pCallAct = CallFunc::create(std::bind(&Welcomeui::event_anim_finish,this));
-
-	this->runAction(Sequence::create(pDelayAct,pCallAct,NULL));
-}
-
-void Welcomeui::event_anim_finish()
-{
-	CSceneManager::getInstance()->replaceScene(
-		CCSceneExTransitionFade::create(0.5f,LoadScene("Main::Mainui")));
+	this->runAction(
+		Sequence::create(
+		DelayTime::create(1.5f), 
+		CallFunc::create(
+		[](){
+		CSceneManager::getInstance()->replaceScene(
+			CCSceneExTransitionFade::create(0.5f, LoadScene("Main::Mainui")));
+		}), NULL));
 }
 
 /************************************************************************/

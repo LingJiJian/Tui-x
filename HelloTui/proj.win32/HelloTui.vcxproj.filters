@@ -396,6 +396,9 @@
     <ClInclude Include="..\..\CocosWidget\Ease.h">
       <Filter>lib\CocosWidget</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_adaption.h">
+      <Filter>lib\tui\tagMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

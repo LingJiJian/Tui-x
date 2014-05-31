@@ -186,4 +186,11 @@ Node* CLayout::find(Vector<Node*> pChild, const char* id)
 	return NULL;
 }
 
+void CLayout::visit(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated)
+{
+	Node::visit(renderer, parentTransform, parentTransformUpdated);
+}
+
+
+
 NS_CC_WIDGET_END

@@ -1,6 +1,6 @@
 
 	<control tag="1" type="panel" name="panel_main" x="400" y="240" width="827.45" height="518" rotation="0">
-		<control tag="2" type="image" name="img_bg" image="main/img_mainbg.png" x="0" y="0" width="480" height="320" rotation="0"></control>
+		<control tag="2" type="image" name="img_bg" image="main/img_mainbg.png" x="0" y="0" width="480" height="320" scaleX="1" scaleY="1" rotation="0"></control>
 		<control tag="3" type="particle" name="ptl_flower" plist="main/ptl_flower.plist" x="-165" y="-111.65" width="24" height="35" rotation="0"></control>
 		<control tag="4" type="button" name="btn_ok" normal="main/btn_ok_normal.png" select="main/btn_ok_select.png" disable="main/btn_ok_disable.png" x="298.5" y="132.9" width="196" height="68" rotation="0"></control>
 		<control tag="5" type="armature" name="armature_boss1" xml="main/armature_boss1.xml" png="main/armature_boss1.png" plist="main/armature_boss1.plist" x="-227.45" y="50.95" width="407" height="374" rotation="0"></control>
@@ -9,7 +9,7 @@
 		<control tag="8" type="toggleView" name="tgv_b" normal="main/tgv_test_normal.png" select="main/tgv_test_select.png" disable="main/tgv_test_disable.png" exclusion="1" x="-33.5" y="190.4" width="221" height="89" rotation="0"></control>
 		<control tag="9" type="anim" name="anim_coin" png="main/anim_coin.png" plist="main/anim_coin.plist" x="137.6" y="-17.75" width="37" height="45" rotation="0"></control>
 		<control tag="10" type="checkBox" name="ckb_test" normal1="main/ckb_test_normal1.png" select1="main/ckb_test_select1.png" disable1="main/ckb_test_disable1.png" normal2="main/ckb_test_normal2.png" select2="main/ckb_test_select2.png" disable2="main/ckb_test_disable2.png" x="-205" y="120.95" width="56" height="56" rotation="0"></control>
-		<control tag="11" type="numStep" name="numStep_test" lnormal="main/numStep_test_lnomal.png" lselect="main/numStep_test_lselect.png" ldisable="main/numStep_test_ldisable.png" rnormal="main/numStep_test_rnomal.png" rselect="main/numStep_test_rselect.png" rdisable="main/numStep_test_rdisable.png" stepBg="main/numStep_test_stepbg.png" x="192.75" y="55.9" width="67.5" height="17" rotation="0"></control>
+		<control tag="11" type="numStep" name="numStep_test" lnormal="main/numStep_test_lnomal.png" lselect="main/numStep_test_lselect.png" ldisable="main/numStep_test_ldisable.png" rnormal="main/numStep_test_rnomal.png" rselect="main/numStep_test_rselect.png" rdisable="main/numStep_test_rdisable.png" stepBg="main/numStep_test_stepbg.png" x="143.75" y="213.85" width="67.5" height="17" rotation="0"></control>
 		<control tag="12" type="editBox" name="edit_login" image="main/edit_login.png" inputMode="6" inputFlag="4" x="278.55" y="-204.05" width="227.9" height="55" rotation="0"></control>
 		<control tag="13" type="button" name="btn_go" normal="main/btn_ok_normal.png" select="main/btn_ok_select.png" disable="main/btn_ok_disable.png" x="298.5" y="202.95" width="196" height="68" rotation="0"></control>
 		<control tag="14" type="label" text="This is Normal" alignment="0" textSize="20" textFont="fonts/Arial.ttf" red="102" green="153" blue="255" strokeRed="0" strokeGreen="0" strokeBlue="0" strokeSize="0" shadowDistance="0" shadowBlur="0" name="lab_test1" x="143" y="-90.15" width="78" height="56.1" rotation="0"></control>

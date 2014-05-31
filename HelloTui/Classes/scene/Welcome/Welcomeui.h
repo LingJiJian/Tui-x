@@ -15,7 +15,6 @@ public:
 
 	Node *getPanel(int tagPanel);
 protected:
-	void event_anim_finish();
 private:
 };
 
