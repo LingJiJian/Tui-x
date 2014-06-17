@@ -52,6 +52,7 @@ class CGridViewCell : public CLayout
 public:
     CGridViewCell();
 	virtual ~CGridViewCell();
+
 	unsigned int getIdx() const { return m_uIdx; }
 	void setIdx(unsigned int uIdx) { m_uIdx = uIdx; }
 	unsigned int getRow() const { return m_uRow; }
@@ -89,7 +90,7 @@ public:
 	unsigned int getRows() const;
 	bool isAutoRelocate() const;
 	void setAutoRelocate(bool bAuto);
-	std::list<CGridViewCell*> getCells();
+	Vector<CGridViewCell*> getCells();
 	CGridViewCell* cellAtIndex(unsigned int idx);
 	CGridViewCell* dequeueCell();
 	void reloadData();

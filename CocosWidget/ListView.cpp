@@ -62,27 +62,27 @@ unsigned int CListView::getNodeCount() const
 	return m_vNodeList.size();
 }
 
-std::vector<Node*> CListView::getNodes()
+Vector<Node*> CListView::getNodes()
 {
 	return m_vNodeList;
 }
 
 Node* CListView::getNodeAtIndex(unsigned int idx)
 {
-	return m_vNodeList[idx];
+	return m_vNodeList.at(idx);
 }
 
 void CListView::insertNodeAtLast(Node* pNode)
 {
 	CCAssert(pNode, "should not null");
-	m_vNodeList.push_back(pNode);
+	m_vNodeList.pushBack(pNode);
 	pNode->retain();
 }
 
 void CListView::insertNodeAtFront(Node* pNode)
 {
 	CCAssert(pNode, "should not null");
-	m_vNodeList.insert(m_vNodeList.begin(), pNode);
+	m_vNodeList.insert(0, pNode);
 	pNode->retain();
 }
 
@@ -95,9 +95,9 @@ void CListView::insertNode(Node* pNode, Node* pTarget)
 
 	for(; idx < end; ++idx )
 	{
-		if( pTarget == m_vNodeList[idx] )
+		if( pTarget == m_vNodeList.at(idx) )
 		{
-			m_vNodeList.insert(m_vNodeList.begin() + idx, pNode);
+			m_vNodeList.insert(idx, pNode);
 			pNode->retain();
 		}
 	}
@@ -113,7 +113,7 @@ void CListView::insertNode(Node* pNode, unsigned int idx)
 		return;
 	}
 
-	m_vNodeList.insert(m_vNodeList.begin() + idx, pNode);
+	m_vNodeList.insert(idx, pNode);
 	pNode->retain();
 }
 
@@ -122,7 +122,7 @@ void CListView::removeNodeAtIndex(unsigned int idx)
 	if( m_vNodeList.size() == 0 )
 		return;
 
-	m_vNodeList[idx]->release();
+	m_vNodeList.at(idx)->release();
 	m_vNodeList.erase(m_vNodeList.begin() + idx);
 }
 
@@ -133,7 +133,7 @@ void CListView::removeNode(Node* pNode)
 	if( m_vNodeList.size() == 0 )
 		return;
 
-	vector<Node*>::iterator itr = std::find(
+	Vector<Node*>::iterator itr = std::find(
 		m_vNodeList.begin(),
 		m_vNodeList.end(),
 		pNode);
@@ -150,7 +150,7 @@ void CListView::removeFrontNode()
 	if( m_vNodeList.size() == 0 )
 		return;
 
-	m_vNodeList[0]->release();
+	m_vNodeList.at(0)->release();
 	m_vNodeList.erase(m_vNodeList.begin());
 }
 
@@ -159,8 +159,8 @@ void CListView::removeLastNode()
 	if( m_vNodeList.size() == 0 )
 		return;
 
-	m_vNodeList[m_vNodeList.size() - 1]->release();
-	m_vNodeList.pop_back();
+	m_vNodeList.at(m_vNodeList.size() - 1)->release();
+	m_vNodeList.popBack();
 }
 
 void CListView::removeAllNodes()
@@ -173,7 +173,7 @@ void CListView::removeAllNodes()
 
 	for(; i < end; ++i )
 	{
-		m_vNodeList[i]->release();
+		m_vNodeList.at(i)->release();
 	}
 
 	m_vNodeList.clear();
@@ -198,7 +198,7 @@ void CListView::updateNodesPosition()
 
 			for(; i < end; ++i )
 			{
-				pNode = m_vNodeList[i];
+				pNode = m_vNodeList.at(i);
 				pNode->setAnchorPoint(ListViewHorizontalNodeAnchorPoint);
 				pNode->setPosition(Point(m_fLayoutIndexSize, 0));
 				m_fLayoutIndexSize += pNode->getContentSize().width;
@@ -217,7 +217,7 @@ void CListView::updateNodesPosition()
 
 			for(; i < end; ++i )
 			{
-				pNode = m_vNodeList[i];
+				pNode = m_vNodeList.at(i);
 				fAllNodesSize += pNode->getContentSize().height;
 			}
 
@@ -230,7 +230,7 @@ void CListView::updateNodesPosition()
 
 			for(; i < end; ++i )
 			{
-				pNode = m_vNodeList[i];
+				pNode = m_vNodeList.at(i);
 				fAllNodesSize = fAllNodesSize - pNode->getContentSize().height;
 				pNode->setAnchorPoint(ListViewVerticalNodeAnchorPoint);
 				pNode->setPosition(Point(0, fAllNodesSize));

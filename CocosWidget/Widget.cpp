@@ -144,21 +144,20 @@ CWidgetTouchModel CWidget::executeTouchBeganHandler(Touch* pTouch)
 #if USING_LUA
 	else if( m_nTouchBeganScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(m_pThisObject, "CCObject");
-		pStack->pushCCObject(pTouch, "CCTouch");
+		pStack->pushObject(m_pThisObject, "Ref");
+		pStack->pushObject(pTouch, "Touch");
 		
-		CCArray* pRetArray = new CCArray();
-		pRetArray->initWithCapacity(1);
+		__Array pRetArray;
+		pRetArray.initWithCapacity(1);
 
 		int nRet = pStack->executeFunctionReturnArray(m_nTouchBeganScriptHandler, 2, 1, pRetArray);
-		CCAssert(pRetArray->count() > 0, "return count = 0");
+		CCAssert(pRetArray.count() > 0, "return count = 0");
 
-		CCDouble* pIntModel = (CCDouble*) pRetArray->objectAtIndex(0);
+		__Double* pIntModel = (__Double*)pRetArray.getIndexOfObject(0);
 		CWidgetTouchModel eUserTouchModel = (CWidgetTouchModel) ( (int)pIntModel->getValue() );
-		delete pRetArray;
 		pStack->clean();
 
 		if( eUserTouchModel == eWidgetTouchNone )
@@ -187,22 +186,21 @@ void CWidget::executeTouchMovedHandler(Touch* pTouch, float fDuration)
 #if USING_LUA
 	else if( m_nTouchMovedScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(m_pThisObject, "CCObject");
-		pStack->pushCCObject(pTouch, "CCTouch");
+		pStack->pushObject(m_pThisObject, "Ref");
+		pStack->pushObject(pTouch, "Touch");
 		pStack->pushFloat(fDuration);
 		
-		CCArray* pRetArray = new CCArray();
-		pRetArray->initWithCapacity(1);
+		__Array pRetArray;
+		pRetArray.initWithCapacity(1);
 
 		int nRet = pStack->executeFunctionReturnArray(m_nTouchMovedScriptHandler, 3, 1, pRetArray);
-		CCAssert(pRetArray->count() > 0, "return count = 0");
+		CCAssert(pRetArray.count() > 0, "return count = 0");
 
-		CCBool* pBool = (CCBool*) pRetArray->objectAtIndex(0);
+		__Bool* pBool = (__Bool*)pRetArray.getObjectAtIndex(0);
 		bool bContinue = pBool->getValue();
-		delete pRetArray;
 		pStack->clean();
 
 		if(!bContinue)
@@ -227,22 +225,21 @@ void CWidget::executeTouchEndedHandler(Touch* pTouch, float fDuration)
 #if USING_LUA
 	else if( m_nTouchEndedScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(m_pThisObject, "CCObject");
-		pStack->pushCCObject(pTouch, "CCTouch");
+		pStack->pushObject(m_pThisObject, "Ref");
+		pStack->pushObject(pTouch, "Touch");
 		pStack->pushFloat(fDuration);
 		
-		CCArray* pRetArray = new CCArray();
-		pRetArray->initWithCapacity(1);
+		__Array pRetArray;
+		pRetArray.initWithCapacity(1);
 
 		int nRet = pStack->executeFunctionReturnArray(m_nTouchEndedScriptHandler, 3, 1, pRetArray);
-		CCAssert(pRetArray->count() > 0, "return count = 0");
+		CCAssert(pRetArray.count() > 0, "return count = 0");
 
-		CCBool* pBool = (CCBool*) pRetArray->objectAtIndex(0);
+		__Bool* pBool = (__Bool*)pRetArray.getObjectAtIndex(0);
 		bool bContinue = pBool->getValue();
-		delete pRetArray;
 		pStack->clean();
 
 		if(!bContinue)
@@ -267,22 +264,21 @@ void CWidget::executeTouchCancelledHandler(Touch* pTouch, float fDuration)
 #if USING_LUA
 	else if( m_nTouchCancelledScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(m_pThisObject, "CCObject");
-		pStack->pushCCObject(pTouch, "CCTouch");
+		pStack->pushObject(m_pThisObject, "Ref");
+		pStack->pushObject(pTouch, "Touch");
 		pStack->pushFloat(fDuration);
 		
-		CCArray* pRetArray = new CCArray();
-		pRetArray->initWithCapacity(1);
+		__Array pRetArray;
+		pRetArray.initWithCapacity(1);
 
 		int nRet = pStack->executeFunctionReturnArray(m_nTouchCancelledScriptHandler, 3, 1, pRetArray);
-		CCAssert(pRetArray->count() > 0, "return count = 0");
+		CCAssert(pRetArray.count() > 0, "return count = 0");
 
-		CCBool* pBool = (CCBool*) pRetArray->objectAtIndex(0);
+		__Bool* pBool = (__Bool*) pRetArray.getObjectAtIndex(0);
 		bool bContinue = pBool->getValue();
-		delete pRetArray;
 		pStack->clean();
 
 		if(!bContinue)
@@ -348,7 +344,7 @@ void CWidget::removeOnTouchBeganScriptHandler()
 {
 	if( m_nTouchBeganScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nTouchBeganScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nTouchBeganScriptHandler);
 		m_nTouchBeganScriptHandler = 0;
 	}
 }
@@ -357,7 +353,7 @@ void CWidget::removeOnTouchMovedScriptHandler()
 {
 	if( m_nTouchMovedScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nTouchMovedScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nTouchMovedScriptHandler);
 		m_nTouchMovedScriptHandler = 0;
 	}
 }
@@ -366,7 +362,7 @@ void CWidget::removeOnTouchEndedScriptHandler()
 {
 	if( m_nTouchEndedScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nTouchEndedScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nTouchEndedScriptHandler);
 		m_nTouchEndedScriptHandler = 0;
 	}
 }
@@ -375,7 +371,7 @@ void CWidget::removeOnTouchCancelledScriptHandler()
 {
 	if( m_nTouchCancelledScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nTouchCancelledScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nTouchCancelledScriptHandler);
 		m_nTouchCancelledScriptHandler = 0;
 	}
 }

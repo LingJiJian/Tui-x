@@ -1,0 +1,4 @@
+
+	<control tag="1" type="panel" name="panel_bag" x="400" y="240" width="320" height="390" rotation="0">
+		<control tag="2" type="gridView" num="20" name="gv_bag" image="bag/gv_bag.png" column="5" cellWidth="80" cellHeight="80" x="0" y="0" width="320" height="390" rotation="0"></control>
+	</control>

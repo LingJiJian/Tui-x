@@ -103,7 +103,7 @@ public:
 	void removeLastExpandableNode();
 	void removeFrontExpandableNode();
 	void removeAllExpandableNodes();
-	std::vector<CExpandableNode*> getExpandableNodes();
+	Vector<CExpandableNode*> getExpandableNodes();
 	unsigned int getExpandableNodeCount();
 	CExpandableNode* getExpandableNodeAtIndex(unsigned int idx);
 
@@ -114,7 +114,7 @@ protected:
 	void updateNodesPosition();
 
 protected:
-	std::vector<CExpandableNode*> m_vExpandableNodeList;
+	Vector<CExpandableNode*> m_vExpandableNodeList;
 };
 
 

@@ -60,7 +60,7 @@ public:
 	void removeLastNode();
 	void removeAllNodes();
 
-	std::vector<Node*> getNodes();
+	Vector<Node*> getNodes();
 	Node* getNodeAtIndex(unsigned int idx);
 	unsigned int getNodeCount() const;
 	void reloadData();
@@ -69,7 +69,7 @@ protected:
 	void updateNodesPosition();
 
 protected:
-	std::vector<Node*> m_vNodeList;
+	Vector<Node*> m_vNodeList;
 	float m_fLayoutIndexSize;
 };
 

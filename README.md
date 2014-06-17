@@ -6,7 +6,7 @@ This Tui-x cocos2dx 3.0 version,more light,more sample,more flexible
 简介：
 
 Tui是一个创建cocos2d-x UI界面的解决方案，而builder用的则是FlashCS，这个项目所用的版本是cocos2d-x 3.0正式版，
-而所用的组件库为CocosWidget3.0，如果是2.2.1版本的项目请移步到https://github.com/LingJiJian/tui/tree/Tui-x
+而所用的组件库为CocosWidget3.0，如果是2.2.x版本的项目请移步到https://github.com/LingJiJian/tui/tree/Tui-x
 
 新增:
 
@@ -15,7 +15,8 @@ Tui是一个创建cocos2d-x UI界面的解决方案，而builder用的则是Flas
 3.FlashCS上可视化编辑ListView。														
 4.FlashCS上添加命名空间，避免资源命名冲突或过长。											
 5.支持多fla编辑场景。																		
-6*.影片剪辑控件MovieView，动画编辑工具后期发布。												
+6*.影片剪辑控件MovieView，动画编辑工具后期发布。	
+7.旋转菜单控件										
 
 说明:
 

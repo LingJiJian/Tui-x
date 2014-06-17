@@ -28,6 +28,7 @@ THE SOFTWARE.
 #if USING_LUA
 #include "CCLuaEngine.h"
 #endif
+
 #include "GUI/CCControlExtension/CCControl.h"
 
 using namespace std;
@@ -165,7 +166,7 @@ void CWidgetWindow::removeOnTouchMovedAfterLongClickScriptHandler()
 {
 	if( m_nTouchMovedAfterLongClickScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nTouchMovedAfterLongClickScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nTouchMovedAfterLongClickScriptHandler);
 		m_nTouchMovedAfterLongClickScriptHandler = 0;
 	}
 }
@@ -174,7 +175,7 @@ void CWidgetWindow::removeOnTouchEndedAfterLongClickScriptHandler()
 {
 	if( m_nTouchEndedAfterLongClickScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nTouchEndedAfterLongClickScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nTouchEndedAfterLongClickScriptHandler);
 		m_nTouchEndedAfterLongClickScriptHandler = 0;
 	}
 }
@@ -183,7 +184,7 @@ void CWidgetWindow::removeOnTouchCancelledAfterLongClickScriptHandler()
 {
 	if( m_pTouchCancelledAfterLongClickScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_pTouchCancelledAfterLongClickScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_pTouchCancelledAfterLongClickScriptHandler);
 		m_pTouchCancelledAfterLongClickScriptHandler = 0;
 	}
 }
@@ -198,11 +199,11 @@ void CWidgetWindow::executeTouchMovedAfterLongClickHandler(Ref* pSender, Touch *
 #if USING_LUA
 	else if( m_nTouchMovedAfterLongClickScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(pSender, "CCObject");
-		pStack->pushCCObject(pTouch, "CCTouch");
+		pStack->pushObject(pSender, "Ref");
+		pStack->pushObject(pTouch, "Touch");
 		pStack->pushFloat(fDuration);
 
 		int nRet = pStack->executeFunctionByHandler(m_nTouchMovedAfterLongClickScriptHandler, 3);
@@ -220,11 +221,11 @@ void CWidgetWindow::executeTouchEndedAfterLongClickHandler(Ref* pSender, Touch *
 #if USING_LUA
 	else if( m_nTouchEndedAfterLongClickScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(pSender, "CCObject");
-		pStack->pushCCObject(pTouch, "CCTouch");
+		pStack->pushObject(pSender, "Ref");
+		pStack->pushObject(pTouch, "Touch");
 		pStack->pushFloat(fDuration);
 
 		int nRet = pStack->executeFunctionByHandler(m_nTouchEndedAfterLongClickScriptHandler, 3);
@@ -242,11 +243,11 @@ void CWidgetWindow::executeTouchCancelledAfterLongClickHandler(Ref* pSender, Tou
 #if USING_LUA
 	else if( m_pTouchCancelledAfterLongClickScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(pSender, "CCObject");
-		pStack->pushCCObject(pTouch, "CCTouch");
+		pStack->pushObject(pSender, "Ref");
+		pStack->pushObject(pTouch, "Touch");
 		pStack->pushFloat(fDuration);
 
 		int nRet = pStack->executeFunctionByHandler(m_pTouchCancelledAfterLongClickScriptHandler, 3);
@@ -389,6 +390,7 @@ void CWidgetWindow::onEnter()
 			listenerAllAtOnce->onTouchesBegan = CC_CALLBACK_2(CWidgetWindow::onTouchesBegan, this);
 			listenerAllAtOnce->onTouchesMoved = CC_CALLBACK_2(CWidgetWindow::onTouchesMoved, this);
 			listenerAllAtOnce->onTouchesEnded = CC_CALLBACK_2(CWidgetWindow::onTouchesEnded, this);
+			listenerAllAtOnce->onTouchesCancelled = CC_CALLBACK_2(CWidgetWindow::onTouchesCancelled, this);
 		}
 		else
 		{
@@ -397,6 +399,7 @@ void CWidgetWindow::onEnter()
 			listenerOneByOne->onTouchBegan = CC_CALLBACK_2(CWidgetWindow::onTouchBegan, this);
 			listenerOneByOne->onTouchMoved = CC_CALLBACK_2(CWidgetWindow::onTouchMoved, this);
 			listenerOneByOne->onTouchEnded = CC_CALLBACK_2(CWidgetWindow::onTouchEnded, this);
+			listenerOneByOne->onTouchCancelled = CC_CALLBACK_2(CWidgetWindow::onTouchCancelled, this);
 		}
 		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 		m_pEventLister = listener;

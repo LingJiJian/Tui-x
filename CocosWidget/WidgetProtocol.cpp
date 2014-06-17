@@ -56,7 +56,6 @@ void CDataSourceAdapterProtocol::setDataSourceAdapter(Ref* pListener, SEL_DataSo
 	m_pDataSourceAdapterHandler = pHandler;
 }
 
-
 Ref* CDataSourceAdapterProtocol::executeDataSourceAdapterHandler(Ref* pConvertCell, unsigned int uIdx)
 {
 	if( m_pDataSourceAdapterListener && m_pDataSourceAdapterHandler )
@@ -77,12 +76,12 @@ Ref* CDataSourceAdapterProtocol::executeDataSourceAdapterScriptHandler(Ref* pCon
 {
 	if( m_nDataSourceAdapterScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
 		if( pConvertCell )
 		{
-			pStack->pushCCObject(pConvertCell, "CCObject");
+			pStack->pushObject(pConvertCell, "Ref");
 		}
 		else
 		{
@@ -90,14 +89,13 @@ Ref* CDataSourceAdapterProtocol::executeDataSourceAdapterScriptHandler(Ref* pCon
 		}
 		pStack->pushInt(uIdx);
 
-		CCArray* pRetArray = new CCArray();
-		pRetArray->initWithCapacity(1);
+		__Array pRetArray;
+		pRetArray.initWithCapacity(1);
 
 		int nRet = pStack->executeFunctionReturnArray(m_nDataSourceAdapterScriptHandler, 2, 1, pRetArray);
-		CCAssert(pRetArray->count() > 0, "return num = 0");
+		CCAssert(pRetArray.count() > 0, "return num = 0");
 
-		Ref* pReturnObject = pRetArray->objectAtIndex(0);
-		delete pRetArray;
+		Ref* pReturnObject = pRetArray.getObjectAtIndex(0);
 		pStack->clean();
 
 		return pReturnObject;
@@ -115,7 +113,7 @@ void CDataSourceAdapterProtocol::removeDataSourceAdapterScriptHandler()
 {
 	if( m_nDataSourceAdapterScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nDataSourceAdapterScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nDataSourceAdapterScriptHandler);
 		m_nDataSourceAdapterScriptHandler = 0;
 	}
 }
@@ -164,10 +162,10 @@ void CTextRichClickableProtocol::executeTextRichScriptHandler(Ref* pSender, cons
 {
 	if( m_nRichTextClickScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(pSender, "CCObject");
+		pStack->pushObject(pSender, "Ref");
 
 		if( pDescription )
 		{
@@ -193,7 +191,7 @@ void CTextRichClickableProtocol::removeOnTextRichClickScriptHandler()
 {
 	if( m_nRichTextClickScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nRichTextClickScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nRichTextClickScriptHandler);
 		m_nRichTextClickScriptHandler = 0;
 	}
 }
@@ -255,10 +253,10 @@ void CPageChangeableProtocol::executePageChangedScriptHandler(Ref* pSender, unsi
 {
 	if( m_nPageChangedScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(pSender, "CCObject");
+		pStack->pushObject(pSender, "Ref");
 		pStack->pushInt(uPageIdx);
 
 		pStack->executeFunctionByHandler(m_nPageChangedScriptHandler, 2);
@@ -276,7 +274,7 @@ void CPageChangeableProtocol::removeOnPageChangedScriptHandler()
 {
 	if( m_nPageChangedScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nPageChangedScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nPageChangedScriptHandler);
 		m_nPageChangedScriptHandler = 0;
 	}
 }
@@ -326,10 +324,10 @@ void CScrollableProtocol::executeScrollingScriptHandler(Ref* pSender)
 {
 	if( m_nScrollingScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(pSender, "CCObject");
+		pStack->pushObject(pSender, "Ref");
 
 		pStack->executeFunctionByHandler(m_nScrollingScriptHandler, 1);
 		pStack->clean();
@@ -346,7 +344,7 @@ void CScrollableProtocol::removeOnScrollingScriptHandler()
 {
 	if( m_nScrollingScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nScrollingScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nScrollingScriptHandler);
 		m_nScrollingScriptHandler = 0;
 	}
 }
@@ -395,10 +393,10 @@ void CProgressEndedProtocol::executeProgressEndedScriptHandler(Ref* pSender)
 {
 	if( m_nProgressEndedScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(pSender, "CCObject");
+		pStack->pushObject(pSender, "Ref");
 
 		pStack->executeFunctionByHandler(m_nProgressEndedScriptHandler, 1);
 		pStack->clean();
@@ -415,7 +413,7 @@ void CProgressEndedProtocol::removeOnProgressEndedScriptHandler()
 {
 	if( m_nProgressEndedScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nProgressEndedScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nProgressEndedScriptHandler);
 		m_nProgressEndedScriptHandler = 0;
 	}
 }
@@ -467,10 +465,10 @@ void CValueChangeableProtocol::executeValueChangedScriptHandler(Ref* pSender, in
 {
 	if( m_nValueChangedScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine =LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(pSender, "CCObject");
+		pStack->pushObject(pSender, "Ref");
 		pStack->pushInt(nValue);
 
 		pStack->executeFunctionByHandler(m_nValueChangedScriptHandler, 2);
@@ -488,7 +486,7 @@ void CValueChangeableProtocol::removeOnValueChangedScriptHandler()
 {
 	if( m_nValueChangedScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nValueChangedScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nValueChangedScriptHandler);
 		m_nValueChangedScriptHandler = 0;
 	}
 }
@@ -538,10 +536,10 @@ void CClickableProtocol::executeClickScriptHandler(Ref* pSender)
 {
 	if( m_nClickScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(pSender, "CCObject");
+		pStack->pushObject(pSender, "Ref");
 
 		pStack->executeFunctionByHandler(m_nClickScriptHandler, 1);
 		pStack->clean();
@@ -558,7 +556,7 @@ void CClickableProtocol::removeOnClickScriptHandler()
 {
 	if( m_nClickScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nClickScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nClickScriptHandler);
 		m_nClickScriptHandler = 0;
 	}
 }
@@ -614,19 +612,19 @@ bool CLongClickableProtocol::executeLongClickScriptHandler(Ref* pSender, Touch* 
 {
 	if( m_nLongClickScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(pSender, "CCObject");
-		pStack->pushCCObject(pTouch, "CCTouch");
+		pStack->pushObject(pSender, "Ref");
+		pStack->pushObject(pTouch, "Touch");
 
-		CCArray* pRetArray = new CCArray();
-		pRetArray->initWithCapacity(1);
+		__Array pRetArray;
+		pRetArray.initWithCapacity(1);
 
 		int nRet = pStack->executeFunctionReturnArray(m_nLongClickScriptHandler, 2, 1, pRetArray);
-		CCAssert(pRetArray->count() > 0, "return count = 0");
+		CCAssert(pRetArray.count() > 0, "return count = 0");
 
-		CCBool* pBool = (CCBool*) pRetArray->objectAtIndex(0);
+		__Bool* pBool = (__Bool*)pRetArray.getObjectAtIndex(0);
 		bool bReturnBool = pBool->getValue();
 		pStack->clean();
 		return bReturnBool;
@@ -645,7 +643,7 @@ void CLongClickableProtocol::removeOnLongClickScriptHandler()
 {
 	if( m_nLongClickScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nLongClickScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nLongClickScriptHandler);
 		m_nLongClickScriptHandler = 0;
 		m_bLongClickEnabled = false;
 	}
@@ -738,10 +736,10 @@ void CCheckableProtocol::executeCheckScriptHandler(Ref* pSender, bool bChecked)
 {
 	if( m_nCheckScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(pSender, "CCObject");
+		pStack->pushObject(pSender, "Ref");
 		pStack->pushBoolean(bChecked);
 
 		pStack->executeFunctionByHandler(m_nCheckScriptHandler, 2);
@@ -759,7 +757,7 @@ void CCheckableProtocol::removeCheckScriptHandler()
 {
 	if( m_nCheckScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nCheckScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nCheckScriptHandler);
 		m_nCheckScriptHandler = 0;
 	}
 }
@@ -809,10 +807,10 @@ void CControlableProtocol::executeControlScriptHandler(Ref* pSender, float cx, f
 {
 	if( m_nControlScriptHandler != 0 )
 	{
-		CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-		CCLuaStack* pStack = pEngine->getLuaStack();
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
-		pStack->pushCCObject(pSender, "CCObject");
+		pStack->pushObject(pSender, "Ref");
 		pStack->pushFloat(cx);
 		pStack->pushFloat(cy);
 
@@ -831,7 +829,7 @@ void CControlableProtocol::removeOnControlScriptHandler()
 {
 	if( m_nControlScriptHandler != 0 )
 	{
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nControlScriptHandler);
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nControlScriptHandler);
 		m_nControlScriptHandler = 0;
 	}
 }

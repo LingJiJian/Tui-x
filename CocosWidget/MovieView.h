@@ -55,7 +55,7 @@ public:
 	void stop();
 	void rePlay();
 	void setCallBack(map<string, function<void()>>& m);
-
+	
 	CC_SYNTHESIZE_READONLY(bool, m_isLoop, IsLoop);
 	CC_SYNTHESIZE_READONLY(bool, m_isFlip, IsFlip);
 	CC_SYNTHESIZE_READONLY(int, m_frameRate, FrameRate);
@@ -64,8 +64,16 @@ public:
 	CC_SYNTHESIZE_READONLY(vector<Vector<FrameInfo*>>, m_layerFrames, LayerFrames);
 	CC_SYNTHESIZE_READONLY(Vector<Sprite*>, m_sprites, Sprites);
 	
-protected:
 	void createFrames(vector<Vector<FrameInfo*>>& layers);
+
+#if USING_LUA
+	void setOnCallBackScriptHandle(const string& key, int mHandle);
+	void removeCallBackScriptHandle(const string& key);
+	void executeCallBack(int nHandle);
+#endif
+
+protected:
+	
 	void doFrame(float dt);
 	void playFrame(int index);
 	Vector<FrameInfo*> getFrames(FrameInfo* from, FrameInfo* to);
@@ -73,6 +81,7 @@ protected:
 private:
 	map<int, string> m_keys;
 	map<string, function<void()>> m_keyHandlers;
+	map<string, int> m_keyScriptHandlers;
 };
 
 

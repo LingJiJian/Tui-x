@@ -2,7 +2,7 @@
 #define __ARMATURE_BTN__
 #include "cocos2d.h"
 #include "Widget.h"
-#include "cocostudio/CocoStudio.h"
+#include "cocostudio/CCArmature.h"
 
 using namespace cocostudio;
 

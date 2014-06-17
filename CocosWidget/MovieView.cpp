@@ -3,6 +3,7 @@
 #include "json/document.h"
 #include "cocostudio/DictionaryHelper.h"
 #include "Ease.h"
+#include "CCLuaEngine.h"
 
 using namespace rapidjson;
 
@@ -113,10 +114,21 @@ void MovieView::doFrame(float dt)
 	this->playFrame(this->m_currFrame);
 	auto it = this->m_keys.find(this->m_currFrame);
 	if (it != this->m_keys.end()){
-		function<void()> func = this->m_keyHandlers.at(it->second);
-		if (func != NULL) {
-			func();
+		auto handleIt = this->m_keyHandlers.find(it->second);
+
+		if (handleIt != this->m_keyHandlers.end()){
+			function<void()> func = handleIt->second;
+			if (func != NULL) {
+				func();
+			}
 		}
+#if USING_LUA
+		auto scriptHandleIt = this->m_keyScriptHandlers.find(it->second);
+
+		if (scriptHandleIt != this->m_keyScriptHandlers.end()){
+			executeCallBack(scriptHandleIt->second);
+		}
+#endif
 	}
 
 	this->m_currFrame = this->m_currFrame + 1;
@@ -225,15 +237,43 @@ FrameInfo* MovieView::getTweenFrame(int curr, int count, FrameInfo* from, FrameI
 	return temp;
 }
 
+MovieView::~MovieView()
+{
+	this->unschedule(schedule_selector(MovieView::doFrame));
+}
+
 void MovieView::setCallBack(map<string, function<void()>>& m)
 {
 	m_keyHandlers = m;
 }
 
-MovieView::~MovieView()
+#if USING_LUA
+void MovieView::setOnCallBackScriptHandle(const string& key, int mHandle)
 {
-	this->unschedule(schedule_selector(MovieView::doFrame));
+	m_keyScriptHandlers[key] = mHandle;
 }
+
+void MovieView::executeCallBack(int nHandle)
+{
+	LuaEngine* pEngine = LuaEngine::getInstance();
+	LuaStack* pStack = pEngine->getLuaStack();
+
+	int nRet = pStack->executeFunctionByHandler(nHandle, 0);
+	pStack->clean();
+}
+
+void MovieView::removeCallBackScriptHandle(const string& key)
+{
+	auto handleIt = m_keyScriptHandlers.find(key);
+	if (handleIt != m_keyScriptHandlers.end() && handleIt->second)
+	{
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(handleIt->second);
+		handleIt->second = 0;
+		m_keyScriptHandlers.erase(handleIt);
+	}
+}
+
+#endif
 
 
 ///////////////////////FrameInfo//////////////////////////////////////////

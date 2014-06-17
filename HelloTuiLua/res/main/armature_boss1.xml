@@ -1,0 +1,420 @@
+<skeleton name="armature_boss1" frameRate="24" version="2.2">
+  <armatures>
+    <armature name="armature_boss1">
+      <b name="Layer 1" x="-115.95" y="-16.55" kX="0" kY="0" cX="0.8" cY="1" pX="0" pY="0" z="0">
+        <d name="MovieClip-sprite 1883" pX="0" pY="0"/>
+      </b>
+      <b name="Layer 3" x="-120.1" y="-277.45" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1">
+        <d name="MovieClip-sprite 1889" pX="0" pY="0"/>
+        <d name="MovieClip-sprite 1886" pX="0" pY="0"/>
+      </b>
+      <b name="Layer 5" x="-6.6" y="-255.7" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2">
+        <d name="MovieClip-sprite 1892" pX="0" pY="0"/>
+        <d name="MovieClip-sprite 1889" pX="0" pY="0"/>
+      </b>
+      <b name="Layer 7" x="68.95" y="-187.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="3">
+        <d name="MovieClip-sprite 1886" pX="0" pY="0"/>
+        <d name="MovieClip-sprite 1892" pX="0" pY="0"/>
+      </b>
+      <b name="Layer 9" x="-160" y="-176" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4">
+        <d name="MovieClip-sprite 1913" pX="0" pY="0"/>
+        <d name="MovieClip-sprite 1895" pX="0" pY="0"/>
+      </b>
+      <b name="Layer 11" x="17.25" y="-105.6" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5">
+        <d name="MovieClip-sprite 1895" pX="0" pY="0"/>
+        <d name="MovieClip-sprite 1898" pX="0" pY="0"/>
+      </b>
+      <b name="Layer 13" x="38.4" y="-145.1" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6">
+        <d name="MovieClip-sprite 1898" pX="0" pY="0"/>
+        <d name="MovieClip-sprite 1901" pX="0" pY="0"/>
+      </b>
+      <b name="Layer 15" x="-23.4" y="-106.45" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7">
+        <d name="MovieClip-sprite 1901" pX="0" pY="0"/>
+        <d name="MovieClip-sprite 1904" pX="0" pY="0"/>
+      </b>
+      <b name="Layer 17" x="-66.5" y="-147.1" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8">
+        <d name="MovieClip-sprite 1904" pX="0" pY="0"/>
+        <d name="MovieClip-sprite 1907" pX="0" pY="0"/>
+      </b>
+      <b name="Layer 19" x="-48.85" y="-124.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="9">
+        <d name="MovieClip-sprite 1907" pX="0" pY="0"/>
+        <d name="MovieClip-sprite 1910" pX="0" pY="0"/>
+      </b>
+      <b name="Layer 21" x="40.2" y="-123.95" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="10">
+        <d name="MovieClip-sprite 1910" pX="0" pY="0"/>
+        <d name="MovieClip-sprite 1913" pX="0" pY="0"/>
+      </b>
+    </armature>
+  </armatures>
+  <animations>
+    <animation name="armature_boss1">
+      <mov name="live" dr="40" to="6" drTW="40" lp="0" twE="NaN">
+        <b name="Layer 1" sc="1" dl="0">
+          <f x="-115.95" y="-16.55" cocos2d_x="-115.95" cocos2d_y="-16.55" kX="0" kY="0" cX="0.8" cY="1" pX="0" pY="0" z="0" dI="0" dr="40"/>
+        </b>
+        <b name="Layer 3" sc="1" dl="0">
+          <f x="-120.1" y="-277.45" cocos2d_x="-120.1" cocos2d_y="-277.45" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" twE="0" dr="19"/>
+          <f x="-120.1" y="-295.45" cocos2d_x="-120.1" cocos2d_y="-295.45" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" twE="0" dr="20"/>
+          <f x="-120.1" y="-277.45" cocos2d_x="-120.1" cocos2d_y="-277.45" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" dr="1"/>
+        </b>
+        <b name="Layer 5" sc="1" dl="0">
+          <f x="-6.6" y="-255.7" cocos2d_x="-6.6" cocos2d_y="-255.7" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="19"/>
+          <f x="-6.6" y="-273.7" cocos2d_x="-6.6" cocos2d_y="-273.7" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="20"/>
+          <f x="-6.6" y="-255.7" cocos2d_x="-6.6" cocos2d_y="-255.7" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" dr="1"/>
+        </b>
+        <b name="Layer 7" sc="1" dl="0">
+          <f x="68.95" y="-187.35" cocos2d_x="68.95" cocos2d_y="-187.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="19"/>
+          <f x="63.95" y="-202.35" cocos2d_x="63.95" cocos2d_y="-202.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="20"/>
+          <f x="68.95" y="-187.35" cocos2d_x="68.95" cocos2d_y="-187.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" dr="1"/>
+        </b>
+        <b name="Layer 9" sc="1" dl="0">
+          <f x="-160" y="-176" cocos2d_x="-160" cocos2d_y="-176" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="19"/>
+          <f x="-157" y="-194" cocos2d_x="-157" cocos2d_y="-194" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="20"/>
+          <f x="-160" y="-176" cocos2d_x="-160" cocos2d_y="-176" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" dr="1"/>
+        </b>
+        <b name="Layer 11" sc="1" dl="0">
+          <f x="17.25" y="-105.6" cocos2d_x="17.25" cocos2d_y="-105.6" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="19"/>
+          <f x="17.25" y="-123.6" cocos2d_x="17.25" cocos2d_y="-123.6" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="20"/>
+          <f x="17.25" y="-105.6" cocos2d_x="17.25" cocos2d_y="-105.6" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" dr="1"/>
+        </b>
+        <b name="Layer 13" sc="1" dl="0">
+          <f x="38.4" y="-145.1" cocos2d_x="38.4" cocos2d_y="-145.1" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" twE="0" dr="19"/>
+          <f x="38.4" y="-163.1" cocos2d_x="38.4" cocos2d_y="-163.1" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" twE="0" dr="20"/>
+          <f x="38.4" y="-145.1" cocos2d_x="38.4" cocos2d_y="-145.1" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" dr="1"/>
+        </b>
+        <b name="Layer 15" sc="1" dl="0">
+          <f x="-23.4" y="-106.45" cocos2d_x="-23.4" cocos2d_y="-106.45" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="0" twE="0" dr="19"/>
+          <f x="-23.4" y="-124.45" cocos2d_x="-23.4" cocos2d_y="-124.45" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="0" twE="0" dr="20"/>
+          <f x="-23.4" y="-106.45" cocos2d_x="-23.4" cocos2d_y="-106.45" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="0" dr="1"/>
+        </b>
+        <b name="Layer 17" sc="1" dl="0">
+          <f x="-66.5" y="-147.1" cocos2d_x="-66.5" cocos2d_y="-147.1" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="19"/>
+          <f x="-66.5" y="-165.1" cocos2d_x="-66.5" cocos2d_y="-165.1" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="20"/>
+          <f x="-66.5" y="-147.1" cocos2d_x="-66.5" cocos2d_y="-147.1" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" dr="1"/>
+        </b>
+        <b name="Layer 19" sc="1" dl="0">
+          <f x="-48.85" y="-124.35" cocos2d_x="-48.85" cocos2d_y="-124.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" twE="0" dr="19"/>
+          <f x="-48.85" y="-142.35" cocos2d_x="-48.85" cocos2d_y="-142.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" twE="0" dr="20"/>
+          <f x="-48.85" y="-124.35" cocos2d_x="-48.85" cocos2d_y="-124.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" dr="1"/>
+        </b>
+        <b name="Layer 21" sc="1" dl="0">
+          <f x="40.2" y="-123.95" cocos2d_x="40.2" cocos2d_y="-123.95" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="19"/>
+          <f x="40.2" y="-141.85" cocos2d_x="40.2" cocos2d_y="-141.85" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="20"/>
+          <f x="40.2" y="-123.95" cocos2d_x="40.2" cocos2d_y="-123.95" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" dr="1"/>
+        </b>
+      </mov>
+      <mov name="attack" dr="30" to="6" drTW="30" lp="0" twE="NaN">
+        <b name="Layer 1" sc="1" dl="0">
+          <f x="-116.5" y="-15.75" cocos2d_x="-116.5" cocos2d_y="-15.75" kX="0" kY="0" cX="0.8" cY="1" pX="0" pY="0" z="0" dI="0" dr="30"/>
+        </b>
+        <b name="Layer 3" sc="1" dl="0">
+          <f x="69.65" y="-187.2" cocos2d_x="69.65" cocos2d_y="-187.2" kX="0.01" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="1" twE="0" dr="12"/>
+          <f x="20.7" y="-267.65" cocos2d_x="20.7" cocos2d_y="-267.65" kX="-33.15" kY="-33.16" cX="1" cY="1" pX="0" pY="0" z="1" dI="1" twE="0" dr="1"/>
+          <f x="42.35" y="-250.3" cocos2d_x="42.35" cocos2d_y="-250.3" kX="-22.17" kY="-22.17" cX="1" cY="1" pX="0" pY="0" z="1" dI="1" twE="0" dr="1"/>
+          <f x="57.7" y="-227.45" cocos2d_x="57.7" cocos2d_y="-227.45" kX="-11.18" kY="-11.19" cX="1" cY="1" pX="0" pY="0" z="1" dI="1" twE="0" dr="1"/>
+          <f x="65.45" y="-202.5" cocos2d_x="65.45" cocos2d_y="-202.5" kX="-0.19" kY="-0.2" cX="1" cY="1" pX="0" pY="0" z="1" dI="1" twE="0" dr="1"/>
+          <f x="66.55" y="-178.35" cocos2d_x="66.55" cocos2d_y="-178.35" kX="10.8" kY="10.79" cX="1" cY="1" pX="0" pY="0" z="1" dI="1" twE="0" dr="3"/>
+          <f x="94.75" y="-180.65" cocos2d_x="94.75" cocos2d_y="-180.65" kX="35.84" kY="35.83" cX="1" cY="1" pX="0" pY="0" z="1" dI="1" twE="0" dr="10"/>
+          <f x="69.65" y="-187.2" cocos2d_x="69.65" cocos2d_y="-187.2" kX="0.01" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="1" dr="1"/>
+        </b>
+        <b name="Layer 5" sc="1" dl="0">
+          <f x="-119.95" y="-277.85" cocos2d_x="-119.95" cocos2d_y="-277.85" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="1" twE="0" dr="12"/>
+          <f x="-139.25" y="-246.95" cocos2d_x="-139.25" cocos2d_y="-246.95" kX="-15" kY="-15" cX="1" cY="1" pX="0" pY="0" z="2" dI="1" twE="0" dr="4"/>
+          <f x="-104" y="-292.75" cocos2d_x="-104" cocos2d_y="-292.75" kX="8.69" kY="8.69" cX="1" cY="1" pX="0" pY="0" z="2" dI="1" twE="0" dr="3"/>
+          <f x="-119.95" y="-277.7" cocos2d_x="-119.95" cocos2d_y="-277.7" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="1" dr="1"/>
+          <f x="-119.95" y="-277.75" cocos2d_x="-119.95" cocos2d_y="-277.75" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="1" twE="0" dr="2"/>
+          <f x="-119.95" y="-277.75" cocos2d_x="-119.95" cocos2d_y="-277.75" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="1" dr="1"/>
+          <f x="-119.95" y="-277.8" cocos2d_x="-119.95" cocos2d_y="-277.8" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="1" twE="0" dr="2"/>
+          <f x="-119.95" y="-277.8" cocos2d_x="-119.95" cocos2d_y="-277.8" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="1" dr="1"/>
+          <f x="-119.95" y="-277.85" cocos2d_x="-119.95" cocos2d_y="-277.85" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="1" twE="0" dr="3"/>
+          <f x="-119.95" y="-277.85" cocos2d_x="-119.95" cocos2d_y="-277.85" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="1" dr="1"/>
+        </b>
+        <b name="Layer 7" sc="1" dl="0">
+          <f x="-6.5" y="-255.7" cocos2d_x="-6.5" cocos2d_y="-255.7" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="3" dI="1" twE="0" dr="12"/>
+          <f x="-23.95" y="-256.65" cocos2d_x="-23.95" cocos2d_y="-256.65" kX="-15" kY="-15" cX="1" cY="1" pX="0" pY="0" z="3" dI="1" twE="0" dr="4"/>
+          <f x="5.05" y="-253.65" cocos2d_x="5.05" cocos2d_y="-253.65" kX="8.69" kY="8.69" cX="1" cY="1" pX="0" pY="0" z="3" dI="1" twE="0" dr="3"/>
+          <f x="-6.5" y="-255.6" cocos2d_x="-6.5" cocos2d_y="-255.6" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="3" dI="1" dr="1"/>
+          <f x="-6.5" y="-255.65" cocos2d_x="-6.5" cocos2d_y="-255.65" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="3" dI="1" twE="0" dr="4"/>
+          <f x="-6.5" y="-255.65" cocos2d_x="-6.5" cocos2d_y="-255.65" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="3" dI="1" dr="1"/>
+          <f x="-6.5" y="-255.7" cocos2d_x="-6.5" cocos2d_y="-255.7" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="3" dI="1" twE="0" dr="4"/>
+          <f x="-6.5" y="-255.7" cocos2d_x="-6.5" cocos2d_y="-255.7" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="3" dI="1" dr="1"/>
+        </b>
+        <b name="Layer 9" sc="1" dl="0">
+          <f x="17.3" y="-105.6" cocos2d_x="17.3" cocos2d_y="-105.6" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4" dI="1" twE="0" dr="12"/>
+          <f x="38.7" y="-115.75" cocos2d_x="38.7" cocos2d_y="-115.75" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4" dI="1" twE="0" dr="4"/>
+          <f x="5.35" y="-101.6" cocos2d_x="5.35" cocos2d_y="-101.6" kX="8.69" kY="8.69" cX="1" cY="1" pX="0" pY="0" z="4" dI="1" twE="0" dr="3"/>
+          <f x="17.25" y="-105.55" cocos2d_x="17.25" cocos2d_y="-105.55" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4" dI="1" dr="1"/>
+          <f x="17.3" y="-105.6" cocos2d_x="17.3" cocos2d_y="-105.6" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4" dI="1" twE="0" dr="8"/>
+          <f x="17.3" y="-105.6" cocos2d_x="17.3" cocos2d_y="-105.6" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4" dI="1" twE="0" dr="1"/>
+          <f x="17.35" y="-105.65" cocos2d_x="17.35" cocos2d_y="-105.65" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4" dI="1" dr="1"/>
+        </b>
+        <b name="Layer 11" sc="1" dl="0">
+          <f x="38.5" y="-145.2" cocos2d_x="38.5" cocos2d_y="-145.2" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5" dI="1" twE="0" dr="12"/>
+          <f x="43.65" y="-167.05" cocos2d_x="43.65" cocos2d_y="-167.05" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5" dI="1" twE="0" dr="4"/>
+          <f x="32.4" y="-137.5" cocos2d_x="32.4" cocos2d_y="-137.5" kX="8.69" kY="8.69" cX="1" cY="1" pX="0" pY="0" z="5" dI="1" twE="0" dr="3"/>
+          <f x="38.45" y="-145.1" cocos2d_x="38.45" cocos2d_y="-145.1" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5" dI="1" dr="1"/>
+          <f x="38.45" y="-145.15" cocos2d_x="38.45" cocos2d_y="-145.15" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5" dI="1" twE="0" dr="4"/>
+          <f x="38.45" y="-145.15" cocos2d_x="38.45" cocos2d_y="-145.15" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5" dI="1" dr="1"/>
+          <f x="38.5" y="-145.15" cocos2d_x="38.5" cocos2d_y="-145.15" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5" dI="1" twE="0" dr="3"/>
+          <f x="38.5" y="-145.15" cocos2d_x="38.5" cocos2d_y="-145.15" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5" dI="1" twE="0" dr="1"/>
+          <f x="38.5" y="-145.2" cocos2d_x="38.5" cocos2d_y="-145.2" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5" dI="1" dr="1"/>
+        </b>
+        <b name="Layer 13" sc="1" dl="0">
+          <f x="-23.35" y="-106.45" cocos2d_x="-23.35" cocos2d_y="-106.45" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="1" twE="0" dr="12"/>
+          <f x="1.55" y="-108.05" cocos2d_x="1.55" cocos2d_y="-108.05" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="1" twE="0" dr="4"/>
+          <f x="-34.65" y="-108.6" cocos2d_x="-34.65" cocos2d_y="-108.6" kX="8.69" kY="8.69" cX="1" cY="1" pX="0" pY="0" z="6" dI="1" twE="0" dr="3"/>
+          <f x="-23.4" y="-106.4" cocos2d_x="-23.4" cocos2d_y="-106.4" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="1" dr="1"/>
+          <f x="-23.35" y="-106.45" cocos2d_x="-23.35" cocos2d_y="-106.45" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="1" twE="0" dr="8"/>
+          <f x="-23.35" y="-106.45" cocos2d_x="-23.35" cocos2d_y="-106.45" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="1" twE="0" dr="1"/>
+          <f x="-23.3" y="-106.5" cocos2d_x="-23.3" cocos2d_y="-106.5" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="1" dr="1"/>
+        </b>
+        <b name="Layer 15" sc="1" dl="0">
+          <f x="-66.45" y="-147.2" cocos2d_x="-66.45" cocos2d_y="-147.2" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="1" twE="0" dr="12"/>
+          <f x="-54.05" y="-134.65" cocos2d_x="-54.05" cocos2d_y="-134.65" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="1" twE="0" dr="4"/>
+          <f x="-71" y="-155.35" cocos2d_x="-71" cocos2d_y="-155.35" kX="8.69" kY="8.69" cX="1" cY="1" pX="0" pY="0" z="7" dI="1" twE="0" dr="3"/>
+          <f x="-66.5" y="-147.15" cocos2d_x="-66.5" cocos2d_y="-147.15" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="1" dr="1"/>
+          <f x="-66.45" y="-147.15" cocos2d_x="-66.45" cocos2d_y="-147.15" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="1" twE="0" dr="8"/>
+          <f x="-66.45" y="-147.15" cocos2d_x="-66.45" cocos2d_y="-147.15" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="1" twE="0" dr="1"/>
+          <f x="-66.4" y="-147.2" cocos2d_x="-66.4" cocos2d_y="-147.2" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="1" dr="1"/>
+        </b>
+        <b name="Layer 17" sc="1" dl="0">
+          <f x="-48.8" y="-124.35" cocos2d_x="-48.8" cocos2d_y="-124.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="1" twE="0" dr="12"/>
+          <f x="-28.9" y="-115.85" cocos2d_x="-28.9" cocos2d_y="-115.85" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="1" twE="0" dr="4"/>
+          <f x="-57.15" y="-130.1" cocos2d_x="-57.15" cocos2d_y="-130.1" kX="8.69" kY="8.69" cX="1" cY="1" pX="0" pY="0" z="8" dI="1" twE="0" dr="3"/>
+          <f x="-48.85" y="-124.35" cocos2d_x="-48.85" cocos2d_y="-124.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="1" dr="1"/>
+          <f x="-48.8" y="-124.35" cocos2d_x="-48.8" cocos2d_y="-124.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="1" twE="0" dr="8"/>
+          <f x="-48.8" y="-124.35" cocos2d_x="-48.8" cocos2d_y="-124.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="1" twE="0" dr="1"/>
+          <f x="-48.75" y="-124.4" cocos2d_x="-48.75" cocos2d_y="-124.4" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="1" dr="1"/>
+        </b>
+        <b name="Layer 19" sc="1" dl="0">
+          <f x="40.3" y="-123.95" cocos2d_x="40.3" cocos2d_y="-123.95" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="9" dI="1" twE="0" dr="12"/>
+          <f x="54.75" y="-144.8" cocos2d_x="54.75" cocos2d_y="-144.8" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="9" dI="1" twE="0" dr="4"/>
+          <f x="30.9" y="-116.2" cocos2d_x="30.9" cocos2d_y="-116.2" kX="8.69" kY="8.69" cX="1" cY="1" pX="0" pY="0" z="9" dI="1" twE="0" dr="3"/>
+          <f x="40.25" y="-123.9" cocos2d_x="40.25" cocos2d_y="-123.9" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="9" dI="1" dr="1"/>
+          <f x="40.25" y="-123.95" cocos2d_x="40.25" cocos2d_y="-123.95" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="9" dI="1" twE="0" dr="8"/>
+          <f x="40.25" y="-123.95" cocos2d_x="40.25" cocos2d_y="-123.95" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="9" dI="1" twE="0" dr="1"/>
+          <f x="40.3" y="-124" cocos2d_x="40.3" cocos2d_y="-124" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="9" dI="1" dr="1"/>
+        </b>
+        <b name="Layer 21" sc="1" dl="0">
+          <f x="-160" y="-175.5" cocos2d_x="-160" cocos2d_y="-175.5" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="10" dI="1" twE="0" dr="12"/>
+          <f x="-131.25" y="-136.75" cocos2d_x="-131.25" cocos2d_y="-136.75" kX="-42.43" kY="-42.43" cX="1" cY="1" pX="0" pY="0" z="10" dI="1" twE="0" dr="1"/>
+          <f x="-148.35" y="-165.2" cocos2d_x="-148.35" cocos2d_y="-165.2" kX="-27.79" kY="-27.79" cX="1" cY="1" pX="0" pY="0" z="10" dI="1" twE="0" dr="1"/>
+          <f x="-157.55" y="-198.95" cocos2d_x="-157.55" cocos2d_y="-198.95" kX="-13.15" kY="-13.15" cX="1" cY="1" pX="0" pY="0" z="10" dI="1" twE="0" dr="1"/>
+          <f x="-156.85" y="-233.95" cocos2d_x="-156.85" cocos2d_y="-233.95" kX="1.49" kY="1.49" cX="1" cY="1" pX="0" pY="0" z="10" dI="1" twE="0" dr="1"/>
+          <f x="-146.9" y="-266.5" cocos2d_x="-146.9" cocos2d_y="-266.5" kX="16.14" kY="16.14" cX="1" cY="1" pX="0" pY="0" z="10" dI="1" twE="0" dr="3"/>
+          <f x="-156.15" y="-213.9" cocos2d_x="-156.15" cocos2d_y="-213.9" kX="0.94" kY="0.94" cX="1" cY="1" pX="0" pY="0" z="10" dI="1" twE="0" dr="10"/>
+          <f x="-160" y="-175.5" cocos2d_x="-160" cocos2d_y="-175.5" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="10" dI="1" dr="1"/>
+        </b>
+      </mov>
+      <mov name="die" dr="35" to="6" drTW="35" lp="0" twE="NaN">
+        <b name="Layer 1" sc="1" dl="0">
+          <f x="-113.7" y="-17.25" cocos2d_x="-113.7" cocos2d_y="-17.25" kX="0" kY="0" cX="0.8" cY="1" pX="0" pY="0" z="0" dI="0" dr="35"/>
+        </b>
+        <b name="Layer 3" sc="1" dl="0">
+          <f x="-120.1" y="-282.55" cocos2d_x="-120.1" cocos2d_y="-282.55" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" twE="0" dr="9"/>
+          <f x="-120.1" y="-281" cocos2d_x="-120.1" cocos2d_y="-281" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" twE="0" dr="5"/>
+          <f x="-116.8" y="-190.7" cocos2d_x="-116.8" cocos2d_y="-190.7" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" dr="1"/>
+          <f x="-116.1" y="-172.6" cocos2d_x="-116.1" cocos2d_y="-172.6" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" twE="0" dr="1"/>
+          <f x="-116.1" y="-172.6" cocos2d_x="-116.1" cocos2d_y="-172.6" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" dr="1"/>
+          <f x="-116.1" y="-172.55" cocos2d_x="-116.1" cocos2d_y="-172.55" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" twE="0" dr="1"/>
+          <f x="-116.1" y="-172.55" cocos2d_x="-116.1" cocos2d_y="-172.55" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" twE="0" dr="1"/>
+          <f x="-116.1" y="-172.5" cocos2d_x="-116.1" cocos2d_y="-172.5" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" dr="1"/>
+          <f x="-116.1" y="-172.45" cocos2d_x="-116.1" cocos2d_y="-172.45" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" twE="0" dr="1"/>
+          <f x="-116.1" y="-172.45" cocos2d_x="-116.1" cocos2d_y="-172.45" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" dr="1"/>
+          <f x="-116.1" y="-172.4" cocos2d_x="-116.1" cocos2d_y="-172.4" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" twE="0" dr="1"/>
+          <f x="-116.1" y="-172.4" cocos2d_x="-116.1" cocos2d_y="-172.4" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" twE="0" dr="1"/>
+          <f x="-116.1" y="-172.35" cocos2d_x="-116.1" cocos2d_y="-172.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" dr="1"/>
+          <f x="-116.1" y="-172.3" cocos2d_x="-116.1" cocos2d_y="-172.3" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" twE="0" dr="1"/>
+          <f x="-116.1" y="-172.3" cocos2d_x="-116.1" cocos2d_y="-172.3" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" twE="0" dr="2"/>
+          <f x="-116.1" y="-172.2" cocos2d_x="-116.1" cocos2d_y="-172.2" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" dr="1"/>
+          <f x="-116.1" y="-172.15" cocos2d_x="-116.1" cocos2d_y="-172.15" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="1" dI="0" dr="6"/>
+        </b>
+        <b name="Layer 5" sc="1" dl="0">
+          <f x="-6.7" y="-255.7" cocos2d_x="-6.7" cocos2d_y="-255.7" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="3"/>
+          <f x="-6.7" y="-255.7" cocos2d_x="-6.7" cocos2d_y="-255.7" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" dr="1"/>
+          <f x="-6.7" y="-255.65" cocos2d_x="-6.7" cocos2d_y="-255.65" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="5"/>
+          <f x="-6.7" y="-255.65" cocos2d_x="-6.7" cocos2d_y="-255.65" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="2"/>
+          <f x="-0.45" y="-258.75" cocos2d_x="-0.45" cocos2d_y="-258.75" kX="5" kY="5" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="4"/>
+          <f x="8.95" y="-258.75" cocos2d_x="8.95" cocos2d_y="-258.75" kX="15" kY="15" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="4"/>
+          <f x="47.05" y="-222.3" cocos2d_x="47.05" cocos2d_y="-222.3" kX="51" kY="51" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="1"/>
+          <f x="55.45" y="-209.35" cocos2d_x="55.45" cocos2d_y="-209.35" kX="60" kY="60" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="1"/>
+          <f x="71.9" y="-179.35" cocos2d_x="71.9" cocos2d_y="-179.35" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="1"/>
+          <f x="86.3" y="-143.65" cocos2d_x="86.3" cocos2d_y="-143.65" kX="120" kY="120" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="1"/>
+          <f x="86.8" y="-101.1" cocos2d_x="86.8" cocos2d_y="-101.1" kX="150" kY="150" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="1"/>
+          <f x="72.35" y="-58.55" cocos2d_x="72.35" cocos2d_y="-58.55" kX="180" kY="180" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="1"/>
+          <f x="41.55" y="-28.45" cocos2d_x="41.55" cocos2d_y="-28.45" kX="-150" kY="-150" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="1"/>
+          <f x="31.1" y="-19.95" cocos2d_x="31.1" cocos2d_y="-19.95" kX="-135" kY="-135" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="1"/>
+          <f x="20" y="-14.2" cocos2d_x="20" cocos2d_y="-14.2" kX="-120" kY="-120" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="1"/>
+          <f x="9.15" y="-11.55" cocos2d_x="9.15" cocos2d_y="-11.55" kX="-105" kY="-105" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" twE="0" dr="1"/>
+          <f x="-0.5" y="-11.15" cocos2d_x="-0.5" cocos2d_y="-11.15" kX="-90" kY="-90" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" dr="1"/>
+          <f x="-0.55" y="-11.2" cocos2d_x="-0.55" cocos2d_y="-11.2" kX="-90" kY="-90" cX="1" cY="1" pX="0" pY="0" z="2" dI="0" dr="5"/>
+        </b>
+        <b name="Layer 7" sc="1" dl="0">
+          <f x="68.1" y="-187.4" cocos2d_x="68.1" cocos2d_y="-187.4" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="1"/>
+          <f x="37.05" y="-145.7" cocos2d_x="37.05" cocos2d_y="-145.7" kX="-20.02" kY="-20.02" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="1"/>
+          <f x="13.5" y="-98.6" cocos2d_x="13.5" cocos2d_y="-98.6" kX="-40.05" kY="-40.05" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="1"/>
+          <f x="-0.35" y="-50.5" cocos2d_x="-0.35" cocos2d_y="-50.5" kX="-60.07" kY="-60.07" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="1"/>
+          <f x="-3.95" y="-5.7" cocos2d_x="-3.95" cocos2d_y="-5.7" kX="-80.1" kY="-80.1" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="5"/>
+          <f x="21.7" y="-36.3" cocos2d_x="21.7" cocos2d_y="-36.3" kX="-66.29" kY="-66.29" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="1"/>
+          <f x="24.2" y="-34" cocos2d_x="24.2" cocos2d_y="-34" kX="-66.29" kY="-66.29" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="1"/>
+          <f x="26.25" y="-32.75" cocos2d_x="26.25" cocos2d_y="-32.75" kX="-66.29" kY="-66.29" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="1"/>
+          <f x="27.5" y="-32.6" cocos2d_x="27.5" cocos2d_y="-32.6" kX="-66.29" kY="-66.29" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="1"/>
+          <f x="27.45" y="-33.45" cocos2d_x="27.45" cocos2d_y="-33.45" kX="-66.29" kY="-66.29" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="1"/>
+          <f x="25.6" y="-34.9" cocos2d_x="25.6" cocos2d_y="-34.9" kX="-66.29" kY="-66.29" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" dr="1"/>
+          <f x="21.3" y="-36.3" cocos2d_x="21.3" cocos2d_y="-36.3" kX="-66.29" kY="-66.29" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="2"/>
+          <f x="21.3" y="-36.3" cocos2d_x="21.3" cocos2d_y="-36.3" kX="-66.29" kY="-66.29" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" dr="1"/>
+          <f x="21.3" y="-36.25" cocos2d_x="21.3" cocos2d_y="-36.25" kX="-66.29" kY="-66.29" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="8"/>
+          <f x="21.3" y="-36.25" cocos2d_x="21.3" cocos2d_y="-36.25" kX="-66.29" kY="-66.29" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" dr="1"/>
+          <f x="21.3" y="-36.25" cocos2d_x="21.3" cocos2d_y="-36.25" kX="-66.29" kY="-66.29" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" twE="0" dr="1"/>
+          <f x="21.3" y="-36.25" cocos2d_x="21.3" cocos2d_y="-36.25" kX="-66.29" kY="-66.29" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" dr="1"/>
+          <f x="21.25" y="-36.2" cocos2d_x="21.25" cocos2d_y="-36.2" kX="-66.29" kY="-66.29" cX="1" cY="1" pX="0" pY="0" z="3" dI="0" dr="6"/>
+        </b>
+        <b name="Layer 9" sc="1" dl="0">
+          <f x="-160" y="-179.05" cocos2d_x="-160" cocos2d_y="-179.05" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" dr="1"/>
+          <f x="-160" y="-179" cocos2d_x="-160" cocos2d_y="-179" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="-160" y="-179" cocos2d_x="-160" cocos2d_y="-179" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="2"/>
+          <f x="-160" y="-179" cocos2d_x="-160" cocos2d_y="-179" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="-113.35" y="-175.9" cocos2d_x="-113.35" cocos2d_y="-175.9" kX="22.65" kY="22.65" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="-63.6" y="-163.05" cocos2d_x="-63.6" cocos2d_y="-163.05" kX="45.29" kY="45.29" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="-16.9" y="-135.6" cocos2d_x="-16.9" cocos2d_y="-135.6" kX="67.94" kY="67.94" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="19.45" y="-95.35" cocos2d_x="19.45" cocos2d_y="-95.35" kX="90.58" kY="90.58" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="41.5" y="-48.75" cocos2d_x="41.5" cocos2d_y="-48.75" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="2"/>
+          <f x="40.5" y="-45.7" cocos2d_x="40.5" cocos2d_y="-45.7" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="40.05" y="-45.75" cocos2d_x="40.05" cocos2d_y="-45.75" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="39.95" y="-45.8" cocos2d_x="39.95" cocos2d_y="-45.8" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="39.9" y="-46.3" cocos2d_x="39.9" cocos2d_y="-46.3" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="41.5" y="-48.75" cocos2d_x="41.5" cocos2d_y="-48.75" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" dr="1"/>
+          <f x="41.45" y="-48.7" cocos2d_x="41.45" cocos2d_y="-48.7" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="41.45" y="-48.7" cocos2d_x="41.45" cocos2d_y="-48.7" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" dr="1"/>
+          <f x="41.4" y="-48.7" cocos2d_x="41.4" cocos2d_y="-48.7" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="41.4" y="-48.7" cocos2d_x="41.4" cocos2d_y="-48.7" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="41.35" y="-48.7" cocos2d_x="41.35" cocos2d_y="-48.7" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" dr="1"/>
+          <f x="41.3" y="-48.7" cocos2d_x="41.3" cocos2d_y="-48.7" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="41.3" y="-48.7" cocos2d_x="41.3" cocos2d_y="-48.7" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="41.25" y="-48.7" cocos2d_x="41.25" cocos2d_y="-48.7" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="1"/>
+          <f x="41.25" y="-48.75" cocos2d_x="41.25" cocos2d_y="-48.75" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" dr="1"/>
+          <f x="41.2" y="-48.75" cocos2d_x="41.2" cocos2d_y="-48.75" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" twE="0" dr="4"/>
+          <f x="41.2" y="-48.75" cocos2d_x="41.2" cocos2d_y="-48.75" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" dr="1"/>
+          <f x="41.15" y="-48.75" cocos2d_x="41.15" cocos2d_y="-48.75" kX="113.23" kY="113.23" cX="1" cY="1" pX="0" pY="0" z="4" dI="0" dr="5"/>
+        </b>
+        <b name="Layer 11" sc="1" dl="0">
+          <f x="17.25" y="-105.55" cocos2d_x="17.25" cocos2d_y="-105.55" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="4"/>
+          <f x="17.25" y="-105.55" cocos2d_x="17.25" cocos2d_y="-105.55" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="3"/>
+          <f x="26.75" y="-61.25" cocos2d_x="26.75" cocos2d_y="-61.25" kX="54" kY="54" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="2"/>
+          <f x="32.7" y="-25.25" cocos2d_x="32.7" cocos2d_y="-25.25" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="3"/>
+          <f x="32.9" y="-24.55" cocos2d_x="32.9" cocos2d_y="-24.55" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="1"/>
+          <f x="32.9" y="-24.5" cocos2d_x="32.9" cocos2d_y="-24.5" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="1"/>
+          <f x="32.9" y="-24.7" cocos2d_x="32.9" cocos2d_y="-24.7" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="1"/>
+          <f x="32.7" y="-25.25" cocos2d_x="32.7" cocos2d_y="-25.25" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" dr="1"/>
+          <f x="32.65" y="-25.2" cocos2d_x="32.65" cocos2d_y="-25.2" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="3"/>
+          <f x="32.65" y="-25.2" cocos2d_x="32.65" cocos2d_y="-25.2" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="1"/>
+          <f x="32.65" y="-25.25" cocos2d_x="32.65" cocos2d_y="-25.25" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" dr="1"/>
+          <f x="32.6" y="-25.2" cocos2d_x="32.6" cocos2d_y="-25.2" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="3"/>
+          <f x="32.6" y="-25.2" cocos2d_x="32.6" cocos2d_y="-25.2" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="1"/>
+          <f x="32.6" y="-25.25" cocos2d_x="32.6" cocos2d_y="-25.25" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" dr="1"/>
+          <f x="32.55" y="-25.2" cocos2d_x="32.55" cocos2d_y="-25.2" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="2"/>
+          <f x="32.55" y="-25.2" cocos2d_x="32.55" cocos2d_y="-25.2" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" twE="0" dr="1"/>
+          <f x="32.55" y="-25.25" cocos2d_x="32.55" cocos2d_y="-25.25" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" dr="1"/>
+          <f x="32.5" y="-25.25" cocos2d_x="32.5" cocos2d_y="-25.25" kX="90" kY="90" cX="1" cY="1" pX="0" pY="0" z="5" dI="0" dr="5"/>
+        </b>
+        <b name="Layer 13" sc="1" dl="0">
+          <f x="38.25" y="-145.3" cocos2d_x="38.25" cocos2d_y="-145.3" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" twE="0" dr="3"/>
+          <f x="38.25" y="-145.3" cocos2d_x="38.25" cocos2d_y="-145.3" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" dr="1"/>
+          <f x="38.25" y="-145.25" cocos2d_x="38.25" cocos2d_y="-145.25" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" twE="0" dr="5"/>
+          <f x="38.25" y="-145.25" cocos2d_x="38.25" cocos2d_y="-145.25" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" twE="0" dr="5"/>
+          <f x="40.6" y="-42.8" cocos2d_x="40.6" cocos2d_y="-42.8" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" dr="1"/>
+          <f x="41" y="-22.35" cocos2d_x="41" cocos2d_y="-22.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" twE="0" dr="2"/>
+          <f x="41" y="-22.35" cocos2d_x="41" cocos2d_y="-22.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" dr="1"/>
+          <f x="41" y="-22.3" cocos2d_x="41" cocos2d_y="-22.3" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" twE="0" dr="1"/>
+          <f x="41" y="-22.3" cocos2d_x="41" cocos2d_y="-22.3" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" dr="1"/>
+          <f x="41" y="-22.25" cocos2d_x="41" cocos2d_y="-22.25" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" twE="0" dr="2"/>
+          <f x="41" y="-22.25" cocos2d_x="41" cocos2d_y="-22.25" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" dr="1"/>
+          <f x="41" y="-22.2" cocos2d_x="41" cocos2d_y="-22.2" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" twE="0" dr="1"/>
+          <f x="41" y="-22.2" cocos2d_x="41" cocos2d_y="-22.2" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" twE="0" dr="4"/>
+          <f x="41" y="-22" cocos2d_x="41" cocos2d_y="-22" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" dr="1"/>
+          <f x="41" y="-21.95" cocos2d_x="41" cocos2d_y="-21.95" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="6" dI="0" dr="6"/>
+        </b>
+        <b name="Layer 15" sc="1" dl="0">
+          <f x="-23.65" y="-106.4" cocos2d_x="-23.65" cocos2d_y="-106.4" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="0" twE="0" dr="8"/>
+          <f x="-23.65" y="-106.4" cocos2d_x="-23.65" cocos2d_y="-106.4" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="0" twE="0" dr="1"/>
+          <f x="-23.65" y="-106.35" cocos2d_x="-23.65" cocos2d_y="-106.35" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="0" twE="0" dr="6"/>
+          <f x="-23.65" y="-22.2" cocos2d_x="-23.65" cocos2d_y="-22.2" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="0" dr="1"/>
+          <f x="-23.7" y="-22.2" cocos2d_x="-23.7" cocos2d_y="-22.2" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="0" twE="0" dr="8"/>
+          <f x="-23.7" y="-22.2" cocos2d_x="-23.7" cocos2d_y="-22.2" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="0" dr="1"/>
+          <f x="-23.7" y="-22.15" cocos2d_x="-23.7" cocos2d_y="-22.15" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="0" twE="0" dr="3"/>
+          <f x="-23.7" y="-22.15" cocos2d_x="-23.7" cocos2d_y="-22.15" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="0" dr="1"/>
+          <f x="-23.7" y="-22.1" cocos2d_x="-23.7" cocos2d_y="-22.1" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="7" dI="0" dr="6"/>
+        </b>
+        <b name="Layer 17" sc="1" dl="0">
+          <f x="-67.55" y="-147.1" cocos2d_x="-67.55" cocos2d_y="-147.1" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="1"/>
+          <f x="-67.6" y="-147.1" cocos2d_x="-67.6" cocos2d_y="-147.1" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" dr="1"/>
+          <f x="-67.6" y="-147.05" cocos2d_x="-67.6" cocos2d_y="-147.05" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="1"/>
+          <f x="-67.6" y="-147.05" cocos2d_x="-67.6" cocos2d_y="-147.05" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="1"/>
+          <f x="-67.55" y="-147" cocos2d_x="-67.55" cocos2d_y="-147" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="5"/>
+          <f x="-71" y="-0.3" cocos2d_x="-71" cocos2d_y="-0.3" kX="63.43" kY="63.43" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="3"/>
+          <f x="-71.7" y="1.55" cocos2d_x="-71.7" cocos2d_y="1.55" kX="63.43" kY="63.43" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="1"/>
+          <f x="-71.8" y="1.55" cocos2d_x="-71.8" cocos2d_y="1.55" kX="63.43" kY="63.43" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="1"/>
+          <f x="-71.7" y="1.05" cocos2d_x="-71.7" cocos2d_y="1.05" kX="63.43" kY="63.43" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="1"/>
+          <f x="-71" y="-0.05" cocos2d_x="-71" cocos2d_y="-0.05" kX="63.43" kY="63.43" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" dr="1"/>
+          <f x="-71.05" y="-0.05" cocos2d_x="-71.05" cocos2d_y="-0.05" kX="63.43" kY="63.43" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="3"/>
+          <f x="-71.05" y="-0.05" cocos2d_x="-71.05" cocos2d_y="-0.05" kX="63.43" kY="63.43" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="1"/>
+          <f x="-71.05" y="0" cocos2d_x="-71.05" cocos2d_y="0" kX="63.43" kY="63.43" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" dr="1"/>
+          <f x="-71.1" y="0" cocos2d_x="-71.1" cocos2d_y="0" kX="63.43" kY="63.43" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="4"/>
+          <f x="-71.1" y="0" cocos2d_x="-71.1" cocos2d_y="0" kX="63.43" kY="63.43" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" dr="1"/>
+          <f x="-71.15" y="0" cocos2d_x="-71.15" cocos2d_y="0" kX="63.43" kY="63.43" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" twE="0" dr="3"/>
+          <f x="-71.15" y="0" cocos2d_x="-71.15" cocos2d_y="0" kX="63.43" kY="63.43" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" dr="1"/>
+          <f x="-71.2" y="0" cocos2d_x="-71.2" cocos2d_y="0" kX="63.43" kY="63.43" cX="1" cY="1" pX="0" pY="0" z="8" dI="0" dr="5"/>
+        </b>
+        <b name="Layer 19" sc="1" dl="0">
+          <f x="-49.1" y="-124.75" cocos2d_x="-49.1" cocos2d_y="-124.75" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" twE="0" dr="4"/>
+          <f x="-41.9" y="1.35" cocos2d_x="-41.9" cocos2d_y="1.35" kX="-105" kY="-105" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" twE="0" dr="5"/>
+          <f x="-46.35" y="-19.65" cocos2d_x="-46.35" cocos2d_y="-19.65" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" twE="0" dr="3"/>
+          <f x="-46.55" y="-18.75" cocos2d_x="-46.55" cocos2d_y="-18.75" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" twE="0" dr="1"/>
+          <f x="-46.6" y="-18.7" cocos2d_x="-46.6" cocos2d_y="-18.7" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" twE="0" dr="1"/>
+          <f x="-46.6" y="-18.9" cocos2d_x="-46.6" cocos2d_y="-18.9" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" twE="0" dr="1"/>
+          <f x="-46.4" y="-19.6" cocos2d_x="-46.4" cocos2d_y="-19.6" kX="-86.91" kY="-86.91" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" dr="1"/>
+          <f x="-46.4" y="-19.55" cocos2d_x="-46.4" cocos2d_y="-19.55" kX="-86.91" kY="-86.91" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" twE="0" dr="4"/>
+          <f x="-46.4" y="-19.55" cocos2d_x="-46.4" cocos2d_y="-19.55" kX="-86.91" kY="-86.91" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" dr="1"/>
+          <f x="-46.4" y="-19.5" cocos2d_x="-46.4" cocos2d_y="-19.5" kX="-86.91" kY="-86.91" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" twE="0" dr="4"/>
+          <f x="-46.4" y="-19.5" cocos2d_x="-46.4" cocos2d_y="-19.5" kX="-86.91" kY="-86.91" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" twE="0" dr="1"/>
+          <f x="-46.4" y="-19.45" cocos2d_x="-46.4" cocos2d_y="-19.45" kX="-86.91" kY="-86.91" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" dr="1"/>
+          <f x="-46.35" y="-19.45" cocos2d_x="-46.35" cocos2d_y="-19.45" kX="-86.91" kY="-86.91" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" twE="0" dr="1"/>
+          <f x="-46.35" y="-19.45" cocos2d_x="-46.35" cocos2d_y="-19.45" kX="-86.91" kY="-86.91" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" dr="1"/>
+          <f x="-46.3" y="-19.45" cocos2d_x="-46.3" cocos2d_y="-19.45" kX="-86.91" kY="-86.91" cX="1" cY="1" pX="0" pY="0" z="9" dI="0" dr="6"/>
+        </b>
+        <b name="Layer 21" sc="1" dl="0">
+          <f x="39.75" y="-123.95" cocos2d_x="39.75" cocos2d_y="-123.95" kX="0" kY="0" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="4"/>
+          <f x="50" y="2.55" cocos2d_x="50" cocos2d_y="2.55" kX="-105" kY="-105" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="5"/>
+          <f x="45.45" y="-17.65" cocos2d_x="45.45" cocos2d_y="-17.65" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="2"/>
+          <f x="46.7" y="-15.35" cocos2d_x="46.7" cocos2d_y="-15.35" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="1"/>
+          <f x="47.2" y="-14.85" cocos2d_x="47.2" cocos2d_y="-14.85" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="1"/>
+          <f x="47.4" y="-15" cocos2d_x="47.4" cocos2d_y="-15" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="1"/>
+          <f x="47.05" y="-15.9" cocos2d_x="47.05" cocos2d_y="-15.9" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" dr="1"/>
+          <f x="45.4" y="-17.65" cocos2d_x="45.4" cocos2d_y="-17.65" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="4"/>
+          <f x="45.4" y="-17.65" cocos2d_x="45.4" cocos2d_y="-17.65" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="1"/>
+          <f x="45.35" y="-17.7" cocos2d_x="45.35" cocos2d_y="-17.7" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="1"/>
+          <f x="45.35" y="-17.65" cocos2d_x="45.35" cocos2d_y="-17.65" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" dr="1"/>
+          <f x="45.35" y="-17.65" cocos2d_x="45.35" cocos2d_y="-17.65" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="1"/>
+          <f x="45.35" y="-17.65" cocos2d_x="45.35" cocos2d_y="-17.65" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" dr="1"/>
+          <f x="45.35" y="-17.65" cocos2d_x="45.35" cocos2d_y="-17.65" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="3"/>
+          <f x="45.35" y="-17.65" cocos2d_x="45.35" cocos2d_y="-17.65" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" twE="0" dr="1"/>
+          <f x="45.35" y="-17.6" cocos2d_x="45.35" cocos2d_y="-17.6" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" dr="1"/>
+          <f x="45.3" y="-17.6" cocos2d_x="45.3" cocos2d_y="-17.6" kX="-86.9" kY="-86.9" cX="1" cY="1" pX="0" pY="0" z="10" dI="0" dr="6"/>
+        </b>
+      </mov>
+    </animation>
+  </animations>
+  <TextureAtlas name="armature_boss1" width="512" height="256">
+    <SubTexture name="MovieClip-sprite 1910" width="18" height="22" cocos2d_pX="0" cocos2d_pY="0" x="456" y="67"/>
+    <SubTexture name="MovieClip-sprite 1907" width="22" height="27" cocos2d_pX="0" cocos2d_pY="0" x="477" y="58"/>
+    <SubTexture name="MovieClip-sprite 1904" width="22" height="33" cocos2d_pX="0" cocos2d_pY="0" x="477" y="0"/>
+    <SubTexture name="MovieClip-sprite 1901" width="32" height="21" cocos2d_pX="0" cocos2d_pY="0" x="477" y="35"/>
+    <SubTexture name="MovieClip-sprite 1898" width="22" height="16" cocos2d_pX="0" cocos2d_pY="0" x="476" y="87"/>
+    <SubTexture name="MovieClip-sprite 1895" width="24" height="22" cocos2d_pX="0" cocos2d_pY="0" x="430" y="67"/>
+    <SubTexture name="MovieClip-sprite 1913" width="99" height="176" cocos2d_pX="0" cocos2d_pY="0" x="215" y="0"/>
+    <SubTexture name="MovieClip-sprite 1892" width="45" height="65" cocos2d_pX="0" cocos2d_pY="0" x="430" y="0"/>
+    <SubTexture name="MovieClip-sprite 1886" width="112" height="152" cocos2d_pX="0" cocos2d_pY="0" x="316" y="0"/>
+    <SubTexture name="MovieClip-sprite 1889" width="213" height="174" cocos2d_pX="0" cocos2d_pY="0" x="0" y="0"/>
+    <SubTexture name="MovieClip-sprite 1883" width="301" height="40" cocos2d_pX="0" cocos2d_pY="0" x="0" y="178"/>
+  </TextureAtlas>
+</skeleton>

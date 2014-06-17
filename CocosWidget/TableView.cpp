@@ -141,7 +141,7 @@ void CTableView::reloadData()
 	for(; itr != end; ++itr )
 	{
 		CTableViewCell* pCell = (*itr);
-		m_vCellsFreed.push_back(pCell);
+		m_vCellsFreed.pushBack(pCell);
 		m_pContainer->removeChild(pCell, true);
 		pCell->reset();
 	}
@@ -207,7 +207,7 @@ void CTableView::onScrolling()
         {
 			m_sIndices.erase(uIdx);
 			m_vCellsUsed.erase(m_vCellsUsed.begin());
-            m_vCellsFreed.push_back(pCell);
+            m_vCellsFreed.pushBack(pCell);
             pCell->reset();
             m_pContainer->removeChild(pCell, true);
         }
@@ -225,8 +225,8 @@ void CTableView::onScrolling()
         if( uIdx > uEndIdx && uIdx < m_uCellsCount )
         {
 			m_sIndices.erase(uIdx);
-			m_vCellsUsed.pop_back();
-            m_vCellsFreed.push_back(pCell);
+			m_vCellsUsed.popBack();
+            m_vCellsFreed.pushBack(pCell);
             pCell->reset();
             m_pContainer->removeChild(pCell, true);
         }
@@ -323,7 +323,7 @@ CTableViewCell* CTableView::dequeueCell()
     else
     {
 		pCell = m_vCellsFreed.back();
-		m_vCellsFreed.pop_back();
+		m_vCellsFreed.popBack();
         pCell->autorelease();
     }
     return pCell;
@@ -424,27 +424,28 @@ void CTableView::insertSortableCell(CTableViewCell* pCell, unsigned int idx)
 {
 	if( m_vCellsUsed.empty() )
 	{
-		m_vCellsUsed.push_back(pCell);
+		m_vCellsUsed.pushBack(pCell);
 	}
 	else
 	{
-		vector<CTableViewCell*>::iterator iter = m_vCellsUsed.begin();
-		vector<CTableViewCell*>::iterator iend = m_vCellsUsed.end();
+		Vector<CTableViewCell*>::iterator iter = m_vCellsUsed.begin();
+		Vector<CTableViewCell*>::iterator iend = m_vCellsUsed.end();
 
 		for(; iter != iend; ++iter )
 		{
-			if( (*iter)->getIdx() > idx )
+			int index = (*iter)->getIdx();
+			if (index > idx)
 			{
-				m_vCellsUsed.insert(iter, pCell);
+				m_vCellsUsed.insert(index, pCell);
 				return;
 			}
 		}
-		m_vCellsUsed.push_back(pCell);
+		m_vCellsUsed.pushBack(pCell);
 		return;
 	}
 }
 
-vector<CTableViewCell*> CTableView::getCells()
+Vector<CTableViewCell*> CTableView::getCells()
 {
 	return m_vCellsUsed;
 }

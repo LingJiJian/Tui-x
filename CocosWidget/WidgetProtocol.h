@@ -109,6 +109,7 @@ protected:
 	Ref* m_pDataSourceAdapterListener;
 	SEL_DataSoucreAdapterHandler m_pDataSourceAdapterHandler;
 	Ref* executeDataSourceAdapterHandler(Ref* pConvertCell, unsigned int uIdx);
+
 #if USING_LUA
 protected:
 	int m_nDataSourceAdapterScriptHandler;

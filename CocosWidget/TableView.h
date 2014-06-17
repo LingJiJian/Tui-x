@@ -84,7 +84,7 @@ public:
 	void setAutoRelocate(bool bAuto);
 	float getAutoRelocateSpeed() const;
 	void setAutoRelocateSpeed(float fSpeed);
-	std::vector<CTableViewCell*> getCells();
+	Vector<CTableViewCell*> getCells();
 	CTableViewCell* cellAtIndex(unsigned int idx);
     CTableViewCell* dequeueCell();
 	void reloadData();
@@ -112,8 +112,8 @@ protected:
     
 	std::set<unsigned int> m_sIndices;
 	std::vector<float> m_vPositions;
-	std::vector<CTableViewCell*> m_vCellsUsed;
-	std::vector<CTableViewCell*> m_vCellsFreed;
+	Vector<CTableViewCell*> m_vCellsUsed;
+	Vector<CTableViewCell*> m_vCellsFreed;
 };
 
 NS_CC_WIDGET_END

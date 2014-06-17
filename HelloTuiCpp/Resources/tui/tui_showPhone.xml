@@ -1,0 +1,11 @@
+
+	<control tag="1" type="panel" name="panel_showphone" x="400" y="240" width="595.8" height="403.8" rotation="0">
+		<control tag="2" type="circleMenu" name="circlemenu_showphone" x="0" y="-2.5" width="595.8" height="403.8" rotation="0">
+			<control tag="4" type="image" name="img_phone1" image="showphone/img_note3.png" x="-177" y="-1.5" width="100" height="191" scaleX="1" scaleY="1" rotation="0"></control>
+			<control tag="5" type="image" name="img_phone2" image="showphone/img_note3.png" x="-101.4" y="-1.5" width="100" height="191" scaleX="1" scaleY="1" rotation="0"></control>
+			<control tag="6" type="image" name="img_phone6" image="showphone/img_note3.png" x="201" y="-1.5" width="100" height="191" scaleX="1" scaleY="1" rotation="0"></control>
+			<control tag="7" type="image" name="img_phone4" image="showphone/img_note3.png" x="49.8" y="-1.5" width="100" height="191" scaleX="1" scaleY="1" rotation="0"></control>
+			<control tag="8" type="image" name="img_phone5" image="showphone/img_note3.png" x="125.4" y="-1.5" width="100" height="191" scaleX="1" scaleY="1" rotation="0"></control>
+			<control tag="9" type="image" name="img_phone3" image="showphone/img_note3.png" x="-25.8" y="-1.5" width="100" height="191" scaleX="1" scaleY="1" rotation="0"></control>
+		</control>
+	</control>

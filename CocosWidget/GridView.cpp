@@ -277,9 +277,14 @@ void CGridView::updatePositions()
 	}
 }
 
-list<CGridViewCell*> CGridView::getCells()
+Vector<CGridViewCell*> CGridView::getCells()
 {
-	return m_lCellsUsed;
+	Vector<CGridViewCell*> ret;
+	std::list<CGridViewCell*>::iterator it;
+	for (it = m_lCellsUsed.begin(); it != m_lCellsUsed.end(); ++it){
+		ret.pushBack(*it);
+	}
+	return ret;
 }
 
 CGridViewCell* CGridView::cellAtIndex(unsigned int idx)
@@ -323,7 +328,7 @@ void CGridView::reloadData()
 		(m_nDataSourceAdapterScriptHandler != 0) || 
 		(m_pDataSourceAdapterListener && m_pDataSourceAdapterHandler), "reloadData");
 #else
-	CCAssert(m_pDataSourceAdapterListener && m_pDataSourceAdapterHandler, "reloadData");
+	CCAssert(m_pDataSourceAdapterListener && m_pDataSourceAdapterHandler , "reloadData");
 #endif
 	CCAssert((int)m_tCellsSize.width != 0 && (int)m_tCellsSize.height != 0, "reloadData");
     CCAssert(m_eDirection == eScrollViewDirectionVertical, "reloadData");

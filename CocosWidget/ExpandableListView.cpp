@@ -242,18 +242,18 @@ CExpandableListView* CExpandableListView::create(const Size& contentSize)
 
 void CExpandableListView::expand(unsigned int idx)
 {
-	m_vExpandableNodeList[idx]->setExpanded(true);
+	m_vExpandableNodeList.at(idx)->setExpanded(true);
 }
 
 void CExpandableListView::collapse(unsigned int idx)
 {
-	m_vExpandableNodeList[idx]->setExpanded(false);
+	m_vExpandableNodeList.at(idx)->setExpanded(false);
 }
 
 void CExpandableListView::insertExpandableNodeAtLast(CExpandableNode* pNode)
 {
 	CCAssert(pNode, "should not null");
-	m_vExpandableNodeList.push_back(pNode);
+	m_vExpandableNodeList.pushBack(pNode);
 	pNode->retain();
 	pNode->setExpandableListViewParent(this);
 }
@@ -261,7 +261,7 @@ void CExpandableListView::insertExpandableNodeAtLast(CExpandableNode* pNode)
 void CExpandableListView::insertExpandableNodeAtFront(CExpandableNode* pNode)
 {
 	CCAssert(pNode, "should not null");
-	m_vExpandableNodeList.insert(m_vExpandableNodeList.begin(), pNode);
+	m_vExpandableNodeList.insert(0, pNode);
 	pNode->retain();
 	pNode->setExpandableListViewParent(this);
 }
@@ -288,7 +288,7 @@ void CExpandableListView::removeExpandableNodeAtIndex(unsigned int idx)
 	if( m_vExpandableNodeList.size() == 0 )
 		return;
 
-	m_vExpandableNodeList[idx]->release();
+	m_vExpandableNodeList.at(idx)->release();
 	m_vExpandableNodeList.erase(m_vExpandableNodeList.begin() + idx);
 }
 
@@ -297,8 +297,8 @@ void CExpandableListView::removeLastExpandableNode()
 	if( m_vExpandableNodeList.size() == 0 )
 		return;
 
-	m_vExpandableNodeList[m_vExpandableNodeList.size() - 1]->release();
-	m_vExpandableNodeList.pop_back();
+	m_vExpandableNodeList.at(m_vExpandableNodeList.size() - 1)->release();
+	m_vExpandableNodeList.popBack();
 }
 
 void CExpandableListView::removeFrontExpandableNode()
@@ -306,7 +306,7 @@ void CExpandableListView::removeFrontExpandableNode()
 	if( m_vExpandableNodeList.size() == 0 )
 		return;
 
-	m_vExpandableNodeList[0]->release();
+	m_vExpandableNodeList.at(0)->release();
 	m_vExpandableNodeList.erase(m_vExpandableNodeList.begin());
 }
 
@@ -320,13 +320,13 @@ void CExpandableListView::removeAllExpandableNodes()
 
 	for(; i < end; ++i )
 	{
-		m_vExpandableNodeList[i]->release();
+		m_vExpandableNodeList.at(i)->release();
 	}
 
 	m_vExpandableNodeList.clear();
 }
 
-vector<CExpandableNode*> CExpandableListView::getExpandableNodes()
+Vector<CExpandableNode*> CExpandableListView::getExpandableNodes()
 {
 	return m_vExpandableNodeList;
 }
@@ -338,7 +338,7 @@ unsigned int CExpandableListView::getExpandableNodeCount()
 
 CExpandableNode* CExpandableListView::getExpandableNodeAtIndex(unsigned int idx)
 {
-	return m_vExpandableNodeList[idx];
+	return m_vExpandableNodeList.at(idx);
 }
 
 void CExpandableListView::updateNodesPosition()
@@ -355,7 +355,7 @@ void CExpandableListView::updateNodesPosition()
 
 	for(; uBegin < uEnd; ++uBegin )
 	{
-		CExpandableNode* pExpandableNode = m_vExpandableNodeList[uBegin];
+		CExpandableNode* pExpandableNode = m_vExpandableNodeList.at(uBegin);
 		fAllNodesHeight += pExpandableNode->getContentSize().height;
 
 		if( pExpandableNode->isExpanded() )
@@ -379,7 +379,7 @@ void CExpandableListView::updateNodesPosition()
 
 	for(; uBegin < uEnd; ++uBegin )
 	{
-		CExpandableNode* pExpandableNode = m_vExpandableNodeList[uBegin];
+		CExpandableNode* pExpandableNode = m_vExpandableNodeList.at(uBegin);
 		fAllNodesHeight = fAllNodesHeight - pExpandableNode->getContentSize().height;
 
 		pExpandableNode->setAnchorPoint(Point::ZERO);
