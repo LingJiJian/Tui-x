@@ -431,14 +431,15 @@ void CTableView::insertSortableCell(CTableViewCell* pCell, unsigned int idx)
 		Vector<CTableViewCell*>::iterator iter = m_vCellsUsed.begin();
 		Vector<CTableViewCell*>::iterator iend = m_vCellsUsed.end();
 
+		int idxIt = 0;
 		for(; iter != iend; ++iter )
 		{
-			int index = (*iter)->getIdx();
-			if (index > idx)
+			if ((*iter)->getIdx() > idx)
 			{
-				m_vCellsUsed.insert(index, pCell);
+				m_vCellsUsed.insert(idxIt, pCell);
 				return;
 			}
+			idxIt++;
 		}
 		m_vCellsUsed.pushBack(pCell);
 		return;

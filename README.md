@@ -30,6 +30,6 @@ Tui是一个创建cocos2d-x UI界面的解决方案，而builder用的则是Flas
 有两个组件库了。。何必呢- -）
 
 教程：
-注意：Tui-x 3.0和Tui-x 2.2.1接口有少量区别！具体请看HelloTui							
-在Tui-x 2.2.1的项目里有篇教程，编辑器的用法都是同样的，大家可以自行下载。
+注意：Tui-x 3.0和Tui-x 2.2.x接口有少量区别！具体请看HelloTui							
+在Tui-x 2.2.x的项目里有篇教程，编辑器的用法都是同样的，大家可以自行下载。
 请戳 https://github.com/LingJiJian/tui/tree/Tui-x
