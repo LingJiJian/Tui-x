@@ -244,7 +244,11 @@ bool CNetDelegate::runRead()
 #endif
 		m_oReadBuffer.writeData(m_pReadBuffer, (unsigned int)nRet);
 #if USING_PACKAGE_HEAD_LENGTH
+<<<<<<< HEAD
 		while( m_oReadBuffer.isReadable(sizeof(short)) )
+=======
+		while( m_oReadBuffer.isReadable(sizeof(int)) )
+>>>>>>> d94c21ad8b96fff0fc9ca10561464de4fe3d105d
 		{
 			m_oReadBuffer.moveReaderIndexToFront();
 			int n_head_len = m_oReadBuffer.readUShort() - (int)(sizeof(short));
