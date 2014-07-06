@@ -3,11 +3,10 @@
 
 /** tui xml node name */
 static const char* kTuiNodeScheme = "scheme";
-static const char* kTuiNodeControl= "control";
+static const char* kTuiNodeControl = "control";
 
 /** tui support control type */
 static const char* kTuiContainerPanel = "panel";
-static const char* kTuiContainerRelativeLayout = "relativeLayout";
 static const char* kTuiContainerScroll = "scrollView";
 static const char* kTuiContainerLayout = "layout";
 static const char* kTuiContainerCircleMenu = "circleMenu";
@@ -28,11 +27,12 @@ static const char* kTuiControlControl = "controlView";
 static const char* kTuiControlListView = "listView";
 static const char* kTuiControlPageView = "pageView";
 static const char* kTuiControlGridView = "gridView";
-static const char* kTuiControlPaticle = "particle";
+static const char* kTuiControlGridPageView = "gridPageView";
 static const char* kTuiControlTable = "tableView";
+static const char* kTuiControlPaticle = "particle";
 static const char* kTuiControlEditBox = "editBox";
 static const char* kTuiControlRichText = "richText";
 static const char* kTuiControlMovieView = "movieView";
-
+static const char* kTuiControlCell = "cell";
 
 #endif//TUICONSTS_H

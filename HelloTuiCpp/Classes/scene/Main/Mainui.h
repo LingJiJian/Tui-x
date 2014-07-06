@@ -19,6 +19,9 @@ protected:
 	void event_ctlv_left(Ref* pSender, float fx, float fy);
 	void event_btn_ok(Ref* pSender);
 	void event_btn_go(Ref* pSender);
+	void event_btn_bag(Ref* pSender);
+	void event_btn_recombine(Ref* pSender);
+
 	void event_movie_finish();
 	void event_tgvA_check(Ref *pSender, bool bChecked);
 	void event_tgvB_check(Ref *pSender, bool bChecked);

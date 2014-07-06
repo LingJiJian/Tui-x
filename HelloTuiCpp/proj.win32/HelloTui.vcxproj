@@ -178,6 +178,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\scene\Bag\Bagui.cpp" />
     <ClCompile Include="..\Classes\scene\Main\dialog\MsgBox.cpp" />
     <ClCompile Include="..\Classes\scene\Main\Mainui.cpp" />
+    <ClCompile Include="..\Classes\scene\Recombine\Recombineui.cpp" />
     <ClCompile Include="..\Classes\scene\ShowPhone\ShowPhoneui.cpp" />
     <ClCompile Include="..\Classes\scene\Store\Storeui.cpp" />
     <ClCompile Include="..\Classes\scene\Welcome\Welcomeui.cpp" />
@@ -240,6 +241,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\scene\Main\dialog\MsgBox.h" />
     <ClInclude Include="..\Classes\scene\Main\MainCfg.h" />
     <ClInclude Include="..\Classes\scene\Main\Mainui.h" />
+    <ClInclude Include="..\Classes\scene\Recombine\Recombineui.h" />
     <ClInclude Include="..\Classes\scene\ShowPhone\ShowPhoneui.h" />
     <ClInclude Include="..\Classes\scene\ShowPhone\ShowPhoneCfg.h" />
     <ClInclude Include="..\Classes\scene\Store\StoreCfg.h" />
@@ -248,6 +250,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\scene\Welcome\Welcomeui.h" />
     <ClInclude Include="..\Classes\tui\tagMap\tuiTag_bag.h" />
     <ClInclude Include="..\Classes\tui\tagMap\tuiTag_main.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_recombineui.h" />
     <ClInclude Include="..\Classes\tui\tagMap\tuiTag_showPhone.h" />
     <ClInclude Include="..\Classes\tui\tagMap\tuiTag_store.h" />
     <ClInclude Include="..\Classes\tui\tagMap\tuiTag_welcome.h" />

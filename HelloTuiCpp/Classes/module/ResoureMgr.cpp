@@ -6,6 +6,7 @@
 #include "scene/Store/Storeui.h"
 #include "scene/ShowPhone/ShowPhoneui.h"
 #include "scene/Bag/Bagui.h"
+#include "scene/Recombine/Recombineui.h"
 
 
 bool ResoureMgr::init(){
@@ -24,4 +25,6 @@ void ResoureMgr::registScene(){
 	REGISTER_SCENE_FUNC(ShowPhone::ShowPhoneui);			//展示场景
 
 	REGISTER_SCENE_FUNC(Bag::Bagui);						//背包
+
+	REGISTER_SCENE_FUNC(Recomebineui);						//复合控件
 }

@@ -29,7 +29,7 @@ THE SOFTWARE.
 
 #include "cocos2d.h"
 // if using CocosWidget, go include cocos-widget.h here
- #include "../../CocosWidget/cocos-widget.h"
+ #include "../CocosWidget/cocos-widget.h"
 // end
 
 // using CocosWidget that change the USING_COCOSWIDGET to 1

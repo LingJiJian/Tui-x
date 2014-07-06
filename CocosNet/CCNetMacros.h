@@ -64,7 +64,7 @@ typedef unsigned int          SOCKET;
 #define SOCKET_READ_BUFFER_SIZE 8192
 #endif
 #ifndef MEMORYTYPE_REVERSE
-#define MEMORYTYPE_REVERSE 1
+#define MEMORYTYPE_REVERSE 0
 #endif
 #ifndef HANDLE_ON_SINGLE_FRAME
 #define HANDLE_ON_SINGLE_FRAME 1

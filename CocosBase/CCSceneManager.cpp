@@ -32,6 +32,7 @@ NS_CC_BEGIN
 
 CSceneManager::CSceneManager()
 : m_bSendCleanupToScene(false)
+, m_bPopup(true)
 , m_pRunningScene(NULL)
 , m_pNextScene(NULL)
 {
@@ -99,7 +100,7 @@ CSceneManager* CSceneManager::getInstance()
 
 void CSceneManager::visit(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated)
 {
-	CCNode::visit(renderer, parentTransform, parentTransformUpdated);
+	Node::visit(renderer, parentTransform, parentTransformUpdated);
 	mainLoop(renderer, parentTransform, parentTransformUpdated);
 }
 
@@ -179,7 +180,7 @@ void CSceneManager::pushScene(CSceneExtension* pScene, Ref* pExtra)
 		m_lSceneSwitchQueue.back().bLockedSwitch = false;
 	}
 }
-//有bug
+
 void CSceneManager::replaceScene(CSceneExtension* pScene, Ref* pExtra)
 {
 	CCAssert(m_pRunningScene, "Use runWithScene: instead to start the director");
@@ -246,7 +247,7 @@ void CSceneManager::end()
 	Director::getInstance()->end();
 }
 
-void CSceneManager::runUIScene(CSceneExtension* pScene, Ref* pExtra)
+void CSceneManager::runUIScene(CSceneExtension* pScene, Ref* pExtra /* = NULL */,bool isPopup /* = true */)
 {
 	CCAssert(pScene != NULL && !dynamic_cast<CCSceneExTransition*>(pScene), "should not null and not transition");
 
@@ -266,6 +267,17 @@ void CSceneManager::runUIScene(CSceneExtension* pScene, Ref* pExtra)
 	{
 		m_lUISceneSwitchQueue.back().bLockedSwitch = false;
 	}
+
+	m_bPopup = isPopup;
+	if (m_bPopup)
+	{
+		for (auto uiScene : m_vRunningUIScenes)
+		{
+			if (pScene != uiScene)
+				uiScene->setModalable(true);
+		}
+		m_pRunningScene->setModalable(true);
+	}
 }
 
 void CSceneManager::popUIScene(CSceneExtension* pScene)
@@ -280,6 +292,16 @@ void CSceneManager::popUIScene(CSceneExtension* pScene)
 	tSceneSwitch.eType = eUISceneSwitchPopScene;
 	tSceneSwitch.bLockedSwitch = false;
 	m_lUISceneSwitchQueue.push_back(tSceneSwitch);
+
+	if (m_bPopup)
+	{
+		if (m_vRunningUIScenes.size() >= 2){
+			auto preUISceneIt = m_vRunningUIScenes.end() - 2;
+			(*preUISceneIt)->setModalable(false);
+		}
+		if (m_vRunningUIScenes.size() == 1)
+			m_pRunningScene->setModalable(false);
+	}
 }
 
 void CSceneManager::popAllUIScene()
@@ -294,6 +316,15 @@ void CSceneManager::popAllUIScene()
 		tSceneSwitch.eType = eUISceneSwitchPopScene;
 		tSceneSwitch.bLockedSwitch = false;
 		m_lUISceneSwitchQueue.push_back(tSceneSwitch);
+	}
+
+	if (m_bPopup)
+	{
+		for (auto uiScene : m_vRunningUIScenes)
+		{
+			uiScene->setModalable(false);
+		}
+		m_pRunningScene->setModalable(false);
 	}
 }
 
@@ -795,9 +826,9 @@ void CSceneManager::debugSceneSwitchInfo()
 	strStackText.erase(strStackText.size() - 4);
 
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	CCLOG(strStackText.c_str());
+	CCLOG("%s",strStackText.c_str());
 #else
-	//CCLOG(strStackText.c_str());
+	CCLOG("%s",strStackText.c_str());
 #endif
 }
 #endif

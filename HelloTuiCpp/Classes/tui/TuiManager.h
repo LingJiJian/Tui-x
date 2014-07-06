@@ -21,7 +21,8 @@ public:
 	SINGLE_INSTANCE_FUNC(TuiManager);
 	virtual bool init();
 
-	void parseScene(TuiBase* pScene ,const char* sceneName,const char* xmlPath);//解析场景
+	void parseScene(Node* pScene ,const char* sceneName,const char* xmlPath);//解析场景
+	void parseCell(CLayout* pCell, const char* cellName, const char* xmlPath);//解析格子
 
 	void setUseSpriteFrame(bool b);//是否使用SpriteFrame
 
@@ -31,7 +32,6 @@ public:
 	CLayout *createLayout(float tag,float x,float y,float w,float h,float rotation);
 	CScrollView *createScrollView(float tag,int direction,float x,float y,float w,float h,float rotation);
 	CListView *createListView(float tag,const char* img,float x,float y,float w,float h,float rotation);
-	CPageView *createPageView(float tag,float x,float y,float w,float h,float rotation);
 	CImageView *createImage(float tag,const char* file,float scaleX,float scaleY ,float x,float y,float rotation);
 	CImageViewScale9 *createImage9(float tag,const char* file,float x,float y,float w,float h,float up,float down,float left, float right,float rotation);
 	CButton *createBtn(float tag,const char* normal,const char* select,const char* disable,float x,float y, float w,float h,float rotation);
@@ -47,8 +47,10 @@ public:
 	ArmatureBtn *createArmatureBtn(float tag,const char* name,const char* png,const char* plist,const char* xml,float x,float y,float rotation);
 	NumericStepper *createNumStep(float tag,const char* lnormal,const char* lselect,const char* ldisable,const char* rnormal,const char* rselect,const char* rdisable,const char* stepBg,float x,float y,float rotation);
 	ParticleSystemQuad *createParticle(float tag,const char* plist,float x,float y);
-	CTableView *createTableView(float tag,float x,float y,float w,float h,float rotation);
-	CGridView *createGridView(float tag, const char* img, int column, int num, float x, float y, float w, float h, float rotation);
+	CTableView *createTableView(float tag, const char* img,int dir, int num, int cellWidth, int cellHeight, float x, float y, float w, float h, float rotation);
+	CPageView *createPageView(float tag, const char* img, int dir, int num, float x, float y, float w, float h, float rotation);
+	CGridView *createGridView(float tag, const char* img,int column, int num, int cellWidth, int cellHeight, float x, float y, float w, float h, float rotation);
+	CGridPageView *createGridPageView(float tag, const char* img, int dir, int column, int row, int num, int cellWidth, int cellHeight, float x, float y, float w, float h, float rotation);
 	EditBox *createEditBox(float tag, const char* file, int inputMode, int inputFlag, float x, float y, float w, float h, float rotation);
 	MovieView *createMovieView(float tag, const char* json, const char* plist, const char* png, float x, float y, float rotation);
 	CircleMenu *createCircleMenu(float tag, float x, float y, float w, float h, float rotation);

@@ -1,6 +1,9 @@
 Tui-x
 =====
 
+![](picture/pic1.jpg)
+![](picture/pic2.jpg)
+
 This Tui-x cocos2dx 3.0 version,more light,more sample,more flexible
 
 简介：
@@ -16,14 +19,16 @@ Tui是一个创建cocos2d-x UI界面的解决方案，而builder用的则是Flas
 4.FlashCS上添加命名空间，避免资源命名冲突或过长。											
 5.支持多fla编辑场景。																		
 6*.影片剪辑控件MovieView，动画编辑工具后期发布。	
-7.旋转菜单控件										
+7.旋转菜单控件		
+8.可视化编辑Cell。								
 
 说明:
 
-本项目中有个叫HelloTui的演示工程，需要自己放置引擎代码到相应的位置。
-具体操作为：下载好的cocos2dx3.0的引擎，然后把里面的cocos2d目录，复制到Tui-x/HelloTui 下，然后打
-开cocos/ui/UILayoutDefine.h , 注释掉 54行 //const Margin MarginZero = Margin(); 
-接下来就可以开始编译了！
+注：本项目中有个叫HelloTui的演示工程，需要自己放置引擎代码到相应的位置。
+Cpp具体操作为：下载好的cocos2dx3.0的引擎，然后直接把这个引擎改名成cocos2d，复制到Tui-x/HelloTuiCpp下，
+(Lua具体操作位：下载好的cocos2dx3.0的引擎，然后直接把这个引擎改名成cocos2d-x，复制到Tui-x/HelloTuiLua/frameworks下，)
+然后打开cocos/ui/UILayoutDefine.h , 注释掉 54行 //const Margin MarginZero = Margin(); 
+接下来双击sln就可以开始编译了！
 
 （为什么要这么做？这是因为我们不需要用到官方的UI库，我们只用CocosWidget的组件就能完全替代它，如果你不注释
 这一行，那么vs在编译的时候，会发现Margin未定义，如果你不想注释也可以，但你必须要引入官方的UI库，那你就

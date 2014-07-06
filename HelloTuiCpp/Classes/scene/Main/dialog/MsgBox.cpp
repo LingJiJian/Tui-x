@@ -23,9 +23,8 @@ void MsgBox::onLoadScene()
 void MsgBox::event_btn_close( Ref *pSender )
 {
 	//解除塑形
-	CSceneManager::getInstance()->getRunningScene()->setModalable(false);
+	//CSceneManager::getInstance()->getRunningScene()->setModalable(false);
 	CSceneManager::getInstance()->popUIScene(this);
-	
 }
 
 void MsgBox::event_slider_test(Ref *pSender,int value)

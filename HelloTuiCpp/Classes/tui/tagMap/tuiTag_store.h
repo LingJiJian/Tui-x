@@ -8,8 +8,8 @@ namespace Store {
 	static const int ARMBTN_TEST2 = 2 ;
 	static const int LIST_GOODS = 3 ;
 	static const int LAYOUT_ITEM = 5 ;
-	static const int IMG_ITEMBG = 1 ;
-	static const int BTN_PAY = 2 ;
+	static const int IMG_ITEMBG = 6 ;
+	static const int BTN_PAY = 7 ;
 } 
 
 #endif

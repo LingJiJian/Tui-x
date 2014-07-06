@@ -64,6 +64,9 @@
     <Filter Include="lib\CocosWidget">
       <UniqueIdentifier>{b9c9b7e9-5295-43d6-a12c-aa574bbc6e58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\scene\Recombine">
+      <UniqueIdentifier>{edbc143e-adea-452b-95d1-329d0a1176e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -212,6 +215,9 @@
     </ClCompile>
     <ClCompile Include="..\..\CocosWidget\CheckBox.cpp">
       <Filter>lib\CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scene\Recombine\Recombineui.cpp">
+      <Filter>Classes\scene\Recombine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -424,6 +430,12 @@
     </ClInclude>
     <ClInclude Include="..\..\CocosWidget\CheckBox.h">
       <Filter>lib\CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scene\Recombine\Recombineui.h">
+      <Filter>Classes\scene\Recombine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_recombineui.h">
+      <Filter>lib\tui\tagMap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

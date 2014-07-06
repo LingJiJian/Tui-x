@@ -3,8 +3,8 @@
 		<control tag="2" type="armatureBtn" name="armBtn_test2" xml="store/armBtn_test2.xml" png="store/armBtn_test2.png" plist="store/armBtn_test2.plist" x="266.35" y="-12.65" width="226" height="349" rotation="0"></control>
 		<control tag="3" type="listView" num="10" name="list_goods" image="store/list_goods.png" x="-156.55" y="-12" width="325" height="339" rotation="0">
 			<control tag="5" type="layout" name="layout_item" x="-1.5" y="-134.45" width="325" height="70" rotation="0">
-				<control tag="1" type="image" name="img_itembg" image="store/img_itembg.png" x="0.5" y="-0.05" width="325" height="70" scaleX="1" scaleY="1" rotation="0"></control>
-				<control tag="2" type="button" name="btn_pay" normal="store/btn_pay_normal.png" select="store/btn_pay_select.png" disable="store/btn_pay_disable.png" x="114.5" y="1.9" width="70" height="36" rotation="0"></control>
+				<control tag="6" type="image" name="img_itembg" image="store/img_itembg.png" x="0.5" y="-0.05" width="325" height="70" scaleX="1" scaleY="1" rotation="0"></control>
+				<control tag="7" type="button" name="btn_pay" normal="store/btn_pay_normal.png" select="store/btn_pay_select.png" disable="store/btn_pay_disable.png" x="114.5" y="1.9" width="70" height="36" rotation="0"></control>
 			</control>
 		</control>
 	</control>

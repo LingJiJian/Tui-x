@@ -15960,6 +15960,7 @@ int lua_register_cocos2dx_cocoswidget_CGridPageViewCell(lua_State* tolua_S)
     tolua_cclass(tolua_S,"CGridPageViewCell","cc.cocoswidget::CGridPageViewCell","cc.cocoswidget::CTableViewCell",nullptr);
 
     tolua_beginmodule(tolua_S,"CGridPageViewCell");
+	tolua_function(tolua_S, "new", lua_cocos2dx_cocoswidget_CGridPageViewCell_constructor);
     tolua_endmodule(tolua_S);
     std::string typeName = typeid(cocos2d::cocoswidget::CGridPageViewCell).name();
     g_luaType[typeName] = "cc.cocoswidget::CGridPageViewCell";
@@ -18532,6 +18533,7 @@ int lua_register_cocos2dx_cocoswidget_CPageViewCell(lua_State* tolua_S)
     tolua_cclass(tolua_S,"CPageViewCell","cc.cocoswidget::CPageViewCell","cc.cocoswidget::CTableViewCell",nullptr);
 
     tolua_beginmodule(tolua_S,"CPageViewCell");
+	tolua_function(tolua_S, "new", lua_cocos2dx_cocoswidget_CGridViewCell_constructor);
     tolua_endmodule(tolua_S);
     std::string typeName = typeid(cocos2d::cocoswidget::CPageViewCell).name();
     g_luaType[typeName] = "cc.cocoswidget::CPageViewCell";

@@ -14,7 +14,14 @@ public:
 	void onLoadScene();
 	Node* getPanel(int tagPanel);
 protected:
+	Ref* event_adapt_gvBag(Ref* pConvertCell, unsigned int uIdx);
+	Ref* event_adapt_tblBag(Ref* pConvertCell, unsigned int uIdx);
+	Ref* event_adapt_pageBag(Ref* pConvertCell, unsigned int uIdx);
+	void event_btn_back(Ref* pSender);
+
+	void event_btn_gv(Ref* pSender);
 private:
+
 };
 
 NS_BAG_END

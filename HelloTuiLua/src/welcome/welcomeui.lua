@@ -1,6 +1,8 @@
 require "extern"
 require "tagMap/Tag_welcomeui"
 require "showphone/showphoneui"
+require "recombine/recombineui"
+require "bag/bagui"
 require "welcome/dialog/msgBox"
 
 Welcomeui = class("Welcomeui",function()
@@ -53,7 +55,9 @@ local function event_ctvl_left(p_sender, fx, fy)
 end
 
 local function event_armbtn_test(p_sender)
-	print("click!!")
+	local scene = Bagui:create()
+	cc.Director:getInstance():replaceScene(
+		cc.TransitionFade:create(0.5, scene, cc.c3b(0,255,255)))
 end
 
 local function event_btn_pay(p_sender)

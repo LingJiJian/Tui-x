@@ -3,8 +3,9 @@
 #include "json/document.h"
 #include "cocostudio/DictionaryHelper.h"
 #include "Ease.h"
+#if USING_LUA
 #include "CCLuaEngine.h"
-
+#endif
 using namespace rapidjson;
 
 NS_CC_WIDGET_BEGIN

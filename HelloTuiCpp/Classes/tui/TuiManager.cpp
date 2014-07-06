@@ -7,9 +7,7 @@ bool TuiManager::init()
 	return true;
 }
 
-void TuiManager::parseScene(TuiBase* pScene ,const char* sceneName,const char* xmlPath){
-	//判断是否用SpriteFrame创建控件
-	m_isUseSpriteFrame = pScene->getAutoRemoveUnusedSpriteFrame();
+void TuiManager::parseScene(Node* pScene ,const char* sceneName,const char* xmlPath){
 
 	loadXml(xmlPath);
 	string xmlContent = m_DataMap.at(xmlPath);
@@ -31,6 +29,29 @@ void TuiManager::parseScene(TuiBase* pScene ,const char* sceneName,const char* x
 
 	delete[] buf;
 }
+
+void TuiManager::parseCell(CLayout* pCell, const char* cellName, const char* xmlPath)
+{
+	string xmlContent = m_DataMap.at(xmlPath);
+	char* buf = new char[xmlContent.size() + 1];
+	memcpy(buf, xmlContent.c_str(), xmlContent.size() + 1);
+
+	xml_document<> doc;
+	doc.parse<0>(buf);
+
+	for (xml_node<char> *item = doc.first_node("control"); item != NULL; item = item->next_sibling()){
+
+		if (strcmp(item->first_attribute("type")->value(), kTuiControlCell) == 0){//cell
+
+			if (strcmp(item->first_attribute("name")->value(), cellName) != 0) continue;//只解析当前格子
+
+			this->parseControl(pCell, item);
+		}
+	}
+
+	delete[] buf;
+}
+
 ////////////////////解析组件/////////////////////////////////////////////
 void TuiManager::parseControl(Node* container,xml_node<char> *item)
 { 
@@ -41,12 +62,18 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 	int h = atoi(item->first_attribute("height")->value());
 	int rotation = atof(item->first_attribute("rotation")->value());
 
-	if(strcmp(item->first_attribute("type")->value(), kTuiContainerPanel) == 0){//panel
-		CWidgetWindow* pPanel = createPanel(tag,x,y,w,h,rotation);
+	if (strcmp(item->first_attribute("type")->value(), kTuiContainerPanel) == 0){//panel
+		CWidgetWindow* pPanel = createPanel(tag, x, y, w, h, rotation);
 		container->addChild(pPanel);
 		//递归
-		for( xml_node<char> *iitem = item->first_node( kTuiNodeControl );iitem != NULL; iitem = iitem->next_sibling()){
-			parseControl(pPanel,iitem);
+		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
+			parseControl(pPanel, iitem);
+		}
+
+	}else if (strcmp(item->first_attribute("type")->value(),kTuiControlCell) == 0){//cell
+		//递归
+		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
+			parseControl(container, iitem);
 		}
 
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlImage) == 0){//image
@@ -196,12 +223,6 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		}
 		pList->reloadData();
 
-	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlPageView) == 0){//pageView
-		float w = atof(item->first_attribute("width")->value());
-		float h = atof(item->first_attribute("height")->value());
-		CPageView *pPageView = createPageView(tag,x,y,w,h,rotation);
-		container->addChild(pPageView);
-
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlCheckBox) == 0){//checkBox
 		const char* normal1 = item->first_attribute("normal1")->value();
 		const char* normal2 = item->first_attribute("normal2")->value();
@@ -235,14 +256,28 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		const char* plist = item->first_attribute("plist")->value();
 		ParticleSystem *pPartical = createParticle(tag,plist,x,y);
 		container->addChild(pPartical);
+	
+	}else if (strcmp(item->first_attribute("type")->value(), kTuiControlPageView) == 0){//pageView
+		float w = atof(item->first_attribute("width")->value());
+		float h = atof(item->first_attribute("height")->value());
+		float num = atoi(item->first_attribute("num")->value());
+		int dir = atoi(item->first_attribute("direction")->value());
+		const char* img = item->first_attribute("image")->value();
+		CPageView *pPageView = createPageView(tag, img, dir, num, x, y, w, h, rotation);
+		container->addChild(pPageView);
 
 	}else if (strcmp(item->first_attribute("type")->value(), kTuiControlTable) == 0){//TableView
 		float w = atof(item->first_attribute("width")->value());
 		float h = atof(item->first_attribute("height")->value());
-		CTableView *pView = createTableView(tag, x, y, w, h, rotation);
+		float num = atoi(item->first_attribute("num")->value());
+		int dir = atoi(item->first_attribute("direction")->value());
+		int cellWidth = atoi(item->first_attribute("cellWidth")->value());
+		int cellHeight = atoi(item->first_attribute("cellHeight")->value());
+		const char* img = item->first_attribute("image")->value();
+		CTableView *pView = createTableView(tag, img, dir, num, cellWidth, cellHeight, x, y, w, h, rotation);
 		container->addChild(pView);
 
-	}else if (strcmp(item->first_attribute("type")->value(),kTuiControlGridView) == 0){//GridView
+	}else if (strcmp(item->first_attribute("type")->value(), kTuiControlGridView) == 0){//GridView
 		float w = atof(item->first_attribute("width")->value());
 		float h = atof(item->first_attribute("height")->value());
 		int cellWidth = atoi(item->first_attribute("cellWidth")->value());
@@ -250,7 +285,20 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		int column = atoi(item->first_attribute("column")->value());
 		int num = atoi(item->first_attribute("num")->value());
 		const char* img = item->first_attribute("image")->value();
-		CGridView *pView = createGridView(tag,img,column, num, x, y, w, h, rotation);
+		CGridView *pView = createGridView(tag, img, column, num, cellWidth, cellHeight, x, y, w, h, rotation);
+		container->addChild(pView);
+
+	}else if (strcmp(item->first_attribute("type")->value(), kTuiControlGridPageView) == 0){//GridPageView
+		float w = atof(item->first_attribute("width")->value());
+		float h = atof(item->first_attribute("height")->value());
+		int cellWidth = atoi(item->first_attribute("cellWidth")->value());
+		int cellHeight = atoi(item->first_attribute("cellHeight")->value());
+		int column = atoi(item->first_attribute("column")->value());
+		int row = atoi(item->first_attribute("row")->value());
+		int num = atoi(item->first_attribute("num")->value());
+		int dir = atoi(item->first_attribute("direction")->value());
+		const char* img = item->first_attribute("image")->value();
+		CGridPageView *pView = createGridPageView(tag, img,dir, column,row, num, cellWidth, cellHeight, x, y, w, h, rotation);
 		container->addChild(pView);
 
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlEditBox) == 0){//EditBox
@@ -318,15 +366,6 @@ CListView *TuiManager::createListView(float tag,const char* img,float x,float y,
 	pList->setRotation(rotation);
 	pList->setTag(tag);
 	return pList;
-}
-
-CPageView *TuiManager::createPageView(float tag,float x,float y,float w,float h,float rotation){
-	CPageView *pPage = CPageView::create(Size(w,h));
-	pPage->setSizeOfCell(Size(w,h));
-	pPage->setPosition(Point(x,-y));
-	pPage->setRotation(rotation);
-	pPage->setTag(tag);
-	return pPage;
 }
 
 CImageView *TuiManager::createImage(float tag, const char* file, float scaleX, float scaleY,float x, float y, float rotation){
@@ -566,15 +605,21 @@ ParticleSystemQuad* TuiManager::createParticle(float tag,const char* plist,float
 	return pPartical;
 }
 
-CTableView* TuiManager::createTableView(float tag,float x,float y,float w,float h,float rotation){
+CTableView* TuiManager::createTableView(float tag, const char* img, int dir, int num, int cellWidth, int cellHeight, float x, float y, float w, float h, float rotation){
 	CTableView *pView = CTableView::create(Size(w,h));
+	m_isUseSpriteFrame ? pView->setBackgroundSpriteFrameName(img) : pView->setBackgroundImage(img);
+	pView->setAutoRelocate(true);
+	pView->setRotation(rotation);
+	pView->setDirection((CScrollViewDirection)dir);
+	pView->setCountOfCell(num);
+	pView->setSizeOfCell(Size(cellWidth, cellHeight));
 	pView->setRotation(rotation);
 	pView->setPosition(x,-y);
 	pView->setTag(tag);
 	return pView;
 }
 
-CGridView* TuiManager::createGridView(float tag, const char* img, int column, int num, float x, float y, float w, float h, float rotation){
+CGridView* TuiManager::createGridView(float tag, const char* img, int column, int num, int cellWidth, int cellHeight, float x, float y, float w, float h, float rotation){
 	CGridView* pView = CGridView::create(Size(w, h));
 	m_isUseSpriteFrame ? pView->setBackgroundSpriteFrameName(img) : pView->setBackgroundImage(img);
 	pView->setAutoRelocate(true);
@@ -582,6 +627,35 @@ CGridView* TuiManager::createGridView(float tag, const char* img, int column, in
 	pView->setPosition(x, -y);
 	pView->setColumns(column);
 	pView->setCountOfCell(num);
+	pView->setSizeOfCell(Size(cellWidth, cellHeight));
+	pView->setTag(tag);
+	return pView;
+}
+
+CPageView *TuiManager::createPageView(float tag, const char* img, int dir, int num, float x, float y, float w, float h, float rotation){
+	CPageView *pView = CPageView::create(Size(w, h));
+	m_isUseSpriteFrame ? pView->setBackgroundSpriteFrameName(img) : pView->setBackgroundImage(img);
+	pView->setAutoRelocate(true);
+	pView->setRotation(rotation);
+	pView->setDirection((CScrollViewDirection)dir);
+	pView->setCountOfCell(num);
+	pView->setSizeOfCell(Size(w, h));
+	pView->setPosition(Point(x, -y));
+	pView->setTag(tag);
+	return pView;
+}
+
+CGridPageView* TuiManager::createGridPageView(float tag, const char* img, int dir, int column, int row, int num, int cellWidth, int cellHeight, float x, float y, float w, float h, float rotation){
+	CGridPageView *pView = CGridPageView::create(Size(w, h));
+	m_isUseSpriteFrame ? pView->setBackgroundSpriteFrameName(img) : pView->setBackgroundImage(img);
+	pView->setAutoRelocate(true);
+	pView->setRotation(rotation);
+	pView->setDirection((CScrollViewDirection)dir);
+	pView->setCountOfCell(num);
+	pView->setColumns(column);
+	pView->setRows(row);
+	pView->setSizeOfCell(Size(cellWidth, cellHeight));
+	pView->setPosition(Point(x, -y));
 	pView->setTag(tag);
 	return pView;
 }
@@ -633,4 +707,3 @@ void TuiManager::loadXml(const string& path)
 void TuiManager::setUseSpriteFrame(bool b){
 	m_isUseSpriteFrame = b;
 }
-

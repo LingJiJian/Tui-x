@@ -465,7 +465,7 @@ void CBuffer::writeString(const char* p_data)
 void CBuffer::writeLengthAndString(const char* p_data)
 {
 	DO_ASSERT(LQ(p_data, LD(strlen(p_data), 0)), "p_data, LD(strlen(p_data), 0)");
-	writeInt(strlen(p_data));
+	writeShort(strlen(p_data));
 	writeString(p_data);
 }
 
@@ -642,8 +642,10 @@ std::string CBuffer::readString(unsigned int u_len)
 
 std::string CBuffer::readLengthAndString()
 {
-	DO_RETURN(readString(readUInt()));
-}
+	int len = readShort();
+	if (len == 0) return "";
+	DO_RETURN(readString(len));
+} 
 
 
 NS_CC_END

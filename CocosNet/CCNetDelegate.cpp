@@ -244,20 +244,20 @@ bool CNetDelegate::runRead()
 #endif
 		m_oReadBuffer.writeData(m_pReadBuffer, (unsigned int)nRet);
 #if USING_PACKAGE_HEAD_LENGTH
-		if( m_oReadBuffer.isReadable(sizeof(int)) )
+		while( m_oReadBuffer.isReadable(sizeof(short)) )
 		{
 			m_oReadBuffer.moveReaderIndexToFront();
-			int n_head_len = m_oReadBuffer.readInt();
+			int n_head_len = m_oReadBuffer.readUShort() - (int)(sizeof(short));
 			if( n_head_len <= 0 )
 			{
 				CCLOGERROR("invalidate head length");
-				m_oReadBuffer.moveLeft(sizeof(int));
+				m_oReadBuffer.moveLeft(sizeof(short));
 			}
 
 			int n_content_len = (int)m_oReadBuffer.length();
-			if( n_content_len - (int)(sizeof(int)) >= n_head_len )
+			if (n_content_len >= n_head_len)
 			{
-				m_oReadBuffer.moveLeft(sizeof(unsigned int));
+				m_oReadBuffer.moveLeft(sizeof(unsigned short));
 				CBuffer* pData = m_oReadBuffer.readData(n_head_len);
 				m_oReadBuffer.moveLeft(n_head_len);
 				m_oReadBuffer.moveReaderIndexToFront();

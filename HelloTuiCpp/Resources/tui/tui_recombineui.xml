@@ -1,0 +1,10 @@
+
+	<control tag="1" type="panel" name="panel_recombine" x="400" y="240" width="765.45" height="358.35" rotation="0">
+		<control tag="2" type="gridPageView" num="40" name="gpv_bag" image="recombine/gpv_bag.png" column="5" row="4" cellWidth="80" cellHeight="80" x="-183.95" y="30" width="390" height="320" rotation="0" direction="0"></control>
+		<control tag="3" type="button" name="btn_back" normal="recombine/btn_grid_normal.png" select="recombine/btn_grid_select.png" disable="recombine/btn_grid_disable.png" x="358" y="207.35" width="57" height="42" rotation="0"></control>
+		<control tag="4" type="label" text="返回" alignment="0" textSize="20" textFont="fonts/Arial.ttf" red="255" green="0" blue="0" strokeRed="0" strokeGreen="0" strokeBlue="0" strokeSize="0" shadowDistance="0" shadowBlur="0" name="lab_back" x="334.5" y="194.2" width="47" height="26.35" rotation="0"></control>
+	</control>
+	<control tag="5" type="cell" name="cell_grid" x="451.3" y="255.65" width="53" height="48" rotation="0">
+		<control tag="6" type="button" name="btn_grid" normal="recombine/btn_grid_normal.png" select="recombine/btn_grid_select.png" disable="recombine/btn_grid_disable.png" x="38" y="-38.65" width="53" height="48" rotation="0"></control>
+		<control tag="7" type="label" text="click" alignment="1" textSize="20" textFont="fonts/Arial.ttf" red="255" green="0" blue="0" strokeRed="0" strokeGreen="0" strokeBlue="0" strokeSize="0" shadowDistance="0" shadowBlur="0" name="lab_title" x="16.5" y="-53.1" width="44.5" height="28.1" rotation="0"></control>
+	</control>

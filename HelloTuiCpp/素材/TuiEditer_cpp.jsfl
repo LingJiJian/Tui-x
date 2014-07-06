@@ -399,9 +399,10 @@ UIControlType.kTableView = "tableView";
 UIControlType.kGridView = "gridView";
 UIControlType.kScrollView = "scrollView";
 UIControlType.kLayout = "layout";
-UIControlType.kRelativeLayout = "relativeLayout";
+UIControlType.kGridPageView = "gridPageView";
 UIControlType.kMoiveView = "movieView";
 UIControlType.kCircleMenu = "circleMenu";
+UIControlType.kCell = "cell";
 /////////////////////////////////////////////////////////////////////
 /** 控件的属性 */
 UIControlAttribute = {};
@@ -472,6 +473,7 @@ UIControlAttribute.kPlist = "plist";
 UIControlAttribute.kJson = "json";
 /** 纵列数 */
 UIControlAttribute.kColumn = "column";
+UIControlAttribute.kRow = "row";
 /** Cell尺寸 */
 UIControlAttribute.kCellWidth = "cellWidth";
 UIControlAttribute.kCellHeight = "cellHeight";
@@ -727,15 +729,6 @@ UILayout.prototype.init = function(){
 	UILayout.superClass.prototype.init.call(this);
 	this.setAttribute( UIControlAttribute.kType, UIControlType.kLayout );
 }
-/////////////////RelativeLayout//////////////////////////////////////////////
-UIRelativeLayout = function(){
-	UIRelativeLayout.superClass.call(this);
-}
-UIRelativeLayout.extend( UIControl );
-UIRelativeLayout.prototype.init = function(){
-	UIRelativeLayout.superClass.prototype.init.call(this);
-	this.setAttribute( UIControlAttribute.kType, UIControlType.kRelativeLayout );
-}
 /////////////////MovieView//////////////////////////////////////////////
 UIMovieView = function(){
 	UIMovieView.superClass.call(this);
@@ -754,7 +747,26 @@ UICircleMenu.prototype.init = function(){
 	UICircleMenu.superClass.prototype.init.call(this);
 	this.setAttribute( UIControlAttribute.kType, UIControlType.kCircleMenu );
 }
+/////////////////UIGridPageView//////////////////////////////////////////////
+UIGridPageView = function(){
+	UIMovieView.superClass.call(this);
+}
+UIGridPageView.extend( UIControl );
+UIGridPageView.prototype.init = function(){
+	UIGridPageView.superClass.prototype.init.call(this);
+	this.setAttribute( UIControlAttribute.kType, UIControlType.kGridPageView );
+}
+/////////////////Cell/////////////////////////////////////////////
+UICell = function(){
+	UICell.superClass.call(this);
+}
+UICell.extend( UIControl );
+UICell.prototype.init = function(){
+	UICell.superClass.prototype.init.call(this);
+	this.setAttribute( UIControlAttribute.kType, UIControlType.kCell );
+}
 /////////////////////////////////////////////////////////////////////
+
 ExportUITool = function(){
 	this.xml = null;
 }
@@ -957,9 +969,6 @@ FlaToXML.prototype.convertMC = function( mc ,elementIndex ,frameName){
 		case "panel":
 			control_xml = this.convertPanel(mc,elementIndex ,frameName);
 			break;
-		case "relLayer":
-			control_xml = this.convertRelativeLayout(mc,elementIndex ,frameName);
-			break;	
 		case "layout":
 			control_xml = this.convertLayout(mc,elementIndex ,frameName);
 			break;
@@ -993,7 +1002,7 @@ FlaToXML.prototype.convertMC = function( mc ,elementIndex ,frameName){
 		case "list":
 			control_xml = this.convertListView(mc,elementIndex ,frameName);
 			break;
-		case "page":
+		case "pv":
 			control_xml = this.convertPageView(mc,elementIndex ,frameName);
 			break;
 		case "scrol":
@@ -1001,6 +1010,9 @@ FlaToXML.prototype.convertMC = function( mc ,elementIndex ,frameName){
 			break;
 		case "gv":
 			control_xml = this.convertGridView(mc,elementIndex ,frameName);
+			break;
+		case "gpv":
+			control_xml = this.convertGridPageView(mc,elementIndex ,frameName);
 			break;
 		case "labAtlas":
 			control_xml = this.convertLabAtlas(mc,elementIndex ,frameName);
@@ -1017,7 +1029,7 @@ FlaToXML.prototype.convertMC = function( mc ,elementIndex ,frameName){
 		case "ptl":
 			control_xml = this.convertParticle(mc,elementIndex ,frameName);
 			break;
-		case "table":
+		case "tbl":
 			control_xml = this.convertTableView(mc,elementIndex ,frameName);
 			break;
 		case "edit":
@@ -1031,6 +1043,9 @@ FlaToXML.prototype.convertMC = function( mc ,elementIndex ,frameName){
 			break;
 		case "circlemenu":
 			control_xml = this.convertCirclemenu(mc,elementIndex,frameName);
+			break;
+		case "cell":
+			control_xml = this.convertCell(mc,elementIndex,frameName);
 			break;
 	}
 	return control_xml;
@@ -1046,15 +1061,6 @@ FlaToXML.prototype.convertPanel = function(panel,elementIndex ,frameName){
 
 	return control_xml;
 }
-/** 转换RelativeLayout */
-FlaToXML.prototype.convertRelativeLayout = function(relativeLayout,elementIndex ,frameName){
-	var xml_relativeLayout = new UIRelativeLayout();
-	this.fullNormalAttirbute( xml_relativeLayout, this.th,relativeLayout ,elementIndex ,frameName);
-	//获取mc的timeline
-	var timeline = relativeLayout.libraryItem.timeline;
-	this.fetchElement( timeline, xml_relativeLayout ,frameName);
-	return xml_relativeLayout;
-}
 /** 转换Layout */
 FlaToXML.prototype.convertLayout = function(layout,elementIndex ,frameName){
 	var xml_Layout = new UILayout();
@@ -1062,8 +1068,18 @@ FlaToXML.prototype.convertLayout = function(layout,elementIndex ,frameName){
 
 	//获取mc的timeline
 	var timeline = layout.libraryItem.timeline;
-	this.fetchElement( timeline, xml_Layout,frameName,"resetTag" );
+	this.fetchElement( timeline, xml_Layout,frameName);
 	return xml_Layout;
+}
+/** 转换Cell */
+FlaToXML.prototype.convertCell = function(cell,elementIndex ,frameName){
+	var xml_cell = new UICell();
+	this.fullNormalAttirbute(xml_cell,this.th,cell,elementIndex ,frameName);
+	
+	//获取mc的timeline
+	var timeline = cell.libraryItem.timeline;
+	this.fetchElement( timeline, xml_cell,frameName );
+	return xml_cell;
 }
 /** 转换image */
 FlaToXML.prototype.convertImg = function( image , elementIndex ,frameName){
@@ -1281,12 +1297,56 @@ FlaToXML.prototype.convertListView = function(listView,elementIndex ,frameName){
 /** 转换pageView  */
 FlaToXML.prototype.convertPageView = function(pageView,elementIndex ,frameName){
 	var xml_pageView = new UIPageView();
+	var dir = 0;
+	var cout = 10;
+	var arrName = pageView.name.split("_");
+	if(arrName.length == 4){
+		dir = arrName[2];
+		cout = arrName[3];
+	}
+	var oldName = pageView.name;
+	var newName = arrName[0] + "_" + arrName[1];
+	
+	xml_pageView.setAttribute(UIControlAttribute.kImage,pageView.libraryItem.name + ".png");
+	xml_pageView.setAttribute(UIControlAttribute.kDirection,dir);
+	xml_pageView.setAttribute(UIControlAttribute.kNum,cout);
+	pageView.name = newName;
 	this.fullNormalAttirbute( xml_pageView,this.th, pageView ,elementIndex ,frameName);
+	pageView.name = oldName;
 	return xml_pageView;
+}
+/** 转换tableView */
+FlaToXML.prototype.convertTableView = function(tableView,elementIndex ,frameName){
+	var xml_tableView = new UITableView();
+	
+	var dir = 0;
+	var cout = 10;
+	var cellWidth = 50;
+	var cellHeight = 50;
+	var arrName = tableView.name.split("_");
+	if(arrName.length == 6){
+		dir = arrName[2];
+		cout = arrName[3];
+		cellWidth = arrName[4];
+		cellHeight = arrName[5];
+	}
+	var oldName = tableView.name;
+	var newName = arrName[0] + "_" + arrName[1];
+	
+	xml_tableView.setAttribute(UIControlAttribute.kImage,tableView.libraryItem.name + ".png");
+	xml_tableView.setAttribute(UIControlAttribute.kDirection,dir);
+	xml_tableView.setAttribute(UIControlAttribute.kNum,cout);
+	xml_tableView.setAttribute(UIControlAttribute.kCellWidth,cellWidth);
+	xml_tableView.setAttribute(UIControlAttribute.kCellHeight,cellHeight);
+	tableView.name = newName;
+	this.fullNormalAttirbute( xml_tableView,this.th, tableView ,elementIndex ,frameName);
+	tableView.name = oldName;
+	return xml_tableView;
 }
 /** 转换gridView */
 FlaToXML.prototype.convertGridView = function(gridView,elementIndex,frameName){
 	var xml_gridView = new UIGridView();
+	
 	var column = 1;
 	var cout = 10;
 	var cellWidth = 50;
@@ -1310,6 +1370,39 @@ FlaToXML.prototype.convertGridView = function(gridView,elementIndex,frameName){
 	this.fullNormalAttirbute(xml_gridView,this.th, gridView,elementIndex ,frameName);
 	gridView.name = oldName;
 	return xml_gridView;
+}
+/** 转换GridPageView */
+FlaToXML.prototype.convertGridPageView = function(gridPageView,elementIndex,frameName){
+	var xml_gridPageView = new UIGridPageView();
+	var dir = 0;
+	var column = 5;
+	var row = 4
+	var cout = 20;
+	var cellWidth = 50;
+	var cellHeight = 50;
+	var arrName = gridPageView.name.split("_");
+	if(arrName.length == 8){
+		dir = arrName[2];
+		column = arrName[3];
+		row = arrName[4]
+		cout = arrName[5];
+		cellWidth = arrName[6];
+		cellHeight = arrName[7];
+	}
+	var oldName = gridPageView.name;
+	var newName = arrName[0] + "_" + arrName[1];
+	
+	xml_gridPageView.setAttribute(UIControlAttribute.kImage,gridPageView.libraryItem.name + ".png");
+	xml_gridPageView.setAttribute(UIControlAttribute.kDirection,dir);
+	xml_gridPageView.setAttribute(UIControlAttribute.kColumn,column);
+	xml_gridPageView.setAttribute(UIControlAttribute.kRow,row);
+	xml_gridPageView.setAttribute(UIControlAttribute.kNum,cout);
+	xml_gridPageView.setAttribute(UIControlAttribute.kCellWidth,cellWidth);
+	xml_gridPageView.setAttribute(UIControlAttribute.kCellHeight,cellHeight);
+	gridPageView.name = newName;
+	this.fullNormalAttirbute(xml_gridPageView,this.th, gridPageView,elementIndex ,frameName);
+	gridPageView.name = oldName;
+	return xml_gridPageView;
 }
 /** 转换armatureBtn */
 FlaToXML.prototype.convertArmatureBtn = function(armatureBtn,elementIndex ,frameName){
@@ -1358,12 +1451,6 @@ FlaToXML.prototype.convertParticle = function(particle,elementIndex ,frameName){
 	xml_particle.setAttribute(UIControlAttribute.kPlist,particle.libraryItem.name + ".plist");
 	this.fullNormalAttirbute( xml_particle,this.th, particle ,elementIndex ,frameName);
 	return xml_particle;
-}
-/** 转换table */
-FlaToXML.prototype.convertTableView = function(table,elementIndex ,frameName){
-	var xml_tableView = new UITableView();
-	this.fullNormalAttirbute( xml_tableView,this.th, table ,elementIndex ,frameName);
-	return xml_tableView;
 }
 /** 转换EditBox */
 FlaToXML.prototype.convertEditBox = function(editBox,elementIndex ,frameName){
@@ -1507,8 +1594,8 @@ cls();
 var sceneName = fl.getDocumentDOM().name.replace(".fla","");
 var tui = export_current_layer("");//根节点名字
 tui.th.flaPath = "tui/tui_"+sceneName+".xml";//xml命名为fla
-var saveXmlPath = "file:///F|/WorkSpace/C++WorkSpace/cocos2d-x-3.0/projects/HelloTui/Resources/"+tui.th.flaPath;//保存xml的路径
-var saveHPath = "file:///F|/WorkSpace/C++WorkSpace/cocos2d-x-3.0/projects/HelloTui/Classes/tui/tagMap/tuiTag_"+sceneName+".h";//保存h的路径
+var saveXmlPath = "file:///F|/WorkSpace/C++WorkSpace/cocos2d-x-3.0/projects/HelloTuiCpp/Resources/"+tui.th.flaPath;//保存xml的路径
+var saveHPath = "file:///F|/WorkSpace/C++WorkSpace/cocos2d-x-3.0/projects/HelloTuiCpp/Classes/tui/tagMap/tuiTag_"+sceneName+".h";//保存h的路径
 FLfile.write(saveXmlPath,tui.txml.xml);
 FLfile.write(saveHPath,tui.th.parseContent());
 trace(tui.txml.xml);
