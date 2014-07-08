@@ -217,7 +217,8 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 			}
 			Vector<Node*> vet = pLayout->getChildren();
 			for(Node *pChild : vet){//偏移坐标 因为CLayout的零点在左下角
-				pChild->setPosition(pChild->getPosition()+Point(w/2,h/2));
+				if(pChild->getTag() > 0)
+					pChild->setPosition(pChild->getPosition()+Point(w/2,h/2));
 			}
 			pList->insertNodeAtLast(pLayout);
 		}
