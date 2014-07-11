@@ -223,7 +223,7 @@ protected:
 	const char* getSceneClassName(CSceneExtension* pScene);
 
 protected:
-	//记录当前UIScene是否处于popup状态
+	//is popup state
 	bool m_bPopup;
 
 	// is send cleanup to next scene

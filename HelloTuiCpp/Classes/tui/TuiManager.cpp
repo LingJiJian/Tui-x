@@ -21,7 +21,7 @@ void TuiManager::parseScene(Node* pScene ,const char* sceneName,const char* xmlP
 		
 		if( strcmp(item->first_attribute("type")->value(),kTuiContainerPanel) == 0){//panel
 
-			if(strcmp(item->first_attribute("name")->value(),sceneName) != 0) continue;//只解析当前场景
+			if(strcmp(item->first_attribute("name")->value(),sceneName) != 0) continue;//only parse the key panel
 
 			this->parseControl(pScene,item);
 		}
@@ -43,7 +43,7 @@ void TuiManager::parseCell(CLayout* pCell, const char* cellName, const char* xml
 
 		if (strcmp(item->first_attribute("type")->value(), kTuiControlCell) == 0){//cell
 
-			if (strcmp(item->first_attribute("name")->value(), cellName) != 0) continue;//只解析当前格子
+			if (strcmp(item->first_attribute("name")->value(), cellName) != 0) continue;//only parse the key cell
 
 			this->parseControl(pCell, item);
 		}
@@ -52,7 +52,7 @@ void TuiManager::parseCell(CLayout* pCell, const char* cellName, const char* xml
 	delete[] buf;
 }
 
-////////////////////解析组件/////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
 void TuiManager::parseControl(Node* container,xml_node<char> *item)
 { 
 	int tag = atof(item->first_attribute("tag")->value());
@@ -65,13 +65,13 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 	if (strcmp(item->first_attribute("type")->value(), kTuiContainerPanel) == 0){//panel
 		CWidgetWindow* pPanel = createPanel(tag, x, y, w, h, rotation);
 		container->addChild(pPanel);
-		//递归
+		//recursive
 		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
 			parseControl(pPanel, iitem);
 		}
 
 	}else if (strcmp(item->first_attribute("type")->value(),kTuiControlCell) == 0){//cell
-		//递归
+		//recursive
 		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
 			parseControl(container, iitem);
 		}
@@ -179,7 +179,7 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		int direction = atof(item->first_attribute("direction")->value());
 		CScrollView *pView = createScrollView(tag, direction, x, y, w, h, rotation);
 		container->addChild(pView);
-		//递归
+		//recursive
 		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
 			parseControl(pView->getContainer(), iitem);
 		}
@@ -189,12 +189,12 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		float h = atof(item->first_attribute("height")->value());
 		CLayout *pLayout = createLayout(tag, x, y, w, h, rotation);
 		container->addChild(pLayout);
-		//递归
+		//recursive
 		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
 			parseControl(pLayout, iitem);
 		}
 		Vector<Node*> vet = pLayout->getChildren();
-		for (Node *pChild : vet){//偏移坐标 因为CLayout的零点在左下角
+		for (Node *pChild : vet){//Offset coordinates Because CLayout zero point in the lower left corner
 			pChild->setPosition(pChild->getPosition() + Point(w / 2, h / 2));
 		}
 
@@ -206,7 +206,7 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		CListView* pList = createListView(tag,img,x,y,w,h,rotation);
 		container->addChild(pList);
 
-		for(int i=0; i<num;i++){//添加item
+		for(int i=0; i<num;i++){//add item
 			xml_node<char> *iitem = item->first_node( kTuiNodeControl );
 			w = atof(iitem->first_attribute("width")->value());
 			h = atof(iitem->first_attribute("height")->value());
@@ -216,7 +216,7 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 				parseControl(pLayout,iiitem);
 			}
 			Vector<Node*> vet = pLayout->getChildren();
-			for(Node *pChild : vet){//偏移坐标 因为CLayout的零点在左下角
+			for(Node *pChild : vet){//Offset coordinates Because CLayout zero point in the lower left corner
 				if(pChild->getTag() > 0)
 					pChild->setPosition(pChild->getPosition()+Point(w/2,h/2));
 			}
@@ -331,7 +331,7 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 	}
 }
 
-///创建组件 ////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
 CWidgetWindow *TuiManager::createPanel(float tag, float x, float y, int w, int h,float rotation){
 	CWidgetWindow *pPanel = CWidgetWindow::create();
 	pPanel->setContentSize(Size(w, h));
@@ -695,7 +695,7 @@ CircleMenu *TuiManager::createCircleMenu(float tag, float x, float y, float w, f
 
 void TuiManager::loadXml(const string& path)
 {
-	if(m_DataMap.find(path) == m_DataMap.end())//简单地缓存下xml
+	if(m_DataMap.find(path) == m_DataMap.end())
 	{
 		string pathAbs = FileUtils::getInstance()->fullPathForFilename(path);
 		m_DataMap[path] = FileUtils::getInstance()->getStringFromFile(pathAbs);

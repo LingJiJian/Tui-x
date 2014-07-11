@@ -1,3 +1,28 @@
+/************************************************************************
+The MIT License(MIT)
+
+Copyright(c) 2014 Lingjijian [B-y]
+
+342854406@qq.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files(the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and / or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions :
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+************************************************************************/
 #ifndef __TUIMANAGER_H__
 #define __TUIMANAGER_H__
 
@@ -15,16 +40,37 @@ using namespace cocos2d::extension;
 using namespace rapidxml;
 using namespace std;
 using namespace cocos2d;
-
+/**
+* @brief The parser interface
+*/
 class TuiManager : public Ref{
 public:
 	SINGLE_INSTANCE_FUNC(TuiManager);
 	virtual bool init();
-
-	void parseScene(Node* pScene ,const char* sceneName,const char* xmlPath);//解析场景
-	void parseCell(CLayout* pCell, const char* cellName, const char* xmlPath);//解析格子
-
-	void setUseSpriteFrame(bool b);//是否使用SpriteFrame
+	/**
+	* @brief parse the scene
+	* @details To find the corresponding to the name of the part of the XML to parse the scene
+	*
+	* @param pScene parse target
+	* @param sceneName the panel name in the .fla
+	* @param xmlPath target xml file
+	*/
+	void parseScene(Node* pScene ,const char* sceneName,const char* xmlPath);
+	/**
+	* @brief parse the cell
+	* @details To find the corresponding to the name of the part of the XML to parse the cell
+	*
+	* @param pCell parse target
+	* @param cellName the cell name in the .fla
+	* @param xmlPath target xml file
+	*/
+	void parseCell(CLayout* pCell, const char* cellName, const char* xmlPath);
+	/**
+	* @brief Whether to use SpriteFrame to create controls
+	*
+	* @param b
+	*/
+	void setUseSpriteFrame(bool b);
 
 public:
 
@@ -56,10 +102,21 @@ public:
 	CircleMenu *createCircleMenu(float tag, float x, float y, float w, float h, float rotation);
 
 protected:
-	void loadXml(const string& pathXML);	//加载xml
-	void parseControl(Node* container,xml_node<char>*);//解析组件
+	/**
+	* @brief load xml file and cache
+	*
+	* @param pathXML
+	*/
+	void loadXml(const string& pathXML);
+	/**
+	* @brief parse controls
+	*
+	* @param container
+	* @param xmlNode
+	*/
+	void parseControl(Node* container,xml_node<char>*);
 private:
-	map<string,string> m_DataMap;//xml映射内容
+	map<string,string> m_DataMap;
 	bool m_isUseSpriteFrame;
 };
 

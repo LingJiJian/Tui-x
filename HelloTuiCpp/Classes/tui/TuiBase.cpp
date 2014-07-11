@@ -21,6 +21,6 @@ Node* TuiBase::getControl(int tagPanel,int tagControl){
 	return control;
 }
 Node* TuiBase::getPanel(int tagPanel){
-	//重载
+	//Override
 	return NULL;
 }

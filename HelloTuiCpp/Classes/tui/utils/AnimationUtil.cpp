@@ -1,6 +1,5 @@
 #include "AnimationUtil.h"
 
-//按名字返回动画帧
 Animation* AnimationUtil::createAnimWithName(const char* name,float delay,unsigned int iLoops){
 
 	SpriteFrameCache *pCache = SpriteFrameCache::getInstance();
@@ -27,7 +26,6 @@ Animation* AnimationUtil::createAnimWithName(const char* name,float delay,unsign
 	return pAnim;
 }
 
-//按名字和数目返回动画帧
 Animation* AnimationUtil::createAnimWithNameAndNum(const char* name,int iNum, float delay,unsigned int iLoops){
 
 	SpriteFrameCache *pCache = SpriteFrameCache::getInstance();
