@@ -40,7 +40,7 @@ local function event_btn_back(p_sender)
 end
 
 local function event_btn_click(p_sender)
-	print("tag : "..tolua.cast(p_sender,"cc.cocoswidget::CWidget"):getUserTag())
+	print("tag : "..tolua.cast(p_sender,"ccw.CWidget"):getUserTag())
 end
 
 local function event_adapt_gpvbag(p_convertview, idx)
@@ -55,7 +55,7 @@ local function event_adapt_gpvbag(p_convertview, idx)
 	else
 		btn = pCell:getChildByTag(Tag_recombineui.BTN_GRID)
 	end
-	tolua.cast(btn,"cc.cocoswidget::CWidget"):setUserTag(idx)
+	tolua.cast(btn,"ccw.CWidget"):setUserTag(idx)
 	return pCell
 end
 

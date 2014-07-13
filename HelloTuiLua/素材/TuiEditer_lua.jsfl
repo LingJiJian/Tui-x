@@ -1147,20 +1147,38 @@ FlaToXML.prototype.convertCheckBox = function(checkBox,elementIndex ,frameName){
 /** 转换slider */
 FlaToXML.prototype.convertSlider = function(slider,elementIndex ,frameName){
 	var xml_slider = new UISlider();
-	this.fullNormalAttirbute( xml_slider,this.th, slider ,elementIndex ,frameName);
-	
+	var dir = 0;
+	var oldName = slider.name;
+	var nameArr = slider.name.split("_");		
+	var newName = nameArr[0] + "_" + nameArr[1]
+	if(nameArr.length == 3){
+		dir = nameArr[2];
+	}
+	xml_slider.setAttribute(UIControlAttribute.kDirection,dir);
 	xml_slider.setAttribute(UIControlAttribute.ksliderImg_bg,slider.libraryItem.name + "_bg.png");
 	xml_slider.setAttribute(UIControlAttribute.ksliderImg_progress,slider.libraryItem.name + "_progress.png");
 	xml_slider.setAttribute(UIControlAttribute.ksliderImg_thumb,slider.libraryItem.name + "_thumb.png");
+	slider.name = newName; 
+	this.fullNormalAttirbute( xml_slider,this.th, slider ,elementIndex ,frameName);
+	slider.oldName = oldName
 	return xml_slider;
 }
 /** 转换progress */
 FlaToXML.prototype.converProgress = function(prog,elementIndex ,frameName){
 	var xml_prog = new UIProgress();
-	this.fullNormalAttirbute( xml_prog,this.th, prog ,elementIndex ,frameName);
-	
+	var dir = 0;
+	var oldName = prog.name;
+	var nameArr = prog.name.split("_");		
+	var newName = nameArr[0] + "_" + nameArr[1]
+	if(nameArr.length == 3){
+		dir = nameArr[2];
+	}
+	xml_prog.setAttribute(UIControlAttribute.kDirection,dir);
 	xml_prog.setAttribute(UIControlAttribute.ksliderImg_bg,prog.libraryItem.name + "_bg.png");
 	xml_prog.setAttribute(UIControlAttribute.ksliderImg_progress,prog.libraryItem.name + "_progress.png");
+	prog.name = newName;
+	this.fullNormalAttirbute( xml_prog,this.th, prog ,elementIndex ,frameName);
+	prog.name = oldName;
 	return xml_prog;
 }
 /** 转换armature */

@@ -115,13 +115,15 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		const char* bg = item->first_attribute("bg")->value();
 		const char* progress = item->first_attribute("progress")->value();
 		const char* thumb = item->first_attribute("thumb")->value();
-		CSlider *pSlider = createSlider(tag,bg,progress,thumb,x,y,rotation);
+		int direction = atof(item->first_attribute("direction")->value());
+		CSlider *pSlider = createSlider(tag, bg, progress, thumb, direction, x, y, rotation);
 		container->addChild(pSlider);
 
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlProgress) == 0){//progress
 		const char* bg = item->first_attribute("bg")->value();
 		const char* progress = item->first_attribute("progress")->value();
-		CProgressBar *pProgress = createProgress(tag,bg,progress,x,y,rotation);
+		int direction = atof(item->first_attribute("direction")->value());
+		CProgressBar *pProgress = createProgress(tag, bg, progress, direction, x, y, rotation);
 		container->addChild(pProgress);
 
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlLabel) == 0){//label
@@ -428,7 +430,7 @@ CToggleView* TuiManager::createToggleView(float tag,int exclusion,const char* no
 	return pToggle;
 }
 
-CSlider* TuiManager::createSlider(float tag, const char* bg,const char* progress,const char* thumb,float x,float y,float rotation){
+CSlider* TuiManager::createSlider(float tag, const char* bg, const char* progress, const char* thumb, int dir, float x, float y, float rotation){
 	CSlider *pSlider = NULL;
 	if(m_isUseSpriteFrame){
 		pSlider = CSlider::create();
@@ -439,6 +441,7 @@ CSlider* TuiManager::createSlider(float tag, const char* bg,const char* progress
 		pSlider = CSlider::create(thumb,progress);
 		pSlider->setBackgroundImage(bg);
 	}
+	pSlider->setDirection((CProgressBarDirection)dir);
 	pSlider->setRotation(rotation);
 	pSlider->setPosition(Point(x,-y));
 	pSlider->setMinValue(0);
@@ -448,7 +451,7 @@ CSlider* TuiManager::createSlider(float tag, const char* bg,const char* progress
 	return pSlider;
 }
 
-CProgressBar* TuiManager::createProgress(float tag, const char* bg,const char* progress,float x,float y,float rotation){
+CProgressBar* TuiManager::createProgress(float tag, const char* bg,const char* progress,int dir,float x,float y,float rotation){
 	CProgressBar *pProgress = NULL;
 	if(m_isUseSpriteFrame){
 		pProgress = CProgressBar::create();
@@ -458,6 +461,7 @@ CProgressBar* TuiManager::createProgress(float tag, const char* bg,const char* p
 		pProgress = CProgressBar::create(progress);
 		pProgress->setBackgroundImage(bg);
 	}
+	pProgress->setDirection((CProgressBarDirection)dir);
 	pProgress->setRotation(rotation);
 	pProgress->setPosition(Point(x,-y));
 	pProgress->setMaxValue(100);
