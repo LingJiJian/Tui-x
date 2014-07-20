@@ -48,10 +48,10 @@ public:
 	virtual ~CGradientView();
 	virtual bool init();
 	virtual bool initWithColor(const Color4B& tStart, const Color4B& tEnd);
-	virtual bool initWithColor(const Color4B& tStart, const Color4B& tEnd, const Point& v);
+	virtual bool initWithColor(const Color4B& tStart, const Color4B& tEnd, const Vec2& v);
 	static CGradientView* create();
 	static CGradientView* create(const Color4B& tStart, const Color4B& tEnd);
-	static CGradientView* create(const Color4B& tStart, const Color4B& tEnd, const Point& v);
+	static CGradientView* create(const Color4B& tStart, const Color4B& tEnd, const Vec2& v);
 
 	virtual void setStartColor(const Color3B& tColor);
 	virtual const Color3B& getStartColor();
@@ -61,8 +61,8 @@ public:
 	virtual GLubyte getStartOpacity();
 	virtual void setEndOpacity(GLubyte cOpacity);
 	virtual GLubyte getEndOpacity();
-	virtual void setVector(const Point& tPoint);
-	virtual const Point& getVector();
+	virtual void setVector(const Vec2& tPoint);
+	virtual const Vec2& getVector();
 	virtual void setCompressedInterpolation(bool bCompressedInterpolation);
 	virtual bool isCompressedInterpolation();
 
@@ -74,7 +74,7 @@ protected:
 	Color3B m_tEndColor;
 	GLubyte m_cStartOpacity;
 	GLubyte m_cEndOpacity;
-	Point m_tAlongVector;
+	Vec2 m_tAlongVector;
 	bool m_bCompressedInterpolation;
 };
 

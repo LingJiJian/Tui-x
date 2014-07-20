@@ -64,7 +64,7 @@ bool CColorView::initWithColor(const Color4B& color)
 		m_pSquareVertices[i].y = 0.0f;
 	}
 
-	setShaderProgram(ShaderCache::getInstance()->getProgram(GLProgram::SHADER_NAME_POSITION_COLOR));
+	setGLProgram(ShaderCache::getInstance()->getGLProgram(GLProgram::SHADER_NAME_POSITION_COLOR));
 
 	setAnchorPoint(CCWIDGET_BASIC_DEFAULT_ANCHOR_POINT);
 	setContentSize(CCWIDGET_BASIC_DEFAULT_CONTENT_SIZE);
@@ -74,14 +74,14 @@ bool CColorView::initWithColor(const Color4B& color)
 	return true;
 }
 
-void CColorView::draw(Renderer *renderer, const kmMat4& transform, bool transformUpdated)
+void CColorView::draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
 {
 	CC_NODE_DRAW_SETUP();
 
 	GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION | GL::VERTEX_ATTRIB_FLAG_COLOR );
 
 #ifdef EMSCRIPTEN
-	setGLBufferData(m_pSquareVertices, 4 * sizeof(Vertex2F), 0);
+	setGLBufferData(m_pSquareVertices, 4 * sizeof(Vec2), 0);
 	glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 2, GL_FLOAT, GL_FALSE, 0, 0);
 
 	setGLBufferData(m_pSquareColors, 4 * sizeof(Color4F), 1);
@@ -244,7 +244,7 @@ void CColorView::onTouchEnded(Touch* pTouch, float fDuration)
 {
 	CC_WIDGET_LONGCLICK_ONTOUCHENDED;
 
-	Point tPoint = _parent->convertTouchToNodeSpace(pTouch);
+	Vec2 tPoint = _parent->convertTouchToNodeSpace(pTouch);
 	if( getBoundingBox().containsPoint(tPoint) )
 	{
 		executeClickHandler(this);

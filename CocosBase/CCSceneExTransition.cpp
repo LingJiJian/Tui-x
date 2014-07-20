@@ -88,16 +88,16 @@ void CCSceneExTransition::sceneOrder()
     m_bIsInSceneOnTop = true;
 }
 
-void CCSceneExTransition::draw(Renderer *renderer, const kmMat4& transform, bool transformUpdated)
+void CCSceneExTransition::draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
 {
-    CSceneExtension::draw(renderer, transform, transformUpdated);
+    CSceneExtension::draw(renderer, transform, flags);
 
     if( m_bIsInSceneOnTop ) {
-        m_pOutScene->visit(renderer, transform, transformUpdated);
-        m_pInScene->visit(renderer, transform, transformUpdated);
+        m_pOutScene->visit(renderer, transform, flags);
+        m_pInScene->visit(renderer, transform, flags);
     } else {
-        m_pInScene->visit(renderer, transform, transformUpdated);
-        m_pOutScene->visit(renderer, transform, transformUpdated);
+        m_pInScene->visit(renderer, transform, flags);
+        m_pOutScene->visit(renderer, transform, flags);
     }
 }
 
@@ -105,13 +105,13 @@ void CCSceneExTransition::finish()
 {
     // clean up     
      m_pInScene->setVisible(true);
-     m_pInScene->setPosition(Point(0,0));
+     m_pInScene->setPosition(Vec2(0,0));
      m_pInScene->setScale(1.0f);
      m_pInScene->setRotation(0.0f);
      m_pInScene->setAdditionalTransform(nullptr);
  
      m_pOutScene->setVisible(false);
-     m_pOutScene->setPosition(Point(0,0));
+     m_pOutScene->setPosition(Vec2(0,0));
      m_pOutScene->setScale(1.0f);
      m_pOutScene->setRotation(0.0f);
      m_pOutScene->setAdditionalTransform(nullptr);
@@ -247,8 +247,8 @@ void CCSceneExTransitionRotoZoom:: onEnter()
     m_pInScene->setScale(0.001f);
     m_pOutScene->setScale(1.0f);
 
-    m_pInScene->setAnchorPoint(Point(0.5f, 0.5f));
-    m_pOutScene->setAnchorPoint(Point(0.5f, 0.5f));
+    m_pInScene->setAnchorPoint(Vec2(0.5f, 0.5f));
+    m_pOutScene->setAnchorPoint(Vec2(0.5f, 0.5f));
 
     ActionInterval *rotozoom = (ActionInterval*)(Sequence::create
     (
@@ -302,11 +302,11 @@ void CCSceneExTransitionJumpZoom::onEnter()
     Size s = Director::getInstance()->getWinSize();
 
     m_pInScene->setScale(0.5f);
-    m_pInScene->setPosition(Point(s.width, 0));
-    m_pInScene->setAnchorPoint(Point(0.5f, 0.5f));
-    m_pOutScene->setAnchorPoint(Point(0.5f, 0.5f));
+    m_pInScene->setPosition(Vec2(s.width, 0));
+    m_pInScene->setAnchorPoint(Vec2(0.5f, 0.5f));
+    m_pOutScene->setAnchorPoint(Vec2(0.5f, 0.5f));
 
-    ActionInterval *jump = JumpBy::create(m_fDuration/4, Point(-s.width,0), s.width/4, 2);
+    ActionInterval *jump = JumpBy::create(m_fDuration/4, Vec2(-s.width,0), s.width/4, 2);
     ActionInterval *scaleIn = ScaleTo::create(m_fDuration/4, 1.0f);
     ActionInterval *scaleOut = ScaleTo::create(m_fDuration/4, 0.5f);
 
@@ -371,7 +371,7 @@ void CCSceneExTransitionMoveInL::onEnter()
  
 ActionInterval* CCSceneExTransitionMoveInL::action()
 {
-    return MoveTo::create(m_fDuration, Point(0,0));
+    return MoveTo::create(m_fDuration, Vec2(0,0));
 }
 
 ActionInterval* CCSceneExTransitionMoveInL::easeActionWithAction(ActionInterval* action)
@@ -383,7 +383,7 @@ ActionInterval* CCSceneExTransitionMoveInL::easeActionWithAction(ActionInterval*
 void CCSceneExTransitionMoveInL::initScenes()
 {
     Size s = Director::getInstance()->getWinSize();
-    m_pInScene->setPosition(Point(-s.width,0));
+    m_pInScene->setPosition(Vec2(-s.width,0));
 }
 
 //
@@ -411,7 +411,7 @@ CCSceneExTransitionMoveInR* CCSceneExTransitionMoveInR::create(float t, CSceneEx
 void CCSceneExTransitionMoveInR::initScenes()
 {
     Size s = Director::getInstance()->getWinSize();
-    m_pInScene->setPosition( Point(s.width,0) );
+    m_pInScene->setPosition( Vec2(s.width,0) );
 }
 
 //
@@ -439,7 +439,7 @@ CCSceneExTransitionMoveInT* CCSceneExTransitionMoveInT::create(float t, CSceneEx
 void CCSceneExTransitionMoveInT::initScenes()
 {
     Size s = Director::getInstance()->getWinSize();
-    m_pInScene->setPosition( Point(0,s.height) );
+    m_pInScene->setPosition( Vec2(0,s.height) );
 }
 
 //
@@ -467,7 +467,7 @@ CCSceneExTransitionMoveInB* CCSceneExTransitionMoveInB::create(float t, CSceneEx
 void CCSceneExTransitionMoveInB::initScenes()
 {
     Size s = Director::getInstance()->getWinSize();
-    m_pInScene->setPosition( Point(0,-s.height) );
+    m_pInScene->setPosition( Vec2(0,-s.height) );
 }
 
 
@@ -517,13 +517,13 @@ void CCSceneExTransitionSlideInL::sceneOrder()
 void CCSceneExTransitionSlideInL:: initScenes()
 {
     Size s = Director::getInstance()->getWinSize();
-    m_pInScene->setPosition( Point(-(s.width-ADJUST_FACTOR),0) );
+    m_pInScene->setPosition( Vec2(-(s.width-ADJUST_FACTOR),0) );
 }
 
 ActionInterval* CCSceneExTransitionSlideInL::action()
 {
     Size s = Director::getInstance()->getWinSize();
-    return MoveBy::create(m_fDuration, Point(s.width-ADJUST_FACTOR,0));
+    return MoveBy::create(m_fDuration, Vec2(s.width-ADJUST_FACTOR,0));
 }
 
 ActionInterval* CCSceneExTransitionSlideInL::easeActionWithAction(ActionInterval* action)
@@ -573,14 +573,14 @@ void CCSceneExTransitionSlideInR::sceneOrder()
 void CCSceneExTransitionSlideInR::initScenes()
 {
     Size s = Director::getInstance()->getWinSize();
-    m_pInScene->setPosition( Point(s.width-ADJUST_FACTOR,0) );
+    m_pInScene->setPosition( Vec2(s.width-ADJUST_FACTOR,0) );
 }
 
 
 ActionInterval* CCSceneExTransitionSlideInR:: action()
 {
     Size s = Director::getInstance()->getWinSize();
-    return MoveBy::create(m_fDuration, Point(-(s.width-ADJUST_FACTOR),0));
+    return MoveBy::create(m_fDuration, Vec2(-(s.width-ADJUST_FACTOR),0));
 }
 
 
@@ -614,14 +614,14 @@ void CCSceneExTransitionSlideInT::sceneOrder()
 void CCSceneExTransitionSlideInT::initScenes()
 {
     Size s = Director::getInstance()->getWinSize();
-    m_pInScene->setPosition( Point(0,s.height-ADJUST_FACTOR) );
+    m_pInScene->setPosition( Vec2(0,s.height-ADJUST_FACTOR) );
 }
 
 
 ActionInterval* CCSceneExTransitionSlideInT::action()
 {
     Size s = Director::getInstance()->getWinSize();
-    return MoveBy::create(m_fDuration, Point(0,-(s.height-ADJUST_FACTOR)));
+    return MoveBy::create(m_fDuration, Vec2(0,-(s.height-ADJUST_FACTOR)));
 }
 
 //
@@ -654,14 +654,14 @@ void CCSceneExTransitionSlideInB::sceneOrder()
 void CCSceneExTransitionSlideInB:: initScenes()
 {
     Size s = Director::getInstance()->getWinSize();
-    m_pInScene->setPosition( Point(0,-(s.height-ADJUST_FACTOR)) );
+    m_pInScene->setPosition( Vec2(0,-(s.height-ADJUST_FACTOR)) );
 }
 
 
 ActionInterval* CCSceneExTransitionSlideInB:: action()
 {
     Size s = Director::getInstance()->getWinSize();
-    return MoveBy::create(m_fDuration, Point(0,s.height-ADJUST_FACTOR));
+    return MoveBy::create(m_fDuration, Vec2(0,s.height-ADJUST_FACTOR));
 }
 
 //
@@ -693,8 +693,8 @@ void CCSceneExTransitionShrinkGrow::onEnter()
     m_pInScene->setScale(0.001f);
     m_pOutScene->setScale(1.0f);
 
-    m_pInScene->setAnchorPoint(Point(2/3.0f,0.5f));
-    m_pOutScene->setAnchorPoint(Point(1/3.0f,0.5f));    
+    m_pInScene->setAnchorPoint(Vec2(2/3.0f,0.5f));
+    m_pOutScene->setAnchorPoint(Vec2(1/3.0f,0.5f));    
 
     ActionInterval* scaleOut = ScaleTo::create(m_fDuration, 0.01f);
     ActionInterval* scaleIn = ScaleTo::create(m_fDuration, 1.0f);
@@ -1254,10 +1254,10 @@ CCSceneExTransitionCrossFade* CCSceneExTransitionCrossFade::create(float t, CSce
     return NULL;
 }
 
-void CCSceneExTransitionCrossFade:: draw(Renderer *renderer, const kmMat4& transform, bool transformUpdated)
+void CCSceneExTransitionCrossFade:: draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
 {
     // override draw since both scenes (textures) are rendered in 1 scene
-	CCSceneExTransition::draw(renderer, transform, transformUpdated);
+	CCSceneExTransition::draw(renderer, transform, flags);
 }
 
 void CCSceneExTransitionCrossFade::onEnter()
@@ -1278,9 +1278,9 @@ void CCSceneExTransitionCrossFade::onEnter()
         return;
     }
 
-    inTexture->getSprite()->setAnchorPoint( Point(0.5f,0.5f) );
-    inTexture->setPosition( Point(size.width/2, size.height/2) );
-    inTexture->setAnchorPoint( Point(0.5f,0.5f) );
+    inTexture->getSprite()->setAnchorPoint( Vec2(0.5f,0.5f) );
+    inTexture->setPosition( Vec2(size.width/2, size.height/2) );
+    inTexture->setAnchorPoint( Vec2(0.5f,0.5f) );
 
     // render inScene to its texturebuffer
     inTexture->begin();
@@ -1289,9 +1289,9 @@ void CCSceneExTransitionCrossFade::onEnter()
 
     // create the second render texture for outScene
     RenderTexture* outTexture = RenderTexture::create((int)size.width, (int)size.height);
-    outTexture->getSprite()->setAnchorPoint( Point(0.5f,0.5f) );
-    outTexture->setPosition( Point(size.width/2, size.height/2) );
-    outTexture->setAnchorPoint( Point(0.5f,0.5f) );
+    outTexture->getSprite()->setAnchorPoint( Vec2(0.5f,0.5f) );
+    outTexture->setPosition( Vec2(size.width/2, size.height/2) );
+    outTexture->setAnchorPoint( Vec2(0.5f,0.5f) );
 
     // render outScene to its texturebuffer
     outTexture->begin();
@@ -1403,19 +1403,19 @@ void CCSceneExTransitionTurnOffTiles::onExit()
 	CCSceneExTransition::onExit();
 }
 
-void CCSceneExTransitionTurnOffTiles::draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated)
+void CCSceneExTransitionTurnOffTiles::draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
 {
-	CCSceneExTransition::draw(renderer, transform, transformUpdated);
+	CCSceneExTransition::draw(renderer, transform, flags);
 
 	if( m_bIsInSceneOnTop )
 	{
-		_outSceneProxy->visit(renderer, transform, transformUpdated);
-		m_pInScene->visit(renderer, transform, transformUpdated);
+		_outSceneProxy->visit(renderer, transform, flags);
+		m_pInScene->visit(renderer, transform, flags);
 	} 
 	else
 	{
-		m_pInScene->visit(renderer, transform, transformUpdated);
-		_outSceneProxy->visit(renderer, transform, transformUpdated);
+		m_pInScene->visit(renderer, transform, flags);
+		_outSceneProxy->visit(renderer, transform, flags);
 	}
 }
 
@@ -1796,9 +1796,9 @@ void CCSceneExTransitionProgress::onEnter()
 
     // create the second render texture for outScene
     RenderTexture *texture = RenderTexture::create((int)size.width, (int)size.height);
-    texture->getSprite()->setAnchorPoint(Point(0.5f,0.5f));
-    texture->setPosition(Point(size.width/2, size.height/2));
-    texture->setAnchorPoint(Point(0.5f,0.5f));
+    texture->getSprite()->setAnchorPoint(Vec2(0.5f,0.5f));
+    texture->setPosition(Vec2(size.width/2, size.height/2));
+    texture->setAnchorPoint(Vec2(0.5f,0.5f));
 
     // render outScene to its texturebuffer
     texture->clear(0, 0, 0, 1);
@@ -1869,8 +1869,8 @@ ProgressTimer* CCSceneExTransitionProgressRadialCCW::progressTimerNodeWithRender
     //    Return the radial type that we want to use
     pNode->setReverseDirection(false);
     pNode->setPercentage(100);
-    pNode->setPosition(Point(size.width/2, size.height/2));
-    pNode->setAnchorPoint(Point(0.5f,0.5f));
+    pNode->setPosition(Vec2(size.width/2, size.height/2));
+    pNode->setAnchorPoint(Vec2(0.5f,0.5f));
     
     return pNode;
 }
@@ -1913,8 +1913,8 @@ ProgressTimer* CCSceneExTransitionProgressRadialCW::progressTimerNodeWithRenderT
     //    Return the radial type that we want to use
     pNode->setReverseDirection(true);
     pNode->setPercentage(100);
-    pNode->setPosition(Point(size.width/2, size.height/2));
-    pNode->setAnchorPoint(Point(0.5f,0.5f));
+    pNode->setPosition(Vec2(size.width/2, size.height/2));
+    pNode->setAnchorPoint(Vec2(0.5f,0.5f));
     
     return pNode;
 }
@@ -1942,12 +1942,12 @@ ProgressTimer* CCSceneExTransitionProgressHorizontal::progressTimerNodeWithRende
     pNode->getSprite()->setFlippedY(true);
     pNode->setType( ProgressTimer::Type::BAR);
     
-    pNode->setMidpoint(Point(1, 0));
-    pNode->setBarChangeRate(Point(1,0));
+    pNode->setMidpoint(Vec2(1, 0));
+    pNode->setBarChangeRate(Vec2(1,0));
     
     pNode->setPercentage(100);
-    pNode->setPosition(Point(size.width/2, size.height/2));
-    pNode->setAnchorPoint(Point(0.5f,0.5f));
+    pNode->setPosition(Vec2(size.width/2, size.height/2));
+    pNode->setAnchorPoint(Vec2(0.5f,0.5f));
 
     return pNode;
 }
@@ -1975,12 +1975,12 @@ ProgressTimer* CCSceneExTransitionProgressVertical::progressTimerNodeWithRenderT
     pNode->getSprite()->setFlippedY(true);
     pNode->setType(ProgressTimer::Type::BAR);
     
-    pNode->setMidpoint(Point(0, 0));
-    pNode->setBarChangeRate(Point(0,1));
+    pNode->setMidpoint(Vec2(0, 0));
+    pNode->setBarChangeRate(Vec2(0,1));
     
     pNode->setPercentage(100);
-    pNode->setPosition(Point(size.width/2, size.height/2));
-    pNode->setAnchorPoint(Point(0.5f,0.5f));
+    pNode->setPosition(Vec2(size.width/2, size.height/2));
+    pNode->setAnchorPoint(Vec2(0.5f,0.5f));
     
     return pNode;
 }
@@ -2021,12 +2021,12 @@ ProgressTimer* CCSceneExTransitionProgressInOut::progressTimerNodeWithRenderText
     pNode->getSprite()->setFlippedY(true);
     pNode->setType( ProgressTimer::Type::BAR);
     
-    pNode->setMidpoint(Point(0.5f, 0.5f));
-    pNode->setBarChangeRate(Point(1, 1));
+    pNode->setMidpoint(Vec2(0.5f, 0.5f));
+    pNode->setBarChangeRate(Vec2(1, 1));
     
     pNode->setPercentage(0);
-    pNode->setPosition(Point(size.width/2, size.height/2));
-    pNode->setAnchorPoint(Point(0.5f,0.5f));
+    pNode->setPosition(Vec2(size.width/2, size.height/2));
+    pNode->setAnchorPoint(Vec2(0.5f,0.5f));
     
     return pNode;
 }
@@ -2055,12 +2055,12 @@ ProgressTimer* CCSceneExTransitionProgressOutIn::progressTimerNodeWithRenderText
     pNode->getSprite()->setFlippedY(true);
     pNode->setType( ProgressTimer::Type::BAR );
     
-    pNode->setMidpoint(Point(0.5f, 0.5f));
-    pNode->setBarChangeRate(Point(1, 1));
+    pNode->setMidpoint(Vec2(0.5f, 0.5f));
+    pNode->setBarChangeRate(Vec2(1, 1));
     
     pNode->setPercentage(100);
-    pNode->setPosition(Point(size.width/2, size.height/2));
-    pNode->setAnchorPoint(Point(0.5f,0.5f));
+    pNode->setPosition(Vec2(size.width/2, size.height/2));
+    pNode->setAnchorPoint(Vec2(0.5f,0.5f));
     
     return pNode;
 }

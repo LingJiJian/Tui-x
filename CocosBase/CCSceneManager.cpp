@@ -98,13 +98,13 @@ CSceneManager* CSceneManager::getInstance()
 	return pInstance;
 }
 
-void CSceneManager::visit(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated)
+void CSceneManager::visit(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags)
 {
-	Node::visit(renderer, parentTransform, parentTransformUpdated);
-	mainLoop(renderer, parentTransform, parentTransformUpdated);
+	Node::visit(renderer, parentTransform, parentFlags);
+	mainLoop(renderer, parentTransform, parentFlags);
 }
 
-void CSceneManager::mainLoop(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated)
+void CSceneManager::mainLoop(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags)
 {
 // << message
 
@@ -141,12 +141,12 @@ void CSceneManager::mainLoop(Renderer *renderer, const kmMat4& parentTransform, 
 
     if( m_pRunningScene )
     {
-        m_pRunningScene->visit(renderer, parentTransform, parentTransformUpdated);
+		m_pRunningScene->visit(renderer, parentTransform, parentFlags);
     }
 
 // << draw ui scene
 
-	visitUIScenes(renderer, parentTransform, parentTransformUpdated);
+	visitUIScenes(renderer, parentTransform, parentFlags);
 }
 
 void CSceneManager::runWithScene(CSceneExtension* pScene, Ref* pExtra)
@@ -593,14 +593,14 @@ void CSceneManager::unlockUISceneSwitch(const char* pClassName)
 	}
 }
 
-void CSceneManager::visitUIScenes(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated)
+void CSceneManager::visitUIScenes(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags)
 {
 	unsigned int i = 0;
 	unsigned int c = m_vRunningUIScenes.size();
 
 	for(; i < c; ++i )
 	{
-		m_vRunningUIScenes[i]->visit(renderer, parentTransform, parentTransformUpdated);
+		m_vRunningUIScenes[i]->visit(renderer, parentTransform, parentFlags);
 	}
 }
 

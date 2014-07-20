@@ -4,21 +4,21 @@
 #include "LuaBasicConversions.h"
 #include "CCLuaValue.h"
 
-/////////////////×¢²á»Øµ÷/////////////////////////////////////////////////
+/////////////////handle/////////////////////////////////////////////////
 
-#define LUA_COCOS2DX_CCW_SCRIPT_HANDLER(__WIDGET__, __SET_HANDLER__) \
-	int lua_cocos2dx_cocoswidget_##__WIDGET__##_##__SET_HANDLER__##(lua_State* tolua_S) \
-{ \
-	int argc = 0;							\
-	cocos2d::cocoswidget::__WIDGET__* cobj = nullptr;	\
-	cobj = (cocos2d::cocoswidget::__WIDGET__*)tolua_tousertype(tolua_S, 1, 0); \
-	argc = lua_gettop(tolua_S) - 1; \
-	if (1 == argc) \
-	{ \
-	LUA_FUNCTION nHandler = toluafix_ref_function(tolua_S, 2, 0); \
-	cobj->__SET_HANDLER__(nHandler); \
-	} \
-	return 0; \
+#define LUA_COCOS2DX_CCW_SCRIPT_HANDLER( __WIDGET__, __SET_HANDLER__)         \
+ int lua_cocos2dx_cocoswidget_##__WIDGET__##_##__SET_HANDLER__ (lua_State* tolua_S)       \
+{    \
+	int argc = 0;      \
+	cocos2d::cocoswidget::__WIDGET__* cobj = nullptr;	     \
+	cobj = (cocos2d::cocoswidget::__WIDGET__*)tolua_tousertype(tolua_S, 1, 0);     \
+	argc = lua_gettop(tolua_S) - 1;     \
+	if (1 == argc)      \
+	{     \
+	LUA_FUNCTION nHandler = toluafix_ref_function(tolua_S, 2, 0);     \
+	cobj->__SET_HANDLER__(nHandler);     \
+	}     \
+	return 0;     \
 }
 
 int lua_cocos2dx_cocoswidget_MovieView_setOnCallBackScriptHandle(lua_State* tolua_S)

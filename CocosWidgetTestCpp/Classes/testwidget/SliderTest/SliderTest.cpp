@@ -25,7 +25,7 @@ bool CSliderBasicTest::init()
 
 	m_pSlider = CSlider::create("slider.png", "progress_v.png");
 	m_pSlider->setBackgroundImage("progress_v_bg.png");
-	m_pSlider->setPosition(Point(130, 320));
+	m_pSlider->setPosition(Vec2(130, 320));
 	m_pSlider->setMaxValue(100);
 	m_pSlider->setMinValue(0);
 	m_pSlider->setDirection(eProgressBarDirectionBottomToTop);
@@ -35,8 +35,8 @@ bool CSliderBasicTest::init()
 
 
 	m_pText = CLabel::create();
-	m_pText->setAnchorPoint(Point(0, 0.5));
-	m_pText->setPosition(Point(380, 400));
+	m_pText->setAnchorPoint(Vec2(0, 0.5));
+	m_pText->setPosition(Vec2(380, 400));
 	//m_pText->setFontSize(35.0f);
 	m_pText->setString("none");
 	m_pWindow->addChild(m_pText);
@@ -63,7 +63,7 @@ bool CSliderWithScrollTest::init()
 	//m_pScrollView->setBackgroundImage("background.png");
 	m_pScrollView->setContainerSize(Size(3100, 320));
 	m_pScrollView->setDirection(eScrollViewDirectionHorizontal);
-	m_pScrollView->setPosition(Point(480, 350));
+	m_pScrollView->setPosition(Vec2(480, 350));
 	m_pScrollView->setDragable(false);
 	m_pWindow->addChild(m_pScrollView);
 
@@ -75,7 +75,7 @@ bool CSliderWithScrollTest::init()
 		char buf[32] = {0};
 		sprintf(buf, "%d", i + 1);
 		pIcon->initText(buf, "", 25);
-		pIcon->setPosition(Point( x , 160 ));
+		pIcon->setPosition(Vec2( x , 160 ));
 		m_pScrollView->getContainer()->addChild(pIcon);
 		x += 100.0f;
 	}
@@ -85,7 +85,7 @@ bool CSliderWithScrollTest::init()
 	m_pSlider->setProgressImage("progress.png");
 	m_pSlider->setBackgroundImage("progress_bg.png");
 
-	m_pSlider->setPosition(Point(480, 140));
+	m_pSlider->setPosition(Vec2(480, 140));
 	m_pSlider->setMaxValue( (int)(m_pScrollView->getContainer()->getContentSize().width - m_pScrollView->getContentSize().width) );
 	m_pSlider->setMinValue(0);
 	m_pSlider->setValue(0);
@@ -97,5 +97,5 @@ bool CSliderWithScrollTest::init()
 
 void CSliderWithScrollTest::onValueChanged(Ref* pSender, int nValue)
 {
-	m_pScrollView->setContentOffset(Point((float)(-nValue), 0));
+	m_pScrollView->setContentOffset(Vec2((float)(-nValue), 0));
 }

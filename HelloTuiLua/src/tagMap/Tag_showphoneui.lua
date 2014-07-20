@@ -1,4 +1,4 @@
-PATH_SHOWPHONEUI = "res/tui/tui_showphoneui.xml"
+PATH_SHOWPHONEUI = "tui/tui_showphoneui.xml"
 
 Tag_showphoneui = { 
 PANEL_SHOWPHONE = 1 ,

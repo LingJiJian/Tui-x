@@ -1,4 +1,4 @@
-PATH_BAGUI = "res/tui/tui_bagui.xml"
+PATH_BAGUI = "tui/tui_bagui.xml"
 
 Tag_bagui = { 
 PANEL_BAG = 1 ,

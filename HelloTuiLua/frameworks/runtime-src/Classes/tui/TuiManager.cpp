@@ -117,15 +117,13 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		const char* bg = item->first_attribute("bg")->value();
 		const char* progress = item->first_attribute("progress")->value();
 		const char* thumb = item->first_attribute("thumb")->value();
-		int direction = atof(item->first_attribute("direction")->value());
-		CSlider *pSlider = createSlider(tag, bg, progress, thumb, direction, x, y, rotation);
+		CSlider *pSlider = createSlider(tag,bg,progress,thumb,x,y,rotation);
 		container->addChild(pSlider);
 
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlProgress) == 0){//progress
 		const char* bg = item->first_attribute("bg")->value();
 		const char* progress = item->first_attribute("progress")->value();
-		int direction = atof(item->first_attribute("direction")->value());
-		CProgressBar *pProgress = createProgress(tag, bg, progress, direction, x, y, rotation);
+		CProgressBar *pProgress = createProgress(tag,bg,progress,x,y,rotation);
 		container->addChild(pProgress);
 
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlLabel) == 0){//label
@@ -181,7 +179,9 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		float w = atof(item->first_attribute("width")->value());
 		float h = atof(item->first_attribute("height")->value());
 		int direction = atof(item->first_attribute("direction")->value());
-		CScrollView *pView = createScrollView(tag, direction, x, y, w, h, rotation);
+		int innerWidth = atoi(item->first_attribute("innerWidth")->value());
+		int innerHeight = atoi(item->first_attribute("innerHeight")->value());
+		CScrollView *pView = createScrollView(tag, direction, innerWidth, innerHeight, x, y, w, h, rotation);
 		container->addChild(pView);
 		//recursive
 		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
@@ -353,10 +353,10 @@ CLayout *TuiManager::createLayout(float tag,float x,float y,float w,float h,floa
 	return pLayout;
 }
 
-CScrollView *TuiManager::createScrollView(float tag, int direction, float x, float y, float w, float h, float rotation){
+CScrollView *TuiManager::createScrollView(float tag, int direction,int innerWidth,int innerHeight, float x, float y, float w, float h, float rotation){
 	CScrollView *pView = CScrollView::create(Size(Point(w,h)));
 	pView->setPosition(Point(x,-y));
-	pView->setContainerSize(Size(w,h));
+	pView->setContainerSize(Size(innerWidth,innerHeight));
 	pView->setDirection((CScrollViewDirection)direction);
 	pView->setRotation(rotation);
 	pView->setTag(tag);
@@ -445,7 +445,7 @@ CToggleView* TuiManager::createToggleView(float tag,int exclusion,const char* no
 	return pToggle;
 }
 
-CSlider* TuiManager::createSlider(float tag, const char* bg,const char* progress,const char* thumb,int dir,float x,float y,float rotation){
+CSlider* TuiManager::createSlider(float tag, const char* bg,const char* progress,const char* thumb,float x,float y,float rotation){
 	CSlider *pSlider = NULL;
 	if(m_isUseSpriteFrame){
 		pSlider = CSlider::create();
@@ -456,7 +456,6 @@ CSlider* TuiManager::createSlider(float tag, const char* bg,const char* progress
 		pSlider = CSlider::create(thumb,progress);
 		pSlider->setBackgroundImage(bg);
 	}
-	pSlider->setDirection((CProgressBarDirection)dir);
 	pSlider->setRotation(rotation);
 	pSlider->setPosition(Point(x,-y));
 	pSlider->setMinValue(0);
@@ -466,7 +465,7 @@ CSlider* TuiManager::createSlider(float tag, const char* bg,const char* progress
 	return pSlider;
 }
 
-CProgressBar* TuiManager::createProgress(float tag, const char* bg, const char* progress, int dir, float x, float y, float rotation){
+CProgressBar* TuiManager::createProgress(float tag, const char* bg,const char* progress,float x,float y,float rotation){
 	CProgressBar *pProgress = NULL;
 	if(m_isUseSpriteFrame){
 		pProgress = CProgressBar::create();
@@ -476,7 +475,6 @@ CProgressBar* TuiManager::createProgress(float tag, const char* bg, const char* 
 		pProgress = CProgressBar::create(progress);
 		pProgress->setBackgroundImage(bg);
 	}
-	pProgress->setDirection((CProgressBarDirection)dir);
 	pProgress->setRotation(rotation);
 	pProgress->setPosition(Point(x,-y));
 	pProgress->setMaxValue(100);

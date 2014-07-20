@@ -1,4 +1,4 @@
 
-	<control tag="1" type="panel" name="panel_welcome" x="400" y="239.5" width="800" height="479" rotation="0">
-		<control tag="2" type="image" name="img_logo" image="welcome/img_logo.png" x="0" y="0" width="800" height="479" scaleX="1" scaleY="1" rotation="0"></control>
+	<control tag="1" localz="0" type="panel" name="panel_welcome" x="400" y="239.5" width="800" height="479" rotation="0">
+		<control tag="2" localz="0" type="image" name="img_logo" image="welcome/img_logo.png" x="0" y="0" width="800" height="479" scaleX="1" scaleY="1" rotation="0"></control>
 	</control>

@@ -112,7 +112,7 @@ void CCheckBox::onTouchMoved(Touch* pTouch, float fDuration)
 {
 	CC_WIDGET_LONGCLICK_ONTOUCHMOVED;
 
-	Point tPoint = _parent->convertToNodeSpace(pTouch->getLocation());
+	Vec2 tPoint = _parent->convertToNodeSpace(pTouch->getLocation());
 	if( getBoundingBox().containsPoint(tPoint) )
 	{
 		if( isChecked() )
@@ -159,7 +159,7 @@ void CCheckBox::onTouchEnded(Touch* pTouch, float fDuration)
 {
 	CC_WIDGET_LONGCLICK_ONTOUCHENDED;
 
-	Point tPoint = _parent->convertToNodeSpace(pTouch->getLocation());
+	Vec2 tPoint = _parent->convertToNodeSpace(pTouch->getLocation());
 	if( getBoundingBox().containsPoint(tPoint) )
 	{
 		if( isChecked() )
@@ -421,7 +421,7 @@ void CCheckBox::setNormalSpriteFrame(SpriteFrame* pFrame)
 			setContentSize(m_pNormal->getContentSize());
 			addChild(m_pNormal);
 		}
-		m_pNormal->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+		m_pNormal->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 	}
 }
 
@@ -438,7 +438,7 @@ void CCheckBox::setNormalPressSpriteFrame(SpriteFrame* pFrame)
 			m_pNormalPress = Sprite::createWithSpriteFrame(pFrame);
 			addChild(m_pNormalPress);
 		}
-		m_pNormalPress->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+		m_pNormalPress->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 	}
 }
 
@@ -455,7 +455,7 @@ void CCheckBox::setCheckedSpriteFrame(SpriteFrame* pFrame)
 			m_pChecked = Sprite::createWithSpriteFrame(pFrame);
 			addChild(m_pChecked);
 		}
-		m_pChecked->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+		m_pChecked->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 	}
 }
 
@@ -472,7 +472,7 @@ void CCheckBox::setCheckedPressSpriteFrame(SpriteFrame* pFrame)
 			m_pCheckedPress = Sprite::createWithSpriteFrame(pFrame);
 			addChild(m_pCheckedPress);
 		}
-		m_pCheckedPress->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+		m_pCheckedPress->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 	}
 }
 
@@ -489,7 +489,7 @@ void CCheckBox::setDisabledNormalSpriteFrame(SpriteFrame* pFrame)
 			m_pDisabledNormal = Sprite::createWithSpriteFrame(pFrame);
 			addChild(m_pDisabledNormal);
 		}
-		m_pDisabledNormal->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+		m_pDisabledNormal->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 	}
 }
 
@@ -506,7 +506,7 @@ void CCheckBox::setDisabledCheckedSpriteFrame(SpriteFrame* pFrame)
 			m_pDisabledChecked = Sprite::createWithSpriteFrame(pFrame);
 			addChild(m_pDisabledChecked);
 		}
-		m_pDisabledChecked->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+		m_pDisabledChecked->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 	}
 }
 
@@ -528,7 +528,7 @@ void CCheckBox::setNormalTexture(Texture2D* pTexture)
 		setContentSize(m_pNormal->getContentSize());
 		addChild(m_pNormal);
 	}
-	m_pNormal->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+	m_pNormal->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 }
 
 void CCheckBox::setNormalPressTexture(Texture2D* pTexture)
@@ -547,7 +547,7 @@ void CCheckBox::setNormalPressTexture(Texture2D* pTexture)
 		addChild(m_pNormalPress);
 	}
 	m_pNormalPress->setVisible(false);
-	m_pNormalPress->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+	m_pNormalPress->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 }
 
 void CCheckBox::setCheckedTexture(Texture2D* pTexture)
@@ -566,7 +566,7 @@ void CCheckBox::setCheckedTexture(Texture2D* pTexture)
 		addChild(m_pChecked);
 	}
 	m_pChecked->setVisible(false);
-	m_pChecked->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+	m_pChecked->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 }
 
 void CCheckBox::setCheckedPressTexture(Texture2D* pTexture)
@@ -585,7 +585,7 @@ void CCheckBox::setCheckedPressTexture(Texture2D* pTexture)
 		addChild(m_pCheckedPress);
 	}
 	m_pCheckedPress->setVisible(false);
-	m_pCheckedPress->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+	m_pCheckedPress->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 }
 
 void CCheckBox::setDisabledNormalTexture(Texture2D* pTexture)
@@ -604,7 +604,7 @@ void CCheckBox::setDisabledNormalTexture(Texture2D* pTexture)
 		addChild(m_pDisabledNormal);
 	}
 	m_pDisabledNormal->setVisible(false);
-	m_pDisabledNormal->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+	m_pDisabledNormal->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 }
 
 void CCheckBox::setDisabledCheckedTexture(Texture2D* pTexture)
@@ -623,7 +623,7 @@ void CCheckBox::setDisabledCheckedTexture(Texture2D* pTexture)
 		addChild(m_pDisabledChecked);
 	}
 	m_pDisabledChecked->setVisible(false);
-	m_pDisabledChecked->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+	m_pDisabledChecked->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 }
 
 void CCheckBox::setNormalSpriteFrameName(const char* pSpriteName)

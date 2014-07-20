@@ -28,13 +28,13 @@ bool CPageViewBasicTest::init()
 		10, this,
 		ccw_datasource_adapter_selector(CPageViewBasicTest::pageviewDataSource));
 	pPageView->setOnPageChangedListener(this, ccw_pagechanged_selector(CPageViewBasicTest::onPageChanged));
-	pPageView->setPosition(Point(480, 320));
+	pPageView->setPosition(Vec2(480, 320));
 	m_pWindow->addChild(pPageView);
 	pPageView->reloadData();
 
 	m_pText = CLabel::create();
-	m_pText->setAnchorPoint(Point(0, 0.5));
-	m_pText->setPosition(Point(800, 320));
+	m_pText->setAnchorPoint(Vec2(0, 0.5));
+	m_pText->setPosition(Vec2(800, 320));
 //	m_pText->setFontSize(35.0f);
 	m_pText->setString("none");
 	m_pWindow->addChild(m_pText);
@@ -55,7 +55,7 @@ Ref* CPageViewBasicTest::pageviewDataSource(Ref* pConvertCell, unsigned int nPag
 
 		pButton = CButton::createWith9Sprite(Size(150, 50), "sprite9_btn1.png", "sprite9_btn2.png");
 //		pButton->getLabel()->setFontSize(30.0f);
-		pButton->setPosition(Point(484 / 2, 320 / 2));
+		pButton->setPosition(Vec2(484 / 2, 320 / 2));
 		pButton->setTag(1);
 		pPageCell->addChild(pButton);
 	}
@@ -91,14 +91,14 @@ bool CPageViewVerticalTest::init()
 		10, this,
 		ccw_datasource_adapter_selector(CPageViewVerticalTest::pageviewDataSource));
 	pPageView->setOnPageChangedListener(this, ccw_pagechanged_selector(CPageViewVerticalTest::onPageChanged));
-	pPageView->setPosition(Point(480, 320));
+	pPageView->setPosition(Vec2(480, 320));
 	pPageView->setDirection(eScrollViewDirectionVertical);
 	m_pWindow->addChild(pPageView);
 	pPageView->reloadData();
 
 	m_pText = CLabel::create();
-	m_pText->setAnchorPoint(Point(0, 0.5));
-	m_pText->setPosition(Point(800, 320));
+	m_pText->setAnchorPoint(Vec2(0, 0.5));
+	m_pText->setPosition(Vec2(800, 320));
 //	m_pText->setFontSize(35.0f);
 	m_pText->setString("none");
 	m_pWindow->addChild(m_pText);
@@ -119,7 +119,7 @@ Ref* CPageViewVerticalTest::pageviewDataSource(Ref* pConvertCell, unsigned int n
 
 		pButton = CButton::createWith9Sprite(Size(150, 50), "sprite9_btn1.png", "sprite9_btn2.png");
 //		pButton->getLabel()->setFontSize(30.0f);
-		pButton->setPosition(Point(484 / 2, 320 / 2));
+		pButton->setPosition(Vec2(484 / 2, 320 / 2));
 		pButton->setTag(1);
 		pPageCell->addChild(pButton);
 	}

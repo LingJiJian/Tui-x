@@ -29,7 +29,7 @@ CWidgetTouchModel ArmatureBtn::onTouchBegan(Touch *pTouch)
 
 void ArmatureBtn::onTouchEnded(Touch *pTouch, float fDuration)
 {
-	Point touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
+	Vec2 touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
 	if( getBoundingBox().containsPoint(touchPointInView) )
 	{
 		executeClickHandler(this);

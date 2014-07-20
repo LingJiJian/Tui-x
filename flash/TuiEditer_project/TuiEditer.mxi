@@ -1,0 +1,22 @@
+<macromedia-extension name="Tui-x" version="3.x" type="command">
+<author name="B-y"/>
+<products>
+    <product name="Flash" version="11" primary="true"/>
+</products>
+<description>
+    <![CDATA[
+]]>
+</description>
+<ui-access>
+    <![CDATA[
+]]>
+</ui-access>
+<license-agreement>
+    <![CDATA[
+]]>
+</license-agreement>
+
+<files>
+    <file source="TuiEditer.jsfl" destination="$flash/WindowSWF/TuiEditer"/>
+    <file source="TuiEditer.swf" destination="$flash/WindowSWF"/>
+</files>

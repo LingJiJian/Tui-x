@@ -110,7 +110,7 @@ protected:
 	unsigned int m_uRows;
 	unsigned int m_uCellsMaxCountInPage;
 
-	std::vector<Point> m_vGridCellsPosition;
+	std::vector<Vec2> m_vGridCellsPosition;
 };
 
 

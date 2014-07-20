@@ -184,13 +184,13 @@ public:
 
 public:
 	// call main loop
-	virtual void visit(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated);
+	virtual void visit(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags);
 	
 protected:
 	friend class CSceneExtension;
 	
 	// the main loop of scene manager, frame called
-	void mainLoop(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated);
+	void mainLoop(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags);
 
 	// set next scene for running
 	void setNextScene();
@@ -208,7 +208,7 @@ protected:
 	void unlockUISceneSwitch(const char* pClassName);
 
 	// visit all ui scene
-	void visitUIScenes(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated);
+	void visitUIScenes(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags);
 
 	// let the scene load resources they needed
 	bool loadSceneResources(CSceneExtension* pScene);

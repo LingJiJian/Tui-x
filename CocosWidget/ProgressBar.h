@@ -125,7 +125,7 @@ protected:
 	int m_nFromValue;
 
 	Size m_tProgressSize;
-	Point m_tCenterPoint;
+	Vec2 m_tCenterPoint;
 
 	Sprite* m_pProgressSprite;
 	CProgressBarDirection m_eDirection;

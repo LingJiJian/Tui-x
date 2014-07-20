@@ -164,7 +164,7 @@ void CTextRich::insertElement(Node* pNode
 		tElement.eATLASTYPE = ccATLASTYPESPRITE;
 		tElement.pATLASITEM = pNode;
 		tElement.strDESCRIPTION = pDescription ? pDescription : "";
-		pNode->setAnchorPoint(Point::ZERO);
+		pNode->setAnchorPoint(Vec2::ZERO);
 
 		pushAtlasElementAtLast(tElement);
 	}
@@ -174,7 +174,7 @@ void CTextRich::insertElement(Node* pNode
 		tElement.eATLASTYPE = ccATLASTYPESPRITE;
 		tElement.pATLASITEM = pNode;
 		tElement.strDESCRIPTION = pDescription ? pDescription : "";
-		pNode->setAnchorPoint(Point::ZERO);
+		pNode->setAnchorPoint(Vec2::ZERO);
 
 		pushAtlasElementAtLast(tElement);
 	}
@@ -207,7 +207,7 @@ void CTextRich::reloadData()
 		{
 			_ccTEXTRICHELEMENT& tElement = vAtlasLine->at(uColumn);
 
-			tElement.pATLASITEM->setPosition(Point(fWidgetOfLine, tRealContentSize.height));
+			tElement.pATLASITEM->setPosition(Vec2(fWidgetOfLine, tRealContentSize.height));
 			addChild(tElement.pATLASITEM);
 #if 0
 			CCLayerColor* pColor = CCLayerColor::create(ccc4(255, 0,0, 129));
@@ -265,7 +265,7 @@ void CTextRich::makeAtlasLabelElement(_ccTEXTRICHELEMENT& tElement
 		fontname && strlen(fontname) ? fontname : m_strFontName.c_str(),
 		(int) size == 0 ? m_fFontSize : size);
 
-	pLabel->setAnchorPoint(Point::ZERO);
+	pLabel->setAnchorPoint(Vec2::ZERO);
 	pLabel->setColor(color);
 
 	tElement.strDESCRIPTION = pDescription ? pDescription : "";
@@ -341,10 +341,10 @@ void CTextRich::onTouchMoved(Touch* pTouch, float fDuration)
 
 void CTextRich::onTouchEnded(Touch* pTouch, float fDuration)
 {
-	Point tPoint = _parent->convertTouchToNodeSpace(pTouch);
+	Vec2 tPoint = _parent->convertTouchToNodeSpace(pTouch);
 	if( getBoundingBox().containsPoint(tPoint) )
 	{
-		Point tInsidePoint = convertTouchToNodeSpace(pTouch);
+		Vec2 tInsidePoint = convertTouchToNodeSpace(pTouch);
 		vector<_ccTEXTRICHELEMENTRECT>::iterator itr = m_vRichTextAtlasDescriptions.begin();
 		vector<_ccTEXTRICHELEMENTRECT>::iterator end = m_vRichTextAtlasDescriptions.end();
 

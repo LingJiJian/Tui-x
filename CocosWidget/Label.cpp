@@ -104,7 +104,7 @@ CLabel* CLabel::createWithSystemFont(const std::string& text, const std::string&
 	return ret;
 }
 
-void CLabel::draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated)
+void CLabel::draw(Renderer *renderer, const Mat4 &transform, bool transformUpdated)
 {
 	Label::draw(renderer,transform, transformUpdated);
 	if(!m_bUnderLine && !m_bMiddleLine)return;
@@ -113,10 +113,10 @@ void CLabel::draw(Renderer *renderer, const kmMat4 &transform, bool transformUpd
 	DrawPrimitives::setPointSize(2);
 	Size contentSize = this->getContentSize();
 	if(m_bUnderLine){
-		DrawPrimitives::drawLine(Point::ZERO, Point(contentSize.width,0));
+		DrawPrimitives::drawLine(Vec2::ZERO, Vec2(contentSize.width,0));
 	}
 	if(m_bMiddleLine){
-		DrawPrimitives::drawLine(Point(0,contentSize.height/2), Point(contentSize.width,contentSize.height/2));
+		DrawPrimitives::drawLine(Vec2(0,contentSize.height/2), Vec2(contentSize.width,contentSize.height/2));
 	}
 }
 
@@ -136,7 +136,7 @@ void CLabel::onTouchEnded(Touch* pTouch, float fDuration)
 {
 	CC_WIDGET_LONGCLICK_ONTOUCHENDED;
 
-	Point tPoint = _parent->convertTouchToNodeSpace(pTouch);
+	Vec2 tPoint = _parent->convertTouchToNodeSpace(pTouch);
 	if( getBoundingBox().containsPoint(tPoint) )
 	{
 		executeClickHandler(this);

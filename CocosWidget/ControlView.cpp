@@ -36,11 +36,11 @@ CControlView::CControlView()
 : m_pBaseBoard(NULL)
 , m_pJoystick(NULL)
 , m_fRadius(100.0f)
-, m_tCenterPoint(Point::ZERO)
+, m_tCenterPoint(Vec2::ZERO)
 , m_bRelocateWithAnimation(true)
 , m_bAnimationUpdate(false)
 , m_bExecuteEventUpdate(false)
-, m_tLastPoint(Point::ZERO)
+, m_tLastPoint(Vec2::ZERO)
 {
 	setThisObject(this);
 }
@@ -166,12 +166,12 @@ void CControlView::onExecuteEventUpdate(float dt)
 {
 	if( m_pJoystick )
 	{
-		Point tOffset = m_pJoystick->getPosition() - m_tCenterPoint;
+		Vec2 tOffset = m_pJoystick->getPosition() - m_tCenterPoint;
 		executeControlHandler(this, tOffset.x / PARAM_PRE, tOffset.y / PARAM_PRE);
 	}
 	else
 	{
-		Point tOffset = m_tLastPoint - m_tCenterPoint;
+		Vec2 tOffset = m_tLastPoint - m_tCenterPoint;
 		executeControlHandler(this, tOffset.x / PARAM_PRE, tOffset.y / PARAM_PRE);
 	}
 }
@@ -197,7 +197,7 @@ void CControlView::stopExecuteUpdate()
 CWidgetTouchModel CControlView::onTouchBegan(Touch *pTouch)
 {
 	stopAnimateUpdate();
-	Point tPoint = convertToNodeSpace(pTouch->getLocation());
+	Vec2 tPoint = convertToNodeSpace(pTouch->getLocation());
 	if( m_pJoystick )
 	{
 		if( m_pJoystick->getBoundingBox().containsPoint(tPoint) )
@@ -220,10 +220,10 @@ void CControlView::onTouchMoved(Touch *pTouch, float fDuration)
 	if( m_pJoystick )
 	{
 		// i don't wanna let u understand this
-		Point tA = convertToNodeSpace(pTouch->getLocation());
-		Point tN = m_tCenterPoint-tA;
+		Vec2 tA = convertToNodeSpace(pTouch->getLocation());
+		Vec2 tN = m_tCenterPoint-tA;
 		float fD = sqrtf(tN.x*tN.x+tN.y*tN.y);
-		fD < m_fRadius ? m_pJoystick->setPosition(tA) : m_pJoystick->setPosition(Point(
+		fD < m_fRadius ? m_pJoystick->setPosition(tA) : m_pJoystick->setPosition(Vec2(
 			((tA.x - m_tCenterPoint.x) / fD) * m_fRadius + m_tCenterPoint.x,
 			((tA.y - m_tCenterPoint.y) / fD) * m_fRadius + m_tCenterPoint.y
 			)
@@ -231,10 +231,10 @@ void CControlView::onTouchMoved(Touch *pTouch, float fDuration)
 	}
 	else
 	{
-		Point tA = convertToNodeSpace(pTouch->getLocation());
-		Point tN = m_tCenterPoint-tA;
+		Vec2 tA = convertToNodeSpace(pTouch->getLocation());
+		Vec2 tN = m_tCenterPoint-tA;
 		float fD = sqrtf(tN.x*tN.x+tN.y*tN.y);
-		fD < m_fRadius ? m_tLastPoint = tA : m_tLastPoint = (Point(
+		fD < m_fRadius ? m_tLastPoint = tA : m_tLastPoint = (Vec2(
 			((tA.x - m_tCenterPoint.x) / fD) * m_fRadius + m_tCenterPoint.x,
 			((tA.y - m_tCenterPoint.y) / fD) * m_fRadius + m_tCenterPoint.y
 			)
@@ -267,7 +267,7 @@ void CControlView::setContentSize(const Size& tContentSize)
 {
 	Node::setContentSize(tContentSize);
 
-	m_tCenterPoint = Point(_contentSize.width / 2, _contentSize.height / 2);
+	m_tCenterPoint = Vec2(_contentSize.width / 2, _contentSize.height / 2);
 
 	if( m_pBaseBoard )
 	{

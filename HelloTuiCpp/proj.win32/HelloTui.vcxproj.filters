@@ -314,21 +314,6 @@
     <ClInclude Include="..\Classes\tui\utils\AnimationUtil.h">
       <Filter>lib\tui\utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_main.h">
-      <Filter>lib\tui\tagMap</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_showPhone.h">
-      <Filter>lib\tui\tagMap</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_store.h">
-      <Filter>lib\tui\tagMap</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_welcome.h">
-      <Filter>lib\tui\tagMap</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_bag.h">
-      <Filter>lib\tui\tagMap</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\CocosWidget\CircleMenu.h">
       <Filter>lib\CocosWidget</Filter>
     </ClInclude>
@@ -434,7 +419,22 @@
     <ClInclude Include="..\Classes\scene\Recombine\Recombineui.h">
       <Filter>Classes\scene\Recombine</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_recombineui.h">
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_recombineui.h">
+      <Filter>lib\tui\tagMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_showPhone.h">
+      <Filter>lib\tui\tagMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_store.h">
+      <Filter>lib\tui\tagMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_welcome.h">
+      <Filter>lib\tui\tagMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_bag.h">
+      <Filter>lib\tui\tagMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_main.h">
       <Filter>lib\tui\tagMap</Filter>
     </ClInclude>
   </ItemGroup>

@@ -69,14 +69,14 @@ void CPageView::onScrolling()
 
 	CTableView::onScrolling();
 
-	Point tPageIdxOffset;
+	Vec2 tPageIdxOffset;
 	switch( m_eDirection )
 	{
 	case eScrollViewDirectionHorizontal:
-		tPageIdxOffset = getContentOffset() - Point(_contentSize.width / 2, 0);
+		tPageIdxOffset = getContentOffset() - Vec2(_contentSize.width / 2, 0);
 		break;
 	case eScrollViewDirectionVertical:
-		tPageIdxOffset = getContentOffset() + Point(0, _contentSize.height / 2);
+		tPageIdxOffset = getContentOffset() + Vec2(0, _contentSize.height / 2);
 		break;
 	default:
 		break;
@@ -102,10 +102,10 @@ void CPageView::updateCellAtIndex(unsigned int idx)
 	switch(m_eDirection)
 	{
 	case eScrollViewDirectionHorizontal:
-		pCell->setAnchorPoint(Point::ZERO);
+		pCell->setAnchorPoint(Vec2::ZERO);
 		break;
 	default:
-		pCell->setAnchorPoint(Point(0, 1));
+		pCell->setAnchorPoint(Vec2(0, 1));
 		break;
 	}
 	

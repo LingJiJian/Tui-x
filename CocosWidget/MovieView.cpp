@@ -170,7 +170,7 @@ void MovieView::playFrame(int index)
 				sprite->setVisible(true);
 				sprite->setFlippedX(this->m_isFlip);
 				sprite->setFlippedY(this->m_isFlip);
-				sprite->setPosition(Point(frameInfo->x, frameInfo->y));
+				sprite->setPosition(Vec2(frameInfo->x, frameInfo->y));
 				sprite->setScaleX(frameInfo->scaleX);
 				sprite->setScaleY(frameInfo->scaleY);
 				sprite->setOpacity((GLubyte)255 * frameInfo->alpha);

@@ -41,7 +41,7 @@ CProgressBar::CProgressBar()
 , m_nFromValue(0)
 , m_bProgressing(false)
 , m_tProgressSize(Size::ZERO)
-, m_tCenterPoint(Point::ZERO)
+, m_tCenterPoint(Vec2::ZERO)
 , m_pBackgroundImage(NULL)
 , m_pBackgroundColor(NULL)
 , m_pBackgroundGradient(NULL)
@@ -138,26 +138,26 @@ void CProgressBar::changeValueAndExecuteEvent(int nValue, bool bExeEvent)
 	{
 	case eProgressBarDirectionLeftToRight:
 		{
-			m_pProgressSprite->setAnchorPoint(Point(0.0f, 0.5f));
-			m_pProgressSprite->setPosition(Point(m_tCenterPoint.x - m_tProgressSize.width / 2, m_tCenterPoint.y));
+			m_pProgressSprite->setAnchorPoint(Vec2(0.0f, 0.5f));
+			m_pProgressSprite->setPosition(Vec2(m_tCenterPoint.x - m_tProgressSize.width / 2, m_tCenterPoint.y));
 		}
 		break;
 	case eProgressBarDirectionBottomToTop:
 		{
-			m_pProgressSprite->setAnchorPoint(Point(0.5f, 0.0f));
-			m_pProgressSprite->setPosition(Point(m_tCenterPoint.x, m_tCenterPoint.y - m_tProgressSize.height / 2));
+			m_pProgressSprite->setAnchorPoint(Vec2(0.5f, 0.0f));
+			m_pProgressSprite->setPosition(Vec2(m_tCenterPoint.x, m_tCenterPoint.y - m_tProgressSize.height / 2));
 		}
 		break;
 	case eProgressBarDirectionRightToLeft:
 		{
-			m_pProgressSprite->setAnchorPoint(Point(1.0f, 0.5f));
-			m_pProgressSprite->setPosition(Point(m_tCenterPoint.x + m_tProgressSize.width / 2, m_tCenterPoint.y));
+			m_pProgressSprite->setAnchorPoint(Vec2(1.0f, 0.5f));
+			m_pProgressSprite->setPosition(Vec2(m_tCenterPoint.x + m_tProgressSize.width / 2, m_tCenterPoint.y));
 		}
 		break;
 	case eProgressBarDirectionTopToBottom:
 		{
-			m_pProgressSprite->setAnchorPoint(Point(0.5f, 1.0f));
-			m_pProgressSprite->setPosition(Point(m_tCenterPoint.x, m_tCenterPoint.y + m_tProgressSize.height / 2));
+			m_pProgressSprite->setAnchorPoint(Vec2(0.5f, 1.0f));
+			m_pProgressSprite->setPosition(Vec2(m_tCenterPoint.x, m_tCenterPoint.y + m_tProgressSize.height / 2));
 		}
 		break;
 	default:
@@ -305,7 +305,7 @@ void CProgressBar::getScissorRectByPercentage(Rect& tRect)
 	{
 	case eProgressBarDirectionLeftToRight:
 		{
-			tRect.origin = Point::ZERO;
+			tRect.origin = Vec2::ZERO;
 			tRect.size.width = m_tProgressSize.width * fPercentage;
 			tRect.size.height = m_tProgressSize.height;
 		}
@@ -328,7 +328,7 @@ void CProgressBar::getScissorRectByPercentage(Rect& tRect)
 		break;
 	case eProgressBarDirectionTopToBottom:
 		{
-			tRect.origin = Point::ZERO;
+			tRect.origin = Vec2::ZERO;
 			tRect.size.width = m_tProgressSize.width;
 			tRect.size.height = m_tProgressSize.height * fPercentage;
 		}
@@ -431,7 +431,7 @@ CLabel* CProgressBar::getLabel()
 		m_pLabel = CLabel::create();
 		m_pLabel->setVisible(false);
 		m_pLabel->setLocalZOrder(10);
-		m_pLabel->setPosition(Point(m_tProgressSize.width/2,m_tProgressSize.height/2));
+		m_pLabel->setPosition(Vec2(m_tProgressSize.width/2,m_tProgressSize.height/2));
 		addChild(m_pLabel);
 	}
 	return m_pLabel;

@@ -48,7 +48,7 @@ CExpandableNode* CExpandableNode::create()
 	CExpandableNode* pRet = new CExpandableNode();
 	pRet->init();
 	pRet->setContentSize(Size(100, 100));
-	pRet->setAnchorPoint(Point(0.5f, 0.5f));
+	pRet->setAnchorPoint(Vec2(0.5f, 0.5f));
 	pRet->autorelease();
 	return pRet;
 }
@@ -136,7 +136,7 @@ CWidgetTouchModel CExpandableNode::onTouchBegan(Touch* pTouch)
 	m_pSelectedWidget = NULL;
 	m_eSelectedWidgetTouchModel = eWidgetTouchNone;
 
-	Point tNodePoint = convertToNodeSpace(pTouch->getLocation());
+	Vec2 tNodePoint = convertToNodeSpace(pTouch->getLocation());
 	int nCount = _children.size();
 	if( nCount > 0 )
 	{
@@ -184,7 +184,7 @@ void CExpandableNode::onTouchEnded(Touch* pTouch, float fDuration)
 	{
 		CCAssert(m_pExpandableListViewParent, "parent should not null");
 
-		Point tPoint = _parent->convertToNodeSpace(pTouch->getLocation());
+		Vec2 tPoint = _parent->convertToNodeSpace(pTouch->getLocation());
 		if( getBoundingBox().containsPoint(tPoint) )
 		{
 			if( m_bExpanded )
@@ -382,8 +382,8 @@ void CExpandableListView::updateNodesPosition()
 		CExpandableNode* pExpandableNode = m_vExpandableNodeList.at(uBegin);
 		fAllNodesHeight = fAllNodesHeight - pExpandableNode->getContentSize().height;
 
-		pExpandableNode->setAnchorPoint(Point::ZERO);
-		pExpandableNode->setPosition(Point(0, fAllNodesHeight));
+		pExpandableNode->setAnchorPoint(Vec2::ZERO);
+		pExpandableNode->setPosition(Vec2(0, fAllNodesHeight));
 		m_pContainer->addChild(pExpandableNode);
 
 		if( pExpandableNode->isExpanded() )
@@ -396,8 +396,8 @@ void CExpandableListView::updateNodesPosition()
 					Node* pNode = vNodeItemList[i];
 					fAllNodesHeight = fAllNodesHeight - pNode->getContentSize().height;
 
-					pNode->setAnchorPoint(Point::ZERO);
-					pNode->setPosition(Point(0, fAllNodesHeight));
+					pNode->setAnchorPoint(Vec2::ZERO);
+					pNode->setPosition(Vec2(0, fAllNodesHeight));
 					m_pContainer->addChild(pNode);
 				}
 			}
@@ -415,7 +415,7 @@ void CExpandableListView::reloadData()
 
 	float tNewHeight = getContainerSize().height - fOldHeight;
 
-	setContentOffset(getContentOffset() - Point(0, tNewHeight));
+	setContentOffset(getContentOffset() - Vec2(0, tNewHeight));
 
 	relocateContainer();
 }

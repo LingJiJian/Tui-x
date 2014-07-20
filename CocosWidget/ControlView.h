@@ -88,8 +88,8 @@ protected:
 	bool m_bExecuteEventUpdate;
 	bool m_bAnimationUpdate;
 	bool m_bRelocateWithAnimation;
-	Point m_tCenterPoint;
-	Point m_tLastPoint;
+	Vec2 m_tCenterPoint;
+	Vec2 m_tLastPoint;
 };
 
 NS_CC_WIDGET_END

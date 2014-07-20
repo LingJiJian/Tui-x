@@ -191,7 +191,7 @@ void CGridView::insertSortableCell(CGridViewCell* pCell, unsigned int idx)
 	}
 }
 
-const Point& CGridView::cellPositionFromIndex(unsigned int idx)
+const Vec2& CGridView::cellPositionFromIndex(unsigned int idx)
 {
 	if( idx == CC_INVALID_INDEX )
     {
@@ -213,7 +213,7 @@ void CGridView::updateCellAtIndex(unsigned int idx, unsigned int row)
 
 	pCell->setIdx(idx);
 	pCell->setRow(row);
-	pCell->setAnchorPoint(Point(0, 1));
+	pCell->setAnchorPoint(Vec2(0, 1));
 	pCell->setContentSize(m_tCellsSize);
 	pCell->setPosition(cellPositionFromIndex(idx));
 
@@ -224,7 +224,7 @@ void CGridView::updateCellAtIndex(unsigned int idx, unsigned int row)
 	m_sIndices.insert(idx);
 }
 
-unsigned int CGridView::cellBeginRowFromOffset(const Point& offset)
+unsigned int CGridView::cellBeginRowFromOffset(const Vec2& offset)
 {
 	float ofy = offset.y + m_pContainer->getContentSize().height;
 	float xos = ofy - _contentSize.height;
@@ -236,7 +236,7 @@ unsigned int CGridView::cellBeginRowFromOffset(const Point& offset)
 	return (unsigned int)row;
 }
 
-unsigned int CGridView::cellEndRowFromOffset(const Point& offset)
+unsigned int CGridView::cellEndRowFromOffset(const Vec2& offset)
 {
 	float ofy = offset.y + m_pContainer->getContentSize().height;
 	int row = (int)(ofy / m_tCellsSize.height);
@@ -272,7 +272,7 @@ void CGridView::updatePositions()
 			nX = 0.0f;
 			nY = nY - m_tCellsSize.height;
 		}
-		m_vPositions.push_back(Point(nX, nY));
+		m_vPositions.push_back(Vec2(nX, nY));
 		nX += m_tCellsSize.width;
 	}
 }
@@ -433,11 +433,11 @@ void CGridView::onDraggingScrollEnded()
 
 	if( m_bAutoRelocate )
 	{
-		Point tOffset = getContentOffset();
+		Vec2 tOffset = getContentOffset();
 		unsigned int uRow = cellBeginRowFromOffset(tOffset);
-		Point tAPoint = cellPositionFromIndex(cellFirstIndexFromRow(uRow));
-		Point tBPoint = Point(0, tAPoint.y - m_tCellsSize.height);
-		Point tContentPoint = Point(0, _contentSize.height);
+		Vec2 tAPoint = cellPositionFromIndex(cellFirstIndexFromRow(uRow));
+		Vec2 tBPoint = Vec2(0, tAPoint.y - m_tCellsSize.height);
+		Vec2 tContentPoint = Vec2(0, _contentSize.height);
 		tOffset = tOffset - tContentPoint;
 		tAPoint.x = 0;
 

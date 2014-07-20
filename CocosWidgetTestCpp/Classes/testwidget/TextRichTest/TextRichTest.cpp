@@ -28,12 +28,12 @@ bool CTextRichBasicTest::init()
 	pTextRich->insertElement("Rich", "", 45);
 	pTextRich->insertElement("And", "", 25, Color3B::RED);
 	pTextRich->insertElement("cocos2d-x", "", 70, Color3B::BLUE);
-	pTextRich->setPosition(Point(960/2, 640/2));
+	pTextRich->setPosition(Vec2(960/2, 640/2));
 	pTextRich->reloadData();
 
 	CColorView* pColor = CColorView::create(Color4B(255, 0, 0, 50));
 	pColor->setContentSize(pTextRich->getContentSize());
-	pColor->setPosition(Point(960/2, 640/2));
+	pColor->setPosition(Vec2(960/2, 640/2));
 
 	m_pWindow->addChild(pColor);
 	m_pWindow->addChild(pTextRich);
@@ -67,13 +67,13 @@ bool CTextRichEventTest::init()
 
 	pTextRich->insertElement(pIcon, 4, "Image");
 	pTextRich->insertElement("hehe ByeBye","", 30);
-	pTextRich->setPosition(Point(960/2, 640/2));
+	pTextRich->setPosition(Vec2(960/2, 640/2));
 	pTextRich->reloadData();
 	pTextRich->setOnTextRichClickListener(this, ccw_textrichclick_selector(CTextRichEventTest::onClickTextRich));
 	m_pWindow->addChild(pTextRich);
 
 	m_pLabel = CLabel::createWithSystemFont("None", "", 30);
-	m_pLabel->setPosition(Point(800, 320));
+	m_pLabel->setPosition(Vec2(800, 320));
 	m_pWindow->addChild(m_pLabel);
 
 	return true;

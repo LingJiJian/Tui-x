@@ -27,17 +27,17 @@ bool CLayoutBasicTest::init()
 	setDescription("some things in a basic layout");
 
 	CLayout* pLayout = CLayout::create();
-	pLayout->setPosition(Point(480 ,320));
+	pLayout->setPosition(Vec2(480 ,320));
 	pLayout->setContentSize(Size(480, 320));
 	pLayout->setBackgroundImage("background.png");
 	m_pWindow->addChild(pLayout);
 
 	CButton* pButton = CButton::createWith9Sprite(Size(150, 50), "sprite9_btn1.png", "sprite9_btn2.png");
-	pButton->setPosition(Point(150, 100));
+	pButton->setPosition(Vec2(150, 100));
 	pLayout->addChild(pButton);
 
 	CImageView* pImage = CImageView::create("icon.png");
-	pImage->setPosition(Point(200, 150));
+	pImage->setPosition(Vec2(200, 150));
 	pLayout->addChild(pImage);
 
 	return true;
@@ -53,7 +53,7 @@ bool CLayoutColorTest::init()
 
 	CLayout* pLayout = CLayout::create();
 	pLayout->setBackgroundColor(Color4B(255, 0, 0, 255));
-	pLayout->setPosition(Point(480 ,320));
+	pLayout->setPosition(Vec2(480 ,320));
 	pLayout->setContentSize(Size(480, 320));
 	m_pWindow->addChild(pLayout);
 
@@ -69,8 +69,8 @@ bool CLayoutGradientTest::init()
 	setDescription("Gradient back ground");
 
 	CLayout* pLayout = CLayout::create();
-	pLayout->setBackgroundGradient(Color4B(255,0,0,255), Color4B(0, 255, 0, 128), Point(1.0f, 0.0f));
-	pLayout->setPosition(Point(480 ,320));
+	pLayout->setBackgroundGradient(Color4B(255,0,0,255), Color4B(0, 255, 0, 128), Vec2(1.0f, 0.0f));
+	pLayout->setPosition(Vec2(480 ,320));
 	pLayout->setContentSize(Size(480, 320));
 	m_pWindow->addChild(pLayout);
 

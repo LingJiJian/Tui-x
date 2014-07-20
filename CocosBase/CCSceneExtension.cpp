@@ -46,7 +46,7 @@ CSceneExtension::CSceneExtension()
 , m_nTouchPriority(0)
 #endif
 {
-	setAnchorPoint(Point::ZERO);
+	setAnchorPoint(Vec2::ZERO);
 	setContentSize(Director::getInstance()->getWinSize());
 }
 

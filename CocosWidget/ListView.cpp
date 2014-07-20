@@ -30,8 +30,8 @@ using namespace std;
 
 NS_CC_WIDGET_BEGIN
 
-static const Point ListViewHorizontalNodeAnchorPoint = Point(0, 0);
-static const Point ListViewVerticalNodeAnchorPoint = Point(0, 0);
+static const Vec2 ListViewHorizontalNodeAnchorPoint = Vec2(0, 0);
+static const Vec2 ListViewVerticalNodeAnchorPoint = Vec2(0, 0);
 
 
 CListView::CListView()
@@ -200,7 +200,7 @@ void CListView::updateNodesPosition()
 			{
 				pNode = m_vNodeList.at(i);
 				pNode->setAnchorPoint(ListViewHorizontalNodeAnchorPoint);
-				pNode->setPosition(Point(m_fLayoutIndexSize, 0));
+				pNode->setPosition(Vec2(m_fLayoutIndexSize, 0));
 				m_fLayoutIndexSize += pNode->getContentSize().width;
 			}
 
@@ -233,7 +233,7 @@ void CListView::updateNodesPosition()
 				pNode = m_vNodeList.at(i);
 				fAllNodesSize = fAllNodesSize - pNode->getContentSize().height;
 				pNode->setAnchorPoint(ListViewVerticalNodeAnchorPoint);
-				pNode->setPosition(Point(0, fAllNodesSize));
+				pNode->setPosition(Vec2(0, fAllNodesSize));
 
 				m_pContainer->addChild(pNode);
 			}
@@ -256,7 +256,7 @@ void CListView::reloadData()
 
 		float tNewHeight = getContainerSize().height - fOldHeight;
 
-		setContentOffset(getContentOffset() - Point(0, tNewHeight));
+		setContentOffset(getContentOffset() - Vec2(0, tNewHeight));
 	}
 	else
 	{
