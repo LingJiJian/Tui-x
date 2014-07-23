@@ -27,17 +27,11 @@ Tui是一个创建cocos2d-x UI界面的解决方案，而builder用的则是Flas
 说明:
 
 注：本项目中的HelloTuiLua/Cpp 是演示工程，需要自己放置引擎代码到相应的位置。					
-Cpp具体操作：下载好的cocos2dx3.0的引擎，然后直接把这个引擎改名成cocos2d，复制到Tui-x/HelloTuiCpp下，			
-Lua具体操作：下载好的cocos2dx3.0的引擎，然后直接把这个引擎改名成cocos2d-x，复制到Tui-x/HelloTuiLua/frameworks下。
-Cpp版，打开cocos/ui/UILayoutDefine.h , 注释掉 54行 //const Margin MarginZero = Margin(); 
-Lua版，不用注释
+Cpp具体操作：下载好的cocos2dx3.x的引擎，然后直接把这个引擎改名成cocos2d，复制到Tui-x/HelloTuiCpp下，			
+Lua具体操作：下载好的cocos2dx3.x的引擎，然后直接把这个引擎改名成cocos2d-x，复制到Tui-x/HelloTuiLua/frameworks下。
 
 接下来双击sln就可以开始编译了！
 
-（为什么要这么做？这是因为我们不需要用到官方的UI库，我们只用CocosWidget的组件就能完全替代它，如果你不注释
-这一行，那么vs在编译的时候，会发现Margin未定义，如果你不想注释也可以，但你必须要引入官方的UI库，那你就
-有两个组件库了。。何必呢- -）
-
 教程：
-注意：Tui-x 3.0和Tui-x 2.2.x接口有少量区别！具体请看HelloTui							
+注意：Tui-x 3.x和Tui-x 2.2.x接口有少量区别！具体请看HelloTui							
 教程：http://blog.csdn.net/ab342854406/article/details/37706111
