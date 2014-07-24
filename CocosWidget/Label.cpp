@@ -104,9 +104,9 @@ CLabel* CLabel::createWithSystemFont(const std::string& text, const std::string&
 	return ret;
 }
 
-void CLabel::draw(Renderer *renderer, const Mat4 &transform, bool transformUpdated)
+void CLabel::draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
 {
-	Label::draw(renderer,transform, transformUpdated);
+	Label::draw(renderer,transform, flags);
 	if(!m_bUnderLine && !m_bMiddleLine)return;
 
 	DrawPrimitives::setDrawColor4B(_displayedColor.r,_displayedColor.g,_displayedColor.b,_displayedOpacity);
