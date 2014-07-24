@@ -53,7 +53,7 @@ public:
 	static CLabel* createWithSystemFont(const std::string& text, const std::string& font, float fontSize,
 		const Size& dimensions = Size::ZERO, TextHAlignment hAlignment = TextHAlignment::CENTER,
 		TextVAlignment vAlignment = TextVAlignment::TOP);
-	virtual void draw(Renderer *renderer, const Mat4 &transform, bool transformUpdated);
+	virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags);
 	
 	CC_SYNTHESIZE(bool,m_bUnderLine,UnderLine);
 	CC_SYNTHESIZE(bool,m_bMiddleLine,MiddleLine);
