@@ -79,7 +79,7 @@ bool MenuScene::init()
 	m_pMenuTableView->setDataSourceAdapter(
 		this, ccw_datasource_adapter_selector(MenuScene::menuTableDataSource));
 	m_pMenuTableView->setDirection(eScrollViewDirectionVertical);
-	m_pMenuTableView->setPosition(Point(480, 320));
+	m_pMenuTableView->setPosition(Vec2(480, 320));
 	pWindow->addChild(m_pMenuTableView);
 	m_pMenuTableView->reloadData();
 
@@ -98,7 +98,7 @@ Ref* MenuScene::menuTableDataSource(Ref* pConvertCell, unsigned int idx)
 		pCell->autorelease();
 
 		pText = CLabel::createWithSystemFont("Marker Felt","Marker Felt",40);
-		pText->setPosition(Point(350, 50));
+		pText->setPosition(Vec2(350, 50));
 		pText->setTouchEnabled(true);
 		pText->setOnTouchBeganListener(this, ccw_touchbegan_selector(MenuScene::onTextTouchDown));
 		pText->setOnTouchEndedListener(this, ccw_touchevent_selector(MenuScene::onTextTouchEnd));
@@ -257,7 +257,7 @@ BaseTestScene::BaseTestScene()
 bool BaseTestScene::init()
 {
 	Scene::init();
-	setPosition(Point::ZERO);
+	setPosition(Vec2::ZERO);
 
 	m_pWindow = CWidgetWindow::create();
 	m_pWindow->setMultiTouchEnabled(true);
@@ -265,33 +265,33 @@ bool BaseTestScene::init()
 
 	m_pNextBtn = CButton::create("next1.png", "next2.png");
 	m_pNextBtn->setOnClickListener(this, ccw_click_selector(BaseTestScene::onNextBtnClick));
-	m_pNextBtn->setPosition(Point(630, 55));
+	m_pNextBtn->setPosition(Vec2(630, 55));
 	m_pWindow->addChild(m_pNextBtn);
 
 	m_pBackBtn = CButton::create("back1.png", "back2.png");
 	m_pBackBtn->setOnClickListener(this, ccw_click_selector(BaseTestScene::onBackBtnClick));
-	m_pBackBtn->setPosition(Point(330, 55));
+	m_pBackBtn->setPosition(Vec2(330, 55));
 	m_pWindow->addChild(m_pBackBtn);
 
 	m_pRefBtn = CButton::create("again1.png", "again2.png");
 	m_pRefBtn->setOnClickListener(this, ccw_click_selector(BaseTestScene::onRefBtnClick));
-	m_pRefBtn->setPosition(Point(480, 55));
+	m_pRefBtn->setPosition(Vec2(480, 55));
 	m_pWindow->addChild(m_pRefBtn);
 
 	m_pTitleText = CLabel::create();
 	//m_pTitleText->setFontSize(45.0f);
-	m_pTitleText->setPosition(Point(480, 600));
+	m_pTitleText->setPosition(Vec2(480, 600));
 	m_pWindow->addChild(m_pTitleText);
 
 	m_pDescriptionText  = CLabel::create();
 	m_pDescriptionText->setHorizontalAlignment(TextHAlignment::CENTER);
-	m_pDescriptionText->setAnchorPoint(Point(0.5f, 1.0f));
+	m_pDescriptionText->setAnchorPoint(Vec2(0.5f, 1.0f));
 	//m_pDescriptionText->setFontSize(30.0f);
-	m_pDescriptionText->setPosition(Point(480, 570));
+	m_pDescriptionText->setPosition(Vec2(480, 570));
 	m_pWindow->addChild(m_pDescriptionText);
 
 	m_pMenuText = CLabel::createWithSystemFont("Back", "", 45.0f);
-	m_pMenuText->setPosition(Point(893, 35));
+	m_pMenuText->setPosition(Vec2(893, 35));
 	m_pMenuText->setTouchEnabled(true);
 	m_pMenuText->setOnClickListener(this, ccw_click_selector(BaseTestScene::onMenuBtnClick));
 	m_pWindow->addChild(m_pMenuText);

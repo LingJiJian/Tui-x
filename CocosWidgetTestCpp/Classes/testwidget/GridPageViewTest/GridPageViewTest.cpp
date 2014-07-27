@@ -24,7 +24,7 @@ bool CGridPageViewBasicTest::init()
 	setDescription("GridPageView basic test");
 
 	Sprite* pBg = Sprite::create("background2.png");
-	pBg->setPosition(Point(480, 320));
+	pBg->setPosition(Vec2(480, 320));
 	m_pWindow->addChild(pBg);
 
 	CGridPageView* pTable = CGridPageView::create(
@@ -35,7 +35,7 @@ bool CGridPageViewBasicTest::init()
 	pTable->setColumns(4);
 	pTable->setRows(5);
 	pTable->setAutoRelocate(true);
-	pTable->setPosition(Point(480, 320));
+	pTable->setPosition(Vec2(480, 320));
 	m_pWindow->addChild(pTable);
 	pTable->reloadData();
 
@@ -53,7 +53,7 @@ Ref* CGridPageViewBasicTest::gridpageviewDataSource(Ref* pConvertCell, unsigned 
 		pCell->autorelease();
 
 		pButton = CButton::createWith9Sprite(Size(70, 70), "sprite9_btn1.png", "sprite9_btn2.png");
-		pButton->setPosition(Point(320 / 4 / 2, 390 / 5 / 2));
+		pButton->setPosition(Vec2(320 / 4 / 2, 390 / 5 / 2));
 		//pButton->getLabel()->setFontSize(25.0f);
 		pButton->setTag(1);
 		pCell->addChild(pButton);
@@ -96,7 +96,7 @@ bool CGridPageViewBackPackTest::init()
 	}
 
 	Sprite* pBg = Sprite::create("background2.png");
-	pBg->setPosition(Point(480, 320));
+	pBg->setPosition(Vec2(480, 320));
 	m_pWindow->addChild(pBg);
 
 	pTable = CGridPageView::create(
@@ -107,7 +107,7 @@ bool CGridPageViewBackPackTest::init()
 	pTable->setColumns(4);
 	pTable->setRows(5);
 	pTable->setAutoRelocate(true);
-	pTable->setPosition(Point(480, 320));
+	pTable->setPosition(Vec2(480, 320));
 	m_pWindow->addChild(pTable);
 	pTable->reloadData();
 
@@ -122,7 +122,7 @@ bool CGridPageViewBackPackTest::init()
 	m_pWindow->setOnTouchCancelledAfterLongClickListener(this, ccw_afterlongclick_selector(CGridPageViewBackPackTest::onLayoutTouchEndedAfterLongClick));
 
 	m_pToggleImage = CToggleView::create("circle1.png", "circle2.png");
-	m_pToggleImage->setPosition(Point(200, 320));
+	m_pToggleImage->setPosition(Vec2(200, 320));
 	m_pWindow->addChild(m_pToggleImage);
 
 	return true;
@@ -140,14 +140,14 @@ Ref* CGridPageViewBackPackTest::gridpageviewDataSource(Ref* pConvertCell, unsign
 
 		CScale9Sprite* pBg = CScale9Sprite::create("sprite9_btn1.png");
 		pBg->setContentSize(Size(70, 70));
-		pBg->setPosition(Point(320 / 4 / 2, 390 / 5 / 2));
+		pBg->setPosition(Vec2(320 / 4 / 2, 390 / 5 / 2));
 		pCell->addChild(pBg);
 
 		pIconButton = CButton::create("icon.png");
 		pIconButton->setOnLongClickListener(this, ccw_longclick_selector(CGridPageViewBackPackTest::onItemLongClick));
 		//pIconButton->getLabel()->setFontSize(25);
-		pIconButton->setPosition(Point(320 / 4 / 2, 390 / 5 / 2));
-		pIconButton->setLabelOffset(Point(-15, -15));
+		pIconButton->setPosition(Vec2(320 / 4 / 2, 390 / 5 / 2));
+		pIconButton->setLabelOffset(Vec2(-15, -15));
 		pIconButton->setTag(1);
 		pCell->addChild(pIconButton);
 	}
@@ -175,7 +175,7 @@ bool CGridPageViewBackPackTest::onItemLongClick(Ref* pSender, Touch* pTouch)
 {
 	CButton* pIconButton = (CButton*) pSender;
 	pIconButton->setVisible(false);
-	Point tPoint = pIconButton->getParent()->convertToWorldSpace(pIconButton->getPosition());
+	Vec2 tPoint = pIconButton->getParent()->convertToWorldSpace(pIconButton->getPosition());
 
 	m_pSelectedSprite->setVisible(true);
 	m_pSelectedSprite->setPosition(pTouch->getLocation());
@@ -187,7 +187,7 @@ void CGridPageViewBackPackTest::onLayoutTouchMovedAfterLongClick(Ref* pSender, T
 {
 	m_pSelectedSprite->setPosition(pTouch->getLocation());
 
-	Point tLayoutPoint = m_pWindow->convertTouchToNodeSpace(pTouch);
+	Vec2 tLayoutPoint = m_pWindow->convertTouchToNodeSpace(pTouch);
 	if( m_pToggleImage->getBoundingBox().containsPoint(tLayoutPoint) )
 	{
 		m_pToggleImage->setChecked(true);
@@ -208,7 +208,7 @@ void CGridPageViewBackPackTest::onLayoutTouchEndedAfterLongClick(Ref* pSender, T
 	m_pSelectedSprite->setVisible(false);
 	m_pToggleImage->setChecked(false);
 
-	Point tLayoutPoint = m_pWindow->convertTouchToNodeSpace(pTouch);
+	Vec2 tLayoutPoint = m_pWindow->convertTouchToNodeSpace(pTouch);
 	if( m_pToggleImage->getBoundingBox().containsPoint(tLayoutPoint) )
 	{
 		m_vData.erase(m_vData.begin() + pIconButton->getUserTag());

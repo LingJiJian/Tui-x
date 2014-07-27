@@ -24,15 +24,15 @@ bool CScrollViewBasicTest::init()
 	setDescription("ScrollView basic test");
 
 	CScrollView* pScroll = CScrollView::create(Size(480, 320));
-	pScroll->setPosition(Point(480, 320));
+	pScroll->setPosition(Vec2(480, 320));
 	pScroll->setDirection(eScrollViewDirectionBoth);
 	pScroll->setBackgroundImage("background.png");
 	m_pWindow->addChild(pScroll);
 
 
 	Sprite* pSprite = Sprite::create("scrollcontent.png");
-	pSprite->setAnchorPoint(Point::ZERO);
-	pSprite->setPosition(Point::ZERO);
+	pSprite->setAnchorPoint(Vec2::ZERO);
+	pSprite->setPosition(Vec2::ZERO);
 	pScroll->setContainerSize(pSprite->getContentSize());
 	pScroll->getContainer()->addChild(pSprite);
 
@@ -48,24 +48,24 @@ bool CScrollViewEventTest::init()
 	setDescription("test event");
 
 	Sprite* pBg = Sprite::create("background.png");
-	pBg->setPosition(Point(680, 320));
+	pBg->setPosition(Vec2(680, 320));
 	m_pWindow->addChild(pBg);
 
 	CScrollView* pScroll = CScrollView::create(Size(480, 320));
 	pScroll->setOnScrollingListener(this, ccw_scrolling_selector(CScrollViewEventTest::onScrolling));
-	pScroll->setPosition(Point(680, 320));
+	pScroll->setPosition(Vec2(680, 320));
 	pScroll->setDirection(eScrollViewDirectionBoth);
 	m_pWindow->addChild(pScroll);
 
 	Sprite* pSprite = Sprite::create("scrollcontent.png");
-	pSprite->setAnchorPoint(Point::ZERO);
-	pSprite->setPosition(Point::ZERO);
+	pSprite->setAnchorPoint(Vec2::ZERO);
+	pSprite->setPosition(Vec2::ZERO);
 	pScroll->setContainerSize(pSprite->getContentSize());
 	pScroll->getContainer()->addChild(pSprite);
 
 	m_pText1 = CLabel::create();
-	m_pText1->setAnchorPoint(Point(0, 0.5));
-	m_pText1->setPosition(Point(35, 460));
+	m_pText1->setAnchorPoint(Vec2(0, 0.5));
+	m_pText1->setPosition(Vec2(35, 460));
 	//m_pText1->setFontSize(35.0f);
 	m_pText1->setString("contentOffset:");
 	m_pWindow->addChild(m_pText1);
@@ -91,33 +91,33 @@ bool CScrollViewHorizontalTest::init()
 	setDescription("direction by horizontal\n add some buttons and sprites ");
 
 	Sprite* pBg = Sprite::create("background.png");
-	pBg->setPosition(Point(480, 320));
+	pBg->setPosition(Vec2(480, 320));
 	m_pWindow->addChild(pBg);
 
 	CScrollView* pScroll = CScrollView::create(Size(480, 320));
-	pScroll->setPosition(Point(480, 320));
+	pScroll->setPosition(Vec2(480, 320));
 	pScroll->setDirection(eScrollViewDirectionHorizontal);
 	m_pWindow->addChild(pScroll);
 
 	Sprite* pSprite = Sprite::create("scrollcontent.png");
-	pSprite->setAnchorPoint(Point::ZERO);
-	pSprite->setPosition(Point::ZERO);
+	pSprite->setAnchorPoint(Vec2::ZERO);
+	pSprite->setPosition(Vec2::ZERO);
 	pScroll->setContainerSize(pSprite->getContentSize());
 	pScroll->getContainer()->addChild(pSprite);
 	
 	for(int i = 0; i < 10; i++)
 	{
 		Sprite* pIcon = Sprite::create("icon.png");
-		pIcon->setAnchorPoint(Point::ZERO);
-		pIcon->setPosition(Point(i * 100, 0));
+		pIcon->setAnchorPoint(Vec2::ZERO);
+		pIcon->setPosition(Vec2(i * 100, 0));
 		pScroll->getContainer()->addChild(pIcon);
 	}
 
 	for(int i = 0; i < 5; i++)
 	{
 		CButton* pButton = CButton::createWith9Sprite(Size(150, 50), "sprite9_btn1.png", "sprite9_btn2.png");
-		pButton->setAnchorPoint(Point::ZERO);
-		pButton->setPosition(Point(i * 200, 200));
+		pButton->setAnchorPoint(Vec2::ZERO);
+		pButton->setPosition(Vec2(i * 200, 200));
 		pScroll->getContainer()->addChild(pButton);
 	}
 	
@@ -133,25 +133,25 @@ bool CScrollViewVerticalTest::init()
 	setDescription("direction by vertical\n add some toggle button in the same group");
 
 	Sprite* pBg = Sprite::create("background.png");
-	pBg->setPosition(Point(480, 320));
+	pBg->setPosition(Vec2(480, 320));
 	m_pWindow->addChild(pBg);
 
 	CScrollView* pScroll = CScrollView::create(Size(480, 320));
-	pScroll->setPosition(Point(480, 320));
+	pScroll->setPosition(Vec2(480, 320));
 	pScroll->setDirection(eScrollViewDirectionVertical);
 	m_pWindow->addChild(pScroll);
 
 	Sprite* pSprite = Sprite::create("scrollcontent.png");
-	pSprite->setAnchorPoint(Point::ZERO);
-	pSprite->setPosition(Point::ZERO);
+	pSprite->setAnchorPoint(Vec2::ZERO);
+	pSprite->setPosition(Vec2::ZERO);
 	pScroll->setContainerSize(pSprite->getContentSize());
 	pScroll->getContainer()->addChild(pSprite);
 
 	for(int i = 0; i < 5; i++)
 	{
 		CToggleView* pToggleButton = CToggleView::create("toggle1_1.png", "toggle1_2.png");
-		pToggleButton->setAnchorPoint(Point::ZERO);
-		pToggleButton->setPosition(Point(130, i * 130));
+		pToggleButton->setAnchorPoint(Vec2::ZERO);
+		pToggleButton->setPosition(Vec2(130, i * 130));
 		pToggleButton->setExclusion(1);
 		pScroll->getContainer()->addChild(pToggleButton);
 	}
@@ -168,25 +168,25 @@ bool CScrollViewAttributeTest::init()
 	setDescription("test attribute of scroll");
 
 	Sprite* pBg = Sprite::create("background.png");
-	pBg->setPosition(Point(680, 320));
+	pBg->setPosition(Vec2(680, 320));
 	m_pWindow->addChild(pBg);
 
 	pScroll = CScrollView::create(Size(480, 320));
-	pScroll->setPosition(Point(680, 320));
+	pScroll->setPosition(Vec2(680, 320));
 	pScroll->setDirection(eScrollViewDirectionVertical);
 	m_pWindow->addChild(pScroll);
 
 	Sprite* pSprite = Sprite::create("scrollcontent.png");
-	pSprite->setAnchorPoint(Point::ZERO);
-	pSprite->setPosition(Point::ZERO);
+	pSprite->setAnchorPoint(Vec2::ZERO);
+	pSprite->setPosition(Vec2::ZERO);
 	pScroll->setContainerSize(pSprite->getContentSize());
 	pScroll->getContainer()->addChild(pSprite);
 
 	for(int i = 0; i < 5; i++)
 	{
 		CToggleView* pToggleButton = CToggleView::create("toggle1_1.png", "toggle1_2.png");
-		pToggleButton->setAnchorPoint(Point::ZERO);
-		pToggleButton->setPosition(Point(130, i * 130));
+		pToggleButton->setAnchorPoint(Vec2::ZERO);
+		pToggleButton->setPosition(Vec2(130, i * 130));
 		pToggleButton->setExclusion(1);
 		pScroll->getContainer()->addChild(pToggleButton);
 	}
@@ -200,8 +200,8 @@ bool CScrollViewAttributeTest::init()
 	m_pWindow->addChild(pToggle1);
 
 	CLabel* pText1 = CLabel::create();
-	pText1->setAnchorPoint(Point(0, 0.5));
-	pText1->setPosition(Point(300, 480));
+	pText1->setAnchorPoint(Vec2(0, 0.5));
+	pText1->setPosition(Vec2(300, 480));
 	//pText1->setFontSize(35.0f);
 	pText1->setString("true");
 	m_pWindow->addChild(pText1);
@@ -216,8 +216,8 @@ bool CScrollViewAttributeTest::init()
 	m_pWindow->addChild(pToggle2);
 
 	CLabel* pText2 = CLabel::create();
-	pText2->setAnchorPoint(Point(0, 0.5));
-	pText2->setPosition(Point(300, 400));
+	pText2->setAnchorPoint(Vec2(0, 0.5));
+	pText2->setPosition(Vec2(300, 400));
 //	pText2->setFontSize(35.0f);
 	pText2->setString("true");
 	m_pWindow->addChild(pText2);
@@ -233,8 +233,8 @@ bool CScrollViewAttributeTest::init()
 	m_pWindow->addChild(pToggle3);
 
 	CLabel* pText3 = CLabel::create();
-	pText3->setAnchorPoint(Point(0, 0.5));
-	pText3->setPosition(Point(300, 320));
+	pText3->setAnchorPoint(Vec2(0, 0.5));
+	pText3->setPosition(Vec2(300, 320));
 	//pText3->setFontSize(35.0f);
 	pText3->setString("true");
 	m_pWindow->addChild(pText3);
@@ -250,8 +250,8 @@ bool CScrollViewAttributeTest::init()
 	m_pWindow->addChild(pToggle4);
 
 	CLabel* pText4 = CLabel::create();
-	pText4->setAnchorPoint(Point(0, 0.5));
-	pText4->setPosition(Point(300, 240));
+	pText4->setAnchorPoint(Vec2(0, 0.5));
+	pText4->setPosition(Vec2(300, 240));
 	//pText4->setFontSize(35.0f);
 	pText4->setString("true");
 	m_pWindow->addChild(pText4);
@@ -301,25 +301,25 @@ bool CScrollViewAnimationTest::init()
 	setDescription("test animation");
 
 	Sprite* pBg = Sprite::create("background.png");
-	pBg->setPosition(Point(680, 320));
+	pBg->setPosition(Vec2(680, 320));
 	m_pWindow->addChild(pBg);
 
 	pScroll = CScrollView::create(Size(480, 320));
-	pScroll->setPosition(Point(680, 320));
+	pScroll->setPosition(Vec2(680, 320));
 	pScroll->setDirection(eScrollViewDirectionHorizontal);
 	m_pWindow->addChild(pScroll);
 
 	Sprite* pSprite = Sprite::create("scrollcontent.png");
-	pSprite->setAnchorPoint(Point::ZERO);
-	pSprite->setPosition(Point::ZERO);
+	pSprite->setAnchorPoint(Vec2::ZERO);
+	pSprite->setPosition(Vec2::ZERO);
 	pScroll->setContainerSize(pSprite->getContentSize());
 	pScroll->getContainer()->addChild(pSprite);
 
 	for(int i = 0; i < 10; i++)
 	{
 		Sprite* pIcon = Sprite::create("icon.png");
-		pIcon->setAnchorPoint(Point::ZERO);
-		pIcon->setPosition(Point(i * 100, 100));
+		pIcon->setAnchorPoint(Vec2::ZERO);
+		pIcon->setPosition(Vec2(i * 100, 100));
 		pScroll->getContainer()->addChild(pIcon);
 	}
 
@@ -332,8 +332,8 @@ bool CScrollViewAnimationTest::init()
 	m_pWindow->addChild(pButton1);
 
 	CLabel* pText1 = CLabel::create();
-	pText1->setAnchorPoint(Point(0, 0.5));
-	pText1->setPosition(Point(240, 480));
+	pText1->setAnchorPoint(Vec2(0, 0.5));
+	pText1->setPosition(Vec2(240, 480));
 	//pText1->setFontSize(35.0f);
 	pText1->setString("setContentOffsetInDuration");
 	m_pWindow->addChild(pText1);
@@ -347,8 +347,8 @@ bool CScrollViewAnimationTest::init()
 	m_pWindow->addChild(pButton2);
 
 	CLabel* pText2 = CLabel::create();
-	pText2->setAnchorPoint(Point(0, 0.5));
-	pText2->setPosition(Point(240, 400));
+	pText2->setAnchorPoint(Vec2(0, 0.5));
+	pText2->setPosition(Vec2(240, 400));
 	//pText2->setFontSize(35.0f);
 	pText2->setString("setContentOffsetEaseIn");
 	m_pWindow->addChild(pText2);
@@ -361,8 +361,8 @@ bool CScrollViewAnimationTest::init()
 	m_pWindow->addChild(pButton3);
 
 	CLabel* pText3 = CLabel::create();
-	pText3->setAnchorPoint(Point(0, 0.5));
-	pText3->setPosition(Point(240, 320));
+	pText3->setAnchorPoint(Vec2(0, 0.5));
+	pText3->setPosition(Vec2(240, 320));
 	//pText3->setFontSize(35.0f);
 	pText3->setString("setContentOffset");
 	m_pWindow->addChild(pText3);
@@ -397,28 +397,28 @@ bool CScrollViewInsideScrollTest::init()
 
 	CScrollView* pScroll = CScrollView::create(Size(480, 320));
 	pScroll->setBackgroundImage("background.png");
-	pScroll->setPosition(Point(480, 320));
+	pScroll->setPosition(Vec2(480, 320));
 	pScroll->setDirection(eScrollViewDirectionBoth);
 	m_pWindow->addChild(pScroll);
 
 	Sprite* pSprite = Sprite::create("scrollcontent.png");
-	pSprite->setAnchorPoint(Point::ZERO);
-	pSprite->setPosition(Point::ZERO);
+	pSprite->setAnchorPoint(Vec2::ZERO);
+	pSprite->setPosition(Vec2::ZERO);
 	pScroll->setContainerSize(pSprite->getContentSize());
 	pScroll->getContainer()->addChild(pSprite);
 
 	CScrollView* pScroll2 = CScrollView::create(Size(272, 76));
 	pScroll2->setDirection(eScrollViewDirectionHorizontal);
 	pScroll2->setBackgroundImage("background3.png");
-	pScroll2->setPosition(Point(480 /2, 320 / 2));
+	pScroll2->setPosition(Vec2(480 /2, 320 / 2));
 	pScroll->getContainer()->addChild(pScroll2);
 
 	pScroll2->setContainerSize(Size(62 * 20, 76));
 	for( int i = 0; i < 20; ++i )
 	{
 		Sprite* pSp = Sprite::create("icon.png");
-		pSp->setAnchorPoint(Point::ZERO);
-		pSp->setPosition(Point(i * 62, 0));
+		pSp->setAnchorPoint(Vec2::ZERO);
+		pSp->setPosition(Vec2(i * 62, 0));
 		pScroll2->getContainer()->addChild(pSp);
 	}
 

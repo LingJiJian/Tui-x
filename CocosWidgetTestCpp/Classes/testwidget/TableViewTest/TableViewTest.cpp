@@ -28,7 +28,7 @@ bool CTableViewBasicTest::init()
 		Size(74.0f, 70.0f),
 		50, this, 
 		ccw_datasource_adapter_selector(CTableViewBasicTest::tableviewDataSource));
-	pTable->setPosition(Point(480, 320));
+	pTable->setPosition(Vec2(480, 320));
 	pTable->setBackgroundColor(Color4B::GRAY);
 	m_pWindow->addChild(pTable);
 	pTable->reloadData();
@@ -46,7 +46,7 @@ Ref* CTableViewBasicTest::tableviewDataSource(Ref* pConvertView, unsigned int id
 		pCell->autorelease();
 
 		pButton = CButton::createWith9Sprite(Size(70, 70), "sprite9_btn1.png", "sprite9_btn2.png");
-		pButton->setPosition(Point(74.0f / 2, 70.0f / 2));
+		pButton->setPosition(Vec2(74.0f / 2, 70.0f / 2));
 		//pButton->getLabel()->setFontSize(25.0f);
 		pButton->setTag(1);
 		pCell->addChild(pButton);
@@ -105,13 +105,13 @@ bool CTableViewBindingDataAndVertical::init()
 		m_vDatas.size(), this, 
 		ccw_datasource_adapter_selector(CTableViewBindingDataAndVertical::tableviewDataSource));
 	pTable->setDirection(eScrollViewDirectionVertical);
-	pTable->setPosition(Point(480, 320));
+	pTable->setPosition(Vec2(480, 320));
 	m_pWindow->addChild(pTable);
 	pTable->reloadData();
 
 	pText = CLabel::createWithSystemFont("click button","",35);
-	pText->setAnchorPoint(Point(0, 0.5));
-	pText->setPosition(Point(200, 320));
+	pText->setAnchorPoint(Vec2(0, 0.5));
+	pText->setPosition(Vec2(200, 320));
 	pText->setString("click button");
 	m_pWindow->addChild(pText);
 
@@ -130,7 +130,7 @@ Ref* CTableViewBindingDataAndVertical::tableviewDataSource(Ref* pConvertView, un
 
 		pButton = CButton::createWith9Sprite(Size(150, 50), "sprite9_btn1.png", "sprite9_btn2.png");
 		pButton->setOnClickListener(this, ccw_click_selector(CTableViewBindingDataAndVertical::onClick));
-		pButton->setPosition(Point(150.0f / 2, 54.0f / 2));
+		pButton->setPosition(Vec2(150.0f / 2, 54.0f / 2));
 		//pButton->getLabel()->setFontSize(25.0f);
 		pButton->setTag(1);
 		pCell->addChild(pButton);
@@ -195,13 +195,13 @@ bool CTableViewReloadTest::init()
 		ccw_datasource_adapter_selector(CTableViewReloadTest::tableviewDataSource));
 	pTable->setDirection(eScrollViewDirectionVertical);
 	pTable->setAutoRelocate(true);
-	pTable->setPosition(Point(480, 320));
+	pTable->setPosition(Vec2(480, 320));
 	m_pWindow->addChild(pTable);
 	pTable->reloadData();
 
 	CButton* pButton = CButton::createWith9Sprite(Size(150, 50), "sprite9_btn1.png", "sprite9_btn2.png");
 	pButton->setOnClickListener(this, ccw_click_selector(CTableViewReloadTest::onClick));
-	pButton->setPosition(Point(200, 320));
+	pButton->setPosition(Vec2(200, 320));
 	//pButton->getLabel()->setFontSize(25.0f);
 	pButton->getLabel()->setString("reloadData");
 	m_pWindow->addChild(pButton);
@@ -220,7 +220,7 @@ Ref* CTableViewReloadTest::tableviewDataSource(Ref* pConvertView, unsigned int i
 		pCell->autorelease();
 
 		pButton = CButton::createWith9Sprite(Size(150, 50), "sprite9_btn1.png", "sprite9_btn2.png");
-		pButton->setPosition(Point(150.0f / 2, 54.0f / 2));
+		pButton->setPosition(Vec2(150.0f / 2, 54.0f / 2));
 //		pButton->getLabel()->setFontSize(25.0f);
 		pButton->setTag(1);
 		pCell->addChild(pButton);

@@ -25,7 +25,7 @@ bool CExpandableListViewBasicTest::init()
 	
 	pListView = CExpandableListView::create(Size(320, 390));
 	pListView->setBackgroundImage("background2.png");
-	pListView->setPosition(Point(480, 320));
+	pListView->setPosition(Vec2(480, 320));
 	m_pWindow->addChild(pListView);
 
 	for( int i = 0; i < 10; i++ )
@@ -35,11 +35,11 @@ bool CExpandableListViewBasicTest::init()
 		pListView->insertExpandableNodeAtLast(pExpandableNode);
 
 		CImageViewScale9* pExpandableNodeBg = CImageViewScale9::create(Size(320, 45), "expandnodebg.png");
-		pExpandableNodeBg->setPosition(Point(320/2, 50/2));
+		pExpandableNodeBg->setPosition(Vec2(320/2, 50/2));
 		pExpandableNode->addChild(pExpandableNodeBg);
 
 		CButton* pColBtn = CButton::createWith9Sprite(Size(35, 35), "sprite9_btn1.png", "sprite9_btn2.png");
-		pColBtn->setPosition(Point(320 - 30, 50 / 2));
+		pColBtn->setPosition(Vec2(320 - 30, 50 / 2));
 		pColBtn->setText("-");
 		pColBtn->setUserTag(i);
 		pColBtn->setOnClickListener(this, ccw_click_selector(CExpandableListViewBasicTest::onClickCollapse));
@@ -48,8 +48,8 @@ bool CExpandableListViewBasicTest::init()
 		char buff[64] = {0};
 		sprintf(buff, "ExpandableNode : %d", i);
 		CLabel* pTitleLabel = CLabel::createWithSystemFont(buff, "", 28);
-		pTitleLabel->setPosition(Point(10, 50/2));
-		pTitleLabel->setAnchorPoint(Point(0, 0.5));
+		pTitleLabel->setPosition(Vec2(10, 50/2));
+		pTitleLabel->setAnchorPoint(Vec2(0, 0.5));
 		pExpandableNode->addChild(pTitleLabel);
 
 
@@ -64,7 +64,7 @@ bool CExpandableListViewBasicTest::init()
 		pButton->setOnClickListener(this, ccw_click_selector(CExpandableListViewBasicTest::onClickExpand));
 		pButton->initText("collapse", "", 28);
 		pButton->setUserTag(i);
-		pButton->setPosition(Point(100, 40/2));
+		pButton->setPosition(Vec2(100, 40/2));
 		CLayout* pBtnLayout = CLayout::create(Size(320, 40));
 		pBtnLayout->addChild(pButton);
 		pExpandableNode->insertItemNodeAtLast(pBtnLayout);

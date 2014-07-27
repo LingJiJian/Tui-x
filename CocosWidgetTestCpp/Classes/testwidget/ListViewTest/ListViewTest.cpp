@@ -46,13 +46,13 @@ bool CListViewBasicTest::init()
 
 	m_pListView = CListView::create(Size(480, 320));
 	m_pListView->setBackgroundImage("background.png");
-	m_pListView->setPosition(Point(480, 320));
+	m_pListView->setPosition(Vec2(480, 320));
 	m_pListView->setDirection(eScrollViewDirectionVertical);
 	m_pWindow->addChild(m_pListView);
 
 	CButton* pButton = CButton::createWith9Sprite(Size(150, 50),
 		"sprite9_btn1.png", "sprite9_btn2.png");
-	pButton->setPosition(Point(150, 320));
+	pButton->setPosition(Vec2(150, 320));
 	pButton->setOnClickListener(this, ccw_click_selector(CListViewBasicTest::onClick));
 	pButton->initText("Add", "", 30);
 	m_pWindow->addChild(pButton);
@@ -76,9 +76,9 @@ void CListViewBasicTest::onClick(Ref* pSender)
 			*/
 		pLayout->setBackgroundImage("icon.png");
 		pLayout->ignoreAnchorPointForPosition(false);
-		pLayout->setAnchorPoint(Point(0.5f, 0.5f));
+		pLayout->setAnchorPoint(Vec2(0.5f, 0.5f));
 		pLayout->setContentSize(Size(tItem.tSize.width - 4, tItem.tSize.height - 2));
-		pLayout->setPosition(Point(tItem.tSize.width/2, tItem.tSize.height/2));
+		pLayout->setPosition(Vec2(tItem.tSize.width/2, tItem.tSize.height/2));
 
 		m_pListView->insertNodeAtLast(pLayout);
 		m_pListView->reloadData();
@@ -96,13 +96,13 @@ bool CListViewOperateTest::init()
 
 	m_pListView = CListView::create(Size(480, 320));
 	m_pListView->setBackgroundImage("background.png");
-	m_pListView->setPosition(Point(480, 320));
+	m_pListView->setPosition(Vec2(480, 320));
 	m_pListView->setDirection(eScrollViewDirectionVertical);
 	m_pWindow->addChild(m_pListView);
 
 	CButton* pButton = CButton::createWith9Sprite(Size(150, 50),
 		"sprite9_btn1.png", "sprite9_btn2.png");
-	pButton->setPosition(Point(150, 450));
+	pButton->setPosition(Vec2(150, 450));
 	pButton->setUserTag(1);
 	pButton->setOnClickListener(this, ccw_click_selector(CListViewOperateTest::onClick));
 	pButton->initText("Add Last", "", 30);
@@ -110,7 +110,7 @@ bool CListViewOperateTest::init()
 
 	CButton* pButton2 = CButton::createWith9Sprite(Size(150, 50),
 		"sprite9_btn1.png", "sprite9_btn2.png");
-	pButton2->setPosition(Point(150, 380));
+	pButton2->setPosition(Vec2(150, 380));
 	pButton2->setUserTag(2);
 	pButton2->setOnClickListener(this, ccw_click_selector(CListViewOperateTest::onClick));
 	pButton2->initText("Add Front", "", 30);
@@ -118,7 +118,7 @@ bool CListViewOperateTest::init()
 
 	CButton* pButton3 = CButton::createWith9Sprite(Size(150, 50),
 		"sprite9_btn1.png", "sprite9_btn2.png");
-	pButton3->setPosition(Point(150, 310));
+	pButton3->setPosition(Vec2(150, 310));
 	pButton3->setUserTag(3);
 	pButton3->setOnClickListener(this, ccw_click_selector(CListViewOperateTest::onClick));
 	pButton3->initText("Remove Last", "", 30);
@@ -126,7 +126,7 @@ bool CListViewOperateTest::init()
 
 	CButton* pButton4 = CButton::createWith9Sprite(Size(150, 50),
 		"sprite9_btn1.png", "sprite9_btn2.png");
-	pButton4->setPosition(Point(150, 240));
+	pButton4->setPosition(Vec2(150, 240));
 	pButton4->setUserTag(4);
 	pButton4->setOnClickListener(this, ccw_click_selector(CListViewOperateTest::onClick));
 	pButton4->initText("Remove Front", "", 30);
@@ -154,7 +154,7 @@ void CListViewOperateTest::onClick(Ref* pSender)
 			*/
 			CButton* pButton =  CButton::createWith9Sprite(Size(150, 25),
 				"sprite9_btn1.png", "sprite9_btn2.png");
-			pButton->setPosition(Point(480 /2, 30 /2));
+			pButton->setPosition(Vec2(480 /2, 30 /2));
 			char str[64] = {0};
 			sprintf(str, "%d", last_add_idx);
 			pButton->initText(str, "", 20);
@@ -177,7 +177,7 @@ void CListViewOperateTest::onClick(Ref* pSender)
 			*/
 			CButton* pButton =  CButton::createWith9Sprite(Size(150, 25),
 				"sprite9_btn1.png", "sprite9_btn2.png");
-			pButton->setPosition(Point(480 /2, 30 /2));
+			pButton->setPosition(Vec2(480 /2, 30 /2));
 			char str[64] = {0};
 			sprintf(str, "%d", last_add_idx);
 			pButton->initText(str, "", 20);

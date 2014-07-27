@@ -24,7 +24,7 @@ bool CGridViewBasicTest::init()
 	setDescription("GridView basic test (only work in vertical)");
 
 	Sprite* pBg = Sprite::create("background.png");
-	pBg->setPosition(Point(480, 320));
+	pBg->setPosition(Vec2(480, 320));
 	m_pWindow->addChild(pBg);
 
 	CGridView* pGridView = CGridView::create(
@@ -33,7 +33,7 @@ bool CGridViewBasicTest::init()
 		96, this,
 		ccw_datasource_adapter_selector(CGridViewBasicTest::gridviewDataSource));
 	pGridView->setColumns(5);
-	pGridView->setPosition(Point(480, 320));
+	pGridView->setPosition(Vec2(480, 320));
 	m_pWindow->addChild(pGridView);
 	pGridView->setAutoRelocate(true);
 	pGridView->reloadData();
@@ -52,7 +52,7 @@ Ref* CGridViewBasicTest::gridviewDataSource(Ref* pConvertView, unsigned int idx)
 		pCell->autorelease();
 
 		pButton = CButton::createWith9Sprite(Size(70, 70), "sprite9_btn1.png", "sprite9_btn2.png");
-		pButton->setPosition(Point(480 / 5 / 2, 320 / 4 / 2));
+		pButton->setPosition(Vec2(480 / 5 / 2, 320 / 4 / 2));
 //		pButton->getLabel()->setFontSize(25.0f);
 		pButton->setTag(1);
 		pCell->addChild(pButton);

@@ -120,9 +120,6 @@
     <ClCompile Include="..\..\CocosWidget\ListView.cpp">
       <Filter>CocosWidget</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CocosWidget\Lua_cocos2dx_widget.cpp">
-      <Filter>CocosWidget</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\CocosWidget\PageView.cpp">
       <Filter>CocosWidget</Filter>
     </ClCompile>
@@ -276,9 +273,6 @@
       <Filter>CocosWidget</Filter>
     </ClInclude>
     <ClInclude Include="..\..\CocosWidget\ListView.h">
-      <Filter>CocosWidget</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\CocosWidget\Lua_cocos2dx_widget.h">
       <Filter>CocosWidget</Filter>
     </ClInclude>
     <ClInclude Include="..\..\CocosWidget\PageView.h">
