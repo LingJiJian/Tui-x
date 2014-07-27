@@ -98,7 +98,7 @@ int CSlider::valueFromPercent(float fPercentage)
 	return (int)(fPercentage * m_nMaxValue);
 }
 
-int CSlider::valueFromPoint(const Point& tPoint)
+int CSlider::valueFromPoint(const Vec2& tPoint)
 {
 	int nRet = 0;
 	switch( m_eDirection )
@@ -224,7 +224,7 @@ void CSlider::onTouchCancelled(Touch *pTouch, float fDuration)
 	}
 }
 
-void CSlider::pointFromValue(int nValue, Point& tOutPoint)
+void CSlider::pointFromValue(int nValue, Vec2& tOutPoint)
 {
 	float fPercentage = getPercentage();
 	switch( m_eDirection )
@@ -264,7 +264,7 @@ void CSlider::changeValueAndExecuteEvent(int nValue, bool bExeEvent)
 
 	if( m_pSlider )
 	{
-		Point tOutPoint;
+		Vec2 tOutPoint;
 		pointFromValue(m_nValue, tOutPoint);
 
 		m_pSlider->setPosition(tOutPoint);

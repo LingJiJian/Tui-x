@@ -108,7 +108,7 @@ public:
     /**
      *  @js NA
      */
-    virtual void visit(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated);
+	virtual void visit(Renderer *renderer, const Mat4& parentTransform, uint32_t parentFlags);
     
     virtual bool init();
 

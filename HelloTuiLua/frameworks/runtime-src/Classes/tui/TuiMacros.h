@@ -1,7 +1,6 @@
 #ifndef __TUI_MACROS__
 #define __TUI_MACROS__
 
-
 #define NS_TUI_BEGIN namespace cocos2d {namespace tui{
 #define NS_TUI_END   }}
 #define US_NS_TUI	 using namespace cocos2d::tui;
@@ -22,5 +21,8 @@ public: static __CLASS__* getInstance(){\
 	return m_instance;\
 }
 #endif
+
+#define Arp(_p_) Vec2((float)(_p_.x * TuiManager::getInstance()->getScaleResolutionX()), \
+					  (float)(_p_.y * TuiManager::getInstance()->getScaleResolutionY()))
 
 #endif

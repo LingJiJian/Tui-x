@@ -1,6 +1,6 @@
 #include "Welcomeui.h"
 #include "tui/TuiManager.h"
-#include "tui/tagMap/tuiTag_welcome.h"
+#include "tui/tagMap/Tag_welcome.h"
 
 NS_WELCOME_BEGIN
 
@@ -9,20 +9,6 @@ void Welcomeui::onLoadScene()
 	setAutoRemoveUnusedTexture(true);
 	TuiManager::getInstance()->parseScene(this,"panel_welcome",PATH_WELCOME);
 	
-	Size size = Director::getInstance()->getOpenGLView()->getFrameSize();
-	float psX = (float) size.width / 800;
-	float psY = (float) size.height / 480;
-	for (Node *pChild : this->getChildren()){
-		pChild->setPosition(pChild->getPositionX()*psX, pChild->getPositionY()*psY);
-		CWidgetWindow *pWindow = dynamic_cast<CWidgetWindow*>(pChild);
-		if (pWindow != nullptr){
-			for (Node *pChild : pWindow->getChildren()){
-				pChild->setPosition(pChild->getPositionX()*psX, pChild->getPositionY()*psY);
-			}
-		}
-	}
-	
-
 	this->runAction(
 		Sequence::create(
 		DelayTime::create(1.5f), 

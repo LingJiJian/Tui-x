@@ -25,11 +25,11 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto director = Director::getInstance();
 	auto glview = director->getOpenGLView();
 	if(!glview) {
-		glview = GLView::createWithRect("HelloTuiLua", Rect(0,0,800,480));
+		glview = GLView::createWithRect("HelloTuiLua", Rect(0,0,960,640));
 		director->setOpenGLView(glview);
 	}
 
-    glview->setDesignResolutionSize(800, 480, ResolutionPolicy::NO_BORDER);
+    //glview->setDesignResolutionSize(800, 480, ResolutionPolicy::EXACT_FIT);
 
     // turn on display FPS
     director->setDisplayStats(true);
@@ -38,6 +38,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     director->setAnimationInterval(1.0 / 60);
 
 	FileUtils::getInstance()->addSearchPath("src");
+	FileUtils::getInstance()->addSearchPath("res");
 
 	auto engine = LuaEngine::getInstance();
 	ScriptEngineManager::getInstance()->setScriptEngine(engine);

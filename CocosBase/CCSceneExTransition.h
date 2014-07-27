@@ -80,7 +80,7 @@ public:
      *  @lua NA
      */
     virtual ~CCSceneExTransition();
-    virtual void draw(Renderer *renderer, const kmMat4& transform, bool transformUpdated);
+    virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags);
     /**
      *  @js NA
      *  @lua NA
@@ -629,7 +629,7 @@ public :
      */
     virtual ~CCSceneExTransitionCrossFade();
 
-    virtual void draw(Renderer *renderer, const kmMat4& transform, bool transformUpdated);
+    virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags);
     /**
      *  @js NA
      *  @lua NA
@@ -671,7 +671,7 @@ public :
     virtual void onEnter() override;
 	virtual void onExit() override;
     virtual ActionInterval * easeActionWithAction(ActionInterval * action) override;
-	virtual void draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated) override;
+	virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags) override;
 
 public:
     static CCSceneExTransitionTurnOffTiles* create(float t, CSceneExtension* scene);

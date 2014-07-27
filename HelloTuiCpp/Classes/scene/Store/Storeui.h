@@ -1,7 +1,7 @@
 #ifndef __STORE_UI_H__
 #define __STORE_UI_H__
 
-#include "tui/TuiBase.h"
+#include "../../tui/TuiBase.h"
 #include "StoreCfg.h"
 
 NS_STORE_BEGIN

@@ -351,15 +351,15 @@ bool CWidgetWindow::init()
 
 		this->ignoreAnchorPointForPosition(true);
 		this->setContentSize(tWinSize);
-		this->setAnchorPoint(Point::ZERO);
-		this->setPosition(Point::ZERO);
+		this->setAnchorPoint(Vec2::ZERO);
+		this->setPosition(Vec2::ZERO);
 
 		return true;
 	}
 	return false;
 }
 
-void CWidgetWindow::visit(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated)
+void CWidgetWindow::visit(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags)
 {
 	if( m_bIsTouched )
 	{
@@ -375,7 +375,7 @@ void CWidgetWindow::visit(Renderer *renderer, const kmMat4& parentTransform, boo
 		}
 	}
 
-	Node::visit(renderer,parentTransform,parentTransformUpdated);
+	Node::visit(renderer, parentTransform, parentFlags);
 }
 
 void CWidgetWindow::onEnter()
@@ -424,7 +424,7 @@ bool CWidgetWindow::onTouchBegan(Touch *pTouch, Event *pEvent)
 	unsigned int nCount = _children.size();
 	if( m_bTouchEnabled && _visible && nCount > 0 )
 	{
-		Point touchPointInView = convertToNodeSpace(pTouch->getLocation());
+		Vec2 touchPointInView = convertToNodeSpace(pTouch->getLocation());
 
 		for(int i = nCount-1; i >= 0; --i)
 		{
@@ -518,7 +518,7 @@ void CWidgetWindow::onTouchesBegan(const std::vector<Touch*>&touches, Event *unu
 		Touch* pTouch = touches.at(i);
 		if( m_bTouchEnabled && m_bMultiTouchEnabled && _visible &&  _children.size() > 0 )
 		{
-			Point touchPointInView = convertToNodeSpace(pTouch->getLocation());
+			Vec2 touchPointInView = convertToNodeSpace(pTouch->getLocation());
 
 				for(int j=_children.size()-1;j>=0;--j){
 					Node* pNode = _children.at(j);

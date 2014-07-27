@@ -73,19 +73,27 @@ public:
 	 * @param b 
 	 */
 	void setUseSpriteFrame(bool b);
-
+    /**
+     * @brief adaptive multi resolution
+     *
+     * @param b
+     */
+    void setAdaptResolution(bool b, float designWidth=800,float designHeight=480);
+    
+    CC_SYNTHESIZE_READONLY(float, m_fScaleResolutionX, ScaleResolutionX);
+    CC_SYNTHESIZE_READONLY(float, m_fScaleResolutionY, ScaleResolutionY);
 public:
 
 	CWidgetWindow *createPanel(float tag, float x, float y, int w, int h, float rotation);
 	CLayout *createLayout(float tag, float x, float y, float w, float h, float rotation);
-	CScrollView *createScrollView(float tag, int direction, float x, float y, float w, float h, float rotation);
+	CScrollView *createScrollView(float tag, int direction,int innerWidth,int innerHeight, float x, float y, float w, float h, float rotation);
 	CListView *createListView(float tag, const char* img, float x, float y, float w, float h, float rotation);
 	CImageView *createImage(float tag, const char* file, float scaleX, float scaleY, float x, float y, float rotation);
 	CImageViewScale9 *createImage9(float tag, const char* file, float x, float y, float w, float h, float up, float down, float left, float right, float rotation);
 	CButton *createBtn(float tag, const char* normal, const char* select, const char* disable, float x, float y, float w, float h, float rotation);
 	CToggleView *createToggleView(float tag, int exclusion, const char* normal, const char* select, const char* disable, float x, float y, float rotation);
-	CSlider *createSlider(float tag, const char* bg, const char* progress, const char* thumb,int dir, float x, float y, float rotation);
-	CProgressBar *createProgress(float tag, const char* bg, const char* progress,int dir, float x, float y, float rotation);
+	CSlider *createSlider(float tag, const char* bg, const char* progress, const char* thumb, float x, float y, float rotation);
+	CProgressBar *createProgress(float tag, const char* bg, const char* progress, float x, float y, float rotation);
 	CLabel *createLabel(float tag, const char* text, const char* font, int alignment, float fontSize, int r, int g, int b, float x, float y, float w, float h, int r2, int g2, int b2, float strokeSize, int shadowDistance, float shadowBlur, float rotation);
 	CLabelAtlas *createLabelAtlas(float tag, const char* file, float x, float y, float w, float h, float rotation);
 	Armature *createArmature(float tag, const char* name, const char* png, const char* plist, const char* xml, float x, float y, float rotation);
@@ -117,11 +125,14 @@ protected:
 	 * @param xmlNode 
 	 */
 	void parseControl(Node* container,xml_node<char>* xmlNode);
+    
+    void doAdapterResolution(Node* container);
 private:
 	map<string,string> m_DataMap;
+    
 	bool m_isUseSpriteFrame;
+    bool m_isAdaptResolution;
 };
-
 
 NS_TUI_END
 

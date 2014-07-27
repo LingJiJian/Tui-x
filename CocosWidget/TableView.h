@@ -98,9 +98,9 @@ protected:
 	void removeAllFromUsed();
     void removeAllFromFreed();
 	void insertSortableCell(CTableViewCell* pCell, unsigned int idx);
-	unsigned int cellBeginIndexFromOffset(const Point& offset);
-	unsigned int cellEndIndexFromOffset(const Point& offset);
-	Point cellPositionFromIndex(unsigned int idx);
+	unsigned int cellBeginIndexFromOffset(const Vec2& offset);
+	unsigned int cellEndIndexFromOffset(const Vec2& offset);
+	Vec2 cellPositionFromIndex(unsigned int idx);
 	virtual void updateCellAtIndex(unsigned int idx);
 	void updatePositions();
 

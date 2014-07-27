@@ -41,7 +41,7 @@ CButton::CButton()
 , m_pDisabledImage(NULL)
 , m_pSelectedImage(NULL)
 , m_bScale9Enabled(false)
-, m_tTextOffset(Point::ZERO)
+, m_tTextOffset(Vec2::ZERO)
 , m_pLabel(NULL)
 , m_bCascadeTextSizeEnabled(false)
 {
@@ -180,7 +180,7 @@ void CButton::setNormalSpriteFrame(SpriteFrame* pFrame)
 				setContentSize(m_pNormalImage->getContentSize());
 			}
 
-			m_pNormalImage->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+			m_pNormalImage->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 			addChild(m_pNormalImage);
 		}
 	}
@@ -218,7 +218,7 @@ void CButton::setSelectedSpriteFrame(SpriteFrame* pFrame)
 				m_pSelectedImage = Sprite::createWithSpriteFrame(pFrame);
 			}
 
-			m_pSelectedImage->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+			m_pSelectedImage->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 			m_pSelectedImage->setVisible(false);
 			addChild(m_pSelectedImage);
 		}
@@ -257,7 +257,7 @@ void CButton::setDisabledSpriteFrame(SpriteFrame* pFrame)
 				m_pDisabledImage = Sprite::createWithSpriteFrame(pFrame);
 			}
 
-			m_pDisabledImage->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+			m_pDisabledImage->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 			m_pDisabledImage->setVisible(false);
 			addChild(m_pDisabledImage);
 		}
@@ -325,13 +325,13 @@ void CButton::setNormalTexture(Texture2D *pTexture)
 			else
 			{
 				Rect rect;
-				rect.origin = Point::ZERO;
+				rect.origin = Vec2::ZERO;
 				rect.size = pTexture->getContentSize();
 				m_pNormalImage = Sprite::createWithTexture(pTexture);
 				setContentSize(pTexture->getContentSize());
 			}
 
-			m_pNormalImage->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+			m_pNormalImage->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 			addChild(m_pNormalImage);
 		}
 	}
@@ -370,12 +370,12 @@ void CButton::setSelectedTexture(Texture2D *pTexture)
 			else
 			{
 				Rect rect;
-				rect.origin = Point::ZERO;
+				rect.origin = Vec2::ZERO;
 				rect.size = pTexture->getContentSize();
 				m_pSelectedImage = Sprite::createWithTexture(pTexture);
 			}
 
-			m_pSelectedImage->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+			m_pSelectedImage->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 			m_pSelectedImage->setVisible(false);
 			addChild(m_pSelectedImage);
 		}
@@ -415,12 +415,12 @@ void CButton::setDisabledTexture(Texture2D *pTexture)
 			else
 			{
 				Rect rect;
-				rect.origin = Point::ZERO;
+				rect.origin = Vec2::ZERO;
 				rect.size = pTexture->getContentSize();
 				m_pDisabledImage = Sprite::createWithTexture(pTexture);
 			}
 
-			m_pDisabledImage->setPosition(Point(_contentSize.width/2, _contentSize.height/2));
+			m_pDisabledImage->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 			m_pDisabledImage->setVisible(false);
 			addChild(m_pDisabledImage);
 		}
@@ -608,7 +608,7 @@ void CButton::setEnabled(bool bEnabled)
 	}
 }
 
-void CButton::setLabelOffset(const Point& tOffset)
+void CButton::setLabelOffset(const Vec2& tOffset)
 {
 	if( m_pLabel )
 	{
@@ -642,7 +642,7 @@ void CButton::onTouchMoved(Touch* pTouch, float fDuration)
 
 	if( m_pSelectedImage )
 	{
-		Point touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
+		Vec2 touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
 		if( getBoundingBox().containsPoint(touchPointInView) )
 		{
 			CC_SAFE_SET_VISIBLE(m_pNormalImage, false);
@@ -662,7 +662,7 @@ void CButton::onTouchEnded(Touch* pTouch, float fDuration)
 
 	if( m_pSelectedImage )
 	{
-		Point touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
+		Vec2 touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
 		if( getBoundingBox().containsPoint(touchPointInView) )
 		{
 			CC_SAFE_SET_VISIBLE(m_pNormalImage, true);
@@ -677,7 +677,7 @@ void CButton::onTouchEnded(Touch* pTouch, float fDuration)
 	}
 	else
 	{
-		Point touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
+		Vec2 touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
 		if( getBoundingBox().containsPoint(touchPointInView) )
 		{
 			CC_SAFE_SET_VISIBLE(m_pNormalImage, true);

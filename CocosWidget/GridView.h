@@ -106,9 +106,9 @@ protected:
 	void insertSortableCell(CGridViewCell* pCell, unsigned int idx);
 	void updatePositions();
 	void updateCellAtIndex(unsigned int idx, unsigned int row);
-	const Point& cellPositionFromIndex(unsigned int idx);
-	unsigned int cellBeginRowFromOffset(const Point& offset);
-	unsigned int cellEndRowFromOffset(const Point& offset);
+	const Vec2& cellPositionFromIndex(unsigned int idx);
+	unsigned int cellBeginRowFromOffset(const Vec2& offset);
+	unsigned int cellEndRowFromOffset(const Vec2& offset);
 	unsigned int cellFirstIndexFromRow(unsigned int row);
 
 protected:
@@ -119,10 +119,10 @@ protected:
 	bool m_bAutoRelocate;
 
 	std::set<unsigned int> m_sIndices;
-	std::list<Point> m_lCellsRow;
+	std::list<Vec2> m_lCellsRow;
 	std::list<CGridViewCell*> m_lCellsUsed;
 	std::list<CGridViewCell*> m_lCellsFreed;
-	std::vector<Point> m_vPositions;
+	std::vector<Vec2> m_vPositions;
 };
 
 NS_CC_WIDGET_END

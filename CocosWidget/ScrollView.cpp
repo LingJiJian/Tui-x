@@ -49,31 +49,31 @@ void CScrollViewContainer::reset()
 {
 	removeAllChildrenWithCleanup(true);
 	ignoreAnchorPointForPosition(true);
-	setAnchorPoint(Point::ZERO);
-	setPosition(Point::ZERO);
+	setAnchorPoint(Vec2::ZERO);
+	setPosition(Vec2::ZERO);
 }
 
 CScrollView::CScrollView()
 : m_pContainer(NULL)
 , m_eDirection(eScrollViewDirectionBoth)
-, m_tLastMovePoint(Point::ZERO)
+, m_tLastMovePoint(Vec2::ZERO)
 , m_bBounceable(true)
 , _clippingToBounds(true)
 , m_bDragging(false)
 , m_bDeaccelerateable(true)
 , m_fDragSpeed(0.0f)
-, m_tScrollDistance(Point::ZERO)
-, m_tTouchBeganPoint(Point::ZERO)
+, m_tScrollDistance(Vec2::ZERO)
+, m_tTouchBeganPoint(Vec2::ZERO)
 , m_bDragable(true)
 , m_bTouchMoved(false)
-, m_tMaxOffset(Point::ZERO)
-, m_tMinOffset(Point::ZERO)
+, m_tMaxOffset(Vec2::ZERO)
+, m_tMinOffset(Vec2::ZERO)
 , m_bDeaccelerateScrolling(false)
 , m_bAnimatedScrolling(false)
 {
 	m_pContainer = new CScrollViewContainer();
 	m_pContainer->init();
-	m_pContainer->setAnchorPoint(Point::ZERO);
+	m_pContainer->setAnchorPoint(Vec2::ZERO);
 	m_pContainer->ignoreAnchorPointForPosition(true);
 	m_pContainer->setContentSize(CCWIDGET_LAYOUT_DEFAULT_CONTENT_SIZE);
 	addChild(m_pContainer);
@@ -144,7 +144,7 @@ bool CScrollView::initWithSize(const Size& tSize)
 	{
 		setContentSize(tSize);
 		setContainerSize(tSize);
-		m_pContainer->setPosition(Point::ZERO);
+		m_pContainer->setPosition(Vec2::ZERO);
 		updateLimitOffset();
 		return true;
 	}
@@ -153,7 +153,7 @@ bool CScrollView::initWithSize(const Size& tSize)
 
 CWidgetTouchModel CScrollView::onTouchBegan(Touch *pTouch)
 {
-    Point tNodePoint = convertToNodeSpace(pTouch->getLocation());
+    Vec2 tNodePoint = convertToNodeSpace(pTouch->getLocation());
 
 	if( m_pContainer->getBoundingBox().containsPoint(tNodePoint) )
     {
@@ -188,7 +188,7 @@ CWidgetTouchModel CScrollView::onTouchBegan(Touch *pTouch)
 
 void CScrollView::onTouchMoved(Touch *pTouch, float fDuration)
 {
-    Point tNodePoint = convertToNodeSpace(pTouch->getLocation());
+    Vec2 tNodePoint = convertToNodeSpace(pTouch->getLocation());
     
     if( m_pSelectedWidget )
     {
@@ -261,7 +261,7 @@ void CScrollView::onTouchEnded(Touch *pTouch, float fDuration)
     {
         if( m_bDeaccelerateable && m_eDirection != eScrollViewDirectionBoth && fDuration < CSCROLLVIEW_DEACCELERATE_INTERVAL )
         {
-            Point tEndPoint = convertToNodeSpace(pTouch->getLocation());
+            Vec2 tEndPoint = convertToNodeSpace(pTouch->getLocation());
             switch( m_eDirection )
             {
                 case eScrollViewDirectionHorizontal:
@@ -275,7 +275,7 @@ void CScrollView::onTouchEnded(Touch *pTouch, float fDuration)
         }
         else
         {
-			Point tOffset = getContentOffset();
+			Vec2 tOffset = getContentOffset();
 			if( validateOffset(tOffset) )
 			{
 				relocateContainerWithoutCheck(tOffset);
@@ -312,7 +312,7 @@ bool CScrollView::isDeaccelerateable()
 	return m_bDeaccelerateable;
 }
 
-const Point& CScrollView::getContentOffset() const
+const Vec2& CScrollView::getContentOffset() const
 {
 	return m_pContainer->getPosition();
 }
@@ -350,12 +350,12 @@ void CScrollView::stopContainerAnimation()
 	}
 }
 
-const Point& CScrollView::getMaxOffset() const
+const Vec2& CScrollView::getMaxOffset() const
 {
 	return m_tMaxOffset;
 }
 
-const Point& CScrollView::getMinOffset() const
+const Vec2& CScrollView::getMinOffset() const
 {
 	return m_tMinOffset;
 }
@@ -420,25 +420,24 @@ void CScrollView::onAfterDraw()
 	}
 }
 
-void CScrollView::visit(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated)
+void CScrollView::visit(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags)
 {
 	// quick return if not visible
 	if (!isVisible())
 	{
 		return;
 	}
-	
-	bool dirty = parentTransformUpdated || _transformUpdated;
-	if(dirty)
-		_modelViewTransform = this->transform(parentTransform);
-	_transformUpdated = false;
+
+	uint32_t flags = processParentFlags(parentTransform, parentFlags);
 
 	// IMPORTANT:
-	// To ease the migration to v3.0, we still support the kmGL stack,
+	// To ease the migration to v3.0, we still support the Mat4 stack,
 	// but it is deprecated and your code should not rely on it
-	kmGLPushMatrix();
-	kmGLLoadMatrix(&_modelViewTransform);
-	
+	Director* director = Director::getInstance();
+	CCASSERT(nullptr != director, "Director is null when seting matrix stack");
+	director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
+	director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _modelViewTransform);
+
 	this->beforeDraw();
 
 	if (!_children.empty())
@@ -452,7 +451,7 @@ void CScrollView::visit(Renderer *renderer, const kmMat4& parentTransform, bool 
 			Node *child = _children.at(i);
 			if ( child->getLocalZOrder() < 0 )
 			{
-				child->visit(renderer, _modelViewTransform, dirty);
+				child->visit(renderer, _modelViewTransform, flags);
 			}
 			else
 			{
@@ -461,25 +460,24 @@ void CScrollView::visit(Renderer *renderer, const kmMat4& parentTransform, bool 
 		}
 		
 		// this draw
-		this->draw(renderer, _modelViewTransform, dirty);
+		this->draw(renderer, _modelViewTransform, flags);
 
 		// draw children zOrder >= 0
 		for( ; i < _children.size(); i++ )
 		{
 			Node *child = _children.at(i);
-			child->visit(renderer, _modelViewTransform, dirty);
+			child->visit(renderer, _modelViewTransform, flags);
 		}
 
 	}
 	else
 	{
-		this->draw(renderer, _modelViewTransform, dirty);
+		this->draw(renderer, _modelViewTransform, flags);
 	}
 
 	this->afterDraw();
 
-	kmGLPopMatrix();
-	
+	director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 }
 
 CScrollView* CScrollView::create(const Size& contentSize)
@@ -511,18 +509,18 @@ void CScrollView::performedDeaccelerateScrolling(float dt)
 		return;
 	}
 
-	Point tOldOffset;
-	Point tNewOffset;
+	Vec2 tOldOffset;
+	Vec2 tNewOffset;
 	float fDistance = m_fDragSpeed * dt;
 	switch( m_eDirection )
 	{
 		case eScrollViewDirectionHorizontal:
 			fDistance  = m_tScrollDistance.x < 0 ? -fDistance : fDistance;
-			tNewOffset = getContentOffset() + Point(fDistance, 0);
+			tNewOffset = getContentOffset() + Vec2(fDistance, 0);
 			break;
 		default:
 			fDistance  = m_tScrollDistance.y < 0 ? -fDistance : fDistance;
-			tNewOffset = getContentOffset() + Point(0, fDistance);
+			tNewOffset = getContentOffset() + Vec2(0, fDistance);
 			break;
 	}
 	tOldOffset = tNewOffset;
@@ -604,14 +602,14 @@ void CScrollView::stoppedAnimatedScroll()
 	}
 }
 
-void CScrollView::relocateContainerWithoutCheck(const Point& tOffset)
+void CScrollView::relocateContainerWithoutCheck(const Vec2& tOffset)
 {
 	setContentOffsetEaseInWithoutCheck(tOffset, CSCORLLVIEW_RELOCATE_DURATION, CSCROLLVIEW_MOVE_EASEIN_RATE);
 }
 
 void CScrollView::relocateContainer()
 {
-	Point tOffset = getContentOffset();
+	Vec2 tOffset = getContentOffset();
 	if( validateOffset(tOffset) )
 	{
 		setContentOffsetEaseInWithoutCheck(tOffset, CSCORLLVIEW_RELOCATE_DURATION, CSCROLLVIEW_MOVE_EASEIN_RATE);
@@ -622,7 +620,7 @@ void CScrollView::setContentOffsetToTop()
 {
 	if( m_eDirection == eScrollViewDirectionVertical )
 	{
-		Point tPoint(0, -(m_pContainer->getContentSize().height - _contentSize.height));
+		Vec2 tPoint(0, -(m_pContainer->getContentSize().height - _contentSize.height));
 		setContentOffset(tPoint);
 	}
 }
@@ -631,7 +629,7 @@ void CScrollView::setContentOffsetToTopInDuration(float fDuration)
 {
 	if( m_eDirection == eScrollViewDirectionVertical )
 	{
-		Point tPoint(0, -(m_pContainer->getContentSize().height - _contentSize.height));
+		Vec2 tPoint(0, -(m_pContainer->getContentSize().height - _contentSize.height));
 		setContentOffsetInDuration(tPoint, fDuration);
 	}
 }
@@ -640,7 +638,7 @@ void CScrollView::setContentOffsetToTopEaseIn(float fDuration, float fRate)
 {
 	if( m_eDirection == eScrollViewDirectionVertical )
 	{
-		Point tPoint(0, -(m_pContainer->getContentSize().height - _contentSize.height));
+		Vec2 tPoint(0, -(m_pContainer->getContentSize().height - _contentSize.height));
 		setContentOffsetEaseIn(tPoint, fDuration, fRate);
 	}
 }
@@ -669,14 +667,14 @@ void CScrollView::setContentOffsetToLeft()
 	}
 }
 
-void CScrollView::setContentOffsetWithoutCheck(const Point& tOffset)
+void CScrollView::setContentOffsetWithoutCheck(const Vec2& tOffset)
 {
 	m_pContainer->setPosition(tOffset);
 	this->onScrolling();
 	this->executeScrollingHandler(this);
 }
 
-void CScrollView::setContentOffset(Point tOffset)
+void CScrollView::setContentOffset(Vec2 tOffset)
 {
 	if( !m_bBounceable )
 	{
@@ -688,7 +686,7 @@ void CScrollView::setContentOffset(Point tOffset)
 	this->executeScrollingHandler(this);
 }
 
-void CScrollView::setContentOffsetInDurationWithoutCheck(const Point& tOffset, float fDuration)
+void CScrollView::setContentOffsetInDurationWithoutCheck(const Vec2& tOffset, float fDuration)
 {
 	m_pContainer->stopActionByTag(CSCROLLVIEW_MOVE_ACTION_TAG);
     Sequence* pSequence = Sequence::create(
@@ -703,7 +701,7 @@ void CScrollView::setContentOffsetInDurationWithoutCheck(const Point& tOffset, f
 	this->executeScrollingHandler(this);
 }
 
-void CScrollView::setContentOffsetInDuration(Point tOffset, float fDuration)
+void CScrollView::setContentOffsetInDuration(Vec2 tOffset, float fDuration)
 {
 	if( !m_bBounceable )
 	{
@@ -712,7 +710,7 @@ void CScrollView::setContentOffsetInDuration(Point tOffset, float fDuration)
 	setContentOffsetInDurationWithoutCheck(tOffset, fDuration);
 }
 
-void CScrollView::setContentOffsetEaseInWithoutCheck(const Point& tOffset, float fDuration, float fRate)
+void CScrollView::setContentOffsetEaseInWithoutCheck(const Vec2& tOffset, float fDuration, float fRate)
 {
 	m_pContainer->stopActionByTag(CSCROLLVIEW_MOVE_ACTION_TAG);
 	Sequence* pSequence = Sequence::create(
@@ -730,7 +728,7 @@ void CScrollView::setContentOffsetEaseInWithoutCheck(const Point& tOffset, float
 	this->executeScrollingHandler(this);
 }
 
-void CScrollView::setContentOffsetEaseIn(Point tOffset, float fDuration, float fRate)
+void CScrollView::setContentOffsetEaseIn(Vec2 tOffset, float fDuration, float fRate)
 {
 	if( !m_bBounceable )
 	{
@@ -757,7 +755,7 @@ void CScrollView::updateLimitOffset()
 	}
 }
 
-bool CScrollView::validateOffset(Point& tPoint)
+bool CScrollView::validateOffset(Vec2& tPoint)
 {
 	float x = tPoint.x, y = tPoint.y;
 	x = MAX(x, m_tMinOffset.x);
@@ -779,7 +777,7 @@ bool CScrollView::validateOffset(Point& tPoint)
 
 Rect CScrollView::getViewRect()
 {
-	Point screenPos = this->convertToWorldSpace(Point::ZERO);
+	Vec2 screenPos = this->convertToWorldSpace(Vec2::ZERO);
 
 	float scaleX = this->getScaleX();
 	float scaleY = this->getScaleY();

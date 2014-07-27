@@ -74,7 +74,7 @@ bool CLayout::init()
 
 	setContentSize(CCWIDGET_LAYOUT_DEFAULT_CONTENT_SIZE);
 	setAnchorPoint(CCWIDGET_LAYOUT_DEFAULT_ANCHOR_POINT);
-	setPosition(Point::ZERO);
+	setPosition(Vec2::ZERO);
 
 	return true;
 }
@@ -91,7 +91,7 @@ CWidgetTouchModel CLayout::onTouchBegan(Touch* pTouch)
 	m_pSelectedWidget = NULL;
 	m_eSelectedWidgetTouchModel = eWidgetTouchNone;
 
-	Point tNodePoint = convertToNodeSpace(pTouch->getLocation());
+	Vec2 tNodePoint = convertToNodeSpace(pTouch->getLocation());
 	int nCount = _children.size();
 	if(nCount > 0 )
 	{
@@ -186,9 +186,9 @@ Node* CLayout::find(Vector<Node*> pChild, const char* id)
 	return NULL;
 }
 
-void CLayout::visit(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated)
+void CLayout::visit(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags)
 {
-	Node::visit(renderer, parentTransform, parentTransformUpdated);
+	Node::visit(renderer, parentTransform, parentFlags);
 }
 
 

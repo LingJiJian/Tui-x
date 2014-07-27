@@ -35,8 +35,8 @@ private:
 	float m_maxVx;
 	float m_mouseMove;
 	float m_easing;
-	Point m_prePoint;
-	Point m_nowPoint;
+	Vec2 m_prePoint;
+	Vec2 m_nowPoint;
 };
 
 NS_CC_WIDGET_END

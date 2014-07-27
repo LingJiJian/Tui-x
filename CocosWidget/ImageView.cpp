@@ -52,7 +52,7 @@ void CImageView::onTouchEnded(Touch *pTouch, float fDuration)
 {
 	CC_WIDGET_LONGCLICK_ONTOUCHENDED;
 
-	Point touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
+	Vec2 touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
 	if( getBoundingBox().containsPoint(touchPointInView) )
 	{
 		executeClickHandler(this);

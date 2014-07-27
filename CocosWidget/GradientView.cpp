@@ -62,7 +62,7 @@ CGradientView* CGradientView::create(const Color4B& tStart, const Color4B& tEnd)
 	return NULL;
 }
 
-CGradientView* CGradientView::create(const Color4B& tStart, const Color4B& tEnd, const Point& v)
+CGradientView* CGradientView::create(const Color4B& tStart, const Color4B& tEnd, const Vec2& v)
 {
 	CGradientView* pRet = new CGradientView();
 	if( pRet && pRet->initWithColor(tStart, tEnd, v) )
@@ -81,10 +81,10 @@ bool CGradientView::init()
 
 bool CGradientView::initWithColor(const Color4B& tStart, const Color4B& tEnd)
 {
-	return initWithColor(tStart, tEnd, Point(0, -1));
+	return initWithColor(tStart, tEnd, Vec2(0, -1));
 }
 
-bool CGradientView::initWithColor(const Color4B& tStart, const Color4B& tEnd, const Point& v)
+bool CGradientView::initWithColor(const Color4B& tStart, const Color4B& tEnd, const Vec2& v)
 {
 	m_tEndColor.r   = tEnd.r;
 	m_tEndColor.g   = tEnd.g;
@@ -142,13 +142,13 @@ GLubyte CGradientView::getEndOpacity()
 	return m_cEndOpacity;
 }
 
-void CGradientView::setVector(const Point& tPoint)
+void CGradientView::setVector(const Vec2& tPoint)
 {
 	m_tAlongVector = tPoint;
 	updateColor();
 }
 
-const Point& CGradientView::getVector()
+const Vec2& CGradientView::getVector()
 {
 	return m_tAlongVector;
 }
@@ -173,7 +173,7 @@ void CGradientView::updateColor()
         return;
 
     float c = sqrtf(2.0f);
-    Point u = Point(m_tAlongVector.x / h, m_tAlongVector.y / h);
+    Vec2 u = Vec2(m_tAlongVector.x / h, m_tAlongVector.y / h);
 
     // Compressed Interpolation mode
     if( m_bCompressedInterpolation )

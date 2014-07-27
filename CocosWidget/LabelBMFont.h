@@ -52,7 +52,7 @@ public:
 	static CLabelBMFont* create();
 	static CLabelBMFont* create(const std::string& text, const std::string& bmfontFilePath,
 		const TextHAlignment& alignment = TextHAlignment::LEFT, int maxLineWidth = 0, 
-		const Point& imageOffset = Point::ZERO);
+		const Vec2& imageOffset = Vec2::ZERO);
 
 public:
 	virtual CWidgetTouchModel onTouchBegan(Touch *pTouch);

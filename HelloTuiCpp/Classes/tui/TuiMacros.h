@@ -18,4 +18,7 @@ public: static __CLASS__* getInstance(){\
 }
 #endif
 
+#define Arp(_p_) Vec2((float)(_p_.x * TuiManager::getInstance()->getScaleResolutionX()), \
+	(float)(_p_.y * TuiManager::getInstance()->getScaleResolutionY()))
+
 #endif

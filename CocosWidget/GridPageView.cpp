@@ -163,7 +163,7 @@ void CGridPageView::updateGridCellsPosition()
 			x = 0.0f;
 			y = y - m_tGridCellsSize.height;
 		}
-		m_vGridCellsPosition.push_back(Point(x, y));
+		m_vGridCellsPosition.push_back(Vec2(x, y));
 		x += m_tGridCellsSize.width;
 	}
 }
@@ -201,14 +201,14 @@ void CGridPageView::onScrolling()
 
 	CTableView::onScrolling();
 
-	Point tPageIdxOffset;
+	Vec2 tPageIdxOffset;
 	switch( m_eDirection )
 	{
 	case eScrollViewDirectionHorizontal:
-		tPageIdxOffset = getContentOffset() - Point(_contentSize.width / 2, 0);
+		tPageIdxOffset = getContentOffset() - Vec2(_contentSize.width / 2, 0);
 		break;
 	case eScrollViewDirectionVertical:
-		tPageIdxOffset = getContentOffset() + Point(0, _contentSize.height / 2);
+		tPageIdxOffset = getContentOffset() + Vec2(0, _contentSize.height / 2);
 		break;
 	default:
 		break;
@@ -244,7 +244,7 @@ void CGridPageView::updateCellAtIndex(unsigned int page)
 #if 1
 				CCAssert(pGridCell != NULL, "cell can not be nil");
 #endif
-				pGridCell->setAnchorPoint(Point::ZERO);
+				pGridCell->setAnchorPoint(Vec2::ZERO);
 				pGridCell->setContentSize(m_tGridCellsSize);
 				pGridCell->setPosition(m_vGridCellsPosition[i]);
 				pGridCell->setIdx(idx);
@@ -258,7 +258,7 @@ void CGridPageView::updateCellAtIndex(unsigned int page)
 #if 1
 				CCAssert(pGridCell != NULL, "cell can not be nil");
 #endif
-				pGridCell->setAnchorPoint(Point::ZERO);
+				pGridCell->setAnchorPoint(Vec2::ZERO);
 				pGridCell->setContentSize(m_tGridCellsSize);
 				pGridCell->setPosition(m_vGridCellsPosition[i]);
 				pGridCell->setIdx(CC_INVALID_INDEX);
@@ -303,10 +303,10 @@ void CGridPageView::updateCellAtIndex(unsigned int page)
 	switch(m_eDirection)
 	{
 	case eScrollViewDirectionHorizontal:
-		pPageCell->setAnchorPoint(Point::ZERO);
+		pPageCell->setAnchorPoint(Vec2::ZERO);
 		break;
 	default:
-		pPageCell->setAnchorPoint(Point(0, 1));
+		pPageCell->setAnchorPoint(Vec2(0, 1));
 		break;
 	}
 	

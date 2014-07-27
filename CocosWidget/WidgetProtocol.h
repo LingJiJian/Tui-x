@@ -37,10 +37,10 @@ NS_CC_WIDGET_BEGIN
 
 class CWidget;
 
-static const Point CCWIDGET_BASIC_DEFAULT_ANCHOR_POINT = Point(0.5f, 0.5f);
+static const Vec2 CCWIDGET_BASIC_DEFAULT_ANCHOR_POINT = Vec2(0.5f, 0.5f);
 static const Size CCWIDGET_BASIC_DEFAULT_CONTENT_SIZE = Size(100, 100);
 
-static const Point CCWIDGET_LAYOUT_DEFAULT_ANCHOR_POINT = Point(0.5f, 0.5f);
+static const Vec2 CCWIDGET_LAYOUT_DEFAULT_ANCHOR_POINT = Vec2(0.5f, 0.5f);
 static const Size CCWIDGET_LAYOUT_DEFAULT_CONTENT_SIZE = Size(300, 300);
 
 /**

@@ -57,7 +57,7 @@ public:
 
 	virtual void setContentSize(const Size& contentSize);
 	virtual void setEnabled(bool bEnabled);
-	void setLabelOffset(const Point& tOffset);
+	void setLabelOffset(const Vec2& tOffset);
 	void setText(const char* pText);
 	const char* getText();
 
@@ -101,7 +101,7 @@ protected:
 	Node* m_pDisabledImage;
 	bool m_bScale9Enabled;
 	CLabel* m_pLabel;
-	Point m_tTextOffset;
+	Vec2 m_tTextOffset;
 	bool m_bCascadeTextSizeEnabled;
 	Size m_tCascadeTextSizePadding;
 	

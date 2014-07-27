@@ -258,13 +258,13 @@ void CTableView::onDraggingScrollEnded()
 
 	if( m_bAutoRelocate )
 	{
-		Point tOffset = getContentOffset();
+		Vec2 tOffset = getContentOffset();
 		unsigned int uIdx = cellBeginIndexFromOffset(tOffset);
-		Point tAPoint = cellPositionFromIndex(uIdx);
+		Vec2 tAPoint = cellPositionFromIndex(uIdx);
 
 		if( m_eDirection == eScrollViewDirectionHorizontal )
 		{
-			Point tBPoint = Point(tAPoint.x + m_tCellsSize.width, 0);
+			Vec2 tBPoint = Vec2(tAPoint.x + m_tCellsSize.width, 0);
 			float fADistance = tOffset.getDistance(-tAPoint);
 			float fBDistance = tOffset.getDistance(-tBPoint);
 
@@ -281,8 +281,8 @@ void CTableView::onDraggingScrollEnded()
 		}
 		else
 		{
-			Point tBPoint = Point(0, tAPoint.y - m_tCellsSize.height);
-			Point tContentPoint = Point(0, _contentSize.height);
+			Vec2 tBPoint = Vec2(0, tAPoint.y - m_tCellsSize.height);
+			Vec2 tContentPoint = Vec2(0, _contentSize.height);
 			tOffset = tOffset - tContentPoint;
 			float fADistance = tOffset.getDistance(-tAPoint);
 			float fBDistance = tOffset.getDistance(-tBPoint);
@@ -329,7 +329,7 @@ CTableViewCell* CTableView::dequeueCell()
     return pCell;
 }
 
-unsigned int CTableView::cellBeginIndexFromOffset(const Point& offset)
+unsigned int CTableView::cellBeginIndexFromOffset(const Vec2& offset)
 {
     if( m_uCellsCount == 0 )
     {
@@ -364,7 +364,7 @@ unsigned int CTableView::cellBeginIndexFromOffset(const Point& offset)
     return CC_INVALID_INDEX;
 }
 
-unsigned int CTableView::cellEndIndexFromOffset(const Point& offset)
+unsigned int CTableView::cellEndIndexFromOffset(const Vec2& offset)
 {
 	if( m_uCellsCount == 0 )
     {
@@ -398,26 +398,26 @@ unsigned int CTableView::cellEndIndexFromOffset(const Point& offset)
 	return CC_INVALID_INDEX;
 }
 
-Point CTableView::cellPositionFromIndex(unsigned int idx)
+Vec2 CTableView::cellPositionFromIndex(unsigned int idx)
 {
     if( idx == CC_INVALID_INDEX )
     {
-        return Point(0, 0);
+        return Vec2(0, 0);
     }
     
 	switch( m_eDirection )
 	{
 	case eScrollViewDirectionHorizontal:
 		{
-			return Point(m_vPositions[idx], 0);
+			return Vec2(m_vPositions[idx], 0);
 		}
 	default:
 		{
-			return Point(0, m_vPositions[idx]);
+			return Vec2(0, m_vPositions[idx]);
 		}
 	}
 
-	return Point(0, 0);
+	return Vec2(0, 0);
 }
 
 void CTableView::insertSortableCell(CTableViewCell* pCell, unsigned int idx)
@@ -483,10 +483,10 @@ void CTableView::updateCellAtIndex(unsigned int idx)
 	switch(m_eDirection)
 	{
 	case eScrollViewDirectionHorizontal:
-		pCell->setAnchorPoint(Point::ZERO);
+		pCell->setAnchorPoint(Vec2::ZERO);
 		break;
 	default:
-		pCell->setAnchorPoint(Point(0, 1));
+		pCell->setAnchorPoint(Vec2(0, 1));
 		break;
 	}
 	

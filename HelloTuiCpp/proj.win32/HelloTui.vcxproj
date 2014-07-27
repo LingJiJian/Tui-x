@@ -72,7 +72,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)cocos\editor-support;$(EngineRoot);$(EngineRoot)extensions;..\Classes;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)cocos\2d;$(EngineRoot)cocos\base;$(EngineRoot)cocos\editor-support;$(EngineRoot);$(EngineRoot)extensions;..\Classes;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -248,12 +248,12 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\scene\Store\Storeui.h" />
     <ClInclude Include="..\Classes\scene\Welcome\WelcomeCfg.h" />
     <ClInclude Include="..\Classes\scene\Welcome\Welcomeui.h" />
-    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_bag.h" />
-    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_main.h" />
-    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_recombineui.h" />
-    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_showPhone.h" />
-    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_store.h" />
-    <ClInclude Include="..\Classes\tui\tagMap\tuiTag_welcome.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_bag.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_main.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_recombineui.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_showPhone.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_store.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_welcome.h" />
     <ClInclude Include="..\Classes\tui\TuiBase.h" />
     <ClInclude Include="..\Classes\tui\tuiconsts.h" />
     <ClInclude Include="..\Classes\tui\TuiMacros.h" />

@@ -912,6 +912,8 @@ int lua_cocos2dx_tui_TuiManager_createScrollView(lua_State* tolua_S)
     {
         double arg0;
         int arg1;
+		int innerWidth;
+		int innerHeight;
         double arg2;
         double arg3;
         double arg4;
@@ -922,22 +924,26 @@ int lua_cocos2dx_tui_TuiManager_createScrollView(lua_State* tolua_S)
 
         ok &= luaval_to_int32(tolua_S, 3,(int *)&arg1);
 
-        ok &= luaval_to_number(tolua_S, 4,&arg2);
+		ok &= luaval_to_int32(tolua_S, 4, (int *)&innerWidth);
 
-        ok &= luaval_to_number(tolua_S, 5,&arg3);
+		ok &= luaval_to_int32(tolua_S, 5, (int *)&innerHeight);
 
-        ok &= luaval_to_number(tolua_S, 6,&arg4);
+        ok &= luaval_to_number(tolua_S, 6,&arg2);
 
-        ok &= luaval_to_number(tolua_S, 7,&arg5);
+        ok &= luaval_to_number(tolua_S, 7,&arg3);
 
-        ok &= luaval_to_number(tolua_S, 8,&arg6);
+        ok &= luaval_to_number(tolua_S, 8,&arg4);
+
+        ok &= luaval_to_number(tolua_S, 9,&arg5);
+
+        ok &= luaval_to_number(tolua_S, 10,&arg6);
         if(!ok)
             return 0;
-        cocos2d::cocoswidget::CScrollView* ret = cobj->createScrollView(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+		cocos2d::cocoswidget::CScrollView* ret = cobj->createScrollView(arg0, arg1, innerWidth, innerHeight, arg2, arg3, arg4, arg5, arg6);
         object_to_luaval<cocos2d::cocoswidget::CScrollView>(tolua_S, "ccw.CScrollView",(cocos2d::cocoswidget::CScrollView*)ret);
         return 1;
     }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createScrollView",argc, 7);
+    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createScrollView",argc, 9);
     return 0;
 
 #if COCOS2D_DEBUG >= 1
@@ -1421,7 +1427,6 @@ int lua_cocos2dx_tui_TuiManager_createSlider(lua_State* tolua_S)
         const char* arg1;
         const char* arg2;
         const char* arg3;
-		int dir;
         double arg4;
         double arg5;
         double arg6;
@@ -1434,16 +1439,14 @@ int lua_cocos2dx_tui_TuiManager_createSlider(lua_State* tolua_S)
 
         std::string arg3_tmp; ok &= luaval_to_std_string(tolua_S, 5, &arg3_tmp); arg3 = arg3_tmp.c_str();
 
-		ok &= luaval_to_int32(tolua_S, 6, (int*)&dir);
+        ok &= luaval_to_number(tolua_S, 6,&arg4);
 
-        ok &= luaval_to_number(tolua_S, 7,&arg4);
+        ok &= luaval_to_number(tolua_S, 7,&arg5);
 
-        ok &= luaval_to_number(tolua_S, 8,&arg5);
-
-        ok &= luaval_to_number(tolua_S, 9,&arg6);
+        ok &= luaval_to_number(tolua_S, 8,&arg6);
         if(!ok)
             return 0;
-		cocos2d::cocoswidget::CSlider* ret = cobj->createSlider(arg0, arg1, arg2, arg3, dir, arg4, arg5, arg6);
+        cocos2d::cocoswidget::CSlider* ret = cobj->createSlider(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
         object_to_luaval<cocos2d::cocoswidget::CSlider>(tolua_S, "ccw.CSlider",(cocos2d::cocoswidget::CSlider*)ret);
         return 1;
     }
@@ -2332,7 +2335,6 @@ int lua_cocos2dx_tui_TuiManager_createProgress(lua_State* tolua_S)
         double arg0;
         const char* arg1;
         const char* arg2;
-		int dir;
         double arg3;
         double arg4;
         double arg5;
@@ -2343,16 +2345,14 @@ int lua_cocos2dx_tui_TuiManager_createProgress(lua_State* tolua_S)
 
         std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
 
-		ok &= luaval_to_int32(tolua_S, 5, (int *)&dir);
+        ok &= luaval_to_number(tolua_S, 5,&arg3);
 
-        ok &= luaval_to_number(tolua_S, 6,&arg3);
+        ok &= luaval_to_number(tolua_S, 6,&arg4);
 
-        ok &= luaval_to_number(tolua_S, 7,&arg4);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg5);
+        ok &= luaval_to_number(tolua_S, 7,&arg5);
         if(!ok)
             return 0;
-		cocos2d::cocoswidget::CProgressBar* ret = cobj->createProgress(arg0, arg1, arg2, dir, arg3, arg4, arg5);
+        cocos2d::cocoswidget::CProgressBar* ret = cobj->createProgress(arg0, arg1, arg2, arg3, arg4, arg5);
         object_to_luaval<cocos2d::cocoswidget::CProgressBar>(tolua_S, "ccw.CProgressBar",(cocos2d::cocoswidget::CProgressBar*)ret);
         return 1;
     }
@@ -2465,6 +2465,147 @@ static int lua_cocos2dx_tui_TuiManager_finalize(lua_State* tolua_S)
     return 0;
 }
 
+int lua_cocos2dx_tui_TuiManager_setAdaptResolution(lua_State* tolua_S)
+{
+	int argc = 0;
+	cocos2d::tui::TuiManager* cobj = nullptr;
+	bool ok = true;
+
+#if COCOS2D_DEBUG >= 1
+	tolua_Error tolua_err;
+#endif
+
+#if COCOS2D_DEBUG >= 1
+	if (!tolua_isusertype(tolua_S, 1, "tui.TuiManager", 0, &tolua_err)) goto tolua_lerror;
+#endif
+
+	cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S, 1, 0);
+
+#if COCOS2D_DEBUG >= 1
+	if (!cobj)
+	{
+		tolua_error(tolua_S, "invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_setAdaptResolution'", nullptr);
+		return 0;
+	}
+#endif
+
+	argc = lua_gettop(tolua_S) - 1;
+	if (argc == 3)
+	{
+		bool arg0;
+		double arg1;
+		double arg2;
+
+		ok &= luaval_to_boolean(tolua_S, 2, &arg0);
+		ok &= luaval_to_number(tolua_S, 3, &arg1);
+		ok &= luaval_to_number(tolua_S, 4, &arg2);
+
+		if (!ok)
+			return 0;
+		cobj->setAdaptResolution(arg0,arg1,arg2);
+		return 0;
+	}
+	CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setAdaptResolution", argc, 3);
+	return 0;
+
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+	tolua_error(tolua_S, "#ferror in function 'lua_cocos2dx_tui_TuiManager_setAdaptResolution'.", &tolua_err);
+#endif
+
+	return 0;
+}
+
+int lua_cocos2dx_tui_TuiManager_getScaleResolutionX(lua_State* tolua_S)
+{
+	int argc = 0;
+	cocos2d::tui::TuiManager* cobj = nullptr;
+	bool ok = true;
+
+#if COCOS2D_DEBUG >= 1
+	tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+	if (!tolua_isusertype(tolua_S, 1, "tui.TuiManager", 0, &tolua_err)) goto tolua_lerror;
+#endif
+
+	cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S, 1, 0);
+
+#if COCOS2D_DEBUG >= 1
+	if (!cobj)
+	{
+		tolua_error(tolua_S, "invalid 'cobj' in function 'lua_cocos2dx_TuiManager_getScaleResolutionX'", nullptr);
+		return 0;
+	}
+#endif
+
+	argc = lua_gettop(tolua_S) - 1;
+	if (argc == 0)
+	{
+		if (!ok)
+			return 0;
+		double ret = cobj->getScaleResolutionX();
+		tolua_pushnumber(tolua_S, (lua_Number)ret);
+		return 1;
+	}
+	CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getScaleResolutionX", argc, 0);
+	return 0;
+
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+	tolua_error(tolua_S, "#ferror in function 'lua_cocos2dx_TuiManager_getScaleResolutionX'.", &tolua_err);
+#endif
+
+	return 0;
+}
+
+int lua_cocos2dx_tui_TuiManager_getScaleResolutionY(lua_State* tolua_S)
+{
+	int argc = 0;
+	cocos2d::tui::TuiManager* cobj = nullptr;
+	bool ok = true;
+
+#if COCOS2D_DEBUG >= 1
+	tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+	if (!tolua_isusertype(tolua_S, 1, "tui.TuiManager", 0, &tolua_err)) goto tolua_lerror;
+#endif
+
+	cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S, 1, 0);
+
+#if COCOS2D_DEBUG >= 1
+	if (!cobj)
+	{
+		tolua_error(tolua_S, "invalid 'cobj' in function 'lua_cocos2dx_TuiManager_getScaleResolutionY'", nullptr);
+		return 0;
+	}
+#endif
+
+	argc = lua_gettop(tolua_S) - 1;
+	if (argc == 0)
+	{
+		if (!ok)
+			return 0;
+		double ret = cobj->getScaleResolutionY();
+		tolua_pushnumber(tolua_S, (lua_Number)ret);
+		return 1;
+	}
+	CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getScaleResolutionY", argc, 0);
+	return 0;
+
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+	tolua_error(tolua_S, "#ferror in function 'lua_cocos2dx_TuiManager_getScaleResolutionY'.", &tolua_err);
+#endif
+
+	return 0;
+}
+
 int lua_register_cocos2dx_tui_TuiManager(lua_State* tolua_S)
 {
     tolua_usertype(tolua_S,"tui.TuiManager");
@@ -2502,12 +2643,16 @@ int lua_register_cocos2dx_tui_TuiManager(lua_State* tolua_S)
         tolua_function(tolua_S,"createProgress",lua_cocos2dx_tui_TuiManager_createProgress);
         tolua_function(tolua_S,"createCircleMenu",lua_cocos2dx_tui_TuiManager_createCircleMenu);
         tolua_function(tolua_S,"getInstance", lua_cocos2dx_tui_TuiManager_getInstance);
+		tolua_function(tolua_S, "setAdaptResolution", lua_cocos2dx_tui_TuiManager_setAdaptResolution);
+		tolua_function(tolua_S, "getScaleResolutionX", lua_cocos2dx_tui_TuiManager_getScaleResolutionX);
+		tolua_function(tolua_S, "getScaleResolutionY", lua_cocos2dx_tui_TuiManager_getScaleResolutionY);
     tolua_endmodule(tolua_S);
     std::string typeName = typeid(cocos2d::tui::TuiManager).name();
     g_luaType[typeName] = "tui.TuiManager";
     g_typeCast["TuiManager"] = "tui.TuiManager";
     return 1;
 }
+
 TOLUA_API int register_all_cocos2dx_tui(lua_State* tolua_S)
 {
 	tolua_open(tolua_S);

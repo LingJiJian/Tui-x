@@ -51,7 +51,7 @@ local btnShowPhone =	nil
 
 local function event_ctvl_left(p_sender, fx, fy)
 	local x, y = animCoin:getPosition()
-	animCoin:setPosition(cc.p(x + fx, y + fy))
+	animCoin:setPosition( cc.pAdd( cc.p(x,y) , Arp(cc.p(fx,fy))) )
 end
 
 local function event_armbtn_test(p_sender)

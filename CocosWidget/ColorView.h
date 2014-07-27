@@ -80,7 +80,7 @@ public:
 	virtual void updateDisplayedColor(const Color3B& parentColor);
 	virtual void setOpacityModifyRGB(bool bValue) {CC_UNUSED_PARAM(bValue);}
 	virtual bool isOpacityModifyRGB() { return false; }
-	virtual void draw(Renderer *renderer, const kmMat4& transform, bool transformUpdated);
+	virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags);
 	virtual const BlendFunc &getBlendFunc() const;
 	virtual void setBlendFunc(const BlendFunc &blendFunc);
 
@@ -90,7 +90,7 @@ protected:
 	BlendFunc m_tBlendFunc;
 
 protected:
-    Vertex2F m_pSquareVertices[4];
+    Vec2 m_pSquareVertices[4];
     Color4F  m_pSquareColors[4];
 	virtual void updateColor();
 };

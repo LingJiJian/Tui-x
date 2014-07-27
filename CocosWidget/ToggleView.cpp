@@ -100,7 +100,7 @@ void CToggleView::onTouchEnded(Touch *pTouch, float fDuration)
 {
 	CC_WIDGET_LONGCLICK_ONTOUCHENDED;
 
-	Point touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
+	Vec2 touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
 	if( getBoundingBox().containsPoint(touchPointInView) )
 	{
 		if (m_nExclusion == CC_WIDGET_NONE_EXCLUSION){//只有一个tgv

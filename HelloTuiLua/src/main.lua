@@ -7,6 +7,15 @@ cclog = function(...)
     print(string.format(...))
 end
 
+_G._scaleResolutionX = TuiManager:getInstance():getScaleResolutionX()
+_G._scaleResolutionY = TuiManager:getInstance():getScaleResolutionY()
+-- Arp
+Arp = function(p)
+    p.x = p.x * _G._scaleResolutionX
+    p.y = p.y * _G._scaleResolutionY
+    return p
+end
+
 -- for CCLuaEngine traceback
 function __G__TRACKBACK__(msg)
     cclog("----------------------------------------")
@@ -23,7 +32,6 @@ local function main()
 	
     local scene = Welcomeui:create()
     cc.Director:getInstance():runWithScene(scene)
-
 end
 
 

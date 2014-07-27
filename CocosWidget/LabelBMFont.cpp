@@ -54,7 +54,7 @@ void CLabelBMFont::onTouchEnded(Touch *pTouch, float fDuration)
 {
 	CC_WIDGET_LONGCLICK_ONTOUCHENDED
 
-	Point touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
+	Vec2 touchPointInView = _parent->convertToNodeSpace(pTouch->getLocation());
 	if( getBoundingBox().containsPoint(touchPointInView) )
 	{
 		executeClickHandler(this);
@@ -88,7 +88,7 @@ CLabelBMFont* CLabelBMFont::create()
     return NULL;
 }
 
-CLabelBMFont *CLabelBMFont::create(const std::string& text, const std::string& bmfontFilePath, const TextHAlignment& alignment /* = TextHAlignment::LEFT */, int maxLineWidth /* = 0 */, const Point& imageOffset /* = Point::ZERO */)
+CLabelBMFont *CLabelBMFont::create(const std::string& text, const std::string& bmfontFilePath, const TextHAlignment& alignment /* = TextHAlignment::LEFT */, int maxLineWidth /* = 0 */, const Vec2& imageOffset /* = Point::ZERO */)
 {
 	auto ret = new CLabelBMFont();
 	ret->_hAlignment = alignment;

@@ -63,9 +63,9 @@ public:
 	virtual void onTouchCancelled(Touch *pTouch, float fDuration);
 
 protected:
-	int valueFromPoint(const Point& tPoint);
+	int valueFromPoint(const Vec2& tPoint);
 	int valueFromPercent(float fPercentage);
-	void pointFromValue(int nValue, Point& tOutPoint);
+	void pointFromValue(int nValue, Vec2& tOutPoint);
 
 protected:
 	virtual void changeValueAndExecuteEvent(int nValue, bool bExeEvent);

@@ -85,7 +85,7 @@ public:
 	CScrollViewContainer* getContainer();
 	virtual void setContentSize(const Size& contentSize);
 	
-	const Point& getContentOffset() const;
+	const Vec2& getContentOffset() const;
 	void setBounceable(bool bBounceable);
 	bool isBounceable();
 	void setDeaccelerateable(bool bDeaccelerateable);
@@ -95,8 +95,8 @@ public:
     bool isTouchMoved();
     
 	void stopContainerAnimation();
-	const Point& getMaxOffset() const;
-	const Point& getMinOffset() const;
+	const Vec2& getMaxOffset() const;
+	const Vec2& getMinOffset() const;
 	void setContentOffsetToTop();
 	void setContentOffsetToTopInDuration(float fDuration);
 	void setContentOffsetToTopEaseIn(float fDuration, float fRate);
@@ -104,12 +104,12 @@ public:
 	void setContentOffsetToRight();
 	void setContentOffsetToLeft();
 	void relocateContainer();
-	void setContentOffset(Point tOffset);
-	void setContentOffsetInDuration(Point tOffset, float fDuration);
-	void setContentOffsetEaseIn(Point tOffset, float fDuration, float fRate);
+	void setContentOffset(Vec2 tOffset);
+	void setContentOffsetInDuration(Vec2 tOffset, float fDuration);
+	void setContentOffsetEaseIn(Vec2 tOffset, float fDuration, float fRate);
 
 public:
-	virtual void visit(Renderer *renderer, const kmMat4& parentTransform, bool parentTransformUpdated);
+	virtual void visit(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags);
     void beforeDraw();
     void onBeforeDraw();
     void afterDraw();
@@ -123,10 +123,10 @@ public:
     virtual void onTouchCancelled(Touch *pTouch, float fDuration);
 
 protected:
-	void relocateContainerWithoutCheck(const Point& tOffset);
-	void setContentOffsetWithoutCheck(const Point& tOffset);
-	void setContentOffsetInDurationWithoutCheck(const Point& tOffset, float fDuration);
-	void setContentOffsetEaseInWithoutCheck(const Point& tOffset, float fDuration, float fRate);
+	void relocateContainerWithoutCheck(const Vec2& tOffset);
+	void setContentOffsetWithoutCheck(const Vec2& tOffset);
+	void setContentOffsetInDurationWithoutCheck(const Vec2& tOffset, float fDuration);
+	void setContentOffsetEaseInWithoutCheck(const Vec2& tOffset, float fDuration, float fRate);
 
 	bool m_bDeaccelerateScrolling;
 	void perpareDeaccelerateScroll();
@@ -142,22 +142,22 @@ protected:
 	virtual void onDeaccelerateScrollEnded(){};
 	virtual void onDraggingScrollEnded(){};
 	void updateLimitOffset();
-	bool validateOffset(Point& tPoint);
+	bool validateOffset(Vec2& tPoint);
 	Rect getViewRect();
 protected:
 	CScrollViewContainer *m_pContainer;
 	CScrollViewDirection m_eDirection;
-	Point m_tLastMovePoint;
+	Vec2 m_tLastMovePoint;
 	bool m_bDeaccelerateable;
 	bool m_bBounceable;
 	bool m_bDragging;
 	bool m_bDragable;
 	float m_fDragSpeed;
-	Point m_tScrollDistance;
-	Point m_tTouchBeganPoint;
+	Vec2 m_tScrollDistance;
+	Vec2 m_tTouchBeganPoint;
     bool m_bTouchMoved;
-	Point m_tMinOffset;
-	Point m_tMaxOffset;
+	Vec2 m_tMinOffset;
+	Vec2 m_tMaxOffset;
 
 	bool _clippingToBounds;
 	bool _scissorRestored;

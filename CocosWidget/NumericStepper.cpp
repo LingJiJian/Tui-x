@@ -111,7 +111,7 @@ void NumericStepper::setStepBgSpriteFrameName(const char* pSpriteName){
 
 CWidgetTouchModel NumericStepper::onTouchBegan(Touch* pTouch){
 
-	Point touchPointInView = this->convertToNodeSpace(pTouch->getLocation());
+	Vec2 touchPointInView = this->convertToNodeSpace(pTouch->getLocation());
 	if(m_btnLeft->getBoundingBox().containsPoint(touchPointInView)){
 		m_btnLeft->onTouchBegan(pTouch);
 	}else if(m_btnRight->getBoundingBox().containsPoint(touchPointInView)){
@@ -122,7 +122,7 @@ CWidgetTouchModel NumericStepper::onTouchBegan(Touch* pTouch){
 
 void NumericStepper::onTouchEnded(Touch* pTouch, float fDuration){
 
-	Point touchPointInView = this->convertToNodeSpace(pTouch->getLocation());
+	Vec2 touchPointInView = this->convertToNodeSpace(pTouch->getLocation());
 	if(m_btnLeft->getBoundingBox().containsPoint(touchPointInView)){
 		m_btnLeft->onTouchEnded(pTouch,fDuration);
 	}else if(m_btnRight->getBoundingBox().containsPoint(touchPointInView)){
@@ -132,14 +132,14 @@ void NumericStepper::onTouchEnded(Touch* pTouch, float fDuration){
 
 void NumericStepper::onTouchMoved(Touch* pTouch, float fDuration){
 
-	Point touchPointInView = this->convertToNodeSpace(pTouch->getLocation());
+	Vec2 touchPointInView = this->convertToNodeSpace(pTouch->getLocation());
 	m_btnLeft->onTouchMoved(pTouch,fDuration);
 	m_btnRight->onTouchMoved(pTouch,fDuration);
 }
 
 void NumericStepper::onTouchCancelled(Touch* pTouch, float fDuration){
 
-	Point touchPointInView = this->convertToNodeSpace(pTouch->getLocation());
+	Vec2 touchPointInView = this->convertToNodeSpace(pTouch->getLocation());
 	m_btnLeft->onTouchCancelled(pTouch,fDuration);
 	m_btnRight->onTouchCancelled(pTouch,fDuration);
 }
@@ -157,7 +157,7 @@ void NumericStepper::resetSelf(){
 		m_bg->getContentSize().height));
 	
 	m_btnLeft->setPosition(m_btnLeft->getContentSize().width/2,m_btnLeft->getContentSize().height/2);
-	m_bg->setPosition(Point(m_btnLeft->getPositionX()+m_btnLeft->getContentSize().width/2+m_bg->getContentSize().width/2,
+	m_bg->setPosition(Vec2(m_btnLeft->getPositionX()+m_btnLeft->getContentSize().width/2+m_bg->getContentSize().width/2,
 		m_btnLeft->getPositionY()));
 	m_labNum->setPosition(m_bg->getPosition());
 	m_btnRight->setPosition((m_bg->getPositionX()+m_bg->getContentSize().width/2+m_btnRight->getContentSize().width/2),m_btnLeft->getPositionY());
