@@ -11,6 +11,7 @@ local __instance = nil
 function Bagui:create()
 	local ret = Bagui.new()
 	__instance = ret
+	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("bagui/bagui.plist")
 	TuiManager:getInstance():parseScene(ret,"panel_bag",PATH_BAGUI)
 	ret:onLoadComplete()
 	return ret

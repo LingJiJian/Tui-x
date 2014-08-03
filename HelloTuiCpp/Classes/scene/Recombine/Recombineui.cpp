@@ -4,6 +4,7 @@
 
 void Recomebineui::onLoadScene()
 {
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("recombine/recombineui.plist");
 	TuiManager::getInstance()->parseScene(this, "panel_recombine", PATH_RECOMBINEUI);
 
 	CGridPageView *pGpvBag = (CGridPageView*)this->getControl(PANEL_RECOMBINE, GPV_BAG);

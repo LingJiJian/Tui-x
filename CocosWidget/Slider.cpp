@@ -76,6 +76,30 @@ bool CSlider::initWithSlider(const char* pSlider, const char* pProgress)
 	return false;
 }
 
+CSlider* CSlider::createSpriteFrame(const char* pSlider, const char* pProgress)
+{
+	CSlider* pRet = new CSlider();
+	if (pRet && pRet->initWithSliderSpriteFrame(pSlider, pProgress))
+	{
+		pRet->autorelease();
+		return pRet;
+	}
+	CC_SAFE_DELETE(pRet);
+	return NULL;
+}
+
+bool CSlider::initWithSliderSpriteFrame(const char* pSlider, const char* pProgress)
+{
+	setSliderSpriteFrameName(pSlider);
+
+	if (initWithFileSpriteFrame(pProgress))
+	{
+		return true;
+	}
+	return false;
+}
+
+
 void CSlider::setContentSize(const Size& tSize)
 {
 	if( m_pSlider && m_pProgressSprite )
@@ -309,7 +333,7 @@ void CSlider::setSliderSpriteFrame(SpriteFrame* pFrame)
 		else
 		{
 			m_pSlider = Sprite::createWithSpriteFrame(pFrame);
-			addChild(m_pSlider);
+			addChild(m_pSlider,2);
 		}
 	}
 	setContentSize(_contentSize);

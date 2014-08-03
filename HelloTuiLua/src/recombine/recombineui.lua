@@ -11,6 +11,7 @@ local __instance = nil
 function Recombineui:create()
 	local ret = Recombineui.new()
 	__instance = ret
+	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("recombine/recombineui.plist")
 	TuiManager:getInstance():parseScene(ret,"panel_recombine",PATH_RECOMBINEUI)
 	ret:onLoadComplete()
 	return ret

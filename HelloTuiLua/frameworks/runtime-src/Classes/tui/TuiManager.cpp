@@ -346,128 +346,114 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 }
 
 ///////////////////////////////////////////////////////////////////
-CWidgetWindow *TuiManager::createPanel(float tag, float x, float y, int w, int h,float rotation){
+CWidgetWindow *TuiManager::createPanel(float tag, float x, float y, int w, int h, float rotation){
 	CWidgetWindow *pPanel = CWidgetWindow::create();
 	pPanel->setContentSize(Size(w, h));
-	pPanel->setPosition(Vec2(x,y));
+	pPanel->setPosition(Vec2(x, y));
 	pPanel->setRotation(rotation);
 	pPanel->setTag(tag);
 	return pPanel;
 }
 
-CLayout *TuiManager::createLayout(float tag,float x,float y,float w,float h,float rotation){
-	CLayout *pLayout = CLayout::create(Size(w,h));
-	pLayout->setPosition(Vec2(x,-y));
+CLayout *TuiManager::createLayout(float tag, float x, float y, float w, float h, float rotation){
+	CLayout *pLayout = CLayout::create(Size(w, h));
+	pLayout->setPosition(Vec2(x, -y));
 	pLayout->setRotation(rotation);
 	pLayout->setTag(tag);
 	return pLayout;
 }
 
-CScrollView *TuiManager::createScrollView(float tag, int direction,int innerWidth,int innerHeight, float x, float y, float w, float h, float rotation){
-	CScrollView *pView = CScrollView::create(Size(Vec2(w,h)));
-	pView->setPosition(Vec2(x,-y));
-	pView->setContainerSize(Size(innerWidth,innerHeight));
+CScrollView *TuiManager::createScrollView(float tag, int direction, int innerWidth, int innerHeight, float x, float y, float w, float h, float rotation){
+	CScrollView *pView = CScrollView::create(Size(Vec2(w, h)));
+	pView->setPosition(Vec2(x, -y));
+	pView->setContainerSize(Size(innerWidth, innerHeight));
 	pView->setDirection((CScrollViewDirection)direction);
 	pView->setRotation(rotation);
 	pView->setTag(tag);
 	return pView;
 }
 
-CListView *TuiManager::createListView(float tag,const char* img,float x,float y,float w,float h,float rotation){
-	CListView *pList = CListView::create(Size(w,h));
+CListView *TuiManager::createListView(float tag, const char* img, float x, float y, float w, float h, float rotation){
+	CListView *pList = CListView::create(Size(w, h));
 	m_isUseSpriteFrame ? pList->setBackgroundSpriteFrameName(img) : pList->setBackgroundImage(img);
 	pList->setDirection(eScrollViewDirectionVertical);
-	pList->setPosition(Vec2(x,-y));
+	pList->setPosition(Vec2(x, -y));
 	pList->setRotation(rotation);
 	pList->setTag(tag);
 	return pList;
 }
 
-CPageView *TuiManager::createPageView(float tag, const char* img, int dir, int num, float x, float y, float w, float h, float rotation){
-	CPageView *pView = CPageView::create(Size(w, h));
-	m_isUseSpriteFrame ? pView->setBackgroundSpriteFrameName(img) : pView->setBackgroundImage(img);
-	pView->setAutoRelocate(true);
-	pView->setRotation(rotation);
-	pView->setDirection((CScrollViewDirection)dir);
-	pView->setCountOfCell(num);
-	pView->setSizeOfCell(Size(w, h));
-	pView->setPosition(Vec2(x, -y));
-	pView->setTag(tag);
-	return pView;
-}
-
-CImageView *TuiManager::createImage(float tag, const char* file, float scaleX, float scaleY,float x, float y, float rotation){
+CImageView *TuiManager::createImage(float tag, const char* file, float scaleX, float scaleY, float x, float y, float rotation){
 	CImageView *pImg = m_isUseSpriteFrame ? CImageView::createWithSpriteFrameName(file) : CImageView::create(file);
 	Size size = pImg->getContentSize();
-	pImg->setPosition(Vec2(x,-y));
+	pImg->setPosition(Vec2(x, -y));
 	pImg->setScale(scaleX, scaleY);
 	pImg->setRotation(rotation);
 	pImg->setTag(tag);
 	return pImg;
 }
 
-CImageViewScale9 *TuiManager::createImage9(float tag,const char* file,float x,float y,float w,float h,float up,float down,float left, float right,float rotation){
+CImageViewScale9 *TuiManager::createImage9(float tag, const char* file, float x, float y, float w, float h, float up, float down, float left, float right, float rotation){
 	CImageViewScale9* pSprite = NULL;
-	if(m_isUseSpriteFrame){
-		pSprite = CImageViewScale9::createWithSpriteFrameName(file,Rect(up,down,left,right));
-	}else{
+	if (m_isUseSpriteFrame){
+		pSprite = CImageViewScale9::createWithSpriteFrameName(file, Rect(up, down, left, right));
+	}
+	else{
 		CImageView *temp = CImageView::create(file);
 		Size size = temp->getContentSize();
-		pSprite = CImageViewScale9::create(file, Rect(0,0,size.width,size.height),Rect(up,down,left,right));
+		pSprite = CImageViewScale9::create(file, Rect(0, 0, size.width, size.height), Rect(up, down, left, right));
 	}
-	pSprite->setContentSize(Size(w * m_fScaleResolutionX,h * m_fScaleResolutionY));
-	pSprite->setPosition(Vec2(x,-y));
+	pSprite->setContentSize(Size(w * m_fScaleResolutionX, h * m_fScaleResolutionY));
+	pSprite->setPosition(Vec2(x, -y));
 	pSprite->setRotation(rotation);
 	pSprite->setTag(tag);
 	return pSprite;
 }
 
-CButton* TuiManager::createBtn(float tag, const char* normal,const char* select,const char* disable,float x,float y,float w, float h,float rotation){
+CButton* TuiManager::createBtn(float tag, const char* normal, const char* select, const char* disable, float x, float y, float w, float h, float rotation){
 	CButton * pBtn = NULL;
-	if(m_isUseSpriteFrame){
-		pBtn = CButton::create();
-		pBtn->setNormalSpriteFrameName(normal);
-		pBtn->setSelectedSpriteFrameName(select);
-		pBtn->setDisabledSpriteFrameName(disable);
-	}else{
-		pBtn = CButton::createWith9Sprite(Size(w,h),normal,select,disable);
+	if (m_isUseSpriteFrame){
+		pBtn = CButton::createWith9SpriteFrameName(Size(w, h), normal, select, disable);
+	}
+	else{
+		pBtn = CButton::createWith9Sprite(Size(w, h), normal, select, disable);
 	}
 	pBtn->setRotation(rotation);
-	pBtn->setPosition(Vec2(x,-y));
+	pBtn->setPosition(Vec2(x, -y));
 	pBtn->setTag(tag);
 	return pBtn;
 }
 
-CToggleView* TuiManager::createToggleView(float tag,int exclusion,const char* normal,const char* select,const char* disable,float x,float y,float rotation){
+CToggleView* TuiManager::createToggleView(float tag, int exclusion, const char* normal, const char* select, const char* disable, float x, float y, float rotation){
 	CToggleView *pToggle = NULL;
-	if(m_isUseSpriteFrame){
+	if (m_isUseSpriteFrame){
 		pToggle = CToggleView::create();
 		pToggle->setNormalSpriteFrameName(normal);
 		pToggle->setSelectedSpriteFrameName(select);
 		pToggle->setDisabledSpriteFrameName(disable);
-	}else{
-		pToggle = CToggleView::create(normal,select,disable);
+	}
+	else{
+		pToggle = CToggleView::create(normal, select, disable);
 	}
 	pToggle->setRotation(rotation);
 	pToggle->setExclusion(exclusion);
-	pToggle->setPosition(x,-y);
+	pToggle->setPosition(x, -y);
 	pToggle->setTag(tag);
 	return pToggle;
 }
 
-CSlider* TuiManager::createSlider(float tag, const char* bg,const char* progress,const char* thumb,float x,float y,float rotation){
+CSlider* TuiManager::createSlider(float tag, const char* bg, const char* progress, const char* thumb, float x, float y, float rotation){
 	CSlider *pSlider = NULL;
-	if(m_isUseSpriteFrame){
-		pSlider = CSlider::create();
+	if (m_isUseSpriteFrame){
+		pSlider = CSlider::createSpriteFrame(thumb, progress);
 		pSlider->setBackgroundSpriteFrameName(bg);
-		pSlider->setProgressSpriteFrameName(progress);
-		pSlider->setSliderSpriteFrameName(thumb);
-	}else{
-		pSlider = CSlider::create(thumb,progress);
+	}
+	else{
+		pSlider = CSlider::create(thumb, progress);
 		pSlider->setBackgroundImage(bg);
 	}
 	pSlider->setRotation(rotation);
-	pSlider->setPosition(Vec2(x,-y));
+	pSlider->setPosition(Vec2(x, -y));
 	pSlider->setMinValue(0);
 	pSlider->setMaxValue(100);
 	pSlider->setValue(15);
@@ -475,18 +461,18 @@ CSlider* TuiManager::createSlider(float tag, const char* bg,const char* progress
 	return pSlider;
 }
 
-CProgressBar* TuiManager::createProgress(float tag, const char* bg,const char* progress,float x,float y,float rotation){
+CProgressBar* TuiManager::createProgress(float tag, const char* bg, const char* progress, float x, float y, float rotation){
 	CProgressBar *pProgress = NULL;
-	if(m_isUseSpriteFrame){
-		pProgress = CProgressBar::create();
+	if (m_isUseSpriteFrame){
+		pProgress = CProgressBar::createSpriteFrame(progress);
 		pProgress->setBackgroundSpriteFrameName(bg);
-		pProgress->setProgressSpriteFrameName(progress);
-	}else{
+	}
+	else{
 		pProgress = CProgressBar::create(progress);
 		pProgress->setBackgroundImage(bg);
 	}
 	pProgress->setRotation(rotation);
-	pProgress->setPosition(Vec2(x,-y));
+	pProgress->setPosition(Vec2(x, -y));
 	pProgress->setMaxValue(100);
 	pProgress->setMinValue(0);
 	pProgress->setValue(15);
@@ -495,68 +481,65 @@ CProgressBar* TuiManager::createProgress(float tag, const char* bg,const char* p
 }
 
 CLabel* TuiManager::createLabel(float tag, const char* text, const char* font, int alignment, float fontSize, int r, int g, int b, float x, float y, float w, float h,
-							int r2,int g2,int b2,float strokeSize,int shadowDistance,float shadowBlur,float rotation)
+	int r2, int g2, int b2, float strokeSize, int shadowDistance, float shadowBlur, float rotation)
 {
-	CLabel *pLabel = CLabel::createWithTTF(text,font,fontSize);
+	CLabel *pLabel = CLabel::createWithTTF(text, font, fontSize);
 
-	if(shadowDistance != 0){
-		pLabel->setTextColor(Color4B(r,g,b,255));
-		pLabel->enableShadow(Color4B(r2,g2,b2,255),Size(shadowDistance,shadowDistance),shadowBlur);
+	if (shadowDistance != 0){
+		pLabel->setTextColor(Color4B(r, g, b, 255));
+		pLabel->enableShadow(Color4B(r2, g2, b2, 255), Size(shadowDistance, shadowDistance), shadowBlur);
 	}
-	if(strokeSize != 0){
-		pLabel->setTextColor(Color4B(r,g,b,255));
-		pLabel->enableOutline(Color4B(r2,g2,b2,255),strokeSize);
+	if (strokeSize != 0){
+		pLabel->setTextColor(Color4B(r, g, b, 255));
+		pLabel->enableOutline(Color4B(r2, g2, b2, 255), strokeSize);
 	}
-	if(shadowDistance == 0 && strokeSize == 0){
-		pLabel->setColor(Color3B(r,g,b));
+	if (shadowDistance == 0 && strokeSize == 0){
+		pLabel->setColor(Color3B(r, g, b));
 	}
 	pLabel->setAlignment((TextHAlignment)alignment);
-	pLabel->setDimensions(w,h);
+	pLabel->setDimensions(w, h);
 	pLabel->setRotation(rotation);
-	pLabel->setPosition(Vec2(x+w/2,-(y + h/2)));
+	pLabel->setPosition(Vec2(x + w / 2, -(y + h / 2)));
 	pLabel->setTag(tag);
 	return pLabel;
 }
 
-CLabelAtlas* TuiManager::createLabelAtlas(float tag,const char* imgPath,float x,float y,float w,float h,float rotation){
-	CLabelAtlas *pLabAtlas = CLabelAtlas::create("123456",imgPath,w/12,h,48);
-	pLabAtlas->setPosition(Vec2(x,-y));
+CLabelAtlas* TuiManager::createLabelAtlas(float tag, const char* imgPath, float x, float y, float w, float h, float rotation){
+	CLabelAtlas *pLabAtlas = CLabelAtlas::create("123456", imgPath, w / 12, h, 48);
+	pLabAtlas->setPosition(Vec2(x, -y));
 	pLabAtlas->setTag(tag);
 	return pLabAtlas;
 }
 
-Armature* TuiManager::createArmature(float tag,const char* name,const char* png,const char* plist,const char* xml,float x,float y,float rotation){
-	if(m_isUseSpriteFrame){
-		ArmatureDataManager::getInstance()->addSpriteFrameFromFile(plist,png,xml);
-	}else{
-		ArmatureDataManager::getInstance()->addArmatureFileInfo(png,plist,xml);
-	}
+Armature* TuiManager::createArmature(float tag, const char* name, const char* png, const char* plist, const char* xml, float x, float y, float rotation){
+	ArmatureDataManager::getInstance()->addArmatureFileInfo(png, plist, xml);
 	Armature *pArmature = Armature::create(name);
-	pArmature->setPosition(Vec2(x,-y));
+	pArmature->setPosition(Vec2(x, -y));
 	pArmature->setRotation(rotation);
 	pArmature->setTag(tag);
 	return pArmature;
 }
 
-Sprite* TuiManager::createAnim(float tag,const char* name,const char* png,const char* plist,float x,float y,float rotation){
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(plist,png);
-	Animation* pAnim = AnimationUtil::createAnimWithName(name,0.05f,-1);
+Sprite* TuiManager::createAnim(float tag, const char* name, const char* png, const char* plist, float x, float y, float rotation){
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(plist, png);
+	Animation* pAnim = AnimationUtil::createAnimWithName(name, 0.05f, -1);
 	Sprite* pSprite = Sprite::create();
 	pSprite->runAction(Animate::create(pAnim));
-	pSprite->setPosition(Vec2(x,-y));
+	pSprite->setPosition(Vec2(x, -y));
 	pSprite->setRotation(rotation);
 	pSprite->setTag(tag);
 	return pSprite;
 }
 
-CControlView* TuiManager::createControl(float tag,const char* baseboard,const char* joystick,float x,float y,float rotation){
+CControlView* TuiManager::createControl(float tag, const char* baseboard, const char* joystick, float x, float y, float rotation){
 	CControlView* pView = NULL;
-	if(m_isUseSpriteFrame){
+	if (m_isUseSpriteFrame){
 		pView = CControlView::create();
 		pView->setBaseBoardSpriteFrameName(baseboard);
 		pView->setJoystickSpriteFrameName(joystick);
-	}else{
-		pView = CControlView::create(baseboard,joystick);
+	}
+	else{
+		pView = CControlView::create(baseboard, joystick);
 	}
 	pView->setPosition(Vec2(x, -y));
 	pView->setRadius(pView->getContentSize().width / 2);
@@ -565,10 +548,10 @@ CControlView* TuiManager::createControl(float tag,const char* baseboard,const ch
 	return pView;
 }
 
-CCheckBox* TuiManager::createCheckBox(float tag,const char* normal1,const char* normal2,const char* select1,
-	const char* select2,const char* disable1,const char* disable2,float x,float y,float rotation){
+CCheckBox* TuiManager::createCheckBox(float tag, const char* normal1, const char* normal2, const char* select1,
+	const char* select2, const char* disable1, const char* disable2, float x, float y, float rotation){
 	CCheckBox* pCheckBox = NULL;
-	if(m_isUseSpriteFrame){
+	if (m_isUseSpriteFrame){
 		pCheckBox = CCheckBox::create();
 		pCheckBox->setNormalSpriteFrameName(normal1);
 		pCheckBox->setNormalPressSpriteFrameName(normal2);
@@ -576,59 +559,50 @@ CCheckBox* TuiManager::createCheckBox(float tag,const char* normal1,const char* 
 		pCheckBox->setCheckedPressSpriteFrameName(select2);
 		pCheckBox->setDisabledNormalSpriteFrameName(disable1);
 		pCheckBox->setDisabledCheckedSpriteFrameName(disable2);
-	}else{
-		pCheckBox = CCheckBox::create(); 
-		pCheckBox->setNormalImage(normal1); 
-		pCheckBox->setNormalPressImage(normal2); 
-		pCheckBox->setCheckedImage(select1); 
-		pCheckBox->setCheckedPressImage(select2); 
-		pCheckBox->setDisabledNormalImage(disable1); 
-		pCheckBox->setDisabledCheckedImage(disable2); 
+	}
+	else{
+		pCheckBox = CCheckBox::create();
+		pCheckBox->setNormalImage(normal1);
+		pCheckBox->setNormalPressImage(normal2);
+		pCheckBox->setCheckedImage(select1);
+		pCheckBox->setCheckedPressImage(select2);
+		pCheckBox->setDisabledNormalImage(disable1);
+		pCheckBox->setDisabledCheckedImage(disable2);
 	}
 	pCheckBox->setRotation(rotation);
-	pCheckBox->setPosition(Vec2(x,-y));
+	pCheckBox->setPosition(Vec2(x, -y));
 	pCheckBox->setTag(tag);
 	return pCheckBox;
 }
 
-ArmatureBtn* TuiManager::createArmatureBtn(float tag,const char* name,const char* png,const char* plist,const char* xml,float x,float y,float rotation){
-	if(m_isUseSpriteFrame){
-		ArmatureDataManager::getInstance()->addSpriteFrameFromFile(plist,png,xml);
-	}else{
-		ArmatureDataManager::getInstance()->addArmatureFileInfo(png,plist,xml);
-	}
+ArmatureBtn* TuiManager::createArmatureBtn(float tag, const char* name, const char* png, const char* plist, const char* xml, float x, float y, float rotation){
+	ArmatureDataManager::getInstance()->addArmatureFileInfo(png, plist, xml);
 	ArmatureBtn *pArmBtn = ArmatureBtn::create(name);
 	Size size = pArmBtn->getContentSize();
 	pArmBtn->setRotation(rotation);
-	pArmBtn->setPosition(Vec2(x - size.width/2,-y - size.height/2));
+	pArmBtn->setPosition(Vec2(x - size.width / 2, -y - size.height / 2));
 	pArmBtn->setTag(tag);
 	return pArmBtn;
 }
 
-NumericStepper* TuiManager::createNumStep(float tag,const char* lnormal,const char* lselect,const char* ldisable,const char* rnormal,const char* rselect,const char* rdisable,const char* stepBg,float x,float y,float rotation){
+NumericStepper* TuiManager::createNumStep(float tag, const char* lnormal, const char* lselect, const char* ldisable, const char* rnormal, const char* rselect, const char* rdisable, const char* stepBg, float x, float y, float rotation){
 	NumericStepper* pNumStep = NULL;
-	if(m_isUseSpriteFrame){
-		pNumStep = NumericStepper::create();
-		pNumStep->setlNormalSpriteFrameName(lnormal);
-		pNumStep->setlSelectedSpriteFrameName(lselect);
-		pNumStep->setlDisabledSpriteFrameName(ldisable);
-		pNumStep->setrNormalSpriteFrameName(rnormal);
-		pNumStep->setrSelectedSpriteFrameName(rselect);
-		pNumStep->setrDisabledSpriteFrameName(rdisable);
-		pNumStep->setStepBgSpriteFrameName(stepBg);
-	}else{
-		pNumStep = NumericStepper::create(lnormal,lselect,ldisable,rnormal,rselect,rdisable,stepBg);
+	if (m_isUseSpriteFrame){
+		pNumStep = NumericStepper::createSpriteFrameName(lnormal, lselect, ldisable, rnormal, rselect, rdisable, stepBg);
+	}
+	else{
+		pNumStep = NumericStepper::create(lnormal, lselect, ldisable, rnormal, rselect, rdisable, stepBg);
 	}
 	Size size = pNumStep->getContentSize();
 	pNumStep->setRotation(rotation);
-	pNumStep->setPosition(Vec2(x,-y));
+	pNumStep->setPosition(Vec2(x, -y));
 	pNumStep->setTag(tag);
 	return pNumStep;
 }
 
-ParticleSystemQuad* TuiManager::createParticle(float tag,const char* plist,float x,float y){
+ParticleSystemQuad* TuiManager::createParticle(float tag, const char* plist, float x, float y){
 	ParticleSystemQuad *pPartical = ParticleSystemQuad::create(plist);
-	pPartical->setPosition(x,-y);
+	pPartical->setPosition(x, -y);
 	pPartical->setTag(tag);
 	return pPartical;
 }
@@ -660,6 +634,19 @@ CGridView* TuiManager::createGridView(float tag, const char* img, int column, in
 	return pView;
 }
 
+CPageView *TuiManager::createPageView(float tag, const char* img, int dir, int num, float x, float y, float w, float h, float rotation){
+	CPageView *pView = CPageView::create(Size(w, h));
+	m_isUseSpriteFrame ? pView->setBackgroundSpriteFrameName(img) : pView->setBackgroundImage(img);
+	pView->setAutoRelocate(true);
+	pView->setRotation(rotation);
+	pView->setDirection((CScrollViewDirection)dir);
+	pView->setCountOfCell(num);
+	pView->setSizeOfCell(Size(w, h));
+	pView->setPosition(Vec2(x, -y));
+	pView->setTag(tag);
+	return pView;
+}
+
 CGridPageView* TuiManager::createGridPageView(float tag, const char* img, int dir, int column, int row, int num, int cellWidth, int cellHeight, float x, float y, float w, float h, float rotation){
 	CGridPageView *pView = CGridPageView::create(Size(w, h));
 	m_isUseSpriteFrame ? pView->setBackgroundSpriteFrameName(img) : pView->setBackgroundImage(img);
@@ -677,15 +664,16 @@ CGridPageView* TuiManager::createGridPageView(float tag, const char* img, int di
 
 EditBox* TuiManager::createEditBox(float tag, const char* file, int inputMode, int inputFlag, float x, float y, float w, float h, float rotation){
 	EditBox *pEditBox = NULL;
-	if(m_isUseSpriteFrame){
-		pEditBox = EditBox::create(Size(w,h),Scale9Sprite::createWithSpriteFrameName(file));
-	}else{
-		pEditBox = EditBox::create(Size(w,h),Scale9Sprite::create(file));
+	if (m_isUseSpriteFrame){
+		pEditBox = EditBox::create(Size(w, h), Scale9Sprite::createWithSpriteFrameName(file));
+	}
+	else{
+		pEditBox = EditBox::create(Size(w, h), Scale9Sprite::create(file));
 	}
 	pEditBox->setInputMode((EditBox::InputMode)inputMode);
 	pEditBox->setInputFlag((EditBox::InputFlag)inputFlag);
 	pEditBox->setRotation(rotation);
-	pEditBox->setPosition(Vec2(x,-y));
+	pEditBox->setPosition(Vec2(x, -y));
 	pEditBox->setTag(tag);
 	return pEditBox;
 }

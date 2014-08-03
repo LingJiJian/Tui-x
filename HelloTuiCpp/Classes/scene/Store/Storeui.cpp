@@ -6,7 +6,7 @@ NS_STORE_BEGIN
 
 void Storeui::onLoadScene()
 {
-	setAutoRemoveUnusedTexture(true);
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("store/storeui.plist");
 	TuiManager::getInstance()->parseScene(this,"panel_store",PATH_STORE);
 
 	CListView *pListGoods = (CListView*)this->getControl(PANEL_STORE, LIST_GOODS);

@@ -101,6 +101,29 @@ bool CProgressBar::initWithFile(const char* pProgress)
 	return false;
 }
 
+
+CProgressBar* CProgressBar::createSpriteFrame(const char* pProgress)
+{
+	CProgressBar* pRet = new CProgressBar();
+	if (pRet && pRet->initWithFileSpriteFrame(pProgress))
+	{
+		pRet->autorelease();
+		return pRet;
+	}
+	CC_SAFE_DELETE(pRet);
+	return NULL;
+}
+
+bool CProgressBar::initWithFileSpriteFrame(const char* pProgress)
+{
+	if (init())
+	{
+		setProgressSpriteFrameName(pProgress);
+		return true;
+	}
+	return false;
+}
+
 void CProgressBar::setValue(int nValue)
 {
 	changeValueAndExecuteEvent(nValue, true);
@@ -163,6 +186,7 @@ void CProgressBar::changeValueAndExecuteEvent(int nValue, bool bExeEvent)
 	default:
 		break;
 	}
+
 	m_pProgressSprite->setTextureRect(tScissorRect);
 
 	if( bExeEvent && nOldValue != nValue )
@@ -305,30 +329,28 @@ void CProgressBar::getScissorRectByPercentage(Rect& tRect)
 	{
 	case eProgressBarDirectionLeftToRight:
 		{
-			tRect.origin = Vec2::ZERO;
+			tRect.origin = m_pProgressSprite->getTextureRect().origin;
 			tRect.size.width = m_tProgressSize.width * fPercentage;
 			tRect.size.height = m_tProgressSize.height;
 		}
 		break;
 	case eProgressBarDirectionRightToLeft:
 		{
-			tRect.origin.x = m_tProgressSize.width - m_tProgressSize.width * fPercentage;
+			tRect.origin = m_pProgressSprite->getTextureRect().origin;
 			tRect.size.width = m_tProgressSize.width * fPercentage;
-			tRect.origin.y = 0;
 			tRect.size.height = m_tProgressSize.height;
 		}
 		break;
 	case eProgressBarDirectionBottomToTop:
 		{
-			tRect.origin.x = 0;
-			tRect.origin.y = m_tProgressSize.height - m_tProgressSize.height * fPercentage;
+			tRect.origin = m_pProgressSprite->getTextureRect().origin;
 			tRect.size.width = m_tProgressSize.width;
 			tRect.size.height = m_tProgressSize.height * fPercentage;
 		}
 		break;
 	case eProgressBarDirectionTopToBottom:
 		{
-			tRect.origin = Vec2::ZERO;
+			tRect.origin = m_pProgressSprite->getTextureRect().origin;
 			tRect.size.width = m_tProgressSize.width;
 			tRect.size.height = m_tProgressSize.height * fPercentage;
 		}

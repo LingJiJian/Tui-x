@@ -23,6 +23,8 @@ public:
 	CREATE_FUNC(CTableViewBasicTest);
 	virtual bool init();
 	Ref* tableviewDataSource(Ref* pConvertView, unsigned int idx);
+protected:
+	CTableView *m_pTbl;
 };
 
 //////////////////////////////////////////////////////

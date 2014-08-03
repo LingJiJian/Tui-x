@@ -75,6 +75,9 @@ public:
 	static CProgressBar* create();
 	static CProgressBar* create(const char* pProgress);
 
+	virtual bool initWithFileSpriteFrame(const char* pProgress);
+	static CProgressBar* createSpriteFrame(const char* pProgress);
+
 	virtual void initText(const std::string& text, const std::string& fontFile, float fontSize,
 		const Size& dimensions,const Color3B &color);
 	CLabel* getLabel();

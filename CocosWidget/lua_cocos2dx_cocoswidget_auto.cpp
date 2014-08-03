@@ -26848,283 +26848,7 @@ int lua_cocos2dx_cocoswidget_NumericStepper_getStep(lua_State* tolua_S)
 
     return 0;
 }
-int lua_cocos2dx_cocoswidget_NumericStepper_setrSelectedSpriteFrameName(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::NumericStepper* cobj = nullptr;
-    bool ok  = true;
 
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.NumericStepper",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::cocoswidget::NumericStepper*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_NumericStepper_setrSelectedSpriteFrameName'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        const char* arg0;
-
-        std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp); arg0 = arg0_tmp.c_str();
-        if(!ok)
-            return 0;
-        cobj->setrSelectedSpriteFrameName(arg0);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setrSelectedSpriteFrameName",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_NumericStepper_setrSelectedSpriteFrameName'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_cocoswidget_NumericStepper_setlDisabledSpriteFrameName(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::NumericStepper* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.NumericStepper",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::cocoswidget::NumericStepper*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_NumericStepper_setlDisabledSpriteFrameName'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        const char* arg0;
-
-        std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp); arg0 = arg0_tmp.c_str();
-        if(!ok)
-            return 0;
-        cobj->setlDisabledSpriteFrameName(arg0);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setlDisabledSpriteFrameName",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_NumericStepper_setlDisabledSpriteFrameName'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_cocoswidget_NumericStepper_setlNormalSpriteFrameName(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::NumericStepper* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.NumericStepper",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::cocoswidget::NumericStepper*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_NumericStepper_setlNormalSpriteFrameName'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        const char* arg0;
-
-        std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp); arg0 = arg0_tmp.c_str();
-        if(!ok)
-            return 0;
-        cobj->setlNormalSpriteFrameName(arg0);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setlNormalSpriteFrameName",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_NumericStepper_setlNormalSpriteFrameName'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_cocoswidget_NumericStepper_setrDisabledSpriteFrameName(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::NumericStepper* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.NumericStepper",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::cocoswidget::NumericStepper*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_NumericStepper_setrDisabledSpriteFrameName'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        const char* arg0;
-
-        std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp); arg0 = arg0_tmp.c_str();
-        if(!ok)
-            return 0;
-        cobj->setrDisabledSpriteFrameName(arg0);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setrDisabledSpriteFrameName",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_NumericStepper_setrDisabledSpriteFrameName'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_cocoswidget_NumericStepper_onTouchBegan(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::NumericStepper* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.NumericStepper",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::cocoswidget::NumericStepper*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_NumericStepper_onTouchBegan'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        cocos2d::Touch* arg0;
-
-        ok &= luaval_to_object<cocos2d::Touch>(tolua_S, 2, "cc.Touch",&arg0);
-        if(!ok)
-            return 0;
-        int ret = (int)cobj->onTouchBegan(arg0);
-        tolua_pushnumber(tolua_S,(lua_Number)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "onTouchBegan",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_NumericStepper_onTouchBegan'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_cocoswidget_NumericStepper_setStepBgSpriteFrameName(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::NumericStepper* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.NumericStepper",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::cocoswidget::NumericStepper*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_NumericStepper_setStepBgSpriteFrameName'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        const char* arg0;
-
-        std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp); arg0 = arg0_tmp.c_str();
-        if(!ok)
-            return 0;
-        cobj->setStepBgSpriteFrameName(arg0);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setStepBgSpriteFrameName",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_NumericStepper_setStepBgSpriteFrameName'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_cocos2dx_cocoswidget_NumericStepper_setStep(lua_State* tolua_S)
 {
     int argc = 0;
@@ -27171,127 +26895,7 @@ int lua_cocos2dx_cocoswidget_NumericStepper_setStep(lua_State* tolua_S)
 
     return 0;
 }
-int lua_cocos2dx_cocoswidget_NumericStepper_init(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::NumericStepper* cobj = nullptr;
-    bool ok  = true;
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
 
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.NumericStepper",0,&tolua_err)) goto tolua_lerror;
-#endif
-    cobj = (cocos2d::cocoswidget::NumericStepper*)tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-    if (!cobj)
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_NumericStepper_init'", nullptr);
-        return 0;
-    }
-#endif
-    argc = lua_gettop(tolua_S)-1;
-    do{
-        if (argc == 7) {
-            const char* arg0;
-            std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp); arg0 = arg0_tmp.c_str();
-
-            if (!ok) { break; }
-            const char* arg1;
-            std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-            if (!ok) { break; }
-            const char* arg2;
-            std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
-
-            if (!ok) { break; }
-            const char* arg3;
-            std::string arg3_tmp; ok &= luaval_to_std_string(tolua_S, 5, &arg3_tmp); arg3 = arg3_tmp.c_str();
-
-            if (!ok) { break; }
-            const char* arg4;
-            std::string arg4_tmp; ok &= luaval_to_std_string(tolua_S, 6, &arg4_tmp); arg4 = arg4_tmp.c_str();
-
-            if (!ok) { break; }
-            const char* arg5;
-            std::string arg5_tmp; ok &= luaval_to_std_string(tolua_S, 7, &arg5_tmp); arg5 = arg5_tmp.c_str();
-
-            if (!ok) { break; }
-            const char* arg6;
-            std::string arg6_tmp; ok &= luaval_to_std_string(tolua_S, 8, &arg6_tmp); arg6 = arg6_tmp.c_str();
-
-            if (!ok) { break; }
-            bool ret = cobj->init(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
-            tolua_pushboolean(tolua_S,(bool)ret);
-            return 1;
-        }
-    }while(0);
-    ok  = true;
-    do{
-        if (argc == 0) {
-            bool ret = cobj->init();
-            tolua_pushboolean(tolua_S,(bool)ret);
-            return 1;
-        }
-    }while(0);
-    ok  = true;
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "init",argc, 0);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_NumericStepper_init'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_cocoswidget_NumericStepper_setlSelectedSpriteFrameName(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::NumericStepper* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.NumericStepper",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::cocoswidget::NumericStepper*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_NumericStepper_setlSelectedSpriteFrameName'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        const char* arg0;
-
-        std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp); arg0 = arg0_tmp.c_str();
-        if(!ok)
-            return 0;
-        cobj->setlSelectedSpriteFrameName(arg0);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setlSelectedSpriteFrameName",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_NumericStepper_setlSelectedSpriteFrameName'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_cocos2dx_cocoswidget_NumericStepper_onTouchCancelled(lua_State* tolua_S)
 {
     int argc = 0;
@@ -27385,115 +26989,7 @@ int lua_cocos2dx_cocoswidget_NumericStepper_getValue(lua_State* tolua_S)
 
     return 0;
 }
-int lua_cocos2dx_cocoswidget_NumericStepper_setrNormalSpriteFrameName(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::NumericStepper* cobj = nullptr;
-    bool ok  = true;
 
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.NumericStepper",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::cocoswidget::NumericStepper*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_NumericStepper_setrNormalSpriteFrameName'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        const char* arg0;
-
-        std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp); arg0 = arg0_tmp.c_str();
-        if(!ok)
-            return 0;
-        cobj->setrNormalSpriteFrameName(arg0);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setrNormalSpriteFrameName",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_NumericStepper_setrNormalSpriteFrameName'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_cocoswidget_NumericStepper_create(lua_State* tolua_S)
-{
-    int argc = 0;
-    bool ok  = true;
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertable(tolua_S,1,"ccw.NumericStepper",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-
-    do 
-    {
-        if (argc == 7)
-        {
-            const char* arg0;
-            std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp); arg0 = arg0_tmp.c_str();
-            if (!ok) { break; }
-            const char* arg1;
-            std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-            if (!ok) { break; }
-            const char* arg2;
-            std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
-            if (!ok) { break; }
-            const char* arg3;
-            std::string arg3_tmp; ok &= luaval_to_std_string(tolua_S, 5, &arg3_tmp); arg3 = arg3_tmp.c_str();
-            if (!ok) { break; }
-            const char* arg4;
-            std::string arg4_tmp; ok &= luaval_to_std_string(tolua_S, 6, &arg4_tmp); arg4 = arg4_tmp.c_str();
-            if (!ok) { break; }
-            const char* arg5;
-            std::string arg5_tmp; ok &= luaval_to_std_string(tolua_S, 7, &arg5_tmp); arg5 = arg5_tmp.c_str();
-            if (!ok) { break; }
-            const char* arg6;
-            std::string arg6_tmp; ok &= luaval_to_std_string(tolua_S, 8, &arg6_tmp); arg6 = arg6_tmp.c_str();
-            if (!ok) { break; }
-            cocos2d::cocoswidget::NumericStepper* ret = cocos2d::cocoswidget::NumericStepper::create(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
-            object_to_luaval<cocos2d::cocoswidget::NumericStepper>(tolua_S, "ccw.NumericStepper",(cocos2d::cocoswidget::NumericStepper*)ret);
-            return 1;
-        }
-    } while (0);
-    ok  = true;
-    do 
-    {
-        if (argc == 0)
-        {
-            cocos2d::cocoswidget::NumericStepper* ret = cocos2d::cocoswidget::NumericStepper::create();
-            object_to_luaval<cocos2d::cocoswidget::NumericStepper>(tolua_S, "ccw.NumericStepper",(cocos2d::cocoswidget::NumericStepper*)ret);
-            return 1;
-        }
-    } while (0);
-    ok  = true;
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d", "create",argc, 0);
-    return 0;
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_NumericStepper_create'.",&tolua_err);
-#endif
-    return 0;
-}
 int lua_cocos2dx_cocoswidget_NumericStepper_constructor(lua_State* tolua_S)
 {
     int argc = 0;
@@ -27544,20 +27040,10 @@ int lua_register_cocos2dx_cocoswidget_NumericStepper(lua_State* tolua_S)
         tolua_function(tolua_S,"setValue",lua_cocos2dx_cocoswidget_NumericStepper_setValue);
         tolua_function(tolua_S,"onTouchEnded",lua_cocos2dx_cocoswidget_NumericStepper_onTouchEnded);
         tolua_function(tolua_S,"getStep",lua_cocos2dx_cocoswidget_NumericStepper_getStep);
-        tolua_function(tolua_S,"setrSelectedSpriteFrameName",lua_cocos2dx_cocoswidget_NumericStepper_setrSelectedSpriteFrameName);
-        tolua_function(tolua_S,"setlDisabledSpriteFrameName",lua_cocos2dx_cocoswidget_NumericStepper_setlDisabledSpriteFrameName);
-        tolua_function(tolua_S,"setlNormalSpriteFrameName",lua_cocos2dx_cocoswidget_NumericStepper_setlNormalSpriteFrameName);
-        tolua_function(tolua_S,"setrDisabledSpriteFrameName",lua_cocos2dx_cocoswidget_NumericStepper_setrDisabledSpriteFrameName);
-        tolua_function(tolua_S,"onTouchBegan",lua_cocos2dx_cocoswidget_NumericStepper_onTouchBegan);
-        tolua_function(tolua_S,"setStepBgSpriteFrameName",lua_cocos2dx_cocoswidget_NumericStepper_setStepBgSpriteFrameName);
         tolua_function(tolua_S,"setStep",lua_cocos2dx_cocoswidget_NumericStepper_setStep);
-        tolua_function(tolua_S,"init",lua_cocos2dx_cocoswidget_NumericStepper_init);
-        tolua_function(tolua_S,"setlSelectedSpriteFrameName",lua_cocos2dx_cocoswidget_NumericStepper_setlSelectedSpriteFrameName);
         tolua_function(tolua_S,"onTouchCancelled",lua_cocos2dx_cocoswidget_NumericStepper_onTouchCancelled);
         tolua_function(tolua_S,"getValue",lua_cocos2dx_cocoswidget_NumericStepper_getValue);
-        tolua_function(tolua_S,"setrNormalSpriteFrameName",lua_cocos2dx_cocoswidget_NumericStepper_setrNormalSpriteFrameName);
         tolua_function(tolua_S,"new",lua_cocos2dx_cocoswidget_NumericStepper_constructor);
-        tolua_function(tolua_S,"create", lua_cocos2dx_cocoswidget_NumericStepper_create);
 		tolua_function(tolua_S, "setOnValueChangedScriptHandler", lua_cocos2dx_cocoswidget_NumericStepper_setOnValueChangedScriptHandler);
     tolua_endmodule(tolua_S);
     std::string typeName = typeid(cocos2d::cocoswidget::NumericStepper).name();
@@ -28803,25 +28289,25 @@ TOLUA_API int register_all_cocos2dx_cocoswidget(lua_State* tolua_S)
 	tolua_module(tolua_S,nullptr,0);
 	tolua_beginmodule(tolua_S,nullptr);
 
-	lua_register_cocos2dx_cocoswidget_CWidgetTouchProtocol(tolua_S);
+	//lua_register_cocos2dx_cocoswidget_CWidgetTouchProtocol(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CWidget(tolua_S);
-	lua_register_cocos2dx_cocoswidget_CClickableProtocol(tolua_S);
+	//lua_register_cocos2dx_cocoswidget_CClickableProtocol(tolua_S);
 	lua_register_cocos2dx_cocoswidget_ArmatureBtn(tolua_S);
-	lua_register_cocos2dx_cocoswidget_CLayoutableProtocol(tolua_S);
+	//lua_register_cocos2dx_cocoswidget_CLayoutableProtocol(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CLayout(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CTableViewCell(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CGridPageViewPage(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CScale9Sprite(tolua_S);
-	lua_register_cocos2dx_cocoswidget_CLongClickableProtocol(tolua_S);
+	//lua_register_cocos2dx_cocoswidget_CLongClickableProtocol(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CImageViewScale9(tolua_S);
-	lua_register_cocos2dx_cocoswidget_CScrollableProtocol(tolua_S);
+	//lua_register_cocos2dx_cocoswidget_CScrollableProtocol(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CScrollView(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CColorView(tolua_S);
-	lua_register_cocos2dx_cocoswidget_CDataSourceAdapterProtocol(tolua_S);
+	//lua_register_cocos2dx_cocoswidget_CDataSourceAdapterProtocol(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CTableView(tolua_S);
-	lua_register_cocos2dx_cocoswidget_CPageChangeableProtocol(tolua_S);
+	//lua_register_cocos2dx_cocoswidget_CPageChangeableProtocol(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CGridPageView(tolua_S);
-	lua_register_cocos2dx_cocoswidget_CTextRichClickableProtocol(tolua_S);
+	//lua_register_cocos2dx_cocoswidget_CTextRichClickableProtocol(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CTextRich(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CircleMenu(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CListView(tolua_S);
@@ -28830,18 +28316,18 @@ TOLUA_API int register_all_cocos2dx_cocoswidget(lua_State* tolua_S)
 	lua_register_cocos2dx_cocoswidget_CWidgetWindow(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CButton(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CGradientView(tolua_S);
-	lua_register_cocos2dx_cocoswidget_CControlableProtocol(tolua_S);
+	//lua_register_cocos2dx_cocoswidget_CControlableProtocol(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CImageView(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CGridPageViewCell(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CExpandableListView(tolua_S);
-	lua_register_cocos2dx_cocoswidget_CProgressEndedProtocol(tolua_S);
+	//lua_register_cocos2dx_cocoswidget_CProgressEndedProtocol(tolua_S);
 	lua_register_cocos2dx_cocoswidget_MovieView(tolua_S);
-	lua_register_cocos2dx_cocoswidget_CCheckableProtocol(tolua_S);
+	//lua_register_cocos2dx_cocoswidget_CCheckableProtocol(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CToggleView(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CPageView(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CGridViewCell(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CExpandableNode(tolua_S);
-	lua_register_cocos2dx_cocoswidget_CValueChangeableProtocol(tolua_S);
+	//lua_register_cocos2dx_cocoswidget_CValueChangeableProtocol(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CControlView(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CLabel(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CProgressBar(tolua_S);

@@ -41,7 +41,7 @@ CWidgetWindow::CWidgetWindow()
 , m_bModalable(false)
 , m_bTouchEnabled(true)
 , m_pSelectedWidget(NULL)
-, m_fTouchedDuration(0.0f)
+, m_fTouchedDuration(0.000001f)
 , m_pTouchMovedAfterLongClickListener(NULL)
 , m_pTouchEndedAfterLongClickListener(NULL)
 , m_pTouchCancelledAfterLongClickListener(NULL)
@@ -290,7 +290,7 @@ void CWidgetWindow::setModalable(bool bModalable)
 	{
 		CWidgetWindow *pWindow = dynamic_cast<CWidgetWindow *>(pChild);
 		if (pWindow != nullptr) pWindow->setModalable(bModalable);
-		//混用组件EidtBox等
+		//EidtBox mixture components, etc
 		extension::Control *pControl = dynamic_cast<extension::Control*>(pChild);
 		if (pControl != nullptr) pControl->setEnabled(!bModalable);
 	}
@@ -438,7 +438,7 @@ bool CWidgetWindow::onTouchBegan(Touch *pTouch, Event *pEvent)
 					{
 						m_pSelectedWidget = pWidget;
 						m_bIsTouched = true;
-						m_fTouchedDuration = 0.0f;
+						m_fTouchedDuration = 0.000001f;
 						return true;
 					}
 				}
@@ -476,6 +476,8 @@ void CWidgetWindow::onTouchEnded(Touch *pTouch, Event *pEvent)
 			if( m_pLongClickedWidgetObject )
 			{
 				executeTouchEndedAfterLongClickHandler(m_pLongClickedWidgetObject, pTouch, m_fTouchedDuration);
+			}else{
+				m_pSelectedWidget->executeTouchEndedHandler(pTouch, m_fTouchedDuration);
 			}
 		}
 		else
@@ -484,7 +486,7 @@ void CWidgetWindow::onTouchEnded(Touch *pTouch, Event *pEvent)
 		}
 	}
 	m_bIsTouched = false;
-    m_fTouchedDuration = 0.0f;
+    m_fTouchedDuration = 0.000001f;
 	m_pSelectedWidget = NULL;
 	m_pLongClickedWidgetObject = NULL;
 }
@@ -506,7 +508,7 @@ void CWidgetWindow::onTouchCancelled(Touch *pTouch, Event *pEvent)
 		}
 	}
 	m_bIsTouched = false;
-    m_fTouchedDuration = 0.0f;
+    m_fTouchedDuration = 0.000001f;
 	m_pSelectedWidget = NULL;
 	m_pLongClickedWidgetObject = NULL;
 }
@@ -547,7 +549,7 @@ void CWidgetWindow::onTouchesBegan(const std::vector<Touch*>&touches, Event *unu
 							if( pWidget->executeTouchBeganHandler(pTouch) != eWidgetTouchNone )
 							{
 								__ccMULTITOUCHTARGET tKeeper;
-								tKeeper.fTouchedDuration = 0.0f;
+								tKeeper.fTouchedDuration = 0.000001f;
 								tKeeper.pWidget = pWidget;
 								tKeeper.pLongClickedWidgetObject = NULL;
 								m_mMultiTouchKeeper[pTouch->getID()] = tKeeper;

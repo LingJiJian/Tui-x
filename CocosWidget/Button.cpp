@@ -92,6 +92,18 @@ CButton* CButton::create(const char* pNormal, const char* pSelected, const char*
 	return NULL;
 }
 
+CButton* CButton::createWith9SpriteFrameName(const Size& tSize, const char* pNormal, const char* pSelected, const char* pDisabled)
+{
+	CButton* pRet = new CButton();
+	if (pRet && pRet->initWith9SpriteFrameName(tSize, pNormal, pSelected, pDisabled))
+	{
+		pRet->autorelease();
+		return pRet;
+	}
+	CC_SAFE_DELETE(pRet);
+	return NULL;
+}
+
 bool CButton::init()
 {
 	setAnchorPoint(CCWIDGET_BASIC_DEFAULT_ANCHOR_POINT);
@@ -112,6 +124,22 @@ bool CButton::initWith9Sprite(const Size& tSize, const char* pNormal, const char
 	setNormalImage(pNormal);
 	setSelectedImage(pSelected);
 	setDisabledImage(pDisabled);
+
+	return true;
+}
+
+bool CButton::initWith9SpriteFrameName(const Size& tSize, const char* pNormal, const char* pSelected, const char* pDisabled)
+{
+	if (!pNormal || !strlen(pNormal) || !init())
+	{
+		return false;
+	}
+
+	setScale9Enabled(true);
+	setContentSize(tSize);
+	setNormalSpriteFrameName(pNormal);
+	setSelectedSpriteFrameName(pSelected);
+	setDisabledSpriteFrameName(pDisabled);
 
 	return true;
 }

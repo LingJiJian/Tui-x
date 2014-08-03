@@ -50,10 +50,12 @@ public:
 	
 	virtual bool init();
 	virtual bool initWith9Sprite(const Size& tSize, const char* pNormal, const char* pSelected, const char* pDisabled);
+	virtual bool initWith9SpriteFrameName(const Size& tSize, const char* pNormal, const char* pSelected, const char* pDisabled);
 	virtual bool initWithFile(const char* pNormal, const char* pSelected, const char* pDisabled);
 	static CButton* create();
 	static CButton* create(const char* pNormal, const char* pSelected = NULL, const char* pDisabled = NULL);
 	static CButton* createWith9Sprite(const Size& tSize, const char* pNormal, const char* pSelected = NULL, const char* pDisabled = NULL);
+	static CButton* createWith9SpriteFrameName(const Size& tSize, const char* pNormal, const char* pSelected = NULL, const char* pDisabled = NULL);
 
 	virtual void setContentSize(const Size& contentSize);
 	virtual void setEnabled(bool bEnabled);

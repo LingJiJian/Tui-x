@@ -23,15 +23,15 @@ bool CTableViewBasicTest::init()
 	setTitle("CTableViewBasicTest");
 	setDescription("TableView basic test");
 
-	CTableView* pTable = CTableView::create(
+	m_pTbl = CTableView::create(
 		Size(74.0f * 5, 70.0f),
 		Size(74.0f, 70.0f),
 		50, this, 
 		ccw_datasource_adapter_selector(CTableViewBasicTest::tableviewDataSource));
-	pTable->setPosition(Vec2(480, 320));
-	pTable->setBackgroundColor(Color4B::GRAY);
-	m_pWindow->addChild(pTable);
-	pTable->reloadData();
+	m_pTbl->setPosition(Vec2(480, 320));
+	m_pTbl->setBackgroundColor(Color4B::GRAY);
+	m_pWindow->addChild(m_pTbl);
+	m_pTbl->reloadData();
 	return true;
 }
 

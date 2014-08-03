@@ -6,6 +6,7 @@ NS_SHOWPHONE_BEGIN
 
 void ShowPhoneui::onLoadScene()
 {
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("showphone/showphoneui.plist");
 	TuiManager::getInstance()->parseScene(this, "panel_showphone", PATH_SHOWPHONE);
 
 	CircleMenu *menu = (CircleMenu*)this->getControl(PANEL_SHOWPHONE, CIRCLEMENU_SHOWPHONE);

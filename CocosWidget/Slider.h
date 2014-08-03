@@ -49,6 +49,9 @@ public:
 	static CSlider* create();
 	static CSlider* create(const char* pSlider, const char* pProgress);
 
+	virtual bool initWithSliderSpriteFrame(const char* pSlider, const char* pProgress);
+	static CSlider* createSpriteFrame(const char* pSlider, const char* pProgress);
+
 	virtual void setContentSize(const Size& tSize);
 	virtual void setSliderImage(const char* pFile);
 	virtual void setSliderTexture(Texture2D* pTexture);

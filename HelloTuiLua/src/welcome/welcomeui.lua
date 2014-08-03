@@ -15,6 +15,7 @@ local __instance = nil
 function Welcomeui:create()
 	local ret = Welcomeui.new()
 	__instance = ret
+	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("main/mainui.plist")
 	TuiManager:getInstance():parseScene(ret,"panel_welcome",PATH_WELCOMEUI)
 	ret:onLoadComplete()
 	return ret

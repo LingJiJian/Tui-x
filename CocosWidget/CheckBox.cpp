@@ -438,6 +438,7 @@ void CCheckBox::setNormalPressSpriteFrame(SpriteFrame* pFrame)
 			m_pNormalPress = Sprite::createWithSpriteFrame(pFrame);
 			addChild(m_pNormalPress);
 		}
+		m_pNormalPress->setVisible(false);
 		m_pNormalPress->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 	}
 }
@@ -455,6 +456,7 @@ void CCheckBox::setCheckedSpriteFrame(SpriteFrame* pFrame)
 			m_pChecked = Sprite::createWithSpriteFrame(pFrame);
 			addChild(m_pChecked);
 		}
+		m_pChecked->setVisible(false);
 		m_pChecked->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 	}
 }
@@ -472,6 +474,7 @@ void CCheckBox::setCheckedPressSpriteFrame(SpriteFrame* pFrame)
 			m_pCheckedPress = Sprite::createWithSpriteFrame(pFrame);
 			addChild(m_pCheckedPress);
 		}
+		m_pCheckedPress->setVisible(false);
 		m_pCheckedPress->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 	}
 }
@@ -489,6 +492,7 @@ void CCheckBox::setDisabledNormalSpriteFrame(SpriteFrame* pFrame)
 			m_pDisabledNormal = Sprite::createWithSpriteFrame(pFrame);
 			addChild(m_pDisabledNormal);
 		}
+		m_pDisabledNormal->setVisible(false);
 		m_pDisabledNormal->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 	}
 }
@@ -506,6 +510,7 @@ void CCheckBox::setDisabledCheckedSpriteFrame(SpriteFrame* pFrame)
 			m_pDisabledChecked = Sprite::createWithSpriteFrame(pFrame);
 			addChild(m_pDisabledChecked);
 		}
+		m_pDisabledChecked->setVisible(false);
 		m_pDisabledChecked->setPosition(Vec2(_contentSize.width/2, _contentSize.height/2));
 	}
 }

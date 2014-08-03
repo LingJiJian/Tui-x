@@ -11,6 +11,7 @@ local __instance = nil
 function Showphoneui:create()
 	local ret = Showphoneui.new()
 	__instance = ret
+	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("showphone/showphoneui.plist")
 	TuiManager:getInstance():parseScene(ret,"panel_showphone",PATH_SHOWPHONEUI)
 	ret:onLoadComplete()
 	return ret

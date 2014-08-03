@@ -7,7 +7,7 @@ NS_MAIN_BEGIN
 
 void MsgBox::onLoadScene()
 {
-	//setAutoRemoveUnusedTexture(true);
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("main/mainui.plist");
 	TuiManager::getInstance()->parseScene(this,"panel_msgbox",PATH_MAIN);
 	//注册事件
 	CButton *pBtnClose = (CButton*)getControl(PANEL_MSGBOX,BTN_CLOSE);
@@ -18,6 +18,7 @@ void MsgBox::onLoadScene()
 
 	CProgressBar *pProg = (CProgressBar*)this->getControl(PANEL_MSGBOX,PROG_HP);
 	pProg->setShowValueLabel(true);
+
 }
 
 void MsgBox::event_btn_close( Ref *pSender )
@@ -37,6 +38,18 @@ void MsgBox::event_slider_test(Ref *pSender,int value)
 	CProgressBar *pProg = (CProgressBar*)this->getControl(PANEL_MSGBOX,PROG_HP);
 	pProg->setValue(value);
 
+}
+
+void MsgBox::show()
+{
+	if (false == getParent()){
+		CSceneManager::getInstance()->runUIScene(this);
+	}
+	else{
+		
+	}
+
+	
 }
 
 /************************************************************************/

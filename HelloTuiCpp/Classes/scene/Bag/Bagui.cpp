@@ -6,6 +6,7 @@ NS_BAG_BEGIN
 
 void Bagui::onLoadScene()
 {
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("bag/bagui.plist");
 	TuiManager::getInstance()->parseScene(this, "panel_bag", PATH_BAG);
 
 	CGridView* pGridView = (CGridView*)this->getControl(PANEL_BAG, GV_BAG);

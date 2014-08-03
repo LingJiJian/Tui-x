@@ -6,7 +6,8 @@ NS_WELCOME_BEGIN
 
 void Welcomeui::onLoadScene()
 {
-	setAutoRemoveUnusedTexture(true);
+	//setAutoRemoveUnusedSpriteFrame(true);
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("welcome/welcomeui.plist");
 	TuiManager::getInstance()->parseScene(this,"panel_welcome",PATH_WELCOME);
 	
 	this->runAction(

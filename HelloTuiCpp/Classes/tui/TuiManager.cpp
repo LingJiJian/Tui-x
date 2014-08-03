@@ -408,10 +408,7 @@ CImageViewScale9 *TuiManager::createImage9(float tag,const char* file,float x,fl
 CButton* TuiManager::createBtn(float tag, const char* normal,const char* select,const char* disable,float x,float y,float w, float h,float rotation){
 	CButton * pBtn = NULL;
 	if(m_isUseSpriteFrame){
-		pBtn = CButton::create();
-		pBtn->setNormalSpriteFrameName(normal);
-		pBtn->setSelectedSpriteFrameName(select);
-		pBtn->setDisabledSpriteFrameName(disable);
+		pBtn = CButton::createWith9SpriteFrameName(Size(w, h), normal, select, disable);
 	}else{
 		pBtn = CButton::createWith9Sprite(Size(w,h),normal,select,disable);
 	}
@@ -441,10 +438,8 @@ CToggleView* TuiManager::createToggleView(float tag,int exclusion,const char* no
 CSlider* TuiManager::createSlider(float tag, const char* bg,const char* progress,const char* thumb,float x,float y,float rotation){
 	CSlider *pSlider = NULL;
 	if(m_isUseSpriteFrame){
-		pSlider = CSlider::create();
+		pSlider = CSlider::createSpriteFrame(thumb, progress);
 		pSlider->setBackgroundSpriteFrameName(bg);
-		pSlider->setProgressSpriteFrameName(progress);
-		pSlider->setSliderSpriteFrameName(thumb);
 	}else{
 		pSlider = CSlider::create(thumb,progress);
 		pSlider->setBackgroundImage(bg);
@@ -461,9 +456,8 @@ CSlider* TuiManager::createSlider(float tag, const char* bg,const char* progress
 CProgressBar* TuiManager::createProgress(float tag, const char* bg,const char* progress,float x,float y,float rotation){
 	CProgressBar *pProgress = NULL;
 	if(m_isUseSpriteFrame){
-		pProgress = CProgressBar::create();
+		pProgress = CProgressBar::createSpriteFrame(progress);
 		pProgress->setBackgroundSpriteFrameName(bg);
-		pProgress->setProgressSpriteFrameName(progress);
 	}else{
 		pProgress = CProgressBar::create(progress);
 		pProgress->setBackgroundImage(bg);
@@ -509,11 +503,7 @@ CLabelAtlas* TuiManager::createLabelAtlas(float tag,const char* imgPath,float x,
 }
 
 Armature* TuiManager::createArmature(float tag,const char* name,const char* png,const char* plist,const char* xml,float x,float y,float rotation){
-	if(m_isUseSpriteFrame){
-		ArmatureDataManager::getInstance()->addSpriteFrameFromFile(plist,png,xml);
-	}else{
-		ArmatureDataManager::getInstance()->addArmatureFileInfo(png,plist,xml);
-	}
+	ArmatureDataManager::getInstance()->addArmatureFileInfo(png,plist,xml);
 	Armature *pArmature = Armature::create(name);
 	pArmature->setPosition(Vec2(x,-y));
 	pArmature->setRotation(rotation);
@@ -575,11 +565,7 @@ CCheckBox* TuiManager::createCheckBox(float tag,const char* normal1,const char* 
 }
 
 ArmatureBtn* TuiManager::createArmatureBtn(float tag,const char* name,const char* png,const char* plist,const char* xml,float x,float y,float rotation){
-	if(m_isUseSpriteFrame){
-		ArmatureDataManager::getInstance()->addSpriteFrameFromFile(plist,png,xml);
-	}else{
-		ArmatureDataManager::getInstance()->addArmatureFileInfo(png,plist,xml);
-	}
+	ArmatureDataManager::getInstance()->addArmatureFileInfo(png,plist,xml);
 	ArmatureBtn *pArmBtn = ArmatureBtn::create(name);
 	Size size = pArmBtn->getContentSize();
 	pArmBtn->setRotation(rotation);
@@ -591,14 +577,7 @@ ArmatureBtn* TuiManager::createArmatureBtn(float tag,const char* name,const char
 NumericStepper* TuiManager::createNumStep(float tag,const char* lnormal,const char* lselect,const char* ldisable,const char* rnormal,const char* rselect,const char* rdisable,const char* stepBg,float x,float y,float rotation){
 	NumericStepper* pNumStep = NULL;
 	if(m_isUseSpriteFrame){
-		pNumStep = NumericStepper::create();
-		pNumStep->setlNormalSpriteFrameName(lnormal);
-		pNumStep->setlSelectedSpriteFrameName(lselect);
-		pNumStep->setlDisabledSpriteFrameName(ldisable);
-		pNumStep->setrNormalSpriteFrameName(rnormal);
-		pNumStep->setrSelectedSpriteFrameName(rselect);
-		pNumStep->setrDisabledSpriteFrameName(rdisable);
-		pNumStep->setStepBgSpriteFrameName(stepBg);
+		pNumStep = NumericStepper::createSpriteFrameName(lnormal, lselect, ldisable, rnormal, rselect, rdisable, stepBg);
 	}else{
 		pNumStep = NumericStepper::create(lnormal,lselect,ldisable,rnormal,rselect,rdisable,stepBg);
 	}

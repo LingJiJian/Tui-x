@@ -1627,7 +1627,7 @@ exportAll = function(resPath,tagPath,tagType){
 cls();
 //-----debug-------
 //var sceneName = fl.getDocumentDOM().name.replace(".fla","");
-//var resPath = "file:///F|/WorkSpace/C++WorkSpace/cocos2d-x-3.2/project/HelloTuiLua/Resources";//保存xml的目录
+//var resPath = "file:///F|/WorkSpace/C++WorkSpace/cocos2d-x-3.2/project/HelloTuiCpp/Resources";//保存xml的目录
 //var tagPath = "file:///F|/WorkSpace/C++WorkSpace/cocos2d-x-3.2/projects/HelloTuiCpp/Classes";//保存h目录
 
 //var resPath = "file:///F|/WorkSpace/C++WorkSpace/cocos2d-x-3.2/project/HelloTuiLua/res";//保存xml的目录
