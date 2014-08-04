@@ -40,18 +40,6 @@ void MsgBox::event_slider_test(Ref *pSender,int value)
 
 }
 
-void MsgBox::show()
-{
-	if (false == getParent()){
-		CSceneManager::getInstance()->runUIScene(this);
-	}
-	else{
-		
-	}
-
-	
-}
-
 /************************************************************************/
 //	GET/SET/IS
 /************************************************************************/
