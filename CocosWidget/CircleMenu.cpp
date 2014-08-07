@@ -164,4 +164,15 @@ void CircleMenu::onTouchMoved(Touch *touch, float fDuration)
 	m_nowPoint = touch->getLocation();
 }
 
+CircleMenu::~CircleMenu()
+{
+	for (auto& child : _children)
+	{
+		delete child->getUserData();
+		child->setUserData(nullptr);
+	}
+	removeAllChildrenWithCleanup(true);
+}
+
+
 NS_CC_WIDGET_END

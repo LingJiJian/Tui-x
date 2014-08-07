@@ -8,6 +8,7 @@ NS_CC_WIDGET_BEGIN
 class CircleMenu : public CLayout, public CClickableProtocol
 {
 public:
+	~CircleMenu();
 	CircleMenu();
 	static CircleMenu* create(Vector<Node*> vet, Size contentSize);
 	virtual bool init(Vector<Node*> vet, Size contentSize);

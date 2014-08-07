@@ -68,6 +68,7 @@ CScale9Sprite::CScale9Sprite()
 
 CScale9Sprite::~CScale9Sprite()
 {
+	CC_SAFE_RELEASE(_scale9Image);
 }
 
 bool CScale9Sprite::init()

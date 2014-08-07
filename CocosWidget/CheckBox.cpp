@@ -648,21 +648,16 @@ void CCheckBox::setNormalPressSpriteFrameName(const char* pSpriteName)
 {
 	SpriteFrame *pFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(pSpriteName);
 
-#if COCOS2D_DEBUG > 0
-	char msg[256] = {0};
-	sprintf(msg, "Invalid spriteFrameName: %s", pSpriteName);
-	CCAssert(pFrame != NULL, msg);
-#endif
-
+	if (!pFrame) CCLOG("cocos2d: SpriteFrameCache: Frame '%s' not found", pSpriteName);
 	return setNormalPressSpriteFrame(pFrame);
 }
 
 void CCheckBox::setCheckedSpriteFrameName(const char* pSpriteName)
 {
 	SpriteFrame *pFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(pSpriteName);
-	
+
 #if COCOS2D_DEBUG > 0
-	char msg[256] = {0};
+	char msg[256] = { 0 };
 	sprintf(msg, "Invalid spriteFrameName: %s", pSpriteName);
 	CCAssert(pFrame != NULL, msg);
 #endif
@@ -674,12 +669,7 @@ void CCheckBox::setCheckedPressSpriteFrameName(const char* pSpriteName)
 {
 	SpriteFrame *pFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(pSpriteName);
 
-#if COCOS2D_DEBUG > 0
-	char msg[256] = {0};
-	sprintf(msg, "Invalid spriteFrameName: %s", pSpriteName);
-	CCAssert(pFrame != NULL, msg);
-#endif
-
+	if (!pFrame) CCLOG("cocos2d: SpriteFrameCache: Frame '%s' not found", pSpriteName);
 	return setCheckedPressSpriteFrame(pFrame);
 }
 
@@ -687,12 +677,7 @@ void CCheckBox::setDisabledNormalSpriteFrameName(const char* pSpriteName)
 {
 	SpriteFrame *pFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(pSpriteName);
 
-#if COCOS2D_DEBUG > 0
-	char msg[256] = {0};
-	sprintf(msg, "Invalid spriteFrameName: %s", pSpriteName);
-	CCAssert(pFrame != NULL, msg);
-#endif
-
+	if (!pFrame) CCLOG("cocos2d: SpriteFrameCache: Frame '%s' not found", pSpriteName);
 	return setDisabledNormalSpriteFrame(pFrame);
 }
 
@@ -700,12 +685,7 @@ void CCheckBox::setDisabledCheckedSpriteFrameName(const char* pSpriteName)
 {
 	SpriteFrame *pFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(pSpriteName);
 
-#if COCOS2D_DEBUG > 0
-	char msg[256] = {0};
-	sprintf(msg, "Invalid spriteFrameName: %s", pSpriteName);
-	CCAssert(pFrame != NULL, msg);
-#endif
-
+	if (!pFrame) CCLOG("cocos2d: SpriteFrameCache: Frame '%s' not found", pSpriteName);
 	return setDisabledCheckedSpriteFrame(pFrame);
 }
 
