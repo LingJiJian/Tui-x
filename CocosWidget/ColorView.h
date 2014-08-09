@@ -81,18 +81,21 @@ public:
 	virtual void setOpacityModifyRGB(bool bValue) {CC_UNUSED_PARAM(bValue);}
 	virtual bool isOpacityModifyRGB() { return false; }
 	virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags);
+
 	virtual const BlendFunc &getBlendFunc() const;
 	virtual void setBlendFunc(const BlendFunc &blendFunc);
 
 	CC_WIDGET_LONGCLICK_SCHEDULE(CColorView);
 
 protected:
-	BlendFunc m_tBlendFunc;
+	void onDraw(const Mat4& transform, uint32_t flags);
+	virtual void updateColor();
 
-protected:
+	BlendFunc m_tBlendFunc;
     Vec2 m_pSquareVertices[4];
     Color4F  m_pSquareColors[4];
-	virtual void updateColor();
+	CustomCommand _customCommand;
+    Vec3 _noMVPVertices[4];
 };
 
 NS_CC_WIDGET_END

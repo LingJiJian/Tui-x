@@ -33,6 +33,7 @@ Tui是一个创建cocos2d-x UI界面的解决方案，而builder用的则是Flas
 Cpp具体操作：下载好的cocos2dx3.x的引擎，然后直接把这个引擎改名成cocos2d，复制到Tui-x/HelloTuiCpp下，
 Lua具体操作：下载好的cocos2dx3.x的引擎，然后直接把这个引擎改名成cocos2d-x，复制到Tui-x/HelloTuiLua/frameworks下。
 
+如果编译的是Cpp，要把CocosWidget/WidgetMacros.h里的USING_LUA设置成0，反之为1
 接下来双击sln就可以开始编译了！
 
 注意：Tui-x 3.x和Tui-x 2.2.x接口有少量区别！具体请看HelloTui							

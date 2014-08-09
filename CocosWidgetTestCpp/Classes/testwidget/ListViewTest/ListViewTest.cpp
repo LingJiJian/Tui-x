@@ -65,16 +65,16 @@ void CListViewBasicTest::onClick(Ref* pSender)
 	if( !m_lDatas.empty() )
 	{
 		tagItem& tItem = m_lDatas.front();
-
+        
 		CLayout* pLayout = CLayout::create();
 		pLayout->setContentSize(tItem.tSize);
-		/*
+		
 		pLayout->setBackgroundColor(Color4B(tItem.tColor.r,
 			tItem.tColor.g,
 			tItem.tColor.b,
 			255));
-			*/
-		pLayout->setBackgroundImage("icon.png");
+        
+		//pLayout->setBackgroundImage("icon.png");
 		pLayout->ignoreAnchorPointForPosition(false);
 		pLayout->setAnchorPoint(Vec2(0.5f, 0.5f));
 		pLayout->setContentSize(Size(tItem.tSize.width - 4, tItem.tSize.height - 2));

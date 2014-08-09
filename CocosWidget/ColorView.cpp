@@ -55,8 +55,7 @@ bool CColorView::initWithColor(const Color4B& color)
 	_cascadeOpacityEnabled = false;
 	_cascadeColorEnabled = false;
 
-	m_tBlendFunc.src = GL_SRC_ALPHA;
-	m_tBlendFunc.dst = GL_ONE_MINUS_SRC_ALPHA;
+	m_tBlendFunc = BlendFunc::ALPHA_NON_PREMULTIPLIED;
 
 	for (size_t i = 0; i < sizeof(m_pSquareVertices) / sizeof( m_pSquareVertices[0]); i++ )
 	{
@@ -64,7 +63,7 @@ bool CColorView::initWithColor(const Color4B& color)
 		m_pSquareVertices[i].y = 0.0f;
 	}
 
-	setGLProgram(ShaderCache::getInstance()->getGLProgram(GLProgram::SHADER_NAME_POSITION_COLOR));
+	setGLProgramState(GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_COLOR_NO_MVP));
 
 	setAnchorPoint(CCWIDGET_BASIC_DEFAULT_ANCHOR_POINT);
 	setContentSize(CCWIDGET_BASIC_DEFAULT_CONTENT_SIZE);
@@ -76,24 +75,45 @@ bool CColorView::initWithColor(const Color4B& color)
 
 void CColorView::draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
 {
-	CC_NODE_DRAW_SETUP();
+	_customCommand.init(_globalZOrder);
+    _customCommand.func = CC_CALLBACK_0(CColorView::onDraw, this, transform, flags);
+    renderer->addCommand(&_customCommand);
+    
+    for(int i = 0; i < 4; ++i)
+    {
+        Vec4 pos;
+        pos.x = m_pSquareVertices[i].x; pos.y = m_pSquareVertices[i].y; pos.z = _positionZ;
+        pos.w = 1;
+        _modelViewTransform.transformVector(&pos);
+        _noMVPVertices[i] = Vec3(pos.x,pos.y,pos.z)/pos.w;
+    }
+}
 
-	GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION | GL::VERTEX_ATTRIB_FLAG_COLOR );
+void CColorView::onDraw(const Mat4& transform, uint32_t flags)
+{
+    getGLProgram()->use();
+    getGLProgram()->setUniformsForBuiltins(transform);
 
+    GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION | GL::VERTEX_ATTRIB_FLAG_COLOR );
+    //
+    // Attributes
+    //
 #ifdef EMSCRIPTEN
-	setGLBufferData(m_pSquareVertices, 4 * sizeof(Vec2), 0);
-	glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    setGLBufferData(_noMVPVertices, 4 * sizeof(Vec3), 0);
+    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-	setGLBufferData(m_pSquareColors, 4 * sizeof(Color4F), 1);
-	glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, 0, 0);
+    setGLBufferData(m_pSquareColors, 4 * sizeof(Color4F), 1);
+    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, 0, 0);
 #else
-	glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 2, GL_FLOAT, GL_FALSE, 0, m_pSquareVertices);
-	glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, 0, m_pSquareColors);
-#endif
+    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, 0, _noMVPVertices);
+    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, 0, m_pSquareColors);
+#endif // EMSCRIPTEN
 
-	GL::blendFunc( m_tBlendFunc.src, m_tBlendFunc.dst );
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	CC_INCREMENT_GL_DRAWS(1);
+    GL::blendFunc( m_tBlendFunc.src, m_tBlendFunc.dst );
+
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+    CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1,4);
 }
 
 GLubyte CColorView::getOpacity()
