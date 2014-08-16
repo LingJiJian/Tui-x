@@ -17,6 +17,6 @@
 </license-agreement>
 
 <files>
-    <file source="TuiEditer.jsfl" destination="$flash/WindowSWF/TuiEditer"/>
-    <file source="TuiEditer.swf" destination="$flash/WindowSWF"/>
+    <file source="TuiEditor.jsfl" destination="$flash/WindowSWF/TuiEditor"/>
+    <file source="TuiEditor.swf" destination="$flash/WindowSWF"/>
 </files>

@@ -881,7 +881,15 @@ FlaToXML.prototype.elementIsMc = function( element ){
 	if( "movie clip" == type ) return true;
 	return false;
 }
-
+/** 判断element是否为组件 */
+FlaToXML.prototype.elementIsComponent = function( element ){
+	if(element.libraryItem == null) return false;
+	if(element.instanceType == "symbol"){
+		var type = element.libraryItem.itemType;
+		if( "component" == type ) return true;
+	}
+	return false;
+}
 /** 判断element是否为label */
 FlaToXML.prototype.elementIsText = function(element){
 	return (element.elementType == "text");
@@ -949,6 +957,13 @@ FlaToXML.prototype.convertElement = function( element ,tag ,frameName ){
 	var e_xml = null;
 	if( this.elementIsMc( element ) ){
 		e_xml = this.convertMC( element ,tag ,frameName);
+	/*}else if(this.elementIsComponent( element )){
+		trace("  name  "+element.name);
+		for(var k in element.parameters){
+			trace("k "+k + "  "+element.parameters[k]);
+			//trace("k "+k + "  "+element.parameters[k]);
+		}
+		e_xml = this.convertMC( element ,tag ,frameName);*/
 	}else if( this.elementIsText( element )){
 		e_xml = this.convertText( element,tag ,frameName);
 	}else if(element.instanceType == "bitmap"){
@@ -970,7 +985,7 @@ FlaToXML.prototype.fullNormalAttirbute = function( xml,th, element ,tag,frameNam
 	xml.setAttribute( UIControlAttribute.kName,element.name);
 	xml.setAttribute( UIControlAttribute.kX, formatNumber( element.x ) );
 	xml.setAttribute( UIControlAttribute.kY, formatNumber( element.y) );
-	xml.setAttribute( UIControlAttribute.kRotation, formatNumber( element.rotation) );
+	xml.setAttribute( UIControlAttribute.kRotation, formatNumber( element.skewX) );
 	
 	th.obj[element.name] = {"controlName":element.name,"index":tag,"frameName":frameName};
 
@@ -1100,7 +1115,8 @@ FlaToXML.prototype.convertCell = function(cell,tag ,frameName){
 /** 转换image */
 FlaToXML.prototype.convertImg = function( image , tag ,frameName){
 	var xml_img = new UIImage();
-	xml_img.setAttribute( UIControlAttribute.kScaleX,formatNumber(image.scaleX));
+	var isTurn = image.matrix.a * image.matrix.d >= 0 ? 1 : -1;
+	xml_img.setAttribute( UIControlAttribute.kScaleX,formatNumber(image.scaleX * isTurn));
 	xml_img.setAttribute( UIControlAttribute.kScaleY,formatNumber(image.scaleY));
 	xml_img.setAttribute( UIControlAttribute.kImage, image.libraryItem.name + ".png" );
 	this.fullNormalAttirbute( xml_img,this.th, image ,tag ,frameName);
@@ -1147,6 +1163,11 @@ FlaToXML.prototype.convertButton = function( button ,tag ,frameName){
 	xml_btn.setAttribute( UIControlAttribute.kbtnImg_normal, button.libraryItem.name + "_normal.png" );
 	xml_btn.setAttribute( UIControlAttribute.kbtnImg_select, button.libraryItem.name + "_select.png" );
 	xml_btn.setAttribute( UIControlAttribute.kbtnImg_disable, button.libraryItem.name + "_disable.png" );
+	
+	for(var k in button.parameters){
+		trace(" k "+k +" v "+ button.parameters[k]);
+	}
+	
 	return xml_btn;
 }
 /** 转换checkBox */
@@ -1608,6 +1629,12 @@ exportAll = function(resPath,tagPath,tagType){
 	var sceneName = fl.getDocumentDOM().name.replace(".fla","");
 	var xmlFile = "tui/tui_"+sceneName+".xml";//xml资源路径
 	
+	if (!FLfile.exists(tagPath + "/tagMap")) {
+		FLfile.createFolder(tagPath + "/tagMap");
+	}
+	if (!FLfile.exists(resPath + "/tui")) {
+		FLfile.createFolder(resPath + "/tui");
+	}
 	var saveXmlPath = resPath + "/" + xmlFile;
 	var saveTagPath = tagPath + "/" ;
 	
@@ -1616,20 +1643,40 @@ exportAll = function(resPath,tagPath,tagType){
 	}else if(tagType == "lua"){
 		saveTagPath += "tagMap/Tag_" + sceneName + ".lua";  //lua
 	}
-	
 	var tui = export_current_layer("");//根节点名字
 	tui.th.xmlFile = xmlFile;
 	FLfile.write(saveXmlPath,tui.txml.xml);
 	FLfile.write(saveTagPath,tui.th.parseContent(tagType));
 	trace(tui.txml.xml);
 }
-
+//加载xml配置表
+loadConfig = function() {
+	var filePath = fl.getDocumentDOM().path;
+	var uriPath = FLfile.platformPathToURI(filePath)
+	var uri = uriPath.substring(0,uriPath.lastIndexOf("/")) + "/tuiconfig.xml";
+	if(FLfile.exists(uri)==false){
+		alert(fileName + " not found.");
+		return null;
+	}
+	var context = FLfile.read(uri);
+	context = XML(context);
+	if(context==null){
+		alert("load xml failed.");
+		return null;
+	}
+	var configs = {};
+	var children = context.elements();
+	configs.type = context.@type;
+	for(var j = 0; j < children.length(); j++){
+		configs[children[j].@name] = children[j].@value;
+	}
+	return configs;
+}
+//把该jsfl放到 C:\Users\Administrator\AppData\Local\Adobe\Flash CS6\zh_CN\Configuration\Commands 下
+//即可使用 FlashCS中的命令版TuiEditer(Commands)
+//配置请参考tuiconfig.xml
 cls();
-//-----debug-------
-//var sceneName = fl.getDocumentDOM().name.replace(".fla","");
-//var resPath = "file:///F|/WorkSpace/C++WorkSpace/cocos2d-x-3.2/project/HelloTuiCpp/Resources";//保存xml的目录
-//var tagPath = "file:///F|/WorkSpace/C++WorkSpace/cocos2d-x-3.2/projects/HelloTuiCpp/Classes";//保存h目录
-
-//var resPath = "file:///F|/WorkSpace/C++WorkSpace/cocos2d-x-3.2/project/HelloTuiLua/res";//保存xml的目录
-//var tagPath = "file:///F|/WorkSpace/C++WorkSpace/cocos2d-x-3.2/project/HelloTuiLua/src";//保存h的路径
-//exportAll(resPath ,tagPath ,"lua");
+var configs = loadConfig();
+var uriResPath = decodeURI(FLfile.platformPathToURI(configs.resPath))
+var uriTagPath = decodeURI(FLfile.platformPathToURI(configs.tagPath))
+exportAll( uriResPath ,uriTagPath ,configs.type);
