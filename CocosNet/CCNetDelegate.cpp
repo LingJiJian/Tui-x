@@ -264,6 +264,8 @@ bool CNetDelegate::runRead()
 				m_oReadBuffer.moveWriterIndexToBack();
 
 				onMessageReceived(*pData);
+			}else{
+				break;
 			}
 		}
 #else
