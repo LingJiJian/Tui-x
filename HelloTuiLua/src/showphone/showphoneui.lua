@@ -1,5 +1,5 @@
-require "extern"
 require "tagMap/Tag_showphoneui"
+require "welcome/welcomeui"
 
 Showphoneui = class("Showphoneui",function()
 	return TuiBase:create()
@@ -11,9 +11,7 @@ local __instance = nil
 function Showphoneui:create()
 	local ret = Showphoneui.new()
 	__instance = ret
-	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("showphone/showphoneui.plist")
-	TuiManager:getInstance():parseScene(ret,"panel_showphone",PATH_SHOWPHONEUI)
-	ret:onLoadComplete()
+	ret:setOnLoadSceneScriptHandler(function() ret:onLoadScene() end)
 	return ret
 end
 
@@ -36,14 +34,16 @@ local circleMenu = nil
 
 local function event_circleMenu_click(p_sender)
 	print("click tag:"..p_sender:getTag())
-	
-	local scene = Welcomeui:create()
-	cc.Director:getInstance():replaceScene(
-		cc.TransitionFade:create(0.5, scene, cc.c3b(0,255,255)))
+
+	CSceneManager:getInstance():replaceScene(
+		CCSceneExTransitionFade:create(0.5,LoadScene("Welcomeui")))
 end
 
-function Showphoneui:onLoadComplete()
-	--加载完成
+function Showphoneui:onLoadScene()
+
+	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("showphone/showphoneui.plist")
+	TuiManager:getInstance():parseScene(self,"panel_showphone",PATH_SHOWPHONEUI)
+
 	circleMenu = self:getControl(Tag_showphoneui.PANEL_SHOWPHONE,Tag_showphoneui.CIRCLEMENU_SHOWPHONE)
 	circleMenu:setOnClickScriptHandler(event_circleMenu_click)
 	

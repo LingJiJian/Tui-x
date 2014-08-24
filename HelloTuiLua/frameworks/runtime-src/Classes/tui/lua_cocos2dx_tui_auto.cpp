@@ -3,7 +3,20 @@
 #include "tolua_fix.h"
 #include "LuaBasicConversions.h"
 
-
+int lua_cocos2dx_tui_TuiBase_setOnMessageScriptHandler(lua_State* tolua_S)
+{
+	int argc = 0;
+	bool ok = true;
+	cocos2d::tui::TuiBase* cobj = nullptr;
+	cobj = (cocos2d::tui::TuiBase*)tolua_tousertype(tolua_S, 1, 0);
+	argc = lua_gettop(tolua_S) - 1;
+	if (1 == argc)
+	{
+		LUA_FUNCTION nHandler = toluafix_ref_function(tolua_S, 2, 0);
+		cobj->setOnMessageScriptHandler(nHandler);
+	}
+	return 0;
+}
 
 int lua_cocos2dx_tui_AnimationUtil_createAnimWithName(lua_State* tolua_S)
 {
@@ -102,56 +115,6 @@ int lua_register_cocos2dx_tui_AnimationUtil(lua_State* tolua_S)
     return 1;
 }
 
-int lua_cocos2dx_tui_TuiBase_getControl(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiBase* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiBase",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiBase*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiBase_getControl'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 2) 
-    {
-        int arg0;
-        int arg1;
-
-        ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0);
-
-        ok &= luaval_to_int32(tolua_S, 3,(int *)&arg1);
-        if(!ok)
-            return 0;
-        cocos2d::Node* ret = cobj->getControl(arg0, arg1);
-        object_to_luaval<cocos2d::Node>(tolua_S, "cc.Node",(cocos2d::Node*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getControl",argc, 2);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiBase_getControl'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_cocos2dx_tui_TuiBase_getAutoRemoveUnusedSpriteFrame(lua_State* tolua_S)
 {
     int argc = 0;
@@ -196,53 +159,7 @@ int lua_cocos2dx_tui_TuiBase_getAutoRemoveUnusedSpriteFrame(lua_State* tolua_S)
 
     return 0;
 }
-int lua_cocos2dx_tui_TuiBase_getPanel(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiBase* cobj = nullptr;
-    bool ok  = true;
 
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiBase",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiBase*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiBase_getPanel'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        int arg0;
-
-        ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0);
-        if(!ok)
-            return 0;
-        cocos2d::Node* ret = cobj->getPanel(arg0);
-        object_to_luaval<cocos2d::Node>(tolua_S, "cc.Node",(cocos2d::Node*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getPanel",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiBase_getPanel'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_cocos2dx_tui_TuiBase_setAutoRemoveUnusedSpriteFrame(lua_State* tolua_S)
 {
     int argc = 0;
@@ -407,14 +324,13 @@ static int lua_cocos2dx_tui_TuiBase_finalize(lua_State* tolua_S)
 int lua_register_cocos2dx_tui_TuiBase(lua_State* tolua_S)
 {
     tolua_usertype(tolua_S,"tui.TuiBase");
-    tolua_cclass(tolua_S,"TuiBase","tui.TuiBase","cc.Scene",nullptr);
+    tolua_cclass(tolua_S,"TuiBase","tui.TuiBase","cc.CSceneExtension",nullptr);
 
     tolua_beginmodule(tolua_S,"TuiBase");
-        tolua_function(tolua_S,"getControl",lua_cocos2dx_tui_TuiBase_getControl);
         tolua_function(tolua_S,"getAutoRemoveUnusedSpriteFrame",lua_cocos2dx_tui_TuiBase_getAutoRemoveUnusedSpriteFrame);
-        tolua_function(tolua_S,"getPanel",lua_cocos2dx_tui_TuiBase_getPanel);
         tolua_function(tolua_S,"setAutoRemoveUnusedSpriteFrame",lua_cocos2dx_tui_TuiBase_setAutoRemoveUnusedSpriteFrame);
-        tolua_function(tolua_S,"init",lua_cocos2dx_tui_TuiBase_init);
+		tolua_function(tolua_S, "setOnMessageScriptHandler", lua_cocos2dx_tui_TuiBase_setOnMessageScriptHandler);
+		tolua_function(tolua_S,"init",lua_cocos2dx_tui_TuiBase_init);
         tolua_function(tolua_S,"new",lua_cocos2dx_tui_TuiBase_constructor);
         tolua_function(tolua_S,"create", lua_cocos2dx_tui_TuiBase_create);
     tolua_endmodule(tolua_S);
@@ -2224,7 +2140,7 @@ int lua_cocos2dx_tui_TuiManager_parseScene(lua_State* tolua_S)
         std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
 
         std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
-        if(!ok)
+		if (!ok)
             return 0;
         cobj->parseScene(arg0, arg1, arg2);
         return 0;

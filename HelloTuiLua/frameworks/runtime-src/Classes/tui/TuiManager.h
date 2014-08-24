@@ -30,11 +30,11 @@ SOFTWARE.
 #include "../../../rapidXml/rapidxml_utils.hpp"  
 #include "../../../rapidXml/rapidxml_print.hpp"
 
+#include "../../extensions/GUI/CCEditBox/CCEditBox.h"
+
 #include "utils/AnimationUtil.h"
 #include "TuiBase.h"
 #include "TuiMacros.h"
-
-#include "../../extensions/GUI/CCEditBox/CCEditBox.h"
 
 using namespace cocos2d::extension;
 using namespace rapidxml;

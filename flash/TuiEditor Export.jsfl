@@ -510,6 +510,9 @@ UIControlAttribute.kHeight = "height";
 /** 缩放 */
 UIControlAttribute.kScaleX = "scaleX";
 UIControlAttribute.kScaleY = "scaleY";
+/** 翻转 */
+UIControlAttribute.kFlipX = "flipX";
+UIControlAttribute.kFlipY = "flipY";
 /** 角度 */
 UIControlAttribute.kRotation = "rotation";
 /** 方向 */

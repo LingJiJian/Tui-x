@@ -1,4 +1,3 @@
-require "extern"
 require "tagMap/Tag_recombineui"
 
 Recombineui = class("Recombineui",function()
@@ -11,9 +10,7 @@ local __instance = nil
 function Recombineui:create()
 	local ret = Recombineui.new()
 	__instance = ret
-	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("recombine/recombineui.plist")
-	TuiManager:getInstance():parseScene(ret,"panel_recombine",PATH_RECOMBINEUI)
-	ret:onLoadComplete()
+	ret:setOnLoadSceneScriptHandler(function() ret:onLoadScene() end)
 	return ret
 end
 
@@ -30,14 +27,10 @@ function Recombineui:getPanel(tagPanel)
 	end
 	return ret
 end
-
 ---------------logic----------------------------
-
 local function event_btn_back(p_sender)
-	
-	local scene = Welcomeui:create()
-	cc.Director:getInstance():replaceScene(
-		cc.TransitionFade:create(0.5, scene, cc.c3b(0,255,255)))
+	CSceneManager:getInstance():replaceScene(
+		CCSceneExTransitionFade:create(0.5,LoadScene("Welcomeui")))
 end
 
 local function event_btn_click(p_sender)
@@ -60,8 +53,10 @@ local function event_adapt_gpvbag(p_convertview, idx)
 	return pCell
 end
 
-function Recombineui:onLoadComplete()
-	--º”‘ÿÕÍ≥…
+function Recombineui:onLoadScene()
+	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("recombine/recombineui.plist")
+	TuiManager:getInstance():parseScene(self,"panel_recombine",PATH_RECOMBINEUI)
+
 	local btnBack = self:getControl(Tag_recombineui.PANEL_RECOMBINE,Tag_recombineui.BTN_BACK)
 	btnBack:setOnClickScriptHandler(event_btn_back)
 	

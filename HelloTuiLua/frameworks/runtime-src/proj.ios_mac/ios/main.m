@@ -1,6 +1,6 @@
 //
 //  main.m
-//  HelloLua
+//  MyGame
 //
 //  Copyright __MyCompanyName__ 2011. All rights reserved.
 //

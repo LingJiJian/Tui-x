@@ -83,4 +83,32 @@ static _CLASS_* sharedDelegate() \
 }
 #endif //SINGLE_DELEGATE_INSTANCE_FUNC
 
+#define LUA_COCOS2DX_CCN_SCRIPT_REGISTER(__KEY__) \
+protected:\
+	int m_n##__KEY__##ScriptHandler = 0; \
+public:	\
+	void remove##__KEY__##ScriptHandler()\
+{\
+if (m_n##__KEY__##ScriptHandler != 0)\
+{\
+	ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_n##__KEY__##ScriptHandler); \
+	m_n##__KEY__##ScriptHandler = 0; \
+}\
+}\
+	void set##__KEY__##ScriptHandler(int nHandler)\
+{\
+	remove##__KEY__##ScriptHandler(); \
+	m_n##__KEY__##ScriptHandler = nHandler; \
+}\
+	void execute##__KEY__##ScriptHandler() \
+{\
+if (m_n##__KEY__##ScriptHandler != 0)\
+{\
+	LuaEngine* pEngine = LuaEngine::getInstance(); \
+	LuaStack* pStack = pEngine->getLuaStack(); \
+	pStack->executeFunctionByHandler(m_n##__KEY__##ScriptHandler, 0); \
+	pStack->clean(); \
+}\
+}
+
 #endif //__CCNET_MACROS_H__

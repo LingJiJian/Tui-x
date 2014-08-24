@@ -1,4 +1,0 @@
-
-	<control tag="1" type="panel" name="panel_rotatemenu" x="400" y="240" width="800" height="480" rotation="0">
-		<control tag="2" type="image9" name="img9_bg" image="rotatemenu/img9_bg.png" up="10" down="10" left="10" right="10" x="0" y="0" width="800" height="480" rotation="0"></control>
-	</control>

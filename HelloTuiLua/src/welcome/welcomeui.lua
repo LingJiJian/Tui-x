@@ -1,9 +1,4 @@
-require "extern"
 require "tagMap/Tag_welcomeui"
-require "showphone/showphoneui"
-require "recombine/recombineui"
-require "bag/bagui"
-require "welcome/dialog/msgBox"
 
 Welcomeui = class("Welcomeui",function()
 	return TuiBase:create()
@@ -15,9 +10,7 @@ local __instance = nil
 function Welcomeui:create()
 	local ret = Welcomeui.new()
 	__instance = ret
-	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("main/mainui.plist")
-	TuiManager:getInstance():parseScene(ret,"panel_welcome",PATH_WELCOMEUI)
-	ret:onLoadComplete()
+	ret:setOnLoadSceneScriptHandler(function() ret:onLoadScene() end)
 	return ret
 end
 
@@ -56,9 +49,8 @@ local function event_ctvl_left(p_sender, fx, fy)
 end
 
 local function event_armbtn_test(p_sender)
-	local scene = Bagui:create()
-	cc.Director:getInstance():replaceScene(
-		cc.TransitionFade:create(0.5, scene, cc.c3b(0,255,255)))
+	CSceneManager:getInstance():replaceScene(
+		CCSceneExTransitionFade:create(0.5,LoadScene("Bagui")))
 end
 
 local function event_btn_pay(p_sender)
@@ -94,17 +86,18 @@ local function event_edit_login(strEventName,pSender)
 end
 
 local function event_btn_go(p_sender)
-	window:setModalable(true)
-	__instance:addChild(MsgBox:create())
+	CSceneManager:getInstance():runUIScene(LoadScene("MsgBox"))
 end
 
 local function event_btn_showphone(p_sender)
-	local scene = Showphoneui:create()
-	cc.Director:getInstance():replaceScene(
-		cc.TransitionFade:create(0.5, scene, cc.c3b(0,255,255)))
+	CSceneManager:getInstance():replaceScene(
+		CCSceneExTransitionFade:create(0.5,LoadScene("Showphoneui")))
 end
 
-function Welcomeui:onLoadComplete()
+function Welcomeui:onLoadScene()
+
+	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("main/mainui.plist")
+	TuiManager:getInstance():parseScene(self,"panel_welcome",PATH_WELCOMEUI)
 	--注册事件
 	window = self:getPanel(Tag_welcomeui.PANEL_WELCOME)
 
@@ -147,6 +140,5 @@ function Welcomeui:onLoadComplete()
 
  	btnShowPhone = self:getControl(Tag_welcomeui.PANEL_WELCOME,Tag_welcomeui.BTN_SHOWPHONE)
  	btnShowPhone:setOnClickScriptHandler(event_btn_showphone)
-
 end 
 

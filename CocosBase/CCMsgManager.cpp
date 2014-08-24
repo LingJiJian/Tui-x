@@ -226,6 +226,7 @@ void CCMsgManager::PostMessage(CCMsgDelegate* pDelegate, unsigned int uMsg, Ref*
 	}
 }
 
+
 void CCMsgManager::registerMsgDelegate(CCMsgDelegate* pDelegate)
 {
 	CCAssert(pDelegate && dynamic_cast<Ref*>(pDelegate), "should not null");

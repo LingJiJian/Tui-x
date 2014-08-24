@@ -68,6 +68,7 @@ class ArmatureBtn;
 class NumericStepper;
 class MovieView;
 class CircleMenu;
+//class CEditBox;
 
 NS_CC_WIDGET_END
 
@@ -102,5 +103,6 @@ NS_CC_WIDGET_END
 #include "NumericStepper.h"
 #include "MovieView.h"
 #include "CircleMenu.h"
+//#include "CEditBox/CEditBox.h"
 
 #endif //__CCWIDGET_H__

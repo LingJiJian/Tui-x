@@ -25,6 +25,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 #include "CCSceneManager.h"
+#if USING_LUA
+#include "CCLuaEngine.h"
+#endif
 #include <algorithm>
 using namespace std;
 
@@ -81,8 +84,11 @@ CSceneManager::~CSceneManager()
 		}
 	}
 	m_vRunningUIScenes.clear();
+#if USING_LUA
+	m_mFnSceneCreateScriptFunc.clear();
+#else
 	m_mFnSceneCreatePointers.clear();
-
+#endif
 	CC_SAFE_RELEASE(m_pRunningScene);
 }
 
@@ -662,6 +668,16 @@ void CSceneManager::registerSceneClass(const char* pSceneName, Fn_CreateSceneExt
 	}
 }
 
+#if USING_LUA
+void CSceneManager::registerSceneClassScriptFunc(const char* pSceneName, int nCreateFunc)
+{
+	if (nCreateFunc && pSceneName && strlen(pSceneName))
+	{
+		m_mFnSceneCreateScriptFunc[pSceneName] = nCreateFunc;
+	}
+}
+#endif
+
 CSceneExtension* CSceneManager::loadScene(const char* pSceneName)
 {
 	CCAssert(pSceneName && strlen(pSceneName), "should not null");
@@ -671,7 +687,27 @@ CSceneExtension* CSceneManager::loadScene(const char* pSceneName)
 	{
 		return mitr->second;
 	}
+#if USING_LUA
+	map<string,int>::iterator itr = m_mFnSceneCreateScriptFunc.find(pSceneName);
+	if(itr!=m_mFnSceneCreateScriptFunc.end())
+	{
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
+		__Array pRetArray;
+		pRetArray.initWithCapacity(1);
+
+		int nRet = pStack->executeFunctionReturnArray(itr->second, 0, 1, pRetArray);
+		CCAssert(pRetArray.count() > 0, "return num = 0");
+
+		Ref* pReturnObject = pRetArray.getObjectAtIndex(0);
+		pStack->clean();
+
+		CSceneExtension* pSceneExt = dynamic_cast<CSceneExtension*>(pReturnObject);
+		pSceneExt->setClassName(pSceneName);
+		return pSceneExt;
+	}
+#else
 	map<string, Fn_CreateSceneExtension>::iterator itr = m_mFnSceneCreatePointers.find(pSceneName);
 	if( itr != m_mFnSceneCreatePointers.end() )
 	{
@@ -681,7 +717,7 @@ CSceneExtension* CSceneManager::loadScene(const char* pSceneName)
 		pScene->autorelease();
 		return pScene;
 	}
-
+#endif
 	return NULL;
 }
 

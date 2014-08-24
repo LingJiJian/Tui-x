@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'HelloLua' target in the 'HelloLua' project
+// Prefix header for all source files of the 'MyGame' target in the 'MyGame' project
 //
 
 #ifdef __OBJC__

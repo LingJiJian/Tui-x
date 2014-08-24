@@ -22,6 +22,9 @@
     <Filter Include="lib\tui\utils">
       <UniqueIdentifier>{2d055c69-2c65-4506-8f70-2e1d584b02dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lib\CocosBase">
+      <UniqueIdentifier>{377f5101-59b0-4fda-999c-a41b9448a7c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -153,6 +156,33 @@
     <ClInclude Include="..\Classes\tui\utils\AnimationUtil.h">
       <Filter>lib\tui\utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.hpp">
+      <Filter>lib\CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCBundle.h">
+      <Filter>lib\CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCMsgDelegate.h">
+      <Filter>lib\CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCMsgManager.h">
+      <Filter>lib\CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneExtension.h">
+      <Filter>lib\CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneExTransition.h">
+      <Filter>lib\CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneManager.h">
+      <Filter>lib\CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\cocos-base.h">
+      <Filter>lib\CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCBaseMacros.h">
+      <Filter>lib\CocosBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -268,6 +298,27 @@
     </ClCompile>
     <ClCompile Include="..\Classes\tui\utils\AnimationUtil.cpp">
       <Filter>lib\tui\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.cpp">
+      <Filter>lib\CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCMsgDelegate.cpp">
+      <Filter>lib\CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCMsgManager.cpp">
+      <Filter>lib\CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneExtension.cpp">
+      <Filter>lib\CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneExTransition.cpp">
+      <Filter>lib\CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneManager.cpp">
+      <Filter>lib\CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCBundle.cpp">
+      <Filter>lib\CocosBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

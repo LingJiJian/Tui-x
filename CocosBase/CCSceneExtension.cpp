@@ -42,6 +42,13 @@ CSceneExtension::CSceneExtension()
 , m_nLoadResourcesAsyncCount(0)
 , m_nLoadResourcesAsyncIdx(0)
 , m_bAutoRemoveUnusedTexture(false)
+#if USING_LUA
+, m_nOnLoadResourcesScriptHandler(0)
+, m_nOnLoadResourcesCompletedScriptHandler(0)
+, m_nOnLoadSceneScriptHandler(0)
+, m_nOnEnterSceneScriptHandler(0)
+, m_nOnExitSceneScriptHandler(0)
+#endif
 #if! USING_COCOSWIDGET
 , m_nTouchPriority(0)
 #endif

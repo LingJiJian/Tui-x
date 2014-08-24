@@ -6872,14 +6872,6 @@ int lua_cocos2dx_cocoswidget_CLabel_createWithTTF(lua_State* tolua_S)
     {
         if (argc == 2)
         {
-            cocos2d::_ttfConfig arg0;
-            #pragma warning NO CONVERSION TO NATIVE FOR _ttfConfig;
-            if (!ok) { break; }
-            std::string arg1;
-            ok &= luaval_to_std_string(tolua_S, 3,&arg1);
-            if (!ok) { break; }
-            cocos2d::cocoswidget::CLabel* ret = cocos2d::cocoswidget::CLabel::createWithTTF(arg0, arg1);
-            object_to_luaval<cocos2d::cocoswidget::CLabel>(tolua_S, "ccw.CLabel",(cocos2d::cocoswidget::CLabel*)ret);
             return 1;
         }
     } while (0);
@@ -6888,17 +6880,6 @@ int lua_cocos2dx_cocoswidget_CLabel_createWithTTF(lua_State* tolua_S)
     {
         if (argc == 3)
         {
-            cocos2d::_ttfConfig arg0;
-            #pragma warning NO CONVERSION TO NATIVE FOR _ttfConfig;
-            if (!ok) { break; }
-            std::string arg1;
-            ok &= luaval_to_std_string(tolua_S, 3,&arg1);
-            if (!ok) { break; }
-            cocos2d::TextHAlignment arg2;
-            ok &= luaval_to_int32(tolua_S, 4,(int *)&arg2);
-            if (!ok) { break; }
-            cocos2d::cocoswidget::CLabel* ret = cocos2d::cocoswidget::CLabel::createWithTTF(arg0, arg1, arg2);
-            object_to_luaval<cocos2d::cocoswidget::CLabel>(tolua_S, "ccw.CLabel",(cocos2d::cocoswidget::CLabel*)ret);
             return 1;
         }
     } while (0);
@@ -6907,20 +6888,6 @@ int lua_cocos2dx_cocoswidget_CLabel_createWithTTF(lua_State* tolua_S)
     {
         if (argc == 4)
         {
-            cocos2d::_ttfConfig arg0;
-            #pragma warning NO CONVERSION TO NATIVE FOR _ttfConfig;
-            if (!ok) { break; }
-            std::string arg1;
-            ok &= luaval_to_std_string(tolua_S, 3,&arg1);
-            if (!ok) { break; }
-            cocos2d::TextHAlignment arg2;
-            ok &= luaval_to_int32(tolua_S, 4,(int *)&arg2);
-            if (!ok) { break; }
-            int arg3;
-            ok &= luaval_to_int32(tolua_S, 5,(int *)&arg3);
-            if (!ok) { break; }
-            cocos2d::cocoswidget::CLabel* ret = cocos2d::cocoswidget::CLabel::createWithTTF(arg0, arg1, arg2, arg3);
-            object_to_luaval<cocos2d::cocoswidget::CLabel>(tolua_S, "ccw.CLabel",(cocos2d::cocoswidget::CLabel*)ret);
             return 1;
         }
     } while (0);

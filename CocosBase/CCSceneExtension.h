@@ -32,6 +32,9 @@ THE SOFTWARE.
 #include "CCMsgDelegate.h"
 #include "CCBundle.h"
 #include <string>
+#if USING_LUA
+#include "CCLuaEngine.h"
+#endif
 
 NS_CC_BEGIN
 
@@ -57,19 +60,35 @@ public:
 	virtual bool init();
 
 	// the first call, load resources if needed, it will call just once
-	virtual void onLoadResources(){};
-
+	virtual void onLoadResources(){
+#if USING_LUA
+		executeOnLoadResourcesScriptHandler();
+#endif
+	};
 	// the seconed call, load completed, it will call just once
-	virtual void onLoadResourcesCompleted(){};
-
+	virtual void onLoadResourcesCompleted(){
+#if USING_LUA
+		executeOnLoadResourcesCompletedScriptHandler();
+#endif
+	};
 	// the third call, load this scene, it will call just once
-	virtual void onLoadScene(){};
-
+	virtual void onLoadScene(){
+#if USING_LUA
+		executeOnLoadSceneScriptHandler();
+#endif
+	};
 	// when this scene is showing
-	virtual void onEnterScene(){};
-
-	 //when this scene is hiding
-	virtual void onExitScene(){};
+	virtual void onEnterScene(){
+#if USING_LUA
+		executeOnEnterSceneScriptHandler();
+#endif
+	};
+	//when this scene is hiding
+	virtual void onExitScene(){
+#if USING_LUA
+		executeOnExitSceneScriptHandler();
+#endif
+	};
 
 	// add image in sync, it will block the main loop for a while
 	void addImage(const char* pFile);
@@ -110,7 +129,15 @@ public:
 	virtual void onEnter();
 	// override
 	virtual void onExit();
-	
+
+#if USING_LUA
+	LUA_COCOS2DX_CCB_SCRIPT_REGISTER(OnLoadResources)
+	LUA_COCOS2DX_CCB_SCRIPT_REGISTER(OnLoadResourcesCompleted)
+	LUA_COCOS2DX_CCB_SCRIPT_REGISTER(OnLoadScene)
+	LUA_COCOS2DX_CCB_SCRIPT_REGISTER(OnEnterScene)
+	LUA_COCOS2DX_CCB_SCRIPT_REGISTER(OnExitScene)
+#endif
+
 private:
 	friend class CSceneManager;
 

@@ -1326,6 +1326,7 @@
 					"$(SRCROOT)/../cocos2d/cocos/2d/platform/ios/Simulation",
 					"$(SRCROOT)/../cocos2d/cocos/platform/ios",
 					"$(SRCROOT)/../Classes",
+					"$(SRCROOT)/../cocos2d/cocos",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -1357,6 +1358,7 @@
 					"$(SRCROOT)/../cocos2d/cocos/2d/platform/ios/Simulation",
 					"$(SRCROOT)/../cocos2d/cocos/platform/ios",
 					"$(SRCROOT)/../Classes",
+					"$(SRCROOT)/../cocos2d/cocos",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -1391,6 +1393,7 @@
 					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
 					"$(SRCROOT)/../cocos2d/cocos/platform/mac",
 					"$(SRCROOT)/../Classes",
+					"$(SRCROOT)/../cocos2d/cocos",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = "";
@@ -1420,6 +1423,7 @@
 					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
 					"$(SRCROOT)/../cocos2d/cocos/platform/mac",
 					"$(SRCROOT)/../Classes",
+					"$(SRCROOT)/../cocos2d/cocos",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = "";

@@ -68,7 +68,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Classes;$(EngineRoot)cocos\scripting\lua-bindings\auto;$(EngineRoot)cocos\scripting\lua-bindings\manual;$(EngineRoot)cocos\audio\include;$(EngineRoot)cocos\editor-support;$(EngineRoot)external\lua\lua;$(EngineRoot)external\lua\tolua;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)external;$(EngineRoot)extensions;$(EngineRoot);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Classes;$(EngineRoot)cocos\scripting\lua-bindings\auto;$(EngineRoot)cocos\scripting\lua-bindings\manual;$(EngineRoot)cocos\audio\include;$(EngineRoot)cocos\2d;$(EngineRoot)cocos\base;$(EngineRoot)cocos\editor-support;$(EngineRoot)external\lua\lua;$(EngineRoot)external\lua\tolua;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)external;$(EngineRoot)extensions;$(EngineRoot);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -162,6 +162,15 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\CocosBase\CCBaseMacros.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\CCBundle.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\CCMsgDelegate.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\CCMsgManager.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneExtension.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneExTransition.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneManager.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\cocos-base.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.hpp" />
     <ClInclude Include="..\..\..\..\CocosWidget\ArmatureBtn.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\Button.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\CheckBox.h" />
@@ -207,6 +216,13 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\CocosBase\CCBundle.cpp" />
+    <ClCompile Include="..\..\..\..\CocosBase\CCMsgDelegate.cpp" />
+    <ClCompile Include="..\..\..\..\CocosBase\CCMsgManager.cpp" />
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneExtension.cpp" />
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneExTransition.cpp" />
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneManager.cpp" />
+    <ClCompile Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\ArmatureBtn.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\Button.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\CheckBox.cpp" />

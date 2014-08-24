@@ -29,7 +29,6 @@ THE SOFTWARE.
 
 #include "cocos2d.h"
 #include "CCBaseMacros.h"
-
 NS_CC_BEGIN
 
 /**
@@ -44,7 +43,17 @@ public:
 	CCMsgDelegate();
 
 public:
-	virtual void onMessage(unsigned int uMsg, Ref* pMsgObj, void* wParam, void* lParam){};
+	virtual void onMessage(unsigned int uMsg, Ref* pMsgObj, void* wParam, void* lParam){
+#if USING_LUA
+		executeOnMessageScriptHandler(uMsg, pMsgObj);
+#endif
+	};
+#if USING_LUA
+	void executeOnMessageScriptHandler(unsigned int uMsg, Ref* pMsgObj);
+protected:
+	int m_nMessageScriptHandler;
+#endif
+
 };
 
 NS_CC_END

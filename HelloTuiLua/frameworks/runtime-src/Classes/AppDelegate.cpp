@@ -3,6 +3,7 @@
 #include "SimpleAudioEngine.h"
 #include "cocos2d.h"
 #include "../../../../CocosWidget/lua_cocos2dx_cocoswidget_auto.hpp"
+#include "../../../../CocosBase/lua_cocos2dx_cocosbase_auto.hpp"
 #include "tui/lua_cocos2dx_tui_auto.hpp"
 
 using namespace CocosDenshion;
@@ -25,7 +26,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto director = Director::getInstance();
 	auto glview = director->getOpenGLView();
 	if(!glview) {
-		glview = GLView::createWithRect("HelloTuiLua", Rect(0,0,960,640));
+		glview = GLView::createWithRect("HelloTuiLua", Rect(0,0,800,480));
 		director->setOpenGLView(glview);
 	}
 
@@ -44,6 +45,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	ScriptEngineManager::getInstance()->setScriptEngine(engine);
 	
 	register_all_cocos2dx_cocoswidget(engine->getLuaStack()->getLuaState());
+	register_all_cocos2dx_cocosbase(engine->getLuaStack()->getLuaState());
 	register_all_cocos2dx_tui(engine->getLuaStack()->getLuaState());
 
 	engine->executeScriptFile("main.lua");

@@ -1,6 +1,6 @@
 #ifndef __ARMATURE_BTN__
 #define __ARMATURE_BTN__
-#include "cocos2d.h"
+
 #include "Widget.h"
 #include "cocostudio/CCArmature.h"
 

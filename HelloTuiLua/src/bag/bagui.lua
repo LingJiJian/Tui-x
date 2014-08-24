@@ -11,9 +11,7 @@ local __instance = nil
 function Bagui:create()
 	local ret = Bagui.new()
 	__instance = ret
-	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("bagui/bagui.plist")
-	TuiManager:getInstance():parseScene(ret,"panel_bag",PATH_BAGUI)
-	ret:onLoadComplete()
+	ret:setOnLoadSceneScriptHandler(function() ret:onLoadScene() end)
 	return ret
 end
 
@@ -35,16 +33,15 @@ end
 
 local function event_btn_back(p_sender)
 	
-	local scene = Welcomeui:create()
-	cc.Director:getInstance():replaceScene(
-		cc.TransitionFade:create(0.5, scene, cc.c3b(0,255,255)))
+	CSceneManager:getInstance():replaceScene(
+		CCSceneExTransitionFade:create(0.5,LoadScene("Welcomeui")))
+	-- CSceneManager:getInstance():runUIScene(LoadScene("MsgBox"))
 end
 
 local function event_btn_recombine(p_sender)
 
-	local scene = Recombineui:create()
-	cc.Director:getInstance():replaceScene(
-		cc.TransitionFade:create(0.5, scene, cc.c3b(0,255,255)))
+	CSceneManager:getInstance():replaceScene(
+		CCSceneExTransitionFade:create(0.5,LoadScene("Recombineui")))
 end
 
 local function event_btn_click(p_sender)
@@ -91,8 +88,10 @@ local function event_adapt_pvbag(p_convertview, idx)
 	return pCell
 end
 
-function Bagui:onLoadComplete()
-	--加载完成
+function Bagui:onLoadScene()
+	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("bagui/bagui.plist")
+	TuiManager:getInstance():parseScene(self,"panel_bag",PATH_BAGUI)
+
 	local btnBack = self:getControl(Tag_bagui.PANEL_BAG,Tag_bagui.BTN_BACK)
 	btnBack:setOnClickScriptHandler(event_btn_back)
 	

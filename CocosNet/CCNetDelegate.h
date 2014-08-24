@@ -30,6 +30,11 @@ THE SOFTWARE.
 #include "cocos2d.h"
 #include "CCNetMacros.h"
 #include "CCSocket.h"
+//if using lua in your project, go include cocos-widget.h here
+#include "../CocosWidget/cocos-widget.h"
+#if USING_LUA
+#include "CCLuaEngine.h"
+#endif
 
 NS_CC_BEGIN
 
@@ -46,20 +51,43 @@ public:
 	virtual ~CNetDelegate();
 
 public:
+#if USING_LUA
+	virtual void onMessageReceived(CBuffer& oBuffer){}
+	
+	void setOnMessageReceivedScriptHandler(int nHandle);
+	void removeOnMessageReceivedScripHandler();
+
+	void setOnExceptionCaughtScriptHandler(int nHandle);
+	void removeOnExceptionCaughtScriptHandler();
+#else
 	// will calling when a package is coming
 	virtual void onMessageReceived(CBuffer& oBuffer) = 0;
-
+#endif
+	
 	// when connected will calling
-	virtual void onConnected(){}
-
+	virtual void onConnected(){
+#if USING_LUA
+		executeOnConnectedScriptHandler();
+#endif
+	}
 	// when connect time out will calling
-	virtual void onConnectTimeout(){}
-
+	virtual void onConnectTimeout(){
+#if USING_LUA
+		executeOnConnectTimeoutScriptHandler();
+#endif
+	}
 	// on disconnected will call
-	virtual void onDisconnected(){}
-
+	virtual void onDisconnected(){
+#if USING_LUA
+		executeOnDisconnectedScriptHandler();
+#endif
+	}
 	// on exception
-	virtual void onExceptionCaught(CCSocketStatus eStatus){}
+	virtual void onExceptionCaught(CCSocketStatus eStatus){
+#if USING_LUA
+		executeOnExceptionCaughtScriptHandler(eStatus);
+#endif
+	}
 
 public:
 	// set target address
@@ -135,6 +163,16 @@ private:
 
 protected:
 	CCSocketStatus         m_eStatus;
+
+	LUA_COCOS2DX_CCN_SCRIPT_REGISTER(OnConnected)
+	LUA_COCOS2DX_CCN_SCRIPT_REGISTER(OnConnectTimeout)
+	LUA_COCOS2DX_CCN_SCRIPT_REGISTER(OnDisconnected)
+
+	void executeOnMessageReceivedScriptHandler(CBuffer *oBuffer);
+	void executeOnExceptionCaughtScriptHandler(CCSocketStatus eStatus);
+
+	int m_nMessageReceivedScriptHandler;
+	int m_nExceptionCaughtScriptHandler;
 };
 
 NS_CC_END

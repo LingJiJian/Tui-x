@@ -171,6 +171,9 @@ public:
 
 	// registe the scene class when the game is first enter
 	void registerSceneClass(const char* pSceneName, Fn_CreateSceneExtension pFn);
+#if USING_LUA
+	void registerSceneClassScriptFunc(const char* pSceneName, int nCreateFunc);
+#endif
 
 	// load scene if it not in scene pool
 	CSceneExtension* loadScene(const char* pSceneName);
@@ -252,6 +255,9 @@ protected:
 
 	// the static pointer of function, it helpful create a new scene
 	std::map<std::string, Fn_CreateSceneExtension> m_mFnSceneCreatePointers;
+#if USING_LUA
+	std::map<std::string, int> m_mFnSceneCreateScriptFunc;
+#endif
 
 	// scene pool, if it is cachable
 	std::map<std::string, CSceneExtension*> m_mSceneCachePool;

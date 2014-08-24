@@ -25,12 +25,36 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 #include "CCMsgDelegate.h"
+#if USING_LUA
+#include "CCLuaEngine.h"
+#endif
 
 NS_CC_BEGIN
 
 CCMsgDelegate::CCMsgDelegate()
+#if USING_LUA
+:m_nMessageScriptHandler(0)
+#endif
 {
-	
 }
+
+#if USING_LUA
+
+void CCMsgDelegate::executeOnMessageScriptHandler(unsigned int uMsg, Ref* pMsgObj)
+{
+	if (m_nMessageScriptHandler != 0)
+	{
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
+
+		pStack->pushInt(uMsg);
+		pStack->pushObject(pMsgObj, "Ref");
+
+		pStack->executeFunctionByHandler(m_nMessageScriptHandler, 2);
+		pStack->clean();
+	}
+}
+
+#endif
 
 NS_CC_END

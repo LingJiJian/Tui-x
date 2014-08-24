@@ -1,6 +1,5 @@
 #include "MovieView.h"
 
-#include "json/document.h"
 #include "cocostudio/DictionaryHelper.h"
 #include "Ease.h"
 #if USING_LUA

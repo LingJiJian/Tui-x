@@ -264,6 +264,9 @@ bool CNetDelegate::runRead()
 				m_oReadBuffer.moveWriterIndexToBack();
 
 				onMessageReceived(*pData);
+#if USING_LUA
+				executeOnMessageReceivedScriptHandler(pData);
+#endif
 			}else{
 				break;
 			}
@@ -274,6 +277,10 @@ bool CNetDelegate::runRead()
 		m_oReadBuffer.clear();
 		
 		onMessageReceived(*pData);
+#if USING_LUA
+		executeOnMessageReceivedScripHandler(pData);
+#endif
+
 #endif
 	}
 	return false;
@@ -333,6 +340,35 @@ void CNetDelegate::unregisterScheduler()
 	m_bRunSchedule = false;
 }
 
+#if USING_LUA
+void CNetDelegate::executeOnMessageReceivedScriptHandler(CBuffer *oBuffer)
+{
+	if (m_nMessageReceivedScriptHandler != 0)
+	{
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
 
+		pStack->pushObject(oBuffer, "CBuffer");
+
+		pStack->executeFunctionByHandler(m_nMessageReceivedScriptHandler, 1);
+		pStack->clean();
+	}
+}
+
+void CNetDelegate::executeOnExceptionCaughtScriptHandler(CCSocketStatus eStatus)
+{
+	if (m_nExceptionCaughtScriptHandler != 0)
+	{
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
+
+		pStack->pushInt((int)eStatus);
+
+		pStack->executeFunctionByHandler(m_nExceptionCaughtScriptHandler, 1);
+		pStack->clean();
+	}
+}
+
+#endif
 
 NS_CC_END

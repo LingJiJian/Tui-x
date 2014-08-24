@@ -1,4 +1,3 @@
-require "extern"
 require "tagMap/Tag_welcomeui"
 
 MsgBox = class("MsgBox",function()
@@ -10,9 +9,8 @@ local __instance = nil
 
 function MsgBox:create()
 	local ret = MsgBox.new()
-	TuiManager:getInstance():parseScene(ret,"panel_msgbox",PATH_WELCOMEUI)
-	ret:onLoadComplete()
 	__instance = ret
+	ret:setOnLoadSceneScriptHandler(function() ret:onLoadScene() end)
 	return ret
 end
 
@@ -37,12 +35,7 @@ local progHp  		= nil
 local sliderTest 	= nil
 
 local function event_btn_close(p_sender)
-
-    local action = cc.CallFunc:create(function(sender,table)
-		__instance:getParent():getChildByTag(Tag_welcomeui.PANEL_WELCOME):setModalable(false)
-		__instance:removeFromParent()
-    end)
-    __instance:runAction(action)
+  	CSceneManager:getInstance():popUIScene(__instance)
 end
 
 local function event_prog_hp(p_sender, n_value)
@@ -55,9 +48,10 @@ local function event_slider_test(p_sender, n_value)
 	progHp:setValue(n_value)
 end
 
-function MsgBox:onLoadComplete()
+function MsgBox:onLoadScene()
 
-	--注册事件
+	TuiManager:getInstance():parseScene(self,"panel_msgbox",PATH_WELCOMEUI)
+
 	labAtlasNum = self:getControl(Tag_welcomeui.PANEL_MSGBOX,Tag_welcomeui.LABATLAS_NUM)
 
 	btnClose = self:getControl(Tag_welcomeui.PANEL_MSGBOX,Tag_welcomeui.BTN_CLOSE)

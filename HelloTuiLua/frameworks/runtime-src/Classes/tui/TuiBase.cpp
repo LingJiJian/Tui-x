@@ -17,14 +17,19 @@ TuiBase::~TuiBase(){
 /************************************************************************/
 // GET/SET/IS
 /************************************************************************/
-Node* TuiBase::getControl(int tagPanel,int tagControl){
-	Node* control = getPanel(tagPanel)->getChildByTag(tagControl);
-	return control;
-}
-Node* TuiBase::getPanel(int tagPanel){
-	//Override
-	return NULL;
+void TuiBase::setOnMessageScriptHandler(int nHandler)
+{
+	removeOnMessageScriptHandler();
+	m_nMessageScriptHandler = nHandler;
 }
 
+void TuiBase::removeOnMessageScriptHandler()
+{
+	if (m_nMessageScriptHandler != 0)
+	{
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nMessageScriptHandler);
+		m_nMessageScriptHandler = 0;
+	}
+}
 
 NS_TUI_END
