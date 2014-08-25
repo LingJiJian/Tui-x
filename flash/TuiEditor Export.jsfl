@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 ExportElementXMLErrorStrings = {};
 ExportElementXMLErrorStrings.kNoOpenedFla = "no opened fla document!";
 ExportElementXMLErrorStrings.kNullDocument = "export error, empty document!";
