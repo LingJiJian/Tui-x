@@ -35,7 +35,6 @@ local function event_btn_back(p_sender)
 	
 	CSceneManager:getInstance():replaceScene(
 		CCSceneExTransitionFade:create(0.5,LoadScene("Welcomeui")))
-	-- CSceneManager:getInstance():runUIScene(LoadScene("MsgBox"))
 end
 
 local function event_btn_recombine(p_sender)
@@ -89,7 +88,7 @@ local function event_adapt_pvbag(p_convertview, idx)
 end
 
 function Bagui:onLoadScene()
-	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("bagui/bagui.plist")
+	-- cc.SpriteFrameCache:getInstance():addSpriteFrames("bag/bagui.plist")
 	TuiManager:getInstance():parseScene(self,"panel_bag",PATH_BAGUI)
 
 	local btnBack = self:getControl(Tag_bagui.PANEL_BAG,Tag_bagui.BTN_BACK)

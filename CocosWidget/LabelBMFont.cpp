@@ -93,7 +93,7 @@ CLabelBMFont *CLabelBMFont::create(const std::string& text, const std::string& b
 	auto ret = new CLabelBMFont();
 	ret->_hAlignment = alignment;
 
-	ret->setBMFontFilePath(bmfontFilePath,imageOffset);
+	ret->setBMFontFilePath(bmfontFilePath, imageOffset);
 	ret->setMaxLineWidth(maxLineWidth);
 	ret->setString(text);
 	ret->autorelease();

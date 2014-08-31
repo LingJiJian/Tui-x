@@ -18,7 +18,7 @@ int lua_cocos2dx_tui_TuiBase_setOnMessageScriptHandler(lua_State* tolua_S)
 	return 0;
 }
 
-int lua_cocos2dx_tui_AnimationUtil_createAnimWithName(lua_State* tolua_S)
+int lua_cocos2dx_tui_TuiUtil_createAnimWithName(lua_State* tolua_S)
 {
     int argc = 0;
     bool ok  = true;
@@ -28,7 +28,7 @@ int lua_cocos2dx_tui_AnimationUtil_createAnimWithName(lua_State* tolua_S)
 #endif
 
 #if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertable(tolua_S,1,"tui.AnimationUtil",0,&tolua_err)) goto tolua_lerror;
+    if (!tolua_isusertable(tolua_S,1,"tui.TuiUtil",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     argc = lua_gettop(tolua_S) - 1;
@@ -43,7 +43,7 @@ int lua_cocos2dx_tui_AnimationUtil_createAnimWithName(lua_State* tolua_S)
         ok &= luaval_to_uint32(tolua_S, 4,&arg2);
         if(!ok)
             return 0;
-        cocos2d::Animation* ret = cocos2d::tui::AnimationUtil::createAnimWithName(arg0, arg1, arg2);
+        cocos2d::Animation* ret = cocos2d::tui::TuiUtil::createAnimWithName(arg0, arg1, arg2);
         object_to_luaval<cocos2d::Animation>(tolua_S, "cc.Animation",(cocos2d::Animation*)ret);
         return 1;
     }
@@ -51,11 +51,11 @@ int lua_cocos2dx_tui_AnimationUtil_createAnimWithName(lua_State* tolua_S)
     return 0;
 #if COCOS2D_DEBUG >= 1
     tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_AnimationUtil_createAnimWithName'.",&tolua_err);
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiUtil_createAnimWithName'.",&tolua_err);
 #endif
     return 0;
 }
-int lua_cocos2dx_tui_AnimationUtil_createAnimWithNameAndNum(lua_State* tolua_S)
+int lua_cocos2dx_tui_TuiUtil_createAnimWithNameAndNum(lua_State* tolua_S)
 {
     int argc = 0;
     bool ok  = true;
@@ -65,7 +65,7 @@ int lua_cocos2dx_tui_AnimationUtil_createAnimWithNameAndNum(lua_State* tolua_S)
 #endif
 
 #if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertable(tolua_S,1,"tui.AnimationUtil",0,&tolua_err)) goto tolua_lerror;
+    if (!tolua_isusertable(tolua_S,1,"tui.TuiUtil",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     argc = lua_gettop(tolua_S) - 1;
@@ -82,7 +82,7 @@ int lua_cocos2dx_tui_AnimationUtil_createAnimWithNameAndNum(lua_State* tolua_S)
         ok &= luaval_to_uint32(tolua_S, 5,&arg3);
         if(!ok)
             return 0;
-        cocos2d::Animation* ret = cocos2d::tui::AnimationUtil::createAnimWithNameAndNum(arg0, arg1, arg2, arg3);
+        cocos2d::Animation* ret = cocos2d::tui::TuiUtil::createAnimWithNameAndNum(arg0, arg1, arg2, arg3);
         object_to_luaval<cocos2d::Animation>(tolua_S, "cc.Animation",(cocos2d::Animation*)ret);
         return 1;
     }
@@ -90,28 +90,28 @@ int lua_cocos2dx_tui_AnimationUtil_createAnimWithNameAndNum(lua_State* tolua_S)
     return 0;
 #if COCOS2D_DEBUG >= 1
     tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_AnimationUtil_createAnimWithNameAndNum'.",&tolua_err);
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiUtil_createAnimWithNameAndNum'.",&tolua_err);
 #endif
     return 0;
 }
-static int lua_cocos2dx_tui_AnimationUtil_finalize(lua_State* tolua_S)
+static int lua_cocos2dx_tui_TuiUtil_finalize(lua_State* tolua_S)
 {
-    printf("luabindings: finalizing LUA object (AnimationUtil)");
+    printf("luabindings: finalizing LUA object (TuiUtil)");
     return 0;
 }
 
-int lua_register_cocos2dx_tui_AnimationUtil(lua_State* tolua_S)
+int lua_register_cocos2dx_tui_TuiUtil(lua_State* tolua_S)
 {
-    tolua_usertype(tolua_S,"tui.AnimationUtil");
-    tolua_cclass(tolua_S,"AnimationUtil","tui.AnimationUtil","",nullptr);
+    tolua_usertype(tolua_S,"tui.TuiUtil");
+    tolua_cclass(tolua_S,"TuiUtil","tui.TuiUtil","",nullptr);
 
-    tolua_beginmodule(tolua_S,"AnimationUtil");
-        tolua_function(tolua_S,"createAnimWithName", lua_cocos2dx_tui_AnimationUtil_createAnimWithName);
-        tolua_function(tolua_S,"createAnimWithNameAndNum", lua_cocos2dx_tui_AnimationUtil_createAnimWithNameAndNum);
+    tolua_beginmodule(tolua_S,"TuiUtil");
+        tolua_function(tolua_S,"createAnimWithName", lua_cocos2dx_tui_TuiUtil_createAnimWithName);
+        tolua_function(tolua_S,"createAnimWithNameAndNum", lua_cocos2dx_tui_TuiUtil_createAnimWithNameAndNum);
     tolua_endmodule(tolua_S);
-    std::string typeName = typeid(cocos2d::tui::AnimationUtil).name();
-    g_luaType[typeName] = "tui.AnimationUtil";
-    g_typeCast["AnimationUtil"] = "tui.AnimationUtil";
+    std::string typeName = typeid(cocos2d::tui::TuiUtil).name();
+    g_luaType[typeName] = "tui.TuiUtil";
+    g_typeCast["TuiUtil"] = "tui.TuiUtil";
     return 1;
 }
 
@@ -378,6 +378,7 @@ int lua_cocos2dx_tui_TuiManager_createCheckBox(lua_State* tolua_S)
         double arg7;
         double arg8;
         double arg9;
+		double arg10;
 
         ok &= luaval_to_number(tolua_S, 2,&arg0);
 
@@ -398,9 +399,11 @@ int lua_cocos2dx_tui_TuiManager_createCheckBox(lua_State* tolua_S)
         ok &= luaval_to_number(tolua_S, 10,&arg8);
 
         ok &= luaval_to_number(tolua_S, 11,&arg9);
+
+		ok &= luaval_to_number(tolua_S, 12, &arg10);
         if(!ok)
             return 0;
-        cocos2d::cocoswidget::CCheckBox* ret = cobj->createCheckBox(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+		cocos2d::cocoswidget::CCheckBox* ret = cobj->createCheckBox(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
         object_to_luaval<cocos2d::cocoswidget::CCheckBox>(tolua_S, "ccw.CCheckBox",(cocos2d::cocoswidget::CCheckBox*)ret);
         return 1;
     }
@@ -566,6 +569,7 @@ int lua_cocos2dx_tui_TuiManager_createControl(lua_State* tolua_S)
         double arg3;
         double arg4;
         double arg5;
+		double arg6;
 
         ok &= luaval_to_number(tolua_S, 2,&arg0);
 
@@ -578,9 +582,11 @@ int lua_cocos2dx_tui_TuiManager_createControl(lua_State* tolua_S)
         ok &= luaval_to_number(tolua_S, 6,&arg4);
 
         ok &= luaval_to_number(tolua_S, 7,&arg5);
+
+		ok &= luaval_to_number(tolua_S, 8, &arg6);
         if(!ok)
             return 0;
-        cocos2d::cocoswidget::CControlView* ret = cobj->createControl(arg0, arg1, arg2, arg3, arg4, arg5);
+		cocos2d::cocoswidget::CControlView* ret = cobj->createControl(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
         object_to_luaval<cocos2d::cocoswidget::CControlView>(tolua_S, "ccw.CControlView",(cocos2d::cocoswidget::CControlView*)ret);
         return 1;
     }
@@ -594,352 +600,7 @@ int lua_cocos2dx_tui_TuiManager_createControl(lua_State* tolua_S)
 
     return 0;
 }
-int lua_cocos2dx_tui_TuiManager_createBtn(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
 
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createBtn'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 9) 
-    {
-        double arg0;
-        const char* arg1;
-        const char* arg2;
-        const char* arg3;
-        double arg4;
-        double arg5;
-        double arg6;
-        double arg7;
-        double arg8;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-        std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
-
-        std::string arg3_tmp; ok &= luaval_to_std_string(tolua_S, 5, &arg3_tmp); arg3 = arg3_tmp.c_str();
-
-        ok &= luaval_to_number(tolua_S, 6,&arg4);
-
-        ok &= luaval_to_number(tolua_S, 7,&arg5);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg6);
-
-        ok &= luaval_to_number(tolua_S, 9,&arg7);
-
-        ok &= luaval_to_number(tolua_S, 10,&arg8);
-        if(!ok)
-            return 0;
-        cocos2d::cocoswidget::CButton* ret = cobj->createBtn(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
-        object_to_luaval<cocos2d::cocoswidget::CButton>(tolua_S, "ccw.CButton",(cocos2d::cocoswidget::CButton*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createBtn",argc, 9);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createBtn'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_tui_TuiManager_createListView(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createListView'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 7) 
-    {
-        double arg0;
-        const char* arg1;
-        double arg2;
-        double arg3;
-        double arg4;
-        double arg5;
-        double arg6;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-        ok &= luaval_to_number(tolua_S, 4,&arg2);
-
-        ok &= luaval_to_number(tolua_S, 5,&arg3);
-
-        ok &= luaval_to_number(tolua_S, 6,&arg4);
-
-        ok &= luaval_to_number(tolua_S, 7,&arg5);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg6);
-        if(!ok)
-            return 0;
-        cocos2d::cocoswidget::CListView* ret = cobj->createListView(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
-        object_to_luaval<cocos2d::cocoswidget::CListView>(tolua_S, "ccw.CListView",(cocos2d::cocoswidget::CListView*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createListView",argc, 7);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createListView'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_tui_TuiManager_createArmatureBtn(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createArmatureBtn'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 8) 
-    {
-        double arg0;
-        const char* arg1;
-        const char* arg2;
-        const char* arg3;
-        const char* arg4;
-        double arg5;
-        double arg6;
-        double arg7;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-        std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
-
-        std::string arg3_tmp; ok &= luaval_to_std_string(tolua_S, 5, &arg3_tmp); arg3 = arg3_tmp.c_str();
-
-        std::string arg4_tmp; ok &= luaval_to_std_string(tolua_S, 6, &arg4_tmp); arg4 = arg4_tmp.c_str();
-
-        ok &= luaval_to_number(tolua_S, 7,&arg5);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg6);
-
-        ok &= luaval_to_number(tolua_S, 9,&arg7);
-        if(!ok)
-            return 0;
-        cocos2d::cocoswidget::ArmatureBtn* ret = cobj->createArmatureBtn(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-        object_to_luaval<cocos2d::cocoswidget::ArmatureBtn>(tolua_S, "ccw.ArmatureBtn",(cocos2d::cocoswidget::ArmatureBtn*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createArmatureBtn",argc, 8);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createArmatureBtn'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_tui_TuiManager_createScrollView(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createScrollView'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 7) 
-    {
-        double arg0;
-        int arg1;
-		int innerWidth;
-		int innerHeight;
-        double arg2;
-        double arg3;
-        double arg4;
-        double arg5;
-        double arg6;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        ok &= luaval_to_int32(tolua_S, 3,(int *)&arg1);
-
-		ok &= luaval_to_int32(tolua_S, 4, (int *)&innerWidth);
-
-		ok &= luaval_to_int32(tolua_S, 5, (int *)&innerHeight);
-
-        ok &= luaval_to_number(tolua_S, 6,&arg2);
-
-        ok &= luaval_to_number(tolua_S, 7,&arg3);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg4);
-
-        ok &= luaval_to_number(tolua_S, 9,&arg5);
-
-        ok &= luaval_to_number(tolua_S, 10,&arg6);
-        if(!ok)
-            return 0;
-		cocos2d::cocoswidget::CScrollView* ret = cobj->createScrollView(arg0, arg1, innerWidth, innerHeight, arg2, arg3, arg4, arg5, arg6);
-        object_to_luaval<cocos2d::cocoswidget::CScrollView>(tolua_S, "ccw.CScrollView",(cocos2d::cocoswidget::CScrollView*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createScrollView",argc, 9);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createScrollView'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_tui_TuiManager_createEditBox(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createEditBox'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 9) 
-    {
-        double arg0;
-        const char* arg1;
-        int arg2;
-        int arg3;
-        double arg4;
-        double arg5;
-        double arg6;
-        double arg7;
-        double arg8;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-        ok &= luaval_to_int32(tolua_S, 4,(int *)&arg2);
-
-        ok &= luaval_to_int32(tolua_S, 5,(int *)&arg3);
-
-        ok &= luaval_to_number(tolua_S, 6,&arg4);
-
-        ok &= luaval_to_number(tolua_S, 7,&arg5);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg6);
-
-        ok &= luaval_to_number(tolua_S, 9,&arg7);
-
-        ok &= luaval_to_number(tolua_S, 10,&arg8);
-        if(!ok)
-            return 0;
-        cocos2d::extension::EditBox* ret = cobj->createEditBox(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
-        object_to_luaval<cocos2d::extension::EditBox>(tolua_S, "cc.EditBox",(cocos2d::extension::EditBox*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createEditBox",argc, 9);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createEditBox'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_cocos2dx_tui_TuiManager_init(lua_State* tolua_S)
 {
     int argc = 0;
@@ -1101,89 +762,7 @@ int lua_cocos2dx_tui_TuiManager_createMovieView(lua_State* tolua_S)
 
     return 0;
 }
-int lua_cocos2dx_tui_TuiManager_createGridPageView(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
 
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createGridPageView'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 13) 
-    {
-        double arg0;
-        const char* arg1;
-        int arg2;
-        int arg3;
-        int arg4;
-        int arg5;
-        int arg6;
-        int arg7;
-        double arg8;
-        double arg9;
-        double arg10;
-        double arg11;
-        double arg12;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-        ok &= luaval_to_int32(tolua_S, 4,(int *)&arg2);
-
-        ok &= luaval_to_int32(tolua_S, 5,(int *)&arg3);
-
-        ok &= luaval_to_int32(tolua_S, 6,(int *)&arg4);
-
-        ok &= luaval_to_int32(tolua_S, 7,(int *)&arg5);
-
-        ok &= luaval_to_int32(tolua_S, 8,(int *)&arg6);
-
-        ok &= luaval_to_int32(tolua_S, 9,(int *)&arg7);
-
-        ok &= luaval_to_number(tolua_S, 10,&arg8);
-
-        ok &= luaval_to_number(tolua_S, 11,&arg9);
-
-        ok &= luaval_to_number(tolua_S, 12,&arg10);
-
-        ok &= luaval_to_number(tolua_S, 13,&arg11);
-
-        ok &= luaval_to_number(tolua_S, 14,&arg12);
-        if(!ok)
-            return 0;
-        cocos2d::cocoswidget::CGridPageView* ret = cobj->createGridPageView(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);
-        object_to_luaval<cocos2d::cocoswidget::CGridPageView>(tolua_S, "ccw.CGridPageView",(cocos2d::cocoswidget::CGridPageView*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createGridPageView",argc, 13);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createGridPageView'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_cocos2dx_tui_TuiManager_createImage(lua_State* tolua_S)
 {
     int argc = 0;
@@ -1219,6 +798,9 @@ int lua_cocos2dx_tui_TuiManager_createImage(lua_State* tolua_S)
         double arg4;
         double arg5;
         double arg6;
+		double arg7;
+		double arg8;
+		double arg9;
 
         ok &= luaval_to_number(tolua_S, 2,&arg0);
 
@@ -1233,9 +815,15 @@ int lua_cocos2dx_tui_TuiManager_createImage(lua_State* tolua_S)
         ok &= luaval_to_number(tolua_S, 7,&arg5);
 
         ok &= luaval_to_number(tolua_S, 8,&arg6);
+
+		ok &= luaval_to_number(tolua_S, 9, &arg7);
+
+		ok &= luaval_to_number(tolua_S, 10, &arg8);
+
+		ok &= luaval_to_number(tolua_S, 11, &arg9);
         if(!ok)
             return 0;
-        cocos2d::cocoswidget::CImageView* ret = cobj->createImage(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+		cocos2d::cocoswidget::CImageView* ret = cobj->createImage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8,arg9);
         object_to_luaval<cocos2d::cocoswidget::CImageView>(tolua_S, "ccw.CImageView",(cocos2d::cocoswidget::CImageView*)ret);
         return 1;
     }
@@ -1311,216 +899,7 @@ int lua_cocos2dx_tui_TuiManager_createLayout(lua_State* tolua_S)
 
     return 0;
 }
-int lua_cocos2dx_tui_TuiManager_createSlider(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
 
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createSlider'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 7) 
-    {
-        double arg0;
-        const char* arg1;
-        const char* arg2;
-        const char* arg3;
-        double arg4;
-        double arg5;
-        double arg6;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-        std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
-
-        std::string arg3_tmp; ok &= luaval_to_std_string(tolua_S, 5, &arg3_tmp); arg3 = arg3_tmp.c_str();
-
-        ok &= luaval_to_number(tolua_S, 6,&arg4);
-
-        ok &= luaval_to_number(tolua_S, 7,&arg5);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg6);
-        if(!ok)
-            return 0;
-        cocos2d::cocoswidget::CSlider* ret = cobj->createSlider(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
-        object_to_luaval<cocos2d::cocoswidget::CSlider>(tolua_S, "ccw.CSlider",(cocos2d::cocoswidget::CSlider*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createSlider",argc, 7);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createSlider'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_tui_TuiManager_createToggleView(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createToggleView'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 8) 
-    {
-        double arg0;
-        int arg1;
-        const char* arg2;
-        const char* arg3;
-        const char* arg4;
-        double arg5;
-        double arg6;
-        double arg7;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        ok &= luaval_to_int32(tolua_S, 3,(int *)&arg1);
-
-        std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
-
-        std::string arg3_tmp; ok &= luaval_to_std_string(tolua_S, 5, &arg3_tmp); arg3 = arg3_tmp.c_str();
-
-        std::string arg4_tmp; ok &= luaval_to_std_string(tolua_S, 6, &arg4_tmp); arg4 = arg4_tmp.c_str();
-
-        ok &= luaval_to_number(tolua_S, 7,&arg5);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg6);
-
-        ok &= luaval_to_number(tolua_S, 9,&arg7);
-        if(!ok)
-            return 0;
-        cocos2d::cocoswidget::CToggleView* ret = cobj->createToggleView(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-        object_to_luaval<cocos2d::cocoswidget::CToggleView>(tolua_S, "ccw.CToggleView",(cocos2d::cocoswidget::CToggleView*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createToggleView",argc, 8);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createToggleView'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_tui_TuiManager_createGridView(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createGridView'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 11) 
-    {
-        double arg0;
-        const char* arg1;
-        int arg2;
-        int arg3;
-        int arg4;
-        int arg5;
-        double arg6;
-        double arg7;
-        double arg8;
-        double arg9;
-        double arg10;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-        ok &= luaval_to_int32(tolua_S, 4,(int *)&arg2);
-
-        ok &= luaval_to_int32(tolua_S, 5,(int *)&arg3);
-
-        ok &= luaval_to_int32(tolua_S, 6,(int *)&arg4);
-
-        ok &= luaval_to_int32(tolua_S, 7,(int *)&arg5);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg6);
-
-        ok &= luaval_to_number(tolua_S, 9,&arg7);
-
-        ok &= luaval_to_number(tolua_S, 10,&arg8);
-
-        ok &= luaval_to_number(tolua_S, 11,&arg9);
-
-        ok &= luaval_to_number(tolua_S, 12,&arg10);
-        if(!ok)
-            return 0;
-        cocos2d::cocoswidget::CGridView* ret = cobj->createGridView(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
-        object_to_luaval<cocos2d::cocoswidget::CGridView>(tolua_S, "ccw.CGridView",(cocos2d::cocoswidget::CGridView*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createGridView",argc, 11);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createGridView'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_cocos2dx_tui_TuiManager_createArmature(lua_State* tolua_S)
 {
     int argc = 0;
@@ -1554,9 +933,10 @@ int lua_cocos2dx_tui_TuiManager_createArmature(lua_State* tolua_S)
         const char* arg2;
         const char* arg3;
         const char* arg4;
-        double arg5;
+		const char* arg5;
         double arg6;
         double arg7;
+		double arg8;
 
         ok &= luaval_to_number(tolua_S, 2,&arg0);
 
@@ -1568,14 +948,16 @@ int lua_cocos2dx_tui_TuiManager_createArmature(lua_State* tolua_S)
 
         std::string arg4_tmp; ok &= luaval_to_std_string(tolua_S, 6, &arg4_tmp); arg4 = arg4_tmp.c_str();
 
-        ok &= luaval_to_number(tolua_S, 7,&arg5);
+		std::string arg5_tmp; ok &= luaval_to_std_string(tolua_S, 7, &arg5_tmp); arg5 = arg5_tmp.c_str();
 
         ok &= luaval_to_number(tolua_S, 8,&arg6);
 
         ok &= luaval_to_number(tolua_S, 9,&arg7);
+
+        ok &= luaval_to_number(tolua_S, 10,&arg8);
         if(!ok)
             return 0;
-        cocostudio::Armature* ret = cobj->createArmature(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+        cocostudio::Armature* ret = cobj->createArmature(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,arg8);
         object_to_luaval<cocostudio::Armature>(tolua_S, "ccs.Armature",(cocostudio::Armature*)ret);
         return 1;
     }
@@ -1690,342 +1072,7 @@ int lua_cocos2dx_tui_TuiManager_createLabel(lua_State* tolua_S)
 
     return 0;
 }
-int lua_cocos2dx_tui_TuiManager_createNumStep(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
 
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createNumStep'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 11) 
-    {
-        double arg0;
-        const char* arg1;
-        const char* arg2;
-        const char* arg3;
-        const char* arg4;
-        const char* arg5;
-        const char* arg6;
-        const char* arg7;
-        double arg8;
-        double arg9;
-        double arg10;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-        std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
-
-        std::string arg3_tmp; ok &= luaval_to_std_string(tolua_S, 5, &arg3_tmp); arg3 = arg3_tmp.c_str();
-
-        std::string arg4_tmp; ok &= luaval_to_std_string(tolua_S, 6, &arg4_tmp); arg4 = arg4_tmp.c_str();
-
-        std::string arg5_tmp; ok &= luaval_to_std_string(tolua_S, 7, &arg5_tmp); arg5 = arg5_tmp.c_str();
-
-        std::string arg6_tmp; ok &= luaval_to_std_string(tolua_S, 8, &arg6_tmp); arg6 = arg6_tmp.c_str();
-
-        std::string arg7_tmp; ok &= luaval_to_std_string(tolua_S, 9, &arg7_tmp); arg7 = arg7_tmp.c_str();
-
-        ok &= luaval_to_number(tolua_S, 10,&arg8);
-
-        ok &= luaval_to_number(tolua_S, 11,&arg9);
-
-        ok &= luaval_to_number(tolua_S, 12,&arg10);
-        if(!ok)
-            return 0;
-        cocos2d::cocoswidget::NumericStepper* ret = cobj->createNumStep(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
-        object_to_luaval<cocos2d::cocoswidget::NumericStepper>(tolua_S, "ccw.NumericStepper",(cocos2d::cocoswidget::NumericStepper*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createNumStep",argc, 11);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createNumStep'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_tui_TuiManager_createPageView(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createPageView'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 9) 
-    {
-        double arg0;
-        const char* arg1;
-        int arg2;
-        int arg3;
-        double arg4;
-        double arg5;
-        double arg6;
-        double arg7;
-        double arg8;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-        ok &= luaval_to_int32(tolua_S, 4,(int *)&arg2);
-
-        ok &= luaval_to_int32(tolua_S, 5,(int *)&arg3);
-
-        ok &= luaval_to_number(tolua_S, 6,&arg4);
-
-        ok &= luaval_to_number(tolua_S, 7,&arg5);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg6);
-
-        ok &= luaval_to_number(tolua_S, 9,&arg7);
-
-        ok &= luaval_to_number(tolua_S, 10,&arg8);
-        if(!ok)
-            return 0;
-        cocos2d::cocoswidget::CPageView* ret = cobj->createPageView(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
-        object_to_luaval<cocos2d::cocoswidget::CPageView>(tolua_S, "ccw.CPageView",(cocos2d::cocoswidget::CPageView*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createPageView",argc, 9);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createPageView'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_tui_TuiManager_setUseSpriteFrame(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_setUseSpriteFrame'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        bool arg0;
-
-        ok &= luaval_to_boolean(tolua_S, 2,&arg0);
-        if(!ok)
-            return 0;
-        cobj->setUseSpriteFrame(arg0);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setUseSpriteFrame",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_setUseSpriteFrame'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_tui_TuiManager_createTableView(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createTableView'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 11) 
-    {
-        double arg0;
-        const char* arg1;
-        int arg2;
-        int arg3;
-        int arg4;
-        int arg5;
-        double arg6;
-        double arg7;
-        double arg8;
-        double arg9;
-        double arg10;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-        ok &= luaval_to_int32(tolua_S, 4,(int *)&arg2);
-
-        ok &= luaval_to_int32(tolua_S, 5,(int *)&arg3);
-
-        ok &= luaval_to_int32(tolua_S, 6,(int *)&arg4);
-
-        ok &= luaval_to_int32(tolua_S, 7,(int *)&arg5);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg6);
-
-        ok &= luaval_to_number(tolua_S, 9,&arg7);
-
-        ok &= luaval_to_number(tolua_S, 10,&arg8);
-
-        ok &= luaval_to_number(tolua_S, 11,&arg9);
-
-        ok &= luaval_to_number(tolua_S, 12,&arg10);
-        if(!ok)
-            return 0;
-        cocos2d::cocoswidget::CTableView* ret = cobj->createTableView(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
-        object_to_luaval<cocos2d::cocoswidget::CTableView>(tolua_S, "ccw.CTableView",(cocos2d::cocoswidget::CTableView*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createTableView",argc, 11);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createTableView'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_tui_TuiManager_createLabelAtlas(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createLabelAtlas'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 7) 
-    {
-        double arg0;
-        const char* arg1;
-        double arg2;
-        double arg3;
-        double arg4;
-        double arg5;
-        double arg6;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-        ok &= luaval_to_number(tolua_S, 4,&arg2);
-
-        ok &= luaval_to_number(tolua_S, 5,&arg3);
-
-        ok &= luaval_to_number(tolua_S, 6,&arg4);
-
-        ok &= luaval_to_number(tolua_S, 7,&arg5);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg6);
-        if(!ok)
-            return 0;
-        cocos2d::cocoswidget::CLabelAtlas* ret = cobj->createLabelAtlas(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
-        object_to_luaval<cocos2d::cocoswidget::CLabelAtlas>(tolua_S, "ccw.CLabelAtlas",(cocos2d::cocoswidget::CLabelAtlas*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createLabelAtlas",argc, 7);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createLabelAtlas'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_cocos2dx_tui_TuiManager_createImage9(lua_State* tolua_S)
 {
     int argc = 0;
@@ -2065,6 +1112,7 @@ int lua_cocos2dx_tui_TuiManager_createImage9(lua_State* tolua_S)
         double arg8;
         double arg9;
         double arg10;
+		double arg11;
 
         ok &= luaval_to_number(tolua_S, 2,&arg0);
 
@@ -2087,9 +1135,11 @@ int lua_cocos2dx_tui_TuiManager_createImage9(lua_State* tolua_S)
         ok &= luaval_to_number(tolua_S, 11,&arg9);
 
         ok &= luaval_to_number(tolua_S, 12,&arg10);
+
+		ok &= luaval_to_number(tolua_S, 13, &arg11);
         if(!ok)
             return 0;
-        cocos2d::cocoswidget::CImageViewScale9* ret = cobj->createImage9(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
+		cocos2d::cocoswidget::CImageViewScale9* ret = cobj->createImage9(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
         object_to_luaval<cocos2d::cocoswidget::CImageViewScale9>(tolua_S, "ccw.CImageViewScale9",(cocos2d::cocoswidget::CImageViewScale9*)ret);
         return 1;
     }
@@ -2186,7 +1236,6 @@ int lua_cocos2dx_tui_TuiManager_createAnim(lua_State* tolua_S)
         double arg0;
         const char* arg1;
         const char* arg2;
-        const char* arg3;
         double arg4;
         double arg5;
         double arg6;
@@ -2195,18 +1244,16 @@ int lua_cocos2dx_tui_TuiManager_createAnim(lua_State* tolua_S)
 
         std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
 
-        std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
+		std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
 
-        std::string arg3_tmp; ok &= luaval_to_std_string(tolua_S, 5, &arg3_tmp); arg3 = arg3_tmp.c_str();
+        ok &= luaval_to_number(tolua_S, 5,&arg4);
 
-        ok &= luaval_to_number(tolua_S, 6,&arg4);
+        ok &= luaval_to_number(tolua_S, 6,&arg5);
 
-        ok &= luaval_to_number(tolua_S, 7,&arg5);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg6);
+        ok &= luaval_to_number(tolua_S, 7,&arg6);
         if(!ok)
             return 0;
-        cocos2d::Sprite* ret = cobj->createAnim(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+        cocos2d::Sprite* ret = cobj->createAnim(arg0, arg1, arg2, arg4, arg5, arg6);
         object_to_luaval<cocos2d::Sprite>(tolua_S, "cc.Sprite",(cocos2d::Sprite*)ret);
         return 1;
     }
@@ -2220,68 +1267,7 @@ int lua_cocos2dx_tui_TuiManager_createAnim(lua_State* tolua_S)
 
     return 0;
 }
-int lua_cocos2dx_tui_TuiManager_createProgress(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
 
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createProgress'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 6) 
-    {
-        double arg0;
-        const char* arg1;
-        const char* arg2;
-        double arg3;
-        double arg4;
-        double arg5;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-        std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
-
-        ok &= luaval_to_number(tolua_S, 5,&arg3);
-
-        ok &= luaval_to_number(tolua_S, 6,&arg4);
-
-        ok &= luaval_to_number(tolua_S, 7,&arg5);
-        if(!ok)
-            return 0;
-        cocos2d::cocoswidget::CProgressBar* ret = cobj->createProgress(arg0, arg1, arg2, arg3, arg4, arg5);
-        object_to_luaval<cocos2d::cocoswidget::CProgressBar>(tolua_S, "ccw.CProgressBar",(cocos2d::cocoswidget::CProgressBar*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createProgress",argc, 6);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createProgress'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_cocos2dx_tui_TuiManager_createCircleMenu(lua_State* tolua_S)
 {
     int argc = 0;
@@ -2532,31 +1518,16 @@ int lua_register_cocos2dx_tui_TuiManager(lua_State* tolua_S)
         tolua_function(tolua_S,"createParticle",lua_cocos2dx_tui_TuiManager_createParticle);
         tolua_function(tolua_S,"createPanel",lua_cocos2dx_tui_TuiManager_createPanel);
         tolua_function(tolua_S,"createControl",lua_cocos2dx_tui_TuiManager_createControl);
-        tolua_function(tolua_S,"createBtn",lua_cocos2dx_tui_TuiManager_createBtn);
-        tolua_function(tolua_S,"createListView",lua_cocos2dx_tui_TuiManager_createListView);
-        tolua_function(tolua_S,"createArmatureBtn",lua_cocos2dx_tui_TuiManager_createArmatureBtn);
-        tolua_function(tolua_S,"createScrollView",lua_cocos2dx_tui_TuiManager_createScrollView);
-        tolua_function(tolua_S,"createEditBox",lua_cocos2dx_tui_TuiManager_createEditBox);
         tolua_function(tolua_S,"init",lua_cocos2dx_tui_TuiManager_init);
         tolua_function(tolua_S,"parseCell",lua_cocos2dx_tui_TuiManager_parseCell);
         tolua_function(tolua_S,"createMovieView",lua_cocos2dx_tui_TuiManager_createMovieView);
-        tolua_function(tolua_S,"createGridPageView",lua_cocos2dx_tui_TuiManager_createGridPageView);
         tolua_function(tolua_S,"createImage",lua_cocos2dx_tui_TuiManager_createImage);
         tolua_function(tolua_S,"createLayout",lua_cocos2dx_tui_TuiManager_createLayout);
-        tolua_function(tolua_S,"createSlider",lua_cocos2dx_tui_TuiManager_createSlider);
-        tolua_function(tolua_S,"createToggleView",lua_cocos2dx_tui_TuiManager_createToggleView);
-        tolua_function(tolua_S,"createGridView",lua_cocos2dx_tui_TuiManager_createGridView);
         tolua_function(tolua_S,"createArmature",lua_cocos2dx_tui_TuiManager_createArmature);
         tolua_function(tolua_S,"createLabel",lua_cocos2dx_tui_TuiManager_createLabel);
-        tolua_function(tolua_S,"createNumStep",lua_cocos2dx_tui_TuiManager_createNumStep);
-        tolua_function(tolua_S,"createPageView",lua_cocos2dx_tui_TuiManager_createPageView);
-        tolua_function(tolua_S,"setUseSpriteFrame",lua_cocos2dx_tui_TuiManager_setUseSpriteFrame);
-        tolua_function(tolua_S,"createTableView",lua_cocos2dx_tui_TuiManager_createTableView);
-        tolua_function(tolua_S,"createLabelAtlas",lua_cocos2dx_tui_TuiManager_createLabelAtlas);
         tolua_function(tolua_S,"createImage9",lua_cocos2dx_tui_TuiManager_createImage9);
         tolua_function(tolua_S,"parseScene",lua_cocos2dx_tui_TuiManager_parseScene);
         tolua_function(tolua_S,"createAnim",lua_cocos2dx_tui_TuiManager_createAnim);
-        tolua_function(tolua_S,"createProgress",lua_cocos2dx_tui_TuiManager_createProgress);
         tolua_function(tolua_S,"createCircleMenu",lua_cocos2dx_tui_TuiManager_createCircleMenu);
         tolua_function(tolua_S,"getInstance", lua_cocos2dx_tui_TuiManager_getInstance);
 		tolua_function(tolua_S, "setAdaptResolution", lua_cocos2dx_tui_TuiManager_setAdaptResolution);
@@ -2578,7 +1549,7 @@ TOLUA_API int register_all_cocos2dx_tui(lua_State* tolua_S)
 
 	lua_register_cocos2dx_tui_TuiBase(tolua_S);
 	lua_register_cocos2dx_tui_TuiManager(tolua_S);
-	lua_register_cocos2dx_tui_AnimationUtil(tolua_S);
+	lua_register_cocos2dx_tui_TuiUtil(tolua_S);
 
 	tolua_endmodule(tolua_S);
 	return 1;

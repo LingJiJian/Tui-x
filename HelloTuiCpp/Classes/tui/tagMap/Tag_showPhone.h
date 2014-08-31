@@ -6,12 +6,12 @@
 namespace ShowPhone { 
 	static const int PANEL_SHOWPHONE = 1 ;
 	static const int CIRCLEMENU_SHOWPHONE = 2 ;
-	static const int IMG_PHONE1 = 4 ;
-	static const int IMG_PHONE2 = 5 ;
-	static const int IMG_PHONE6 = 6 ;
-	static const int IMG_PHONE4 = 7 ;
-	static const int IMG_PHONE5 = 8 ;
-	static const int IMG_PHONE3 = 9 ;
+	static const int IMG_PHONE1 = 3 ;
+	static const int IMG_PHONE2 = 4 ;
+	static const int IMG_PHONE3 = 5 ;
+	static const int IMG_PHONE4 = 6 ;
+	static const int IMG_PHONE5 = 7 ;
+	static const int IMG_PHONE6 = 8 ;
 } 
 
 #endif

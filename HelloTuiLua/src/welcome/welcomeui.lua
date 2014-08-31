@@ -31,7 +31,6 @@ end
 ---------------logic----------------------------
 local btnGo =  			nil
 local animCoin = 		nil
-local armatureBoss = 	nil
 local armBtnTest = 		nil
 local listGoods = 		nil
 local tgvOption = 		nil
@@ -96,7 +95,7 @@ end
 
 function Welcomeui:onLoadScene()
 
-	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("main/mainui.plist")
+	cc.SpriteFrameCache:getInstance():addSpriteFrames("main/mainui.plist")
 	TuiManager:getInstance():parseScene(self,"panel_welcome",PATH_WELCOMEUI)
 	--注册事件
 	window = self:getPanel(Tag_welcomeui.PANEL_WELCOME)
@@ -108,9 +107,6 @@ function Welcomeui:onLoadScene()
 
  	ctvlLeft = self:getControl(Tag_welcomeui.PANEL_WELCOME,Tag_welcomeui.CTLV_LEFT)
 	ctvlLeft:setOnControlScriptHandler(event_ctvl_left)
-	
- 	armatureBoss = self:getControl(Tag_welcomeui.PANEL_WELCOME,Tag_welcomeui.ARMATURE_BOSS1)
- 	armatureBoss:getAnimation():play("live",-1,1)
 
  	armBtnTest = self:getControl(Tag_welcomeui.PANEL_WELCOME,Tag_welcomeui.ARMBTN_TEST2)
  	armBtnTest:setOnClickScriptHandler(event_armbtn_test)

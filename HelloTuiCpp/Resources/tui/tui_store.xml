@@ -1,10 +1,12 @@
 
-	<control tag="1" localz="0" type="panel" name="panel_store" x="400" y="240" width="699.4" height="349" rotation="0">
-		<control tag="2" localz="0" type="armatureBtn" name="armBtn_test2" xml="store/armBtn_test2.xml" png="store/armBtn_test2.png" plist="store/armBtn_test2.plist" x="266.35" y="-12.65" width="226" height="349" rotation="0"></control>
-		<control tag="3" localz="1" type="listView" num="10" name="list_goods" image="store/list_goods.png" x="-156.55" y="-12" width="325" height="339" rotation="0">
-			<control tag="5" localz="1" type="layout" name="layout_item" x="-1.5" y="-134.45" width="325" height="70" rotation="0">
-				<control tag="6" localz="0" type="image" name="img_itembg" image="store/img_itembg.png" x="0.5" y="-0.05" width="325" height="70" scaleX="1" scaleY="1" rotation="0"></control>
-				<control tag="7" localz="1" type="button" name="btn_pay" normal="store/btn_pay_normal.png" select="store/btn_pay_select.png" disable="store/btn_pay_disable.png" x="114.5" y="1.9" width="70" height="36" rotation="0"></control>
+	<control tag="1" type="panel" name="panel_store" x="400" y="240" width="766.6" height="495.2" rotation="0">
+		<control tag="2" type="armatureBtn" name="armBtn_test2" normal="normal" select="select" xml="store/armBtn_test2.xml" png="store/armBtn_test2.png" plist="store/armBtn_test2.plist" x="246.35" y="-94.85" width="226" height="349" rotation="0"></control>
+		<control tag="3" type="listView" num="10" red="0" green="255" blue="255" alpha="255" x="-238.6" y="-52.35" width="325.35" height="326.6" rotation="0" spriteFrame="0">
+			<control tag="5" type="layout" red="0" green="255" blue="255" alpha="0" x="15.55" y="-134.95" width="325" height="70" rotation="0" spriteFrame="0">
+				<control tag="6" type="image" image="store/img_itembg.png" x="0.35" y="-0.65" width="325" height="70" scaleX="1" scaleY="1" flipX="0" flipY="0" rotation="0" spriteFrame="0"></control>
+				<control tag="7" type="button" textSize="16" textFont="fonts/Arial.ttf" red="0" green="0" blue="0" normal="store/btn_pay_normal.png" select="store/btn_pay_select.png" disable="store/btn_pay_disable.png" x="119.95" y="-4.05" width="70" height="36" rotation="0" spriteFrame="0"></control>
 			</control>
 		</control>
+		<control tag="8" type="labelBMFont" text="美好的一天0123456789\nHelloWorld!!\nxxxxx : )" fnt="store/labBmf_test.fnt" x="-381.55" y="113.45" width="407.85" height="112.4" rotation="0"></control>
+		<control tag="9" type="richText" text="<e type='label' r='225' g='100' b ='0' text='你好中国'></e><e type='label' r='225' g='150' b ='0' text='你好CocosWidget'></e><e type='label' r='125' g='100' b ='0' text='你好Tui-x' size='24'></e><e type='image' src='main/ctlv_left_joystick.png' len='4'></e><e type='anim' name='anim_coin' src='main/anim_coin.plist' len='3'></e><e type='anim' name='anim_coin' src='main/anim_coin.plist' len='3'></e><e type='label' r='255' g='0' b ='0' text='继续papapa...' size='20'></e>" max="30" x="54.9" y="100.85" width="326.15" height="120.35" rotation="0" spriteFrame="0"></control>
 	</control>

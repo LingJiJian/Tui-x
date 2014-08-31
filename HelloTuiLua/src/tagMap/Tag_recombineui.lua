@@ -4,10 +4,9 @@ Tag_recombineui = {
 PANEL_RECOMBINE = 1 ,
 GPV_BAG = 2 ,
 BTN_BACK = 3 ,
-LAB_BACK = 4 ,
-SCROL_MAP = 5 ,
-IMG_SCROLLVIEW = 6 ,
+SCROL_MAP = 4 ,
+IMG_SCROLLVIEW = 5 ,
+RTF_TEST = 7 ,
 CELL_GRID = 8 ,
-BTN_GRID = 9 ,
-LAB_TITLE = 10 } 
+BTN_GRID = 9 } 
 

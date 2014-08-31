@@ -54,7 +54,7 @@ local function event_adapt_gpvbag(p_convertview, idx)
 end
 
 function Recombineui:onLoadScene()
-	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("recombine/recombineui.plist")
+	-- cc.SpriteFrameCache:getInstance():addSpriteFrames("recombine/recombineui.plist")
 	TuiManager:getInstance():parseScene(self,"panel_recombine",PATH_RECOMBINEUI)
 
 	local btnBack = self:getControl(Tag_recombineui.PANEL_RECOMBINE,Tag_recombineui.BTN_BACK)

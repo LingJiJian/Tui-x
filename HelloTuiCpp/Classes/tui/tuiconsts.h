@@ -19,6 +19,7 @@ static const char* kTuiControlSlider = "slider";
 static const char* kTuiControlProgress = "progress";
 static const char* kTuiControlLabel = "label";
 static const char* kTuiControlLabelAtlas = "labelAtlas";
+static const char* kTuiControlLabelBMFont = "labelBMFont";
 static const char* kTuiControlArmature = "armature";
 static const char* kTuiControlAnim = "anim";
 static const char* kTuiControlArmatureBtn = "armatureBtn";

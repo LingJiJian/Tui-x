@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\Cocos2dRenderer.cpp" />
-    <ClCompile Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\Direct3DContentProvider.cpp" />
-    <ClCompile Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\Direct3DInterop.cpp" />
-    <ClCompile Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\DirectXBase.cpp" />
-    <ClCompile Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\EditBoxEvent.cpp" />
-    <ClCompile Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\InputEvent.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="..\..\Classes\AppDelegate.cpp">
       <Filter>Classes</Filter>
@@ -60,9 +54,6 @@
       <Filter>lib\CocosWidget</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\CocosWidget\ListView.cpp">
-      <Filter>lib\CocosWidget</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\CocosWidget\Lua_cocos2dx_widget.cpp">
       <Filter>lib\CocosWidget</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\CocosWidget\MovieView.cpp">
@@ -137,25 +128,34 @@
     <ClCompile Include="..\..\Classes\scene\Main\Mainui.cpp">
       <Filter>Classes\scene\Main</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Classes\scene\Main\dialog\MessageBox.cpp">
-      <Filter>Classes\scene\Main\dialog</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Classes\scene\Store\Storeui.cpp">
       <Filter>Classes\scene\Store</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Classes\scene\Welcome\Welcomeui.cpp">
       <Filter>Classes\scene\Welcome</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Classes\scene\Recombine\Recombineui.cpp">
+      <Filter>Classes\scene\Recombine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\scene\Main\dialog\MsgBox.cpp">
+      <Filter>Classes\scene\Main\dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\scene\ShowPhone\ShowPhoneui.cpp">
+      <Filter>Classes\scene\ShowPhone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\scene\Bag\Bagui.cpp">
+      <Filter>Classes\scene\Bag</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated Files\Direct3DContentProvider.cpp" />
+    <ClCompile Include="Generated Files\Direct3DInterop.cpp" />
+    <ClCompile Include="Generated Files\DirectXBase.cpp" />
+    <ClCompile Include="Generated Files\EditBoxEvent.cpp" />
+    <ClCompile Include="Generated Files\Cocos2dRenderer.cpp" />
+    <ClCompile Include="..\..\..\CocosWidget\CircleMenu.cpp">
+      <Filter>lib\CocosWidget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\Cocos2dRenderer.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\Direct3DContentProvider.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\Direct3DInterop.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\DirectXBase.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\DirectXHelper.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\EditBoxEvent.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\InputEvent.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\InputEventTypes.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="..\..\Classes\AppDelegate.h">
       <Filter>Classes</Filter>
@@ -174,15 +174,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Classes\tui\utils\AnimationUtil.h">
       <Filter>lib\tui\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Classes\tui\tagMap\tuiTag_store.h">
-      <Filter>lib\tui\tagMap</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Classes\tui\tagMap\tuiTag_welcome.h">
-      <Filter>lib\tui\tagMap</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Classes\tui\tagMap\tuiTag_main.h">
-      <Filter>lib\tui\tagMap</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\CocosWidget\CheckBox.h">
       <Filter>lib\CocosWidget</Filter>
@@ -230,9 +221,6 @@
       <Filter>lib\CocosWidget</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\CocosWidget\ListView.h">
-      <Filter>lib\CocosWidget</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\CocosWidget\Lua_cocos2dx_widget.h">
       <Filter>lib\CocosWidget</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\CocosWidget\MovieView.h">
@@ -331,9 +319,6 @@
     <ClInclude Include="..\..\Classes\scene\Main\MainCfg.h">
       <Filter>Classes\scene\Main</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Classes\scene\Main\dialog\MessageBox.h">
-      <Filter>Classes\scene\Main\dialog</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Classes\scene\Store\Storeui.h">
       <Filter>Classes\scene\Store</Filter>
     </ClInclude>
@@ -345,6 +330,51 @@
     </ClInclude>
     <ClInclude Include="..\..\Classes\scene\Welcome\WelcomeCfg.h">
       <Filter>Classes\scene\Welcome</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\scene\Recombine\Recombineui.h">
+      <Filter>Classes\scene\Recombine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\scene\Main\dialog\MsgBox.h">
+      <Filter>Classes\scene\Main\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\scene\ShowPhone\ShowPhoneui.h">
+      <Filter>Classes\scene\ShowPhone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\scene\ShowPhone\ShowPhoneCfg.h">
+      <Filter>Classes\scene\ShowPhone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\scene\Bag\Bagui.h">
+      <Filter>Classes\scene\Bag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\scene\Bag\BagCfg.h">
+      <Filter>Classes\scene\Bag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\tui\tagMap\Tag_recombineui.h">
+      <Filter>lib\tui\tagMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\tui\tagMap\Tag_showPhone.h">
+      <Filter>lib\tui\tagMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\tui\tagMap\Tag_store.h">
+      <Filter>lib\tui\tagMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\tui\tagMap\Tag_welcome.h">
+      <Filter>lib\tui\tagMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\tui\tagMap\Tag_bag.h">
+      <Filter>lib\tui\tagMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\tui\tagMap\Tag_main.h">
+      <Filter>lib\tui\tagMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated Files\Cocos2dRenderer.h" />
+    <ClInclude Include="Generated Files\Direct3DContentProvider.h" />
+    <ClInclude Include="Generated Files\Direct3DInterop.h" />
+    <ClInclude Include="Generated Files\DirectXBase.h" />
+    <ClInclude Include="Generated Files\DirectXHelper.h" />
+    <ClInclude Include="Generated Files\EditBoxEvent.h" />
+    <ClInclude Include="..\..\..\CocosWidget\CircleMenu.h">
+      <Filter>lib\CocosWidget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -398,6 +428,15 @@
     </Filter>
     <Filter Include="lib\tui\tagMap">
       <UniqueIdentifier>{5b906d83-0aef-41b5-92a6-0150604859dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\scene\Recombine">
+      <UniqueIdentifier>{3eaab2bd-4866-4ced-90da-ace134e77810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\scene\ShowPhone">
+      <UniqueIdentifier>{ae3a8fee-1a6f-44fe-b0c3-1815c4943a30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\scene\Bag">
+      <UniqueIdentifier>{ae1aeedc-3ece-4bec-b8a2-7dbd0ada567f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

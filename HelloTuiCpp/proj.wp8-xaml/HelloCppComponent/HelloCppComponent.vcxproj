@@ -90,7 +90,7 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
       <AdditionalOptions>/Zm200 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\editor-support;$(EngineRoot);$(EngineRoot)extensions;$(ProjectDir)..\..\Classes;$(EngineRoot)external;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)cocos\editor-support;$(EngineRoot);$(EngineRoot)extensions;$(ProjectDir)..\..\Classes;$(EngineRoot)cocos\2d;$(EngineRoot)external;$(EngineRoot)cocos\base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -185,12 +185,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\Cocos2dRenderer.cpp" />
-    <ClCompile Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\Direct3DContentProvider.cpp" />
-    <ClCompile Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\Direct3DInterop.cpp" />
-    <ClCompile Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\DirectXBase.cpp" />
-    <ClCompile Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\EditBoxEvent.cpp" />
-    <ClCompile Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\InputEvent.cpp" />
     <ClCompile Include="..\..\..\CocosBase\CCBundle.cpp" />
     <ClCompile Include="..\..\..\CocosBase\CCMsgDelegate.cpp" />
     <ClCompile Include="..\..\..\CocosBase\CCMsgManager.cpp" />
@@ -200,6 +194,7 @@
     <ClCompile Include="..\..\..\CocosWidget\ArmatureBtn.cpp" />
     <ClCompile Include="..\..\..\CocosWidget\Button.cpp" />
     <ClCompile Include="..\..\..\CocosWidget\CheckBox.cpp" />
+    <ClCompile Include="..\..\..\CocosWidget\CircleMenu.cpp" />
     <ClCompile Include="..\..\..\CocosWidget\ColorView.cpp" />
     <ClCompile Include="..\..\..\CocosWidget\ControlView.cpp" />
     <ClCompile Include="..\..\..\CocosWidget\ExpandableListView.cpp" />
@@ -213,7 +208,6 @@
     <ClCompile Include="..\..\..\CocosWidget\LabelBMFont.cpp" />
     <ClCompile Include="..\..\..\CocosWidget\Layout.cpp" />
     <ClCompile Include="..\..\..\CocosWidget\ListView.cpp" />
-    <ClCompile Include="..\..\..\CocosWidget\Lua_cocos2dx_widget.cpp" />
     <ClCompile Include="..\..\..\CocosWidget\MovieView.cpp" />
     <ClCompile Include="..\..\..\CocosWidget\NumericStepper.cpp" />
     <ClCompile Include="..\..\..\CocosWidget\PageView.cpp" />
@@ -230,13 +224,21 @@
     <ClCompile Include="..\..\..\CocosWidget\WitlsMacros.cpp" />
     <ClCompile Include="..\..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\..\Classes\module\ResoureMgr.cpp" />
-    <ClCompile Include="..\..\Classes\scene\Main\dialog\MessageBox.cpp" />
+    <ClCompile Include="..\..\Classes\scene\Bag\Bagui.cpp" />
+    <ClCompile Include="..\..\Classes\scene\Main\dialog\MsgBox.cpp" />
     <ClCompile Include="..\..\Classes\scene\Main\Mainui.cpp" />
+    <ClCompile Include="..\..\Classes\scene\Recombine\Recombineui.cpp" />
+    <ClCompile Include="..\..\Classes\scene\ShowPhone\ShowPhoneui.cpp" />
     <ClCompile Include="..\..\Classes\scene\Store\Storeui.cpp" />
     <ClCompile Include="..\..\Classes\scene\Welcome\Welcomeui.cpp" />
     <ClCompile Include="..\..\Classes\tui\TuiBase.cpp" />
     <ClCompile Include="..\..\Classes\tui\TuiManager.cpp" />
     <ClCompile Include="..\..\Classes\tui\utils\AnimationUtil.cpp" />
+    <ClCompile Include="Generated Files\Cocos2dRenderer.cpp" />
+    <ClCompile Include="Generated Files\Direct3DContentProvider.cpp" />
+    <ClCompile Include="Generated Files\Direct3DInterop.cpp" />
+    <ClCompile Include="Generated Files\DirectXBase.cpp" />
+    <ClCompile Include="Generated Files\EditBoxEvent.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Create</PrecompiledHeader>
@@ -245,14 +247,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\Cocos2dRenderer.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\Direct3DContentProvider.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\Direct3DInterop.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\DirectXBase.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\DirectXHelper.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\EditBoxEvent.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\InputEvent.h" />
-    <ClInclude Include="..\..\..\..\cocos\2d\platform\wp8-xaml\cpp\InputEventTypes.h" />
     <ClInclude Include="..\..\..\CocosBase\CCBaseMacros.h" />
     <ClInclude Include="..\..\..\CocosBase\CCBundle.h" />
     <ClInclude Include="..\..\..\CocosBase\CCMsgDelegate.h" />
@@ -264,6 +258,7 @@
     <ClInclude Include="..\..\..\CocosWidget\ArmatureBtn.h" />
     <ClInclude Include="..\..\..\CocosWidget\Button.h" />
     <ClInclude Include="..\..\..\CocosWidget\CheckBox.h" />
+    <ClInclude Include="..\..\..\CocosWidget\CircleMenu.h" />
     <ClInclude Include="..\..\..\CocosWidget\cocos-widget.h" />
     <ClInclude Include="..\..\..\CocosWidget\ColorView.h" />
     <ClInclude Include="..\..\..\CocosWidget\ControlView.h" />
@@ -279,7 +274,6 @@
     <ClInclude Include="..\..\..\CocosWidget\LabelBMFont.h" />
     <ClInclude Include="..\..\..\CocosWidget\Layout.h" />
     <ClInclude Include="..\..\..\CocosWidget\ListView.h" />
-    <ClInclude Include="..\..\..\CocosWidget\Lua_cocos2dx_widget.h" />
     <ClInclude Include="..\..\..\CocosWidget\MovieView.h" />
     <ClInclude Include="..\..\..\CocosWidget\NumericStepper.h" />
     <ClInclude Include="..\..\..\CocosWidget\PageView.h" />
@@ -301,21 +295,35 @@
     <ClInclude Include="..\..\..\rapidXml\rapidxml_utils.hpp" />
     <ClInclude Include="..\..\Classes\AppDelegate.h" />
     <ClInclude Include="..\..\Classes\module\ResoureMgr.h" />
-    <ClInclude Include="..\..\Classes\scene\Main\dialog\MessageBox.h" />
+    <ClInclude Include="..\..\Classes\scene\Bag\BagCfg.h" />
+    <ClInclude Include="..\..\Classes\scene\Bag\Bagui.h" />
+    <ClInclude Include="..\..\Classes\scene\Main\dialog\MsgBox.h" />
     <ClInclude Include="..\..\Classes\scene\Main\MainCfg.h" />
     <ClInclude Include="..\..\Classes\scene\Main\Mainui.h" />
+    <ClInclude Include="..\..\Classes\scene\Recombine\Recombineui.h" />
+    <ClInclude Include="..\..\Classes\scene\ShowPhone\ShowPhoneCfg.h" />
+    <ClInclude Include="..\..\Classes\scene\ShowPhone\ShowPhoneui.h" />
     <ClInclude Include="..\..\Classes\scene\Store\StoreCfg.h" />
     <ClInclude Include="..\..\Classes\scene\Store\Storeui.h" />
     <ClInclude Include="..\..\Classes\scene\Welcome\WelcomeCfg.h" />
     <ClInclude Include="..\..\Classes\scene\Welcome\Welcomeui.h" />
-    <ClInclude Include="..\..\Classes\tui\tagMap\tuiTag_main.h" />
-    <ClInclude Include="..\..\Classes\tui\tagMap\tuiTag_store.h" />
-    <ClInclude Include="..\..\Classes\tui\tagMap\tuiTag_welcome.h" />
+    <ClInclude Include="..\..\Classes\tui\tagMap\Tag_bag.h" />
+    <ClInclude Include="..\..\Classes\tui\tagMap\Tag_main.h" />
+    <ClInclude Include="..\..\Classes\tui\tagMap\Tag_recombineui.h" />
+    <ClInclude Include="..\..\Classes\tui\tagMap\Tag_showPhone.h" />
+    <ClInclude Include="..\..\Classes\tui\tagMap\Tag_store.h" />
+    <ClInclude Include="..\..\Classes\tui\tagMap\Tag_welcome.h" />
     <ClInclude Include="..\..\Classes\tui\TuiBase.h" />
     <ClInclude Include="..\..\Classes\tui\tuiconsts.h" />
     <ClInclude Include="..\..\Classes\tui\TuiMacros.h" />
     <ClInclude Include="..\..\Classes\tui\TuiManager.h" />
     <ClInclude Include="..\..\Classes\tui\utils\AnimationUtil.h" />
+    <ClInclude Include="Generated Files\Cocos2dRenderer.h" />
+    <ClInclude Include="Generated Files\Direct3DContentProvider.h" />
+    <ClInclude Include="Generated Files\Direct3DInterop.h" />
+    <ClInclude Include="Generated Files\DirectXBase.h" />
+    <ClInclude Include="Generated Files\DirectXHelper.h" />
+    <ClInclude Include="Generated Files\EditBoxEvent.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>

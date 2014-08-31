@@ -184,7 +184,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\scene\Welcome\Welcomeui.cpp" />
     <ClCompile Include="..\Classes\tui\TuiBase.cpp" />
     <ClCompile Include="..\Classes\tui\TuiManager.cpp" />
-    <ClCompile Include="..\Classes\tui\utils\AnimationUtil.cpp" />
+    <ClCompile Include="..\Classes\tui\TuiUtil.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -258,7 +258,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\tui\tuiconsts.h" />
     <ClInclude Include="..\Classes\tui\TuiMacros.h" />
     <ClInclude Include="..\Classes\tui\TuiManager.h" />
-    <ClInclude Include="..\Classes\tui\utils\AnimationUtil.h" />
+    <ClInclude Include="..\Classes\tui\TuiUtil.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

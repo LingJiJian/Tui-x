@@ -10,6 +10,8 @@ namespace Store {
 	static const int LAYOUT_ITEM = 5 ;
 	static const int IMG_ITEMBG = 6 ;
 	static const int BTN_PAY = 7 ;
+	static const int LABBMF_TEST = 8 ;
+	static const int RTF_TEST = 9 ;
 } 
 
 #endif

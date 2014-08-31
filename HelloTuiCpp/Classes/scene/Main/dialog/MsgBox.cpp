@@ -15,16 +15,10 @@ void MsgBox::onLoadScene()
 	
 	CSlider *pSlider = (CSlider*)getControl(PANEL_MSGBOX,SLIDER_TEST);
 	pSlider->setOnValueChangedListener(this,ccw_valuechanged_selector(MsgBox::event_slider_test));
-
-	CProgressBar *pProg = (CProgressBar*)this->getControl(PANEL_MSGBOX,PROG_HP);
-	pProg->setShowValueLabel(true);
-
 }
 
 void MsgBox::event_btn_close( Ref *pSender )
 {
-	//解除塑形
-	//CSceneManager::getInstance()->getRunningScene()->setModalable(false);
 	CSceneManager::getInstance()->popUIScene(this);
 }
 
@@ -39,6 +33,7 @@ void MsgBox::event_slider_test(Ref *pSender,int value)
 	pProg->setValue(value);
 
 }
+
 
 /************************************************************************/
 //	GET/SET/IS

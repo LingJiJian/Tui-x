@@ -19,9 +19,6 @@
     <Filter Include="lib\tui">
       <UniqueIdentifier>{2e08c06e-b96f-449e-af7a-f533bbc437eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lib\tui\utils">
-      <UniqueIdentifier>{2d055c69-2c65-4506-8f70-2e1d584b02dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="lib\CocosBase">
       <UniqueIdentifier>{377f5101-59b0-4fda-999c-a41b9448a7c7}</UniqueIdentifier>
     </Filter>
@@ -153,9 +150,6 @@
     <ClInclude Include="..\Classes\tui\tuiconsts.h">
       <Filter>lib\tui</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\tui\utils\AnimationUtil.h">
-      <Filter>lib\tui\utils</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.hpp">
       <Filter>lib\CocosBase</Filter>
     </ClInclude>
@@ -182,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\CocosBase\CCBaseMacros.h">
       <Filter>lib\CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\TuiUtil.h">
+      <Filter>lib\tui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -296,9 +293,6 @@
     <ClCompile Include="..\Classes\tui\TuiBase.cpp">
       <Filter>lib\tui</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\tui\utils\AnimationUtil.cpp">
-      <Filter>lib\tui\utils</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.cpp">
       <Filter>lib\CocosBase</Filter>
     </ClCompile>
@@ -319,6 +313,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\CocosBase\CCBundle.cpp">
       <Filter>lib\CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tui\TuiUtil.cpp">
+      <Filter>lib\tui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

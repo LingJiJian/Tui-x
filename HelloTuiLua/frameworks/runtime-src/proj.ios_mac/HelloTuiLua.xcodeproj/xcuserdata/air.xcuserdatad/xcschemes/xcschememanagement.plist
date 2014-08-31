@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>MyGame Mac.xcscheme</key>
+		<key>HelloTuiLua Mac.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>15</integer>
 		</dict>
-		<key>MyGame iOS.xcscheme</key>
+		<key>HelloTuiLua iOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>14</integer>

@@ -58,7 +58,6 @@ function MsgBox:onLoadScene()
 	btnClose:setOnClickScriptHandler(event_btn_close)
 
 	progHp = self:getControl(Tag_welcomeui.PANEL_MSGBOX,Tag_welcomeui.PROG_HP)
-	progHp:setShowValueLabel(true)
 	progHp:setOnValueChangedScriptHandler(event_prog_hp)
 
 	sliderTest = self:getControl(Tag_welcomeui.PANEL_MSGBOX,Tag_welcomeui.SLIDER_TEST)

@@ -58,9 +58,6 @@
     <Filter Include="lib\tui\tagMap">
       <UniqueIdentifier>{12efda95-0108-49e7-a028-36d3e1e9714b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lib\tui\utils">
-      <UniqueIdentifier>{6c481101-c974-4f9d-b5c8-8102417ad181}</UniqueIdentifier>
-    </Filter>
     <Filter Include="lib\CocosWidget">
       <UniqueIdentifier>{b9c9b7e9-5295-43d6-a12c-aa574bbc6e58}</UniqueIdentifier>
     </Filter>
@@ -119,9 +116,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\tui\TuiBase.cpp">
       <Filter>lib\tui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\tui\utils\AnimationUtil.cpp">
-      <Filter>lib\tui\utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\CocosWidget\CircleMenu.cpp">
       <Filter>lib\CocosWidget</Filter>
@@ -219,6 +213,9 @@
     <ClCompile Include="..\Classes\scene\Recombine\Recombineui.cpp">
       <Filter>Classes\scene\Recombine</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\tui\TuiUtil.cpp">
+      <Filter>lib\tui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -310,9 +307,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\tui\tuiconsts.h">
       <Filter>lib\tui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\tui\utils\AnimationUtil.h">
-      <Filter>lib\tui\utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\CocosWidget\CircleMenu.h">
       <Filter>lib\CocosWidget</Filter>
@@ -436,6 +430,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\tui\tagMap\Tag_main.h">
       <Filter>lib\tui\tagMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\TuiUtil.h">
+      <Filter>lib\tui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

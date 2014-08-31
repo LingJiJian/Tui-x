@@ -41,7 +41,7 @@ end
 
 function Showphoneui:onLoadScene()
 
-	cc.SpriteFrameCache:getInstance():addSpriteFramesWithFile("showphone/showphoneui.plist")
+	-- cc.SpriteFrameCache:getInstance():addSpriteFrames("showphone/showphoneui.plist")
 	TuiManager:getInstance():parseScene(self,"panel_showphone",PATH_SHOWPHONEUI)
 
 	circleMenu = self:getControl(Tag_showphoneui.PANEL_SHOWPHONE,Tag_showphoneui.CIRCLEMENU_SHOWPHONE)

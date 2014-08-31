@@ -1,8 +1,8 @@
 
 	<control tag="1" type="panel" name="panel_welcome" x="400" y="239.5" width="800.15" height="480" rotation="0">
-		<control tag="2" type="image9" name="img9_bg1" image="welcome/img9_bg.png" up="0" down="0" left="0" right="0" x="-351.95" y="0" width="95.8" height="480" rotation="0"></control>
-		<control tag="3" type="image9" name="img9_bg2" image="welcome/img9_bg.png" up="0" down="0" left="0" right="0" x="352" y="0" width="95.8" height="480" rotation="0"></control>
-		<control tag="4" type="image9" name="img9_bg3" image="welcome/img9_bg.png" up="0" down="0" left="0" right="0" x="0" y="-190.95" width="800" height="98.1" rotation="0"></control>
-		<control tag="5" type="image9" name="img9_bg4" image="welcome/img9_bg.png" up="0" down="0" left="0" right="0" x="0.15" y="190.95" width="800" height="98.1" rotation="0"></control>
-		<control tag="6" type="image" name="img_logo" image="welcome/img_logo.png" x="0" y="0" width="800" height="479" scaleX="1" scaleY="1" rotation="0"></control>
+		<control tag="2" type="image9" image="welcome/img9_bg.png" up="10" down="10" left="10" right="10" x="-351.95" y="0" width="95.8" height="480" rotation="0" spriteFrame="0"></control>
+		<control tag="3" type="image9" image="welcome/img9_bg.png" up="10" down="10" left="10" right="10" x="352" y="0" width="95.8" height="480" rotation="0" spriteFrame="0"></control>
+		<control tag="4" type="image9" image="welcome/img9_bg.png" up="10" down="10" left="10" right="10" x="0" y="-190.95" width="800" height="98.1" rotation="0" spriteFrame="0"></control>
+		<control tag="5" type="image9" image="welcome/img9_bg.png" up="10" down="10" left="10" right="10" x="0.15" y="190.95" width="800" height="98.1" rotation="0" spriteFrame="0"></control>
+		<control tag="6" type="image" image="welcome/img_logo.png" x="0" y="0" width="800" height="479" scaleX="1" scaleY="1" flipX="0" flipY="0" rotation="0" spriteFrame="0"></control>
 	</control>

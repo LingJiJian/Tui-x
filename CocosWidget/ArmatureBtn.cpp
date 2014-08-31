@@ -3,6 +3,8 @@
 NS_CC_WIDGET_BEGIN
 
 ArmatureBtn::ArmatureBtn()
+:m_normalName("normal"),
+m_selectName("select")
 {
 	setThisObject(this);
 	setCascadeOpacityEnabled(true);
@@ -14,16 +16,21 @@ ArmatureBtn *ArmatureBtn::create(const char *name)
 	if (pArmatureBtn && pArmatureBtn->init(name))
 	{
 		pArmatureBtn->autorelease();
-		pArmatureBtn->getAnimation()->play("normal",0,1);
 		return pArmatureBtn;
 	}
 	CC_SAFE_DELETE(pArmatureBtn);
 	return NULL;
 }
 
+void ArmatureBtn::setNormalAnimName(const std::string& name)
+{
+	m_normalName = name;
+	getAnimation()->play(m_normalName, 0, 1);
+}
+
 CWidgetTouchModel ArmatureBtn::onTouchBegan(Touch *pTouch)
 {
-	this->getAnimation()->play("select");
+	this->getAnimation()->play(m_selectName);
 	return eWidgetTouchTransient;
 }
 
@@ -34,7 +41,7 @@ void ArmatureBtn::onTouchEnded(Touch *pTouch, float fDuration)
 	{
 		executeClickHandler(this);
 	}
-	this->getAnimation()->play("normal",0,1);
+	this->getAnimation()->play(m_normalName, 0, 1);
 }
 
 
