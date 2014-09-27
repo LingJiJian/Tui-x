@@ -1,6 +1,7 @@
 ﻿#include "MsgBox.h"
 #include "tui/TuiManager.h"
 #include "tui/tagMap/Tag_main.h"
+#include<pthread.h>
 
 NS_MAIN_BEGIN
 
