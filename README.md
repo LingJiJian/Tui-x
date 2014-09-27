@@ -1,8 +1,8 @@
 Tui-x
 =====
 
-![](picture/pic1.jpg)
-![](picture/pic2.jpg)
+![](picture/pic1.png)
+![](picture/pic2.png)
 
 This Tui-x cocos2dx 3.x version,more light,more sample,more flexible
 
