@@ -41,9 +41,9 @@ if (1 == argc)      \
 	return 0;     \
 }
 
-//LUA_COCOS2DX_CCB_SCRIPT_HANDLER(CCMsgDelegate, setOnMessageScriptHandler)
 LUA_COCOS2DX_CCB_SCRIPT_HANDLER(CSceneExtension, setOnLoadResourcesScriptHandler)
 LUA_COCOS2DX_CCB_SCRIPT_HANDLER(CSceneExtension, setOnLoadResourcesCompletedScriptHandler)
+LUA_COCOS2DX_CCB_SCRIPT_HANDLER(CSceneExtension, setOnLoadResourcesProgressScriptHandler)
 LUA_COCOS2DX_CCB_SCRIPT_HANDLER(CSceneExtension, setOnLoadSceneScriptHandler)
 LUA_COCOS2DX_CCB_SCRIPT_HANDLER(CSceneExtension, setOnEnterSceneScriptHandler)
 LUA_COCOS2DX_CCB_SCRIPT_HANDLER(CSceneExtension, setOnExitSceneScriptHandler)
@@ -2090,6 +2090,7 @@ int lua_register_cocos2dx_cocosbase_CSceneExtension(lua_State* tolua_S)
 		tolua_function(tolua_S, "setOnLoadResourcesCompletedScriptHandler", lua_cocos2dx_cocosbase_CSceneExtension_setOnLoadResourcesCompletedScriptHandler);
 		tolua_function(tolua_S, "setOnLoadSceneScriptHandler", lua_cocos2dx_cocosbase_CSceneExtension_setOnLoadSceneScriptHandler);
 		tolua_function(tolua_S, "setOnEnterSceneScriptHandler", lua_cocos2dx_cocosbase_CSceneExtension_setOnEnterSceneScriptHandler);
+        tolua_function(tolua_S, "setOnLoadRescourcesProgressScriptHandler",lua_cocos2dx_cocosbase_CSceneExtension_setOnLoadResourcesProgressScriptHandler);
 		tolua_function(tolua_S, "setOnExitSceneScriptHandler", lua_cocos2dx_cocosbase_CSceneExtension_setOnExitSceneScriptHandler);
 		tolua_function(tolua_S,"getExtraObject",lua_cocos2dx_cocosbase_CSceneExtension_getExtraObject);
         tolua_function(tolua_S,"isCachable",lua_cocos2dx_cocosbase_CSceneExtension_isCachable);

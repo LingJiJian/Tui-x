@@ -65,6 +65,11 @@ public:
 		executeOnLoadResourcesScriptHandler();
 #endif
 	};
+    virtual void onLoadRescourcesProgress(int idx,int total){
+#if USING_LUA
+		executeOnLoadResourcesProgressScriptHandler(idx,total);
+#endif
+    };
 	// the seconed call, load completed, it will call just once
 	virtual void onLoadResourcesCompleted(){
 #if USING_LUA
@@ -136,6 +141,9 @@ public:
 	LUA_COCOS2DX_CCB_SCRIPT_REGISTER(OnLoadScene)
 	LUA_COCOS2DX_CCB_SCRIPT_REGISTER(OnEnterScene)
 	LUA_COCOS2DX_CCB_SCRIPT_REGISTER(OnExitScene)
+    LUA_COCOS2DX_CCB_SCRIPT_REGISTER(OnLoadResourcesProgress)
+    void executeOnLoadResourcesProgressScriptHandler(int idx,int total);
+    
 #endif
 
 private:

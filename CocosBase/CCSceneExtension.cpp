@@ -45,6 +45,7 @@ CSceneExtension::CSceneExtension()
 #if USING_LUA
 , m_nOnLoadResourcesScriptHandler(0)
 , m_nOnLoadResourcesCompletedScriptHandler(0)
+, m_nOnLoadResourcesProgressScriptHandler(0)
 , m_nOnLoadSceneScriptHandler(0)
 , m_nOnEnterSceneScriptHandler(0)
 , m_nOnExitSceneScriptHandler(0)
@@ -235,7 +236,11 @@ void CSceneExtension::loadingResourcesCallBack(Ref* pTextureObj)
 	CCAssert(pTextureObj, "load resources async failed");
 
 	m_nLoadResourcesAsyncIdx ++;
-
+    onLoadRescourcesProgress(m_nLoadResourcesAsyncIdx,m_nLoadResourcesAsyncCount);
+#if USING_LUA
+    executeOnLoadResourcesProgressScriptHandler(m_nLoadResourcesAsyncIdx,m_nLoadResourcesAsyncCount);
+#endif
+    
 	if( m_nLoadResourcesAsyncIdx == m_nLoadResourcesAsyncCount )
 	{
 		_eventDispatcher->setEnabled(true);
@@ -251,5 +256,21 @@ void CSceneExtension::loadingResourcesCallBack(Ref* pTextureObj)
 	}
 }
 
+#if USING_LUA
+void CSceneExtension::executeOnLoadResourcesProgressScriptHandler(int idx,int total)
+{
+    if( m_nOnLoadResourcesProgressScriptHandler != 0 )
+	{
+		LuaEngine* pEngine = LuaEngine::getInstance();
+		LuaStack* pStack = pEngine->getLuaStack();
+        
+        pStack->pushInt(idx);
+        pStack->pushInt(total);
+        
+		pStack->executeFunctionByHandler(m_nOnLoadResourcesProgressScriptHandler, 2);
+		pStack->clean();
+	}
+}
+#endif
 
 NS_CC_END
