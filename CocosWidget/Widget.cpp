@@ -149,14 +149,14 @@ CWidgetTouchModel CWidget::executeTouchBeganHandler(Touch* pTouch)
 
 		pStack->pushObject(m_pThisObject, "Ref");
 		pStack->pushObject(pTouch, "Touch");
-		
+        
 		__Array pRetArray;
 		pRetArray.initWithCapacity(1);
 
 		int nRet = pStack->executeFunctionReturnArray(m_nTouchBeganScriptHandler, 2, 1, pRetArray);
 		CCAssert(pRetArray.count() > 0, "return count = 0");
 
-		__Double* pIntModel = (__Double*)pRetArray.getIndexOfObject(0);
+		__Double* pIntModel = (__Double*)pRetArray.getObjectAtIndex(0);
 		CWidgetTouchModel eUserTouchModel = (CWidgetTouchModel) ( (int)pIntModel->getValue() );
 		pStack->clean();
 

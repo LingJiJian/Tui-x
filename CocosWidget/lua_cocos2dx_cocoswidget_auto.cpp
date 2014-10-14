@@ -41,7 +41,10 @@ int lua_cocos2dx_cocoswidget_MovieView_setOnCallBackScriptHandle(lua_State* tolu
 	}
 	return 0; 
 }
-
+LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CButton,setOnTouchBeganScriptHandler)
+LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CButton,setOnTouchMovedScriptHandler)
+LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CButton,setOnTouchEndedScriptHandler)
+LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CButton,setOnTouchCancelledScriptHandler)
 
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CTextRich, setOnTextRichClickScriptHandler)
 
@@ -78,6 +81,7 @@ LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CImageView, setOnLongClickScriptHandler)
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CImageViewScale9, setOnLongClickScriptHandler)
 
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CCheckBox, setOnCheckScriptHandler)
+LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CCheckBox, setOnTouchBeganScriptHandler)
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CToggleView, setOnCheckScriptHandler)
 
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CControlView, setOnControlScriptHandler)
@@ -2205,52 +2209,6 @@ int lua_cocos2dx_cocoswidget_CWidget_getUserTag(lua_State* tolua_S)
 
     return 0;
 }
-int lua_cocos2dx_cocoswidget_CWidget_setOnTouchBeganScriptHandler(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::CWidget* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.CWidget",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::cocoswidget::CWidget*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CWidget_setOnTouchBeganScriptHandler'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        int arg0;
-
-        ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0);
-        if(!ok)
-            return 0;
-        cobj->setOnTouchBeganScriptHandler(arg0);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setOnTouchBeganScriptHandler",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CWidget_setOnTouchBeganScriptHandler'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_cocos2dx_cocoswidget_CWidget_removeOnTouchMovedScriptHandler(lua_State* tolua_S)
 {
     int argc = 0;
@@ -2943,52 +2901,7 @@ int lua_cocos2dx_cocoswidget_CWidget_executeTouchCancelledHandler(lua_State* tol
 
     return 0;
 }
-int lua_cocos2dx_cocoswidget_CWidget_setOnTouchEndedScriptHandler(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::CWidget* cobj = nullptr;
-    bool ok  = true;
 
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.CWidget",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::cocoswidget::CWidget*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CWidget_setOnTouchEndedScriptHandler'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        int arg0;
-
-        ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0);
-        if(!ok)
-            return 0;
-        cobj->setOnTouchEndedScriptHandler(arg0);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setOnTouchEndedScriptHandler",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CWidget_setOnTouchEndedScriptHandler'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_cocos2dx_cocoswidget_CWidget_executeTouchBeganHandler(lua_State* tolua_S)
 {
     int argc = 0;
@@ -3085,98 +2998,7 @@ int lua_cocos2dx_cocoswidget_CWidget_setLongClickTouchHandlerWidget(lua_State* t
 
     return 0;
 }
-int lua_cocos2dx_cocoswidget_CWidget_setOnTouchCancelledScriptHandler(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::CWidget* cobj = nullptr;
-    bool ok  = true;
 
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.CWidget",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::cocoswidget::CWidget*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CWidget_setOnTouchCancelledScriptHandler'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        int arg0;
-
-        ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0);
-        if(!ok)
-            return 0;
-        cobj->setOnTouchCancelledScriptHandler(arg0);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setOnTouchCancelledScriptHandler",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CWidget_setOnTouchCancelledScriptHandler'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_cocoswidget_CWidget_setOnTouchMovedScriptHandler(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::CWidget* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.CWidget",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::cocoswidget::CWidget*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CWidget_setOnTouchMovedScriptHandler'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        int arg0;
-
-        ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0);
-        if(!ok)
-            return 0;
-        cobj->setOnTouchMovedScriptHandler(arg0);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setOnTouchMovedScriptHandler",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CWidget_setOnTouchMovedScriptHandler'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_cocos2dx_cocoswidget_CWidget_removeOnTouchCancelledScriptHandler(lua_State* tolua_S)
 {
     int argc = 0;
@@ -3410,7 +3232,7 @@ int lua_register_cocos2dx_cocoswidget_CWidget(lua_State* tolua_S)
         tolua_function(tolua_S,"removeOnTouchEndedScriptHandler",lua_cocos2dx_cocoswidget_CWidget_removeOnTouchEndedScriptHandler);
         tolua_function(tolua_S,"getDescription",lua_cocos2dx_cocoswidget_CWidget_getDescription);
         tolua_function(tolua_S,"getUserTag",lua_cocos2dx_cocoswidget_CWidget_getUserTag);
-        tolua_function(tolua_S,"setOnTouchBeganScriptHandler",lua_cocos2dx_cocoswidget_CWidget_setOnTouchBeganScriptHandler);
+//        tolua_function(tolua_S,"setOnTouchBeganScriptHandler",lua_cocos2dx_cocoswidget_CWidget_setOnTouchBeganScriptHandler);
         tolua_function(tolua_S,"removeOnTouchMovedScriptHandler",lua_cocos2dx_cocoswidget_CWidget_removeOnTouchMovedScriptHandler);
         tolua_function(tolua_S,"interruptTouchCascade",lua_cocos2dx_cocoswidget_CWidget_interruptTouchCascade);
         tolua_function(tolua_S,"setDescription",lua_cocos2dx_cocoswidget_CWidget_setDescription);
@@ -3426,11 +3248,11 @@ int lua_register_cocos2dx_cocoswidget_CWidget(lua_State* tolua_S)
         tolua_function(tolua_S,"onTouchBegan",lua_cocos2dx_cocoswidget_CWidget_onTouchBegan);
         tolua_function(tolua_S,"interruptTouch",lua_cocos2dx_cocoswidget_CWidget_interruptTouch);
         tolua_function(tolua_S,"executeTouchCancelledHandler",lua_cocos2dx_cocoswidget_CWidget_executeTouchCancelledHandler);
-        tolua_function(tolua_S,"setOnTouchEndedScriptHandler",lua_cocos2dx_cocoswidget_CWidget_setOnTouchEndedScriptHandler);
+//        tolua_function(tolua_S,"setOnTouchEndedScriptHandler",lua_cocos2dx_cocoswidget_CWidget_setOnTouchEndedScriptHandler);
         tolua_function(tolua_S,"executeTouchBeganHandler",lua_cocos2dx_cocoswidget_CWidget_executeTouchBeganHandler);
         tolua_function(tolua_S,"setLongClickTouchHandlerWidget",lua_cocos2dx_cocoswidget_CWidget_setLongClickTouchHandlerWidget);
-        tolua_function(tolua_S,"setOnTouchCancelledScriptHandler",lua_cocos2dx_cocoswidget_CWidget_setOnTouchCancelledScriptHandler);
-        tolua_function(tolua_S,"setOnTouchMovedScriptHandler",lua_cocos2dx_cocoswidget_CWidget_setOnTouchMovedScriptHandler);
+//        tolua_function(tolua_S,"setOnTouchCancelledScriptHandler",lua_cocos2dx_cocoswidget_CWidget_setOnTouchCancelledScriptHandler);
+//        tolua_function(tolua_S,"setOnTouchMovedScriptHandler",lua_cocos2dx_cocoswidget_CWidget_setOnTouchMovedScriptHandler);
         tolua_function(tolua_S,"removeOnTouchCancelledScriptHandler",lua_cocos2dx_cocoswidget_CWidget_removeOnTouchCancelledScriptHandler);
         tolua_function(tolua_S,"setUserTag",lua_cocos2dx_cocoswidget_CWidget_setUserTag);
         tolua_function(tolua_S,"executeTouchMovedHandler",lua_cocos2dx_cocoswidget_CWidget_executeTouchMovedHandler);
@@ -8741,6 +8563,11 @@ int lua_register_cocos2dx_cocoswidget_CButton(lua_State* tolua_S)
         tolua_function(tolua_S,"createWith9Sprite", lua_cocos2dx_cocoswidget_CButton_createWith9Sprite);
 		tolua_function(tolua_S, "setOnClickScriptHandler", lua_cocos2dx_cocoswidget_CButton_setOnClickScriptHandler);
 		tolua_function(tolua_S, "setOnLongClickScriptHandler", lua_cocos2dx_cocoswidget_CButton_setOnLongClickScriptHandler);
+        tolua_function(tolua_S, "setOnTouchBeganScriptHandler", lua_cocos2dx_cocoswidget_CButton_setOnTouchBeganScriptHandler);
+        tolua_function(tolua_S, "setOnTouchMovedScriptHandler", lua_cocos2dx_cocoswidget_CButton_setOnTouchMovedScriptHandler);
+        tolua_function(tolua_S, "setOnTouchEndedScriptHandler", lua_cocos2dx_cocoswidget_CButton_setOnTouchEndedScriptHandler);
+        tolua_function(tolua_S, "setOnTouchCancelledScriptHandler", lua_cocos2dx_cocoswidget_CButton_setOnTouchCancelledScriptHandler);
+    
     tolua_endmodule(tolua_S);
     std::string typeName = typeid(cocos2d::cocoswidget::CButton).name();
     g_luaType[typeName] = "ccw.CButton";
@@ -27560,7 +27387,7 @@ int lua_register_cocos2dx_cocoswidget_MovieView(lua_State* tolua_S)
         tolua_function(tolua_S,"getCurrFrame",lua_cocos2dx_cocoswidget_MovieView_getCurrFrame);
         tolua_function(tolua_S,"new",lua_cocos2dx_cocoswidget_MovieView_constructor);
         tolua_function(tolua_S,"create", lua_cocos2dx_cocoswidget_MovieView_create);
-		tolua_function(tolua_S, "setOnCallBackScriptHandle", lua_cocos2dx_cocoswidget_MovieView_setOnCallBackScriptHandle);
+		tolua_function(tolua_S, "setOnCallBackScriptHandle",lua_cocos2dx_cocoswidget_MovieView_setOnCallBackScriptHandle);
     tolua_endmodule(tolua_S);
     std::string typeName = typeid(cocos2d::cocoswidget::MovieView).name();
     g_luaType[typeName] = "ccw.MovieView";
