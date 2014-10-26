@@ -10,7 +10,7 @@ class MsgBox : public TuiBase
 {
 public:
 	CREATE_SCENE_FUNC(MsgBox);
-    
+
 	void onLoadScene();
 	Node *getControl(int tagPanel, int tagControl);
 	Node *getPanel(int tagPanel);

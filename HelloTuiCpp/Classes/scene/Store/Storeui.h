@@ -17,6 +17,7 @@ public:
 protected:
 	void event_btn_test(Ref* pSender);
 	void event_btn_pay(Ref* pSender);
+	void event_explist_btn(Ref* pSender);
 private:
 };
 

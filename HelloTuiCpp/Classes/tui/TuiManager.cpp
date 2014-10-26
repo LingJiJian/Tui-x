@@ -249,7 +249,7 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 			pChild->setPosition(pChild->getPosition() + Vec2(w / 2, h / 2));
 		}
 
-	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlListView) == 0){//listView
+	}else if (strcmp(item->first_attribute("type")->value(), kTuiControlListView) == 0){//listView
 		float w = atof(item->first_attribute("width")->value());
 		float h = atof(item->first_attribute("height")->value());
 		float num = atof(item->first_attribute("num")->value());
@@ -257,24 +257,70 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		int g = atoi(item->first_attribute("green")->value());
 		int b = atoi(item->first_attribute("blue")->value());
 		int a = atoi(item->first_attribute("alpha")->value());
-		CListView* pList = createListView(tag,Color4B(r,g,b,a),x,y,w,h,rotation);
+		CListView* pList = createListView(tag, Color4B(r, g, b, a), x, y, w, h, rotation);
 		container->addChild(pList);
 
-		for(int i=0; i<num;i++){//add item
-			xml_node<char> *iitem = item->first_node( kTuiNodeControl );
+		for (int i = 0; i < num; i++){//add item
+			xml_node<char> *iitem = item->first_node(kTuiNodeControl);
 			w = atof(iitem->first_attribute("width")->value());
 			h = atof(iitem->first_attribute("height")->value());
 
-			CLayout *pLayout = createLayout(i,0,0,w,h,rotation);
-			for( xml_node<char> *iiitem = iitem->first_node( kTuiNodeControl );iiitem!=NULL; iiitem = iiitem->next_sibling()){
-				parseControl(pLayout,iiitem);
+			CLayout *pLayout = createLayout(i, 0, 0, w, h, rotation);
+			for (xml_node<char> *iiitem = iitem->first_node(kTuiNodeControl); iiitem != NULL; iiitem = iiitem->next_sibling()){
+				parseControl(pLayout, iiitem);
 			}
 			Vector<Node*> vet = pLayout->getChildren();
-			for(Node *pChild : vet){//Offset coordinates Because CLayout zero point in the lower left corner
-				if(pChild->getTag() > 0)
-					pChild->setPosition(pChild->getPosition()+Vec2(w/2,h/2));
+			for (Node *pChild : vet){//Offset coordinates Because CLayout zero point in the lower left corner
+				if (pChild->getTag() > 0)
+					pChild->setPosition(pChild->getPosition() + Vec2(w / 2, h / 2));
 			}
 			pList->insertNodeAtLast(pLayout);
+		}
+		pList->reloadData();
+
+	}else if (strcmp(item->first_attribute("type")->value(), kTuiControlExpList) == 0){//explist
+		float w = atof(item->first_attribute("width")->value());
+		float h = atof(item->first_attribute("height")->value());
+		float num = atof(item->first_attribute("num")->value());
+		int r = atoi(item->first_attribute("red")->value());
+		int g = atoi(item->first_attribute("green")->value());
+		int b = atoi(item->first_attribute("blue")->value());
+		int a = atoi(item->first_attribute("alpha")->value());
+		CExpandableListView* pList = createExpandableListView(tag, Color4B(r, g, b, a), x, y, w, h, rotation);
+		container->addChild(pList);
+
+		for (int i = 0; i < num; i++){//add item
+			xml_node<char> *iitem = item->first_node(kTuiNodeControl);
+			w = atof(iitem->first_attribute("width")->value());
+			h = atof(iitem->first_attribute("height")->value());
+
+			int iw, ih = 0;
+			CExpandableNode *pExpNode = createExpandNode(i, 0, 0, w, h, rotation);
+			CLayout *pExpNodeItem = nullptr;
+			for (xml_node<char> *iiitem = iitem->first_node(kTuiNodeControl); iiitem != NULL; iiitem = iiitem->next_sibling()){
+				if (strcmp(iiitem->first_attribute("type")->value(), kTuiContainerLayout) != 0){
+					parseControl(pExpNode, iiitem);
+				}else{
+					pExpNodeItem = createLayout(0, 0, 0, w, h, rotation);
+					iw = atof(iiitem->first_attribute("width")->value());
+					ih = atof(iiitem->first_attribute("height")->value());
+					pExpNodeItem->setContentSize(Size(iw, ih));
+					for (xml_node<char> *iiiitem = iiitem->first_node(kTuiNodeControl); iiiitem != NULL; iiiitem = iiiitem->next_sibling()){
+						parseControl(pExpNodeItem, iiiitem);
+					}
+				}
+			}
+			for (Node *c : pExpNode->getChildren())
+			{
+				if (c->getTag() > 0)
+					c->setPosition(c->getPosition() + Vec2(w / 2, h / 2));
+			}
+			for (Node *c : pExpNodeItem->getChildren())
+			{
+				c->setPosition(c->getPosition() + Vec2(iw/2, ih / 2));
+			}
+			pExpNode->insertItemNodeAtLast(pExpNodeItem);
+			pList->insertExpandableNodeAtLast(pExpNode);
 		}
 		pList->reloadData();
 
@@ -433,6 +479,15 @@ CLayout *TuiManager::createLayout(float tag,float x,float y,float w,float h,floa
 	return pLayout;
 }
 
+CExpandableNode *TuiManager::createExpandNode(float tag, float x, float y, float w, float h, float rotation){
+	CExpandableNode *pNode = CExpandableNode::create();
+	pNode->setContentSize(Size(w, h));
+	pNode->setPosition(Vec2(x, -y));
+	pNode->setRotation(rotation);
+	pNode->setTag(tag);
+	return pNode;
+}
+
 CScrollView *TuiManager::createScrollView(float tag, Color4B color, int direction, int innerWidth, int innerHeight, float x, float y, float w, float h, float rotation){
 	CScrollView *pView = CScrollView::create(Size(w,h));
 	if (color.a != 0) pView->setBackgroundColor(color);
@@ -446,6 +501,16 @@ CScrollView *TuiManager::createScrollView(float tag, Color4B color, int directio
 
 CListView *TuiManager::createListView(float tag, Color4B color, float x, float y, float w, float h, float rotation){
 	CListView *pView = CListView::create(Size(w, h));
+	if (color.a != 0) pView->setBackgroundColor(color);
+	pView->setDirection(eScrollViewDirectionVertical);
+	pView->setPosition(Vec2(x, -y));
+	pView->setRotation(rotation);
+	pView->setTag(tag);
+	return pView;
+}
+
+CExpandableListView *TuiManager::createExpandableListView(float tag, Color4B color, float x, float y, float w, float h, float rotation){
+	CExpandableListView *pView = CExpandableListView::create(Size(w, h));
 	if (color.a != 0) pView->setBackgroundColor(color);
 	pView->setDirection(eScrollViewDirectionVertical);
 	pView->setPosition(Vec2(x, -y));

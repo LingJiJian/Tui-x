@@ -78,8 +78,10 @@ public:
 
 	CWidgetWindow *createPanel(float tag,float x,float y,int w,int h,float rotation);
 	CLayout *createLayout(float tag,float x,float y,float w,float h,float rotation);
+	CExpandableNode *createExpandNode(float tag, float x, float y, float w, float h, float rotation);
 	CScrollView *createScrollView(float tag,Color4B color,int direction,int innerWidth,int innerHeight,float x,float y,float w,float h,float rotation);
 	CListView *createListView(float tag,Color4B color,float x,float y,float w,float h,float rotation);
+	CExpandableListView *createExpandableListView(float tag, Color4B color, float x, float y, float w, float h, float rotation);
 	CImageView *createImage(float tag, const char* file, float scaleX, float scaleY, int flipX, int flipY, float x, float y, float rotation, int isUseFrame);
 	CImageViewScale9 *createImage9(float tag, const char* file, float x, float y, float w, float h, float up, float down, float left, float right, float rotation, int isUseFrame);
 	CButton *createBtn(float tag, Color3B color, int fontSize, const char* font, const char* lab, const char* normal, const char* select, const char* disable, float x, float y, float w, float h, float rotation, int isUseFrame);

@@ -17,7 +17,7 @@ Tui是一个创建cocos2d-x UI界面的解决方案，而builder用的则是Flas
 0.持续更新，伴随官方的最新引擎发布。
 1.Tui-x3.x 所采用的是RapidXml解析库，效率是tinyxml的50倍。
 2.可视化编辑文本描边和阴影和对齐。
-3.可视化编辑ListView，TableView，GridView等复合控件。
+3.可视化编辑ListView，TableView，GridView，ExpandableListView等复合控件。
 4.支持添加命名空间，避免资源命名冲突或过长。
 5.支持多fla编辑场景。
 6*.影片剪辑控件MovieView，支持自定义事件，用于制作长时间动画。动画编辑工具后期发布。

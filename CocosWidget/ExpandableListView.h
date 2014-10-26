@@ -57,6 +57,7 @@ public:
 	void removeItemNode(Node* pNode);
 	void removeItemNodeAtIndex(unsigned int idx);
 	void removeAllItemNodes();
+	Node* getItemNodeAtIndex(unsigned int idx);
 
 public:
 	virtual CWidgetTouchModel onTouchBegan(Touch* pTouch);

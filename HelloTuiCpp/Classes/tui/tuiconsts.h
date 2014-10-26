@@ -26,6 +26,7 @@ static const char* kTuiControlArmatureBtn = "armatureBtn";
 static const char* kTuiControlNumbericStepper = "numStep";
 static const char* kTuiControlControl = "controlView";
 static const char* kTuiControlListView = "listView";
+static const char* kTuiControlExpList = "expList";
 static const char* kTuiControlPageView = "pageView";
 static const char* kTuiControlGridView = "gridView";
 static const char* kTuiControlGridPageView = "gridPageView";

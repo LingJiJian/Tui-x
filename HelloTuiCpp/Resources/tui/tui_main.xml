@@ -19,7 +19,7 @@
 		<control tag="18" type="controlView" baseboard="main/ctlv_left_baseboard.png" joystick="main/ctlv_left_joystick.png" x="-324.45" y="165.55" width="128" height="128" rotation="0" spriteFrame="0"></control>
 		<control tag="19" type="checkBox" normal1="main/ckb_test_normal1.png" select1="main/ckb_test_select1.png" disable1="main/ckb_test_disable1.png" normal2="main/ckb_test_normal2.png" select2="main/ckb_test_select2.png" disable2="main/ckb_test_disable2.png" x="-211.95" y="192.45" width="56" height="56" rotation="0" spriteFrame="0"></control>
 		<control tag="20" type="button" text="列表" textSize="20" textFont="fonts/Arial.ttf" red="255" green="0" blue="0" normal="main/btn_green_normal.png" select="main/btn_green_select.png" disable="main/btn_green_disable.png" x="351.4" y="218.5" width="92" height="36" rotation="0" spriteFrame="0"></control>
-		<control tag="21" type="movieView" png="effect/movie_test.png" plist="effect/movie_test.plist" json="effect/movie_test.json" x="0" y="0.2" width="537" height="273" rotation="0"></control>
+		<control tag="21" type="movieView" png="effect/movie_test.png" plist="effect/movie_test.plist" json="effect/movie_test.json" x="0" y="0" width="537" height="273" rotation="0"></control>
 	</control>
 	<control tag="22" type="panel" name="panel_msgbox" x="400" y="240" width="624.85" height="272.45" rotation="0">
 		<control tag="23" type="image9" image="main/dialog/img9_boxbg.png" up="20" down="20" left="20" right="20" x="0" y="10" width="619.7" height="268.15" rotation="0" spriteFrame="0"></control>

@@ -95,6 +95,13 @@ void CExpandableNode::removeItemNodeAtIndex(unsigned int idx)
 	m_vExpandableNodeItemList.erase(m_vExpandableNodeItemList.begin() + idx);
 }
 
+Node *CExpandableNode::getItemNodeAtIndex(unsigned int idx)
+{
+	if (m_vExpandableNodeItemList.size() == 0)
+		return nullptr;
+	return m_vExpandableNodeItemList[idx];
+}
+
 void CExpandableNode::removeAllItemNodes()
 {
 	if( m_vExpandableNodeItemList.size() == 0 )
