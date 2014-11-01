@@ -409,6 +409,7 @@ UIControlType.kArmatureBtn = "armatureBtn";
 UIControlType.kControlView = "controlView";
 UIControlType.kToggleView = "toggleView";
 UIControlType.kListView = "listView";
+UIControlType.kExpList = "expList";
 UIControlType.kPageView = "pageView";
 UIControlType.kTableView = "tableView";
 UIControlType.kGridView = "gridView";
@@ -681,6 +682,15 @@ UIListView.extend( UIControl );
 UIListView.prototype.init = function(){
 	UIListView.superClass.prototype.init.call(this);
 	this.setAttribute( UIControlAttribute.kType, UIControlType.kListView );
+}
+/////////////////ExpList//////////////////////////////////////////////
+UIExpList = function(){
+	UIExpList.superClass.call(this);
+}
+UIExpList.extend( UIControl );
+UIExpList.prototype.init = function(){
+	UIListView.superClass.prototype.init.call(this);
+	this.setAttribute( UIControlAttribute.kType, UIControlType.kExpList );
 }
 /////////////////PageView//////////////////////////////////////////////
 UIPageView = function(){
@@ -1047,6 +1057,7 @@ FlaToXML.prototype.convertMC = function( mc ,tag ,frameName){
 		case "movie":		control_xml = this.convertMovie(mc,tag ,frameName);				break;
 		case "circlemenu":	control_xml = this.convertCirclemenu(mc,tag ,frameName);		break;
 		case "cell":		control_xml = this.convertCell(mc,tag ,frameName);				break;
+		case "expList":		control_xml = this.convertExpList(mc,tag ,frameName);			break;
 	}
 	return control_xml;
 }
@@ -1089,12 +1100,15 @@ FlaToXML.prototype.convertCell = function(cell,tag ,frameName){
 }
 /** 转换image */
 FlaToXML.prototype.convertImg = function( image , tag ,frameName){
+	var suffix = image.parameters.suffix.value;
+	if(suffix == null) suffix = ".png";
+	
 	var xml_img = new UIImage();
 	xml_img.setAttribute( UIControlAttribute.kScaleX,formatNumber(image.scaleX));
 	xml_img.setAttribute( UIControlAttribute.kScaleY,formatNumber(image.scaleY));
 	xml_img.setAttribute( UIControlAttribute.kFlipX,formatBoolean(image.parameters.flipX.value));
 	xml_img.setAttribute( UIControlAttribute.kFlipY,formatBoolean(image.parameters.flipY.value));
-	xml_img.setAttribute( UIControlAttribute.kImage, image.libraryItem.name + ".png" );
+	xml_img.setAttribute( UIControlAttribute.kImage, image.libraryItem.name + suffix );
 	
 	this.fullNormalAttirbute( xml_img,this.th, image ,tag ,frameName);
 	return xml_img;
@@ -1299,6 +1313,23 @@ FlaToXML.prototype.convertListView = function(listView,tag ,frameName){
 	var timeline = listView.libraryItem.timeline;
 	this.fetchElement( timeline, xml_listView , frameName);
 	return xml_listView;
+}
+/** 转换expListView */
+FlaToXML.prototype.convertExpList = function(expList,tag ,frameName){
+	var xml_expList = new UIExpList();
+	var params = expList.parameters;
+	xml_expList.setAttribute(UIControlAttribute.kNum,params.num.value);
+	xml_expList.setAttribute(UIControlAttribute.kTextAlpha,params.bgAlpha.value);
+	xml_expList.setAttribute(UIControlAttribute.kTextRed,parseInt(params.bgColor.value.substr(1,2),16));
+	xml_expList.setAttribute(UIControlAttribute.kTextGreen,parseInt(params.bgColor.value.substr(3,2),16));
+	xml_expList.setAttribute(UIControlAttribute.kTextBlue,parseInt(params.bgColor.value.substr(5,2),16));
+	
+	this.fullNormalAttirbute( xml_expList,this.th, expList ,tag ,frameName);
+
+	//获取mc的timeline
+	var timeline = expList.libraryItem.timeline;
+	this.fetchElement( timeline, xml_expList , frameName);
+	return xml_expList;
 }
 /** 转换pageView  */
 FlaToXML.prototype.convertPageView = function(pageView,tag ,frameName){
