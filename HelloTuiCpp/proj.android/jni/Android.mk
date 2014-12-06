@@ -30,8 +30,6 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 ../../../CocosWidget/LabelBMFont.cpp\
 ../../../CocosWidget/Layout.cpp\
 ../../../CocosWidget/ListView.cpp\
-../../../CocosWidget/Lua_cocos2dx_widget.cpp\
-../../../CocosWidget/MovieView.cpp\
 ../../../CocosWidget/NumericStepper.cpp\
 ../../../CocosWidget/PageView.cpp\
 ../../../CocosWidget/ProgressBar.cpp\
@@ -49,13 +47,14 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 ../../Classes/module/ResoureMgr.cpp\
 ../../Classes/scene/Bag/Bagui.cpp\
 ../../Classes/scene/Main/Mainui.cpp\
-../../Classes/scene/Main/dialog/MessageBox.cpp\
+../../Classes/scene/Main/dialog/MsgBox.cpp\
+../../Classes/scene/Recombine/Recombineui.cpp\
 ../../Classes/scene/ShowPhone/ShowPhoneui.cpp\
 ../../Classes/scene/Store/Storeui.cpp\
 ../../Classes/scene/Welcome/Welcomeui.cpp\
 ../../Classes/tui/TuiBase.cpp\
 ../../Classes/tui/TuiManager.cpp\
-../../Classes/tui/utils/AnimationUtil.cpp
+../../Classes/tui/TuiUtil.cpp
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../CocosWidget
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../rapidXml
@@ -70,6 +69,12 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../Classes/scene/Welcome
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../Classes/tui
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../Classes/tui/tagMap
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../Classes/tui/utils
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../cocos2d/cocos/base
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../cocos2d/cocos/2d
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../cocos2d/cocos/editor-support
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../cocos2d/extensions
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../cocos2d/external
+
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
@@ -78,7 +83,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES += cocostudio_static
 
 include $(BUILD_SHARED_LIBRARY)
 
-$(call import-module,2d)
+$(call import-module,.)
 $(call import-module,audio/android)
 $(call import-module,extensions)				
 $(call import-module,editor-support/cocostudio)	

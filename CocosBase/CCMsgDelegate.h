@@ -50,6 +50,8 @@ public:
 	};
 #if USING_LUA
 	void executeOnMessageScriptHandler(unsigned int uMsg, Ref* pMsgObj);
+	void setOnMessageScriptHandler(int nHandler);
+	void removeOnMessageScriptHandler();
 protected:
 	int m_nMessageScriptHandler;
 #endif

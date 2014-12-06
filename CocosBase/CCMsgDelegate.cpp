@@ -55,6 +55,21 @@ void CCMsgDelegate::executeOnMessageScriptHandler(unsigned int uMsg, Ref* pMsgOb
 	}
 }
 
+void CCMsgDelegate::setOnMessageScriptHandler(int nHandler)
+{
+	removeOnMessageScriptHandler();
+	m_nMessageScriptHandler = nHandler;
+}
+
+void CCMsgDelegate::removeOnMessageScriptHandler()
+{
+	if (m_nMessageScriptHandler != 0)
+	{
+		ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nMessageScriptHandler);
+		m_nMessageScriptHandler = 0;
+	}
+}
+
 #endif
 
 NS_CC_END

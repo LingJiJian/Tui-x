@@ -3,20 +3,22 @@
 #include "tolua_fix.h"
 #include "LuaBasicConversions.h"
 
-int lua_cocos2dx_tui_TuiBase_setOnMessageScriptHandler(lua_State* tolua_S)
-{
-	int argc = 0;
-	bool ok = true;
-	cocos2d::tui::TuiBase* cobj = nullptr;
-	cobj = (cocos2d::tui::TuiBase*)tolua_tousertype(tolua_S, 1, 0);
-	argc = lua_gettop(tolua_S) - 1;
-	if (1 == argc)
-	{
-		LUA_FUNCTION nHandler = toluafix_ref_function(tolua_S, 2, 0);
-		cobj->setOnMessageScriptHandler(nHandler);
-	}
-	return 0;
+#define LUA_COCOS2DX_TUI_SCRIPT_HANDLER( __WIDGET__, __SET_HANDLER__)         \
+	int lua_cocos2dx_tui_##__WIDGET__##_##__SET_HANDLER__(lua_State* tolua_S)       \
+{    \
+	int argc = 0;      \
+	cocos2d::tui::__WIDGET__* cobj = nullptr;	     \
+	cobj = (cocos2d::tui::__WIDGET__*)tolua_tousertype(tolua_S, 1, 0);     \
+	argc = lua_gettop(tolua_S) - 1;     \
+if (1 == argc)      \
+{     \
+	LUA_FUNCTION nHandler = toluafix_ref_function(tolua_S, 2, 0);     \
+	cobj->__SET_HANDLER__(nHandler);     \
+}     \
+	return 0;     \
 }
+
+LUA_COCOS2DX_TUI_SCRIPT_HANDLER(TuiBase, setOnMessageScriptHandler)
 
 int lua_cocos2dx_tui_TuiUtil_createAnimWithName(lua_State* tolua_S)
 {

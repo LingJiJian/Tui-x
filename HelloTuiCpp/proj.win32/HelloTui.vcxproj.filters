@@ -64,6 +64,12 @@
     <Filter Include="Classes\scene\Recombine">
       <UniqueIdentifier>{edbc143e-adea-452b-95d1-329d0a1176e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lib\CocosNet">
+      <UniqueIdentifier>{be68032d-d2a1-4222-8148-938a3111dde3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\Dragonbones">
+      <UniqueIdentifier>{9ed27291-9ba0-4676-96eb-4c8078ab2327}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -159,9 +165,6 @@
     <ClCompile Include="..\..\CocosWidget\ListView.cpp">
       <Filter>lib\CocosWidget</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CocosWidget\MovieView.cpp">
-      <Filter>lib\CocosWidget</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\CocosWidget\NumericStepper.cpp">
       <Filter>lib\CocosWidget</Filter>
     </ClCompile>
@@ -215,6 +218,72 @@
     </ClCompile>
     <ClCompile Include="..\Classes\tui\TuiUtil.cpp">
       <Filter>lib\tui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\parsers\BaseDataParser.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\parsers\ConstValues.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\parsers\dbtinyxml2.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\parsers\XMLDataParser.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmature.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmatureNode.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCFactory.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCSlot.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\animation\Animation.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\animation\AnimationState.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\animation\TimelineState.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\animation\WorldClock.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\core\Armature.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\core\Bone.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\core\Object.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\core\Slot.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\events\EventData.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dragonbones\factories\BaseFactory.cpp">
+      <Filter>lib\Dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CocosNet\CCSocket.cpp">
+      <Filter>lib\CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CocosNet\CCBuffer.cpp">
+      <Filter>lib\CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CocosNet\CCInetAddress.cpp">
+      <Filter>lib\CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CocosNet\CCNetDelegate.cpp">
+      <Filter>lib\CocosNet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -356,9 +425,6 @@
     <ClInclude Include="..\..\CocosWidget\ListView.h">
       <Filter>lib\CocosWidget</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\CocosWidget\MovieView.h">
-      <Filter>lib\CocosWidget</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\CocosWidget\NumericStepper.h">
       <Filter>lib\CocosWidget</Filter>
     </ClInclude>
@@ -433,6 +499,168 @@
     </ClInclude>
     <ClInclude Include="..\Classes\tui\TuiUtil.h">
       <Filter>lib\tui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\parsers\BaseDataParser.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\parsers\ConstValues.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\parsers\dbtinyxml2.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\parsers\XMLDataParser.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmature.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmatureNode.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCEventDispatcher.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCFactory.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\renderer\cocos2d-x-3.2\dbccMacro.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCRenderHeaders.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCSlot.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCTextureAtlas.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\textures\ITextureAtlas.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\textures\TextureAtlasData.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\textures\TextureData.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\DragonBones.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\DragonBonesHeaders.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\animation\Animation.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\animation\AnimationState.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\animation\IAnimatable.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\animation\TimelineState.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\animation\WorldClock.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\core\Armature.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\core\Bone.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\core\Object.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\core\Slot.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\events\EventData.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\events\IEventDispatcher.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\factories\BaseFactory.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\geoms\ColorTransform.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\geoms\Matrix.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\geoms\Point.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\geoms\Rectangle.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\geoms\Transform.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\AnimationData.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\ArmatureData.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\BoneData.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\DisplayData.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\DragonBonesData.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\EllipseData.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\Frame.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\IAreaData.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\RectangleData.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\SkinData.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\SlotData.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\Timeline.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\TransformFrame.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dragonbones\objects\TransformTimeline.h">
+      <Filter>lib\Dragonbones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosNet\CCNetDelegate.h">
+      <Filter>lib\CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosNet\CCNetMacros.h">
+      <Filter>lib\CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosNet\CCSocket.h">
+      <Filter>lib\CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosNet\cocos-net.h">
+      <Filter>lib\CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosNet\CCBuffer.h">
+      <Filter>lib\CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosNet\CCInetAddress.h">
+      <Filter>lib\CocosNet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,10 @@
+#Last build type
+#Sun, 14 Sep 2014 09:39:29 +0800
+
+build.last.target=release
+
+build.last.is.instrumented=false
+
+build.last.is.packaging.debug=false
+
+build.last.is.signing.debug=false

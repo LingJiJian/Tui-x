@@ -75,7 +75,7 @@ typedef unsigned int          SOCKET;
 
 #ifndef SINGLE_DELEGATE_INSTANCE_FUNC
 #define SINGLE_DELEGATE_INSTANCE_FUNC(_CLASS_) \
-static _CLASS_* sharedDelegate() \
+static _CLASS_* getInstance() \
 { \
 	static _CLASS_* pRet = NULL; \
 	if( !pRet ) pRet = new _CLASS_(); \

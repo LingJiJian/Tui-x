@@ -4,7 +4,9 @@
 #include "cocos2d.h"
 #include "../../../../CocosWidget/lua_cocos2dx_cocoswidget_auto.hpp"
 #include "../../../../CocosBase/lua_cocos2dx_cocosbase_auto.hpp"
+#include "../../../../CocosNet/lua_cocos2dx_cocosnet_auto.hpp"
 #include "tui/lua_cocos2dx_tui_auto.hpp"
+#include "../../../../dragonbones/lua_dragonbones_auto.hpp"
 
 using namespace CocosDenshion;
 
@@ -44,10 +46,13 @@ bool AppDelegate::applicationDidFinishLaunching()
 	auto engine = LuaEngine::getInstance();
 	ScriptEngineManager::getInstance()->setScriptEngine(engine);
 	
-	register_all_cocos2dx_cocoswidget(engine->getLuaStack()->getLuaState());
-	register_all_cocos2dx_cocosbase(engine->getLuaStack()->getLuaState());
-	register_all_cocos2dx_tui(engine->getLuaStack()->getLuaState());
-
+	lua_State *state = engine->getLuaStack()->getLuaState();
+	register_all_cocos2dx_cocoswidget(state);
+	register_all_cocos2dx_cocosbase(state);
+	register_all_cocos2dx_cocosnet(state);
+	register_all_cocos2dx_tui(state);
+	register_all_dragonbones(state);
+	
 	engine->executeScriptFile("main.lua");
 
     return true;

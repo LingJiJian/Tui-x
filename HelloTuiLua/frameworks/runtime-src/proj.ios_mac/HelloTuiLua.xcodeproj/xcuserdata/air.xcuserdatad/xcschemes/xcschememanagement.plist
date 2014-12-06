@@ -4,15 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>HelloTuiLua Mac.xcscheme</key>
+		<key>HelloLua Mac.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>1</integer>
 		</dict>
-		<key>HelloTuiLua iOS.xcscheme</key>
+		<key>HelloLua iOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

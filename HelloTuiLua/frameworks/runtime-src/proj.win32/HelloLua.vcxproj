@@ -68,7 +68,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Classes;$(EngineRoot)cocos\scripting\lua-bindings\auto;$(EngineRoot)cocos\scripting\lua-bindings\manual;$(EngineRoot)cocos\audio\include;$(EngineRoot)cocos\2d;$(EngineRoot)cocos\base;$(EngineRoot)cocos\editor-support;$(EngineRoot)external\lua\lua;$(EngineRoot)external\lua\tolua;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)external;$(EngineRoot)extensions;$(EngineRoot);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Classes;$(EngineRoot)cocos\scripting\lua-bindings\auto;$(EngineRoot)cocos\scripting\lua-bindings\manual;$(EngineRoot)cocos\audio\include;$(EngineRoot)cocos\2d;$(EngineRoot)cocos\base;$(EngineRoot)cocos\editor-support;$(EngineRoot)external\lua\lua;$(EngineRoot)external\lua\tolua;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)external;$(EngineRoot)extensions;$(EngineRoot);$(ProjectDir)..\..\..\..\dragonbones;$(ProjectDir)..\..\..\..\dragonbones\renderer\cocos2d-x-3.2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -171,6 +171,13 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\..\..\..\CocosBase\CCSceneManager.h" />
     <ClInclude Include="..\..\..\..\CocosBase\cocos-base.h" />
     <ClInclude Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.hpp" />
+    <ClInclude Include="..\..\..\..\CocosNet\CCBuffer.h" />
+    <ClInclude Include="..\..\..\..\CocosNet\CCInetAddress.h" />
+    <ClInclude Include="..\..\..\..\CocosNet\CCNetDelegate.h" />
+    <ClInclude Include="..\..\..\..\CocosNet\CCNetMacros.h" />
+    <ClInclude Include="..\..\..\..\CocosNet\CCSocket.h" />
+    <ClInclude Include="..\..\..\..\CocosNet\cocos-net.h" />
+    <ClInclude Include="..\..\..\..\CocosNet\lua_cocos2dx_cocosnet_auto.hpp" />
     <ClInclude Include="..\..\..\..\CocosWidget\ArmatureBtn.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\Button.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\CheckBox.h" />
@@ -191,7 +198,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\..\..\..\CocosWidget\Layout.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\ListView.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\lua_cocos2dx_cocoswidget_auto.hpp" />
-    <ClInclude Include="..\..\..\..\CocosWidget\MovieView.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\NumericStepper.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\PageView.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\ProgressBar.h" />
@@ -206,6 +212,55 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\..\..\..\CocosWidget\WidgetProtocol.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\WidgetWindow.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\WitlsMacros.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\animation\Animation.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\animation\AnimationState.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\animation\IAnimatable.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\animation\TimelineState.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\animation\WorldClock.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\core\Armature.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\core\Bone.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\core\Object.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\core\Slot.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\DragonBones.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\DragonBonesHeaders.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\events\EventData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\events\IEventDispatcher.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\factories\BaseFactory.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\ColorTransform.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\Matrix.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\Point.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\Rectangle.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\Transform.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\lua_dragonbones_auto.hpp" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\AnimationData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\ArmatureData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\BoneData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\DisplayData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\DragonBonesData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\EllipseData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\Frame.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\IAreaData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\RectangleData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\SkinData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\SlotData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\Timeline.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\TransformFrame.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\TransformTimeline.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\parsers\BaseDataParser.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\parsers\ConstValues.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\parsers\dbtinyxml2.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\parsers\XMLDataParser.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmature.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmatureNode.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCEventDispatcher.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCFactory.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\dbccMacro.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCRenderHeaders.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCSlot.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCTextureAtlas.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\textures\ITextureAtlas.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\textures\TextureAtlasData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\textures\TextureData.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\tui\lua_cocos2dx_tui_auto.hpp" />
     <ClInclude Include="..\Classes\tui\TuiBase.h" />
@@ -223,6 +278,11 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\..\..\..\CocosBase\CCSceneExTransition.cpp" />
     <ClCompile Include="..\..\..\..\CocosBase\CCSceneManager.cpp" />
     <ClCompile Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.cpp" />
+    <ClCompile Include="..\..\..\..\CocosNet\CCBuffer.cpp" />
+    <ClCompile Include="..\..\..\..\CocosNet\CCInetAddress.cpp" />
+    <ClCompile Include="..\..\..\..\CocosNet\CCNetDelegate.cpp" />
+    <ClCompile Include="..\..\..\..\CocosNet\CCSocket.cpp" />
+    <ClCompile Include="..\..\..\..\CocosNet\lua_cocos2dx_cocosnet_auto.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\ArmatureBtn.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\Button.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\CheckBox.cpp" />
@@ -241,7 +301,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\..\..\..\CocosWidget\Layout.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\ListView.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\lua_cocos2dx_cocoswidget_auto.cpp" />
-    <ClCompile Include="..\..\..\..\CocosWidget\MovieView.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\NumericStepper.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\PageView.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\ProgressBar.cpp" />
@@ -255,6 +314,25 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\..\..\..\CocosWidget\WidgetProtocol.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\WidgetWindow.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\WitlsMacros.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\animation\Animation.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\animation\AnimationState.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\animation\TimelineState.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\animation\WorldClock.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\core\Armature.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\core\Bone.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\core\Object.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\core\Slot.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\events\EventData.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\factories\BaseFactory.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\lua_dragonbones_auto.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\parsers\BaseDataParser.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\parsers\ConstValues.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\parsers\dbtinyxml2.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\parsers\XMLDataParser.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmature.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmatureNode.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCFactory.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCSlot.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\tui\lua_cocos2dx_tui_auto.cpp" />
     <ClCompile Include="..\Classes\tui\TuiBase.cpp" />

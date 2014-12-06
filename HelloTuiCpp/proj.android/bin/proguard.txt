@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:14
+-keep class org.cocos2dx.cpp.AppActivity { <init>(...); }
+
