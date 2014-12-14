@@ -197,6 +197,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\module\ResoureMgr.cpp" />
     <ClCompile Include="..\Classes\scene\Bag\Bagui.cpp" />
+    <ClCompile Include="..\Classes\scene\Guide\Guideui.cpp" />
     <ClCompile Include="..\Classes\scene\Main\dialog\MsgBox.cpp" />
     <ClCompile Include="..\Classes\scene\Main\Mainui.cpp" />
     <ClCompile Include="..\Classes\scene\Recombine\Recombineui.cpp" />
@@ -312,6 +313,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\module\ResoureMgr.h" />
     <ClInclude Include="..\Classes\scene\Bag\BagCfg.h" />
     <ClInclude Include="..\Classes\scene\Bag\Bagui.h" />
+    <ClInclude Include="..\Classes\scene\Guide\Guideui.h" />
     <ClInclude Include="..\Classes\scene\Main\dialog\MsgBox.h" />
     <ClInclude Include="..\Classes\scene\Main\MainCfg.h" />
     <ClInclude Include="..\Classes\scene\Main\Mainui.h" />

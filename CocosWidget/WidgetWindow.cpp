@@ -39,6 +39,7 @@ CWidgetWindow::CWidgetWindow()
 : m_bIsTouched(false)
 , m_nTouchPriority(0)
 , m_bModalable(false)
+, m_TouchAreaEnabled(false)
 , m_bTouchEnabled(true)
 , m_pSelectedWidget(NULL)
 , m_fTouchedDuration(0.000001f)
@@ -323,6 +324,7 @@ void CWidgetWindow::setTouchEnabled(bool bTouchEnabled)
 					listenerAllAtOnce->onTouchesBegan = CC_CALLBACK_2(CWidgetWindow::onTouchesBegan, this);
 					listenerAllAtOnce->onTouchesMoved = CC_CALLBACK_2(CWidgetWindow::onTouchesMoved, this);
 					listenerAllAtOnce->onTouchesEnded = CC_CALLBACK_2(CWidgetWindow::onTouchesEnded, this);
+					listenerAllAtOnce->onTouchesCancelled = CC_CALLBACK_2(CWidgetWindow::onTouchesCancelled, this);
 				}
 				else
 				{
@@ -331,6 +333,7 @@ void CWidgetWindow::setTouchEnabled(bool bTouchEnabled)
 					listenerOneByOne->onTouchBegan = CC_CALLBACK_2(CWidgetWindow::onTouchBegan, this);
 					listenerOneByOne->onTouchMoved = CC_CALLBACK_2(CWidgetWindow::onTouchMoved, this);
 					listenerOneByOne->onTouchEnded = CC_CALLBACK_2(CWidgetWindow::onTouchEnded, this);
+					listenerOneByOne->onTouchCancelled = CC_CALLBACK_2(CWidgetWindow::onTouchCancelled, this);
 				}
 				_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 				m_pEventLister = listener;
@@ -424,27 +427,30 @@ bool CWidgetWindow::onTouchBegan(Touch *pTouch, Event *pEvent)
 	unsigned int nCount = _children.size();
 	if( m_bTouchEnabled && _visible && nCount > 0 )
 	{
-		Vec2 touchPointInView = convertToNodeSpace(pTouch->getLocation());
+		if (isCanTouchWithTouchArea(pTouch)){
 
-		for(int i = nCount-1; i >= 0; --i)
-		{
-			Node* pNode = _children.at(i);
-			CWidget* pWidget = dynamic_cast<CWidget*>(pNode);
-			if( pWidget && pNode->isVisible() && pWidget->isEnabled() && pWidget->isTouchEnabled() )
+			Vec2 touchPointInView = convertToNodeSpace(pTouch->getLocation());
+
+			for (int i = nCount - 1; i >= 0; --i)
 			{
-				if( pNode->getBoundingBox().containsPoint(touchPointInView) )
+				Node* pNode = _children.at(i);
+				CWidget* pWidget = dynamic_cast<CWidget*>(pNode);
+				if (pWidget && pNode->isVisible() && pWidget->isEnabled() && pWidget->isTouchEnabled())
 				{
-					if( pWidget->executeTouchBeganHandler(pTouch) != eWidgetTouchNone )
+					if (pNode->getBoundingBox().containsPoint(touchPointInView))
 					{
-						m_pSelectedWidget = pWidget;
-						m_bIsTouched = true;
-						m_fTouchedDuration = 0.000001f;
-						return true;
+						if (pWidget->executeTouchBeganHandler(pTouch) != eWidgetTouchNone)
+						{
+							m_pSelectedWidget = pWidget;
+							m_bIsTouched = true;
+							m_fTouchedDuration = 0.000001f;
+							return true;
+						}
 					}
 				}
 			}
+			m_pSelectedWidget = NULL;
 		}
-		m_pSelectedWidget = NULL;
 	}
 	return m_bModalable;
 }
@@ -651,6 +657,17 @@ CWidgetWindow* CWidgetWindow::create()
 	}
 	CC_SAFE_DELETE(pRet);
 	return NULL;
+}
+
+
+bool CWidgetWindow::isCanTouchWithTouchArea(Touch* pTouch)
+{
+	if (m_TouchAreaEnabled){
+		return m_touchArea.containsPoint(pTouch->getLocation());
+	}
+	else{
+		return true;
+	}
 }
 
 

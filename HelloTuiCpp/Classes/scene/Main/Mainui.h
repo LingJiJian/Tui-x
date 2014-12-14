@@ -24,6 +24,8 @@ protected:
 
 	void event_tgvA_check(Ref *pSender, bool bChecked);
 	void event_tgvB_check(Ref *pSender, bool bChecked);
+
+	void onMessage(unsigned int uMsg, Ref* pMsgObj, void* wParam, void* lParam);
 private:
 };
 

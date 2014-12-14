@@ -10,6 +10,11 @@ void Mainui::onLoadScene()
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("main/mainui.plist");
 	TuiManager::getInstance()->parseScene(this,"panel_main",PATH_MAIN);
 
+	Vec2 area = Arp(Vec2(618, 10));
+	CWidgetWindow *panel = (CWidgetWindow*)getPanel(PANEL_MAIN);
+	panel->setTouchAreaEnabled(true);
+	panel->setTouchArea(Rect(area.x, area.y, 92, 36));
+
 	//注册事件
 	CControlView *ctlv = (CControlView*)this->getControl(PANEL_MAIN,CTLV_LEFT);
 	ctlv->setOnControlListener(this,ccw_control_selector(Mainui::event_ctlv_left));
@@ -34,6 +39,8 @@ void Mainui::onLoadScene()
 
 	CToggleView *pTgvB = (CToggleView*)this->getControl(PANEL_MAIN, TGV_B);
 	pTgvB->setOnCheckListener(this, ccw_check_selector(Mainui::event_tgvB_check));
+
+	CSceneManager::getInstance()->runSuspendScene(LoadScene("Guideui"));
 }
 
 void Mainui::event_ctlv_left( Ref* pSender, float fx, float fy )
@@ -54,8 +61,6 @@ void Mainui::event_tgvB_check(Ref *pSender, bool bChecked)
 
 void Mainui::event_btn_ok(Ref* pSender)
 {
-	//开启塑形
-	//this->setModalable(true);
 	CSceneManager::getInstance()->runUIScene(LoadScene("Main::MsgBox"));
 }
 
@@ -99,5 +104,19 @@ Node* Mainui::getPanel( int tagPanel )
 	return pPanel;
 }
 
+void Mainui::onMessage(unsigned int uMsg, Ref* pMsgObj, void* wParam, void* lParam)
+{
+	switch (uMsg)
+	{
+	case FINISH_GUIDE:
+	{
+		CWidgetWindow *panel = (CWidgetWindow*)getPanel(PANEL_MAIN);
+		panel->setTouchAreaEnabled(false);
+	}
+		break;
+	default:
+		break;
+	}
+}
 
 NS_MAIN_END

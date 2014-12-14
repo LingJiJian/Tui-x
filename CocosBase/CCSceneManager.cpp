@@ -138,6 +138,15 @@ void CSceneManager::mainLoop(Renderer* renderer, const Mat4 &parentTransform, ui
 	}
 	while(1);
 
+	do {
+		CC_BREAK_IF(m_lSuspendSceneSwitchQueue.empty());
+		ccUISCENESWITCH& tSceneSwitch = m_lSuspendSceneSwitchQueue.front();
+
+		CC_BREAK_IF(tSceneSwitch.bLockedSwitch);
+		handleSuspendSceneSwitch(tSceneSwitch);
+		m_lSuspendSceneSwitchQueue.pop_front();
+	} while (1);
+
 // << draw scene
 
 	if( m_pNextScene )
@@ -153,6 +162,10 @@ void CSceneManager::mainLoop(Renderer* renderer, const Mat4 &parentTransform, ui
 // << draw ui scene
 
 	visitUIScenes(renderer, parentTransform, parentFlags);
+
+// << draw suspend scene
+
+	visitSuspendScenes(renderer, parentTransform, parentFlags);
 }
 
 void CSceneManager::runWithScene(CSceneExtension* pScene, Ref* pExtra)
@@ -351,6 +364,16 @@ bool CSceneManager::isSceneRunning(const char* pSceneName)
 	for(; uitr != uend; ++uitr )
 	{
 		if( strcmp((*uitr)->getClassName(), pSceneName) == 0 )
+		{
+			return true;
+		}
+	}
+
+	vector<CSceneExtension*>::iterator sitr = m_vRunningSuspendScenes.begin();
+	vector<CSceneExtension*>::iterator send = m_vRunningSuspendScenes.end();
+	for (; sitr != send; ++sitr)
+	{
+		if (strcmp((*sitr)->getClassName(), pSceneName) == 0)
 		{
 			return true;
 		}
@@ -745,6 +768,16 @@ CSceneExtension* CSceneManager::seekScene(const char* pSceneName)
 		}
 	}
 
+	vector<CSceneExtension*>::iterator sitr = m_vRunningSuspendScenes.begin();
+	vector<CSceneExtension*>::iterator send = m_vRunningSuspendScenes.end();
+	for (; sitr != send; ++sitr)
+	{
+		if (strcmp((*sitr)->getClassName(), pSceneName) == 0)
+		{
+			return (*sitr);
+		}
+	}
+
 	map<string, CSceneExtension*>::iterator mitr = m_mSceneCachePool.find(pSceneName);
 	if( mitr != m_mSceneCachePool.end() )
 	{
@@ -867,6 +900,117 @@ void CSceneManager::debugSceneSwitchInfo()
 	CCLOG("%s",strStackText.c_str());
 #endif
 }
+
+void CSceneManager::handleSuspendSceneSwitch(ccUISCENESWITCH& tSceneSwitch)
+{
+	switch( tSceneSwitch.eType )
+	{
+	case eUISceneSwitchRunScene:
+		{
+			tSceneSwitch.pScene->autorelease();
+			addCachableScene(tSceneSwitch.pScene);
+
+			tSceneSwitch.pScene->retain();
+			tSceneSwitch.pScene->onEnter();
+			tSceneSwitch.pScene->onEnterTransitionDidFinish();
+			m_vRunningSuspendScenes.push_back(tSceneSwitch.pScene);
+		}
+		break;
+	case eUISceneSwitchPopScene:
+		{
+			vector<CSceneExtension*>::iterator itr = std::find(m_vRunningSuspendScenes.begin(), m_vRunningSuspendScenes.end(), tSceneSwitch.pScene);
+			if (itr != m_vRunningSuspendScenes.end())
+			{
+				tSceneSwitch.pScene->onExitTransitionDidStart();
+				tSceneSwitch.pScene->onExit();
+				tSceneSwitch.pScene->release();
+				m_vRunningSuspendScenes.erase(itr);
+			}
+		}
+		break;
+	}
+}
+
+void CSceneManager::unlockSuspendSceneSwitch(const char* pClassName)
+{
+	if (m_lSuspendSceneSwitchQueue.empty())
+		return;
+
+	list<ccUISCENESWITCH>::iterator itr = m_lSuspendSceneSwitchQueue.begin();
+	list<ccUISCENESWITCH>::iterator end = m_lSuspendSceneSwitchQueue.end();
+
+	for (; itr != end; ++itr)
+	{
+		if (strcmp(itr->pScene->getClassName(), pClassName) == 0)
+		{
+			itr->bLockedSwitch = false;
+			return;
+		}
+	}
+}
+
+void CSceneManager::visitSuspendScenes(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags)
+{
+	unsigned int i = 0;
+	unsigned int c = m_vRunningSuspendScenes.size();
+
+	for (; i < c; ++i)
+	{
+		m_vRunningSuspendScenes[i]->visit(renderer, parentTransform, parentFlags);
+	}
+}
+
+void CSceneManager::runSuspendScene(CSceneExtension* pScene, Ref* pExtra /*= NULL*/, bool isPopup /*= true*/)
+{
+	CCAssert(pScene != NULL && !dynamic_cast<CCSceneExTransition*>(pScene), "should not null and not transition");
+
+	if (isSceneRunning(getSceneClassName(pScene)))
+		return;
+
+	ccUISCENESWITCH tSceneSwitch;
+	tSceneSwitch.pScene = pScene;
+	tSceneSwitch.eType = eUISceneSwitchRunScene;
+	tSceneSwitch.bLockedSwitch = true;
+	m_lSuspendSceneSwitchQueue.push_back(tSceneSwitch);
+
+	CC_SAFE_RETAIN(pScene);
+	setExtraToScene(pScene, pExtra);
+
+	if (!loadSceneResources(pScene))
+	{
+		m_lSuspendSceneSwitchQueue.back().bLockedSwitch = false;
+	}
+}
+
+void CSceneManager::popSuspendScene(CSceneExtension* pScene)
+{
+	CCAssert(pScene != NULL, "A running Scene is needed");
+
+	if (!isSceneRunning(getSceneClassName(pScene)))
+		return;
+
+	ccUISCENESWITCH tSceneSwitch;
+	tSceneSwitch.pScene = pScene;
+	tSceneSwitch.eType = eUISceneSwitchPopScene;
+	tSceneSwitch.bLockedSwitch = false;
+	m_lSuspendSceneSwitchQueue.push_back(tSceneSwitch);
+}
+
+void CSceneManager::popAllSuspendScene()
+{
+	unsigned int i = 0;
+	unsigned int c = m_vRunningSuspendScenes.size();
+
+	for (; i < c; ++i)
+	{
+		ccUISCENESWITCH tSceneSwitch;
+		tSceneSwitch.pScene = m_vRunningSuspendScenes[i];
+		tSceneSwitch.eType = eUISceneSwitchPopScene;
+		tSceneSwitch.bLockedSwitch = false;
+		m_lSuspendSceneSwitchQueue.push_back(tSceneSwitch);
+	}
+}
+
 #endif
 
 NS_CC_END

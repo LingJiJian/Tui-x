@@ -4,7 +4,6 @@
 
 NS_MAIN_BEGIN
 
-
 void MsgBox::onLoadScene()
 {
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("main/mainui.plist");
@@ -53,6 +52,16 @@ Node *MsgBox::getPanel( int tagPanel )
 		break;
 	}
 	return pPanel;
+}
+
+void MsgBox::onEnterScene()
+{
+	CSceneExtension *pGuideui = CSceneManager::getInstance()->seekScene("Guideui");
+	if (pGuideui != nullptr){
+		CSceneManager::getInstance()->popSuspendScene(pGuideui);
+		CCMsgManager::getInstance()->PostMessage(FINISH_GUIDE);
+	}
+		
 }
 
 

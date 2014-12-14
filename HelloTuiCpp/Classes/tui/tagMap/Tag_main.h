@@ -24,13 +24,18 @@ namespace Main {
 	static const int CTLV_LEFT = 18 ;
 	static const int CKB_TEST = 19 ;
 	static const int BTN_GO = 20 ;
-	static const int MOVIE_TEST = 21 ;
-	static const int PANEL_MSGBOX = 22 ;
-	static const int IMG9_BOXBG = 23 ;
-	static const int BTN_CLOSE = 24 ;
-	static const int LABATLAS_NUM = 25 ;
-	static const int SLIDER_TEST = 26 ;
-	static const int PROG_HP = 27 ;
+	static const int PANEL_MSGBOX = 21 ;
+	static const int IMG9_BOXBG = 22 ;
+	static const int BTN_CLOSE = 23 ;
+	static const int LABATLAS_NUM = 24 ;
+	static const int SLIDER_TEST = 25 ;
+	static const int PROG_HP = 26 ;
+} 
+
+namespace  { 
+	static const int PANEL_GUIDE = 27 ;
+	static const int IMG_GUIDEFINGER = 28 ;
+	static const int LAB_GUIDE = 29 ;
 } 
 
 #endif

@@ -70,6 +70,9 @@
     <Filter Include="lib\Dragonbones">
       <UniqueIdentifier>{9ed27291-9ba0-4676-96eb-4c8078ab2327}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\scene\Guide">
+      <UniqueIdentifier>{439b0d9a-169f-4ea2-825e-6c902a4bef9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -284,6 +287,9 @@
     </ClCompile>
     <ClCompile Include="..\..\CocosNet\CCNetDelegate.cpp">
       <Filter>lib\CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scene\Guide\Guideui.cpp">
+      <Filter>Classes\scene\Guide</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -661,6 +667,9 @@
     </ClInclude>
     <ClInclude Include="..\..\CocosNet\CCInetAddress.h">
       <Filter>lib\CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scene\Guide\Guideui.h">
+      <Filter>Classes\scene\Guide</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
