@@ -1100,8 +1100,10 @@ FlaToXML.prototype.convertCell = function(cell,tag ,frameName){
 }
 /** 转换image */
 FlaToXML.prototype.convertImg = function( image , tag ,frameName){
-	var suffix = image.parameters.suffix.value;
-	if(suffix == null) suffix = ".png";
+	var suffix = ".png";
+	if(image.parameters.suffix != null){
+		suffix = image.parameters.suffix.value;
+	}
 	
 	var xml_img = new UIImage();
 	xml_img.setAttribute( UIControlAttribute.kScaleX,formatNumber(image.scaleX));
