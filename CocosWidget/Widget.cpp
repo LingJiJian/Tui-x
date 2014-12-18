@@ -149,7 +149,7 @@ CWidgetTouchModel CWidget::executeTouchBeganHandler(Touch* pTouch)
 
 		pStack->pushObject(m_pThisObject, "Ref");
 		pStack->pushObject(pTouch, "Touch");
-        
+		
 		__Array pRetArray;
 		pRetArray.initWithCapacity(1);
 

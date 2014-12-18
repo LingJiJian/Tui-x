@@ -130,7 +130,7 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
       <AdditionalOptions>/Zm200 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Classes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\WorkSpace\C++WorkSpace\cocos2d-x-3.2\project\HelloTuiCpp\cocos2d\cocos\2d;F:\WorkSpace\C++WorkSpace\cocos2d-x-3.2\project\HelloTuiCpp\cocos2d;F:\WorkSpace\C++WorkSpace\cocos2d-x-3.2\project\HelloTuiCpp\cocos2d\extensions;F:\WorkSpace\C++WorkSpace\cocos2d-x-3.2\project\HelloTuiCpp\cocos2d\cocos\base;$(ProjectDir)..\..\Classes;F:\WorkSpace\C++WorkSpace\cocos2d-x-3.2\project\HelloTuiCpp\cocos2d\cocos\editor-support;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -233,7 +233,7 @@
     <ClCompile Include="..\..\Classes\scene\Welcome\Welcomeui.cpp" />
     <ClCompile Include="..\..\Classes\tui\TuiBase.cpp" />
     <ClCompile Include="..\..\Classes\tui\TuiManager.cpp" />
-    <ClCompile Include="..\..\Classes\tui\utils\AnimationUtil.cpp" />
+    <ClCompile Include="..\..\Classes\tui\TuiUtil.cpp" />
     <ClCompile Include="Generated Files\Cocos2dRenderer.cpp" />
     <ClCompile Include="Generated Files\Direct3DContentProvider.cpp" />
     <ClCompile Include="Generated Files\Direct3DInterop.cpp" />
@@ -317,7 +317,7 @@
     <ClInclude Include="..\..\Classes\tui\tuiconsts.h" />
     <ClInclude Include="..\..\Classes\tui\TuiMacros.h" />
     <ClInclude Include="..\..\Classes\tui\TuiManager.h" />
-    <ClInclude Include="..\..\Classes\tui\utils\AnimationUtil.h" />
+    <ClInclude Include="..\..\Classes\tui\TuiUtil.h" />
     <ClInclude Include="Generated Files\Cocos2dRenderer.h" />
     <ClInclude Include="Generated Files\Direct3DContentProvider.h" />
     <ClInclude Include="Generated Files\Direct3DInterop.h" />

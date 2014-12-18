@@ -20,7 +20,7 @@
 	}     \
 	return 0;     \
 }
-
+/*
 int lua_cocos2dx_cocoswidget_MovieView_setOnCallBackScriptHandle(lua_State* tolua_S)
 { 
 	int argc = 0;	
@@ -41,8 +41,7 @@ int lua_cocos2dx_cocoswidget_MovieView_setOnCallBackScriptHandle(lua_State* tolu
 	}
 	return 0; 
 }
-
-
+*/
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CTextRich, setOnTextRichClickScriptHandler)
 
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CPageView, setOnPageChangedScriptHandler)
@@ -27068,7 +27067,7 @@ int lua_register_cocos2dx_cocoswidget_NumericStepper(lua_State* tolua_S)
     g_typeCast["NumericStepper"] = "ccw.NumericStepper";
     return 1;
 }
-
+/*
 int lua_cocos2dx_cocoswidget_MovieView_play(lua_State* tolua_S)
 {
     int argc = 0;
@@ -27617,7 +27616,7 @@ int lua_register_cocos2dx_cocoswidget_MovieView(lua_State* tolua_S)
     g_typeCast["MovieView"] = "ccw.MovieView";
     return 1;
 }
-
+*/
 int lua_cocos2dx_cocoswidget_CircleMenu_onTouchMoved(lua_State* tolua_S)
 {
     int argc = 0;
@@ -28338,7 +28337,7 @@ TOLUA_API int register_all_cocos2dx_cocoswidget(lua_State* tolua_S)
 	lua_register_cocos2dx_cocoswidget_CGridPageViewCell(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CExpandableListView(tolua_S);
 	//lua_register_cocos2dx_cocoswidget_CProgressEndedProtocol(tolua_S);
-	lua_register_cocos2dx_cocoswidget_MovieView(tolua_S);
+	//lua_register_cocos2dx_cocoswidget_MovieView(tolua_S);
 	//lua_register_cocos2dx_cocoswidget_CCheckableProtocol(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CToggleView(tolua_S);
 	lua_register_cocos2dx_cocoswidget_CPageView(tolua_S);

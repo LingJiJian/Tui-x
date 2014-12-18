@@ -39,7 +39,6 @@ local ckbTest =			nil
 local ctvlLeft = 		nil
 local editLogin = 		nil
 local window =	  		nil
-local movieTest = 		nil
 local btnShowPhone =	nil
 
 local function event_ctvl_left(p_sender, fx, fy)
@@ -59,15 +58,6 @@ end
 
 local function event_tgv_option(p_sender, b_checked)
 	print("tgvOption "..type(b_checked))
-	if b_checked then
-		movieTest:play(true)
-	else
-		movieTest:stop()
-	end
-end
-
-local function event_movie_finish()
-	print("OK finish!!")
 end
 
 local function event_numStep_test(p_sender, n_value)
@@ -99,9 +89,6 @@ function Welcomeui:onLoadScene()
 	TuiManager:getInstance():parseScene(self,"panel_welcome",PATH_WELCOMEUI)
 	--注册事件
 	window = self:getPanel(Tag_welcomeui.PANEL_WELCOME)
-
-	movieTest = self:getControl(Tag_welcomeui.PANEL_WELCOME,Tag_welcomeui.MOVIE_TEST)
-	movieTest:setOnCallBackScriptHandle("finish",event_movie_finish)
 
  	animCoin = self:getControl(Tag_welcomeui.PANEL_WELCOME,Tag_welcomeui.ANIM_COIN)
 

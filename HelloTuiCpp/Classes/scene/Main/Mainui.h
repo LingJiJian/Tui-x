@@ -22,9 +22,10 @@ protected:
 	void event_btn_bag(Ref* pSender);
 	void event_btn_recombine(Ref* pSender);
 
-	void event_movie_finish();
 	void event_tgvA_check(Ref *pSender, bool bChecked);
 	void event_tgvB_check(Ref *pSender, bool bChecked);
+
+	void onMessage(unsigned int uMsg, Ref* pMsgObj, void* wParam, void* lParam);
 private:
 };
 

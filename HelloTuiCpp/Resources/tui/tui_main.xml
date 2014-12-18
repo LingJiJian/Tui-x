@@ -19,12 +19,15 @@
 		<control tag="18" type="controlView" baseboard="main/ctlv_left_baseboard.png" joystick="main/ctlv_left_joystick.png" x="-324.45" y="165.55" width="128" height="128" rotation="0" spriteFrame="0"></control>
 		<control tag="19" type="checkBox" normal1="main/ckb_test_normal1.png" select1="main/ckb_test_select1.png" disable1="main/ckb_test_disable1.png" normal2="main/ckb_test_normal2.png" select2="main/ckb_test_select2.png" disable2="main/ckb_test_disable2.png" x="-211.95" y="192.45" width="56" height="56" rotation="0" spriteFrame="0"></control>
 		<control tag="20" type="button" text="列表" textSize="20" textFont="fonts/Arial.ttf" red="255" green="0" blue="0" normal="main/btn_green_normal.png" select="main/btn_green_select.png" disable="main/btn_green_disable.png" x="351.4" y="218.5" width="92" height="36" rotation="0" spriteFrame="0"></control>
-		<control tag="21" type="movieView" png="effect/movie_test.png" plist="effect/movie_test.plist" json="effect/movie_test.json" x="0" y="0" width="537" height="273" rotation="0"></control>
 	</control>
-	<control tag="22" type="panel" name="panel_msgbox" x="400" y="240" width="624.85" height="272.45" rotation="0">
-		<control tag="23" type="image9" image="main/dialog/img9_boxbg.png" up="20" down="20" left="20" right="20" x="0" y="10" width="619.7" height="268.15" rotation="0" spriteFrame="0"></control>
-		<control tag="24" type="button" textSize="16" textFont="fonts/Arial.ttf" red="0" green="0" blue="0" normal="main/dialog/btn_close_normal.png" select="main/dialog/btn_close_select.png" disable="main/dialog/btn_close_disable.png" x="281" y="-92" width="68" height="73" rotation="0" spriteFrame="0"></control>
-		<control tag="25" type="labelAtlas" num="123456" image="main/dialog/labAtlas_num.png" x="-0.95" y="-45.5" width="312" height="34" rotation="0"></control>
-		<control tag="26" type="slider" bg="main/dialog/slider_test_bg.png" progress="main/dialog/slider_test_progress.png" thumb="main/dialog/slider_test_thumb.png" max="100" min="0" cur="15" x="0" y="5.35" width="500" height="52" rotation="0" spriteFrame="0"></control>
-		<control tag="27" type="progress" bg="main/dialog/prog_hp_bg.png" progress="main/dialog/prog_hp_progress.png" max="100" min="0" cur="15" showLabel="1" x="0" y="66.35" width="300" height="23" rotation="0" spriteFrame="0"></control>
+	<control tag="21" type="panel" name="panel_msgbox" x="400" y="240" width="624.85" height="272.45" rotation="0">
+		<control tag="22" type="image9" image="main/dialog/img9_boxbg.png" up="20" down="20" left="20" right="20" x="0" y="10" width="619.7" height="268.15" rotation="0" spriteFrame="0"></control>
+		<control tag="23" type="button" textSize="16" textFont="fonts/Arial.ttf" red="0" green="0" blue="0" normal="main/dialog/btn_close_normal.png" select="main/dialog/btn_close_select.png" disable="main/dialog/btn_close_disable.png" x="281" y="-92" width="68" height="73" rotation="0" spriteFrame="0"></control>
+		<control tag="24" type="labelAtlas" num="123456" image="main/dialog/labAtlas_num.png" x="-0.95" y="-45.5" width="312" height="34" rotation="0"></control>
+		<control tag="25" type="slider" bg="main/dialog/slider_test_bg.png" progress="main/dialog/slider_test_progress.png" thumb="main/dialog/slider_test_thumb.png" max="100" min="0" cur="15" x="0" y="5.35" width="500" height="52" rotation="0" spriteFrame="0"></control>
+		<control tag="26" type="progress" bg="main/dialog/prog_hp_bg.png" progress="main/dialog/prog_hp_progress.png" max="100" min="0" cur="15" showLabel="1" x="0" y="66.35" width="300" height="23" rotation="0" spriteFrame="0"></control>
+	</control>
+	<control tag="27" type="panel" name="panel_guide" x="400" y="240" width="278.75" height="231.25" rotation="0">
+		<control tag="28" type="image" image="main/img_guidefinger.png" x="161.5" y="178.05" width="180.5" height="188.2" scaleX="1" scaleY="1" flipX="0" flipY="0" rotation="165" spriteFrame="0"></control>
+		<control tag="29" type="label" text="请点击这个按钮，不要问我为什么。。。" alignment="0" textSize="20" textFont="fonts/Arial.ttf" red="255" green="0" blue="0" strokeRed="0" strokeGreen="0" strokeBlue="0" strokeSize="0" shadowDistance="0" shadowBlur="0" x="100" y="40.9" width="250" height="53.1" rotation="0"></control>
 	</control>

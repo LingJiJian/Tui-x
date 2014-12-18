@@ -36,6 +36,7 @@ THE SOFTWARE.
 #include "CCLuaEngine.h"
 #endif
 
+
 NS_CC_BEGIN
 
 /**
@@ -49,16 +50,14 @@ class CNetDelegate : public Ref
 public:
 	CNetDelegate();
 	virtual ~CNetDelegate();
-
+#if USING_LUA
+	SINGLE_DELEGATE_INSTANCE_FUNC(CNetDelegate)
+#endif
 public:
 #if USING_LUA
-	virtual void onMessageReceived(CBuffer& oBuffer){}
-	
-	void setOnMessageReceivedScriptHandler(int nHandle);
-	void removeOnMessageReceivedScripHandler();
-
-	void setOnExceptionCaughtScriptHandler(int nHandle);
-	void removeOnExceptionCaughtScriptHandler();
+	virtual void onMessageReceived(CBuffer& oBuffer){
+		executeOnMessageReceivedScriptHandler(&oBuffer);
+	}
 #else
 	// will calling when a package is coming
 	virtual void onMessageReceived(CBuffer& oBuffer) = 0;
@@ -163,16 +162,19 @@ private:
 
 protected:
 	CCSocketStatus         m_eStatus;
-
+#if USING_LUA
 	LUA_COCOS2DX_CCN_SCRIPT_REGISTER(OnConnected)
 	LUA_COCOS2DX_CCN_SCRIPT_REGISTER(OnConnectTimeout)
 	LUA_COCOS2DX_CCN_SCRIPT_REGISTER(OnDisconnected)
+	LUA_COCOS2DX_CCN_SCRIPT_REGISTER(OnMessageReceived)
+	LUA_COCOS2DX_CCN_SCRIPT_REGISTER(OnExceptionCaught)
 
 	void executeOnMessageReceivedScriptHandler(CBuffer *oBuffer);
 	void executeOnExceptionCaughtScriptHandler(CCSocketStatus eStatus);
 
 	int m_nMessageReceivedScriptHandler;
 	int m_nExceptionCaughtScriptHandler;
+#endif
 };
 
 NS_CC_END

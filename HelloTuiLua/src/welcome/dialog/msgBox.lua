@@ -11,6 +11,7 @@ function MsgBox:create()
 	local ret = MsgBox.new()
 	__instance = ret
 	ret:setOnLoadSceneScriptHandler(function() ret:onLoadScene() end)
+	ret:setOnMessageScriptHandler(function(msg,obj) ret:onMessage(msg,obj) end)
 	return ret
 end
 
@@ -36,6 +37,7 @@ local sliderTest 	= nil
 
 local function event_btn_close(p_sender)
   	CSceneManager:getInstance():popUIScene(__instance)
+  	-- CCMsgManager:getInstance():PostMessage(125,cc.Node:create())
 end
 
 local function event_prog_hp(p_sender, n_value)
@@ -63,4 +65,8 @@ function MsgBox:onLoadScene()
 	sliderTest = self:getControl(Tag_welcomeui.PANEL_MSGBOX,Tag_welcomeui.SLIDER_TEST)
 	sliderTest:setOnValueChangedScriptHandler(event_slider_test)
 
+end
+
+function MsgBox:onMessage(msg,obj)
+	print(" onMessage !!!! ",tostring(obj))
 end

@@ -101,7 +101,6 @@ NS_CC_WIDGET_END
 
 #include "ArmatureBtn.h"
 #include "NumericStepper.h"
-#include "MovieView.h"
 #include "CircleMenu.h"
 //#include "CEditBox/CEditBox.h"
 

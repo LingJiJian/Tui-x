@@ -3,20 +3,22 @@
 #include "tolua_fix.h"
 #include "LuaBasicConversions.h"
 
-int lua_cocos2dx_tui_TuiBase_setOnMessageScriptHandler(lua_State* tolua_S)
-{
-	int argc = 0;
-	bool ok = true;
-	cocos2d::tui::TuiBase* cobj = nullptr;
-	cobj = (cocos2d::tui::TuiBase*)tolua_tousertype(tolua_S, 1, 0);
-	argc = lua_gettop(tolua_S) - 1;
-	if (1 == argc)
-	{
-		LUA_FUNCTION nHandler = toluafix_ref_function(tolua_S, 2, 0);
-		cobj->setOnMessageScriptHandler(nHandler);
-	}
-	return 0;
+#define LUA_COCOS2DX_TUI_SCRIPT_HANDLER( __WIDGET__, __SET_HANDLER__)         \
+	int lua_cocos2dx_tui_##__WIDGET__##_##__SET_HANDLER__(lua_State* tolua_S)       \
+{    \
+	int argc = 0;      \
+	cocos2d::tui::__WIDGET__* cobj = nullptr;	     \
+	cobj = (cocos2d::tui::__WIDGET__*)tolua_tousertype(tolua_S, 1, 0);     \
+	argc = lua_gettop(tolua_S) - 1;     \
+if (1 == argc)      \
+{     \
+	LUA_FUNCTION nHandler = toluafix_ref_function(tolua_S, 2, 0);     \
+	cobj->__SET_HANDLER__(nHandler);     \
+}     \
+	return 0;     \
 }
+
+LUA_COCOS2DX_TUI_SCRIPT_HANDLER(TuiBase, setOnMessageScriptHandler)
 
 int lua_cocos2dx_tui_TuiUtil_createAnimWithName(lua_State* tolua_S)
 {
@@ -693,71 +695,6 @@ int lua_cocos2dx_tui_TuiManager_parseCell(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_parseCell'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_cocos2dx_tui_TuiManager_createMovieView(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createMovieView'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 7) 
-    {
-        double arg0;
-        const char* arg1;
-        const char* arg2;
-        const char* arg3;
-        double arg4;
-        double arg5;
-        double arg6;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-        std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
-
-        std::string arg3_tmp; ok &= luaval_to_std_string(tolua_S, 5, &arg3_tmp); arg3 = arg3_tmp.c_str();
-
-        ok &= luaval_to_number(tolua_S, 6,&arg4);
-
-        ok &= luaval_to_number(tolua_S, 7,&arg5);
-
-        ok &= luaval_to_number(tolua_S, 8,&arg6);
-        if(!ok)
-            return 0;
-        cocos2d::cocoswidget::MovieView* ret = cobj->createMovieView(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
-        object_to_luaval<cocos2d::cocoswidget::MovieView>(tolua_S, "ccw.MovieView",(cocos2d::cocoswidget::MovieView*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createMovieView",argc, 7);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createMovieView'.",&tolua_err);
 #endif
 
     return 0;
@@ -1520,7 +1457,6 @@ int lua_register_cocos2dx_tui_TuiManager(lua_State* tolua_S)
         tolua_function(tolua_S,"createControl",lua_cocos2dx_tui_TuiManager_createControl);
         tolua_function(tolua_S,"init",lua_cocos2dx_tui_TuiManager_init);
         tolua_function(tolua_S,"parseCell",lua_cocos2dx_tui_TuiManager_parseCell);
-        tolua_function(tolua_S,"createMovieView",lua_cocos2dx_tui_TuiManager_createMovieView);
         tolua_function(tolua_S,"createImage",lua_cocos2dx_tui_TuiManager_createImage);
         tolua_function(tolua_S,"createLayout",lua_cocos2dx_tui_TuiManager_createLayout);
         tolua_function(tolua_S,"createArmature",lua_cocos2dx_tui_TuiManager_createArmature);

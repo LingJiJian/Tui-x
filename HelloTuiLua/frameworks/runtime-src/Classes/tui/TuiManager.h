@@ -103,7 +103,6 @@ public:
 	CGridView *createGridView(float tag, Color4B color, int column, int num, int cellWidth, int cellHeight, float x, float y, float w, float h, float rotation);
 	CGridPageView *createGridPageView(float tag, Color4B color, int dir, int column, int row, int num, int cellWidth, int cellHeight, float x, float y, float w, float h, float rotation);
 	EditBox *createEditBox(float tag, const char* placeHolder, const char* file, int inputMode, int inputFlag, float x, float y, float w, float h, float rotation, int isUseFrame);
-	MovieView *createMovieView(float tag, const char* json, const char* plist, const char* png, float x, float y, float rotation);
 	CircleMenu *createCircleMenu(float tag, float x, float y, float w, float h, float rotation);
 	CTextRich *createTextRich(float tag, const char *text, int maxLen, float x, float y, float w, float h, float rotation, int isUseFrame);
 

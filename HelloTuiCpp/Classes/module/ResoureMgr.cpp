@@ -7,6 +7,7 @@
 #include "scene/ShowPhone/ShowPhoneui.h"
 #include "scene/Bag/Bagui.h"
 #include "scene/Recombine/Recombineui.h"
+#include "scene/Guide/Guideui.h"
 
 
 bool ResoureMgr::init(){
@@ -19,6 +20,8 @@ void ResoureMgr::registScene(){
 
 	REGISTER_SCENE_FUNC(Main::Mainui);						//主界面
 	REGISTER_SCENE_FUNC(Main::MsgBox);						//消息框
+
+	REGISTER_SCENE_FUNC(Guideui);							//引导页
 
 	REGISTER_SCENE_FUNC(Store::Storeui);					//商店
 

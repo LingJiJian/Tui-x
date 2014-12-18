@@ -14,6 +14,8 @@ public:
 	void onLoadScene();
 	Node *getControl(int tagPanel, int tagControl);
 	Node *getPanel(int tagPanel);
+
+	void onEnterScene();
 protected:
 	void event_btn_close(Ref *pSender);
 	void event_slider_test(Ref *pSender,int value);

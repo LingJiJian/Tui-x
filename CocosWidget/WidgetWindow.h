@@ -80,6 +80,9 @@ public:
 	// is modalable
 	bool isModalable() const;
 
+	CC_SYNTHESIZE(bool, m_TouchAreaEnabled, TouchAreaEnabled);
+	CC_SYNTHESIZE(Rect, m_touchArea, TouchArea); 
+
 	// moved after long click
 	virtual void setOnTouchMovedAfterLongClickListener(Ref* pListener, SEL_AfterLongClickHandler pHandler);
 
@@ -120,6 +123,8 @@ protected:
 		float fTouchedDuration;
 	};
 	std::map<int, __ccMULTITOUCHTARGET> m_mMultiTouchKeeper;
+
+	bool isCanTouchWithTouchArea(Touch* pTouch);
 
 protected:
 	int m_nTouchPriority;

@@ -30,6 +30,7 @@ SOFTWARE.
 #include "TuiMacros.h"
 #include "../../../CocosWidget/cocos-widget.h"
 #include "../../../CocosBase/cocos-base.h"
+#include "../../../CocosNet/cocos-net.h"
 #include "../../cocos/editor-support/cocostudio/CocoStudio.h"
 
 using namespace cocostudio;
@@ -37,7 +38,7 @@ using namespace cocos2d::cocoswidget;
 
 NS_TUI_BEGIN
 /**
- * @brief the base of CSceneExtension (optional)
+ * @brief the base of CSceneExtension and CNetDelegate (optional)
  */
 class TuiBase :public CSceneExtension
 {
@@ -49,9 +50,6 @@ public:
 	virtual bool init(){ return true; };	
 
 	CC_SYNTHESIZE(bool, m_isAutoRemoveUnusedSpriteFrame, AutoRemoveUnusedSpriteFrame);
-
-	void setOnMessageScriptHandler(int nHandler);
-	void removeOnMessageScriptHandler();
 
 protected:
 private:

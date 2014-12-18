@@ -11,9 +11,6 @@
     <ClCompile Include="..\..\Classes\tui\TuiBase.cpp">
       <Filter>lib\tui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Classes\tui\utils\AnimationUtil.cpp">
-      <Filter>lib\tui\utils</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\CocosWidget\CheckBox.cpp">
       <Filter>lib\CocosWidget</Filter>
     </ClCompile>
@@ -154,6 +151,9 @@
     <ClCompile Include="..\..\..\CocosWidget\CircleMenu.cpp">
       <Filter>lib\CocosWidget</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Classes\tui\TuiUtil.cpp">
+      <Filter>lib\tui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -171,9 +171,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Classes\tui\TuiManager.h">
       <Filter>lib\tui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Classes\tui\utils\AnimationUtil.h">
-      <Filter>lib\tui\utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\CocosWidget\CheckBox.h">
       <Filter>lib\CocosWidget</Filter>
@@ -376,6 +373,9 @@
     <ClInclude Include="..\..\..\CocosWidget\CircleMenu.h">
       <Filter>lib\CocosWidget</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Classes\tui\TuiUtil.h">
+      <Filter>lib\tui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Classes">
@@ -386,9 +386,6 @@
     </Filter>
     <Filter Include="lib\tui">
       <UniqueIdentifier>{d316cc1a-f51f-46a9-b618-07c00abd4b8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="lib\tui\utils">
-      <UniqueIdentifier>{458b7966-4b89-4617-afce-fd10b33ea1b5}</UniqueIdentifier>
     </Filter>
     <Filter Include="lib\rapidXml">
       <UniqueIdentifier>{2b689948-c204-4afd-adcf-a466a5990fa9}</UniqueIdentifier>

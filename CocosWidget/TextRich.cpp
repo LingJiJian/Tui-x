@@ -115,6 +115,17 @@ void CTextRich::insertElement(const char* pString
 				str_buffer.clear();
 				str_buffer.append(pstr,(unsigned int)nlen);
 				m_uCharCursor = 0;
+			}else if (*pstr == '\n')
+			{
+				_ccTEXTRICHELEMENT tElement;
+				makeAtlasLabelElement(tElement, str_buffer.c_str(), pFontName, fFontSize, tColor, pDescription);
+
+				pushAtlasElementAtLast(tElement);
+				pushAtlasLine();
+
+				str_buffer.clear();
+				//str_buffer.append(pstr, (unsigned int)nlen);   don't append '\n'
+				m_uCharCursor = 0;
 			}
 			else
 			{

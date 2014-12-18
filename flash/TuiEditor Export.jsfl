@@ -1054,7 +1054,7 @@ FlaToXML.prototype.convertMC = function( mc ,tag ,frameName){
 		case "tbl":			control_xml = this.convertTableView(mc,tag ,frameName);			break;
 		case "edit":		control_xml = this.convertEditBox(mc,tag ,frameName);			break;
 		case "rtf":			control_xml = this.convertRichText(mc,tag ,frameName);			break;
-		case "movie":		control_xml = this.convertMovie(mc,tag ,frameName);				break;
+		//case "movie":		control_xml = this.convertMovie(mc,tag ,frameName);				break;
 		case "circlemenu":	control_xml = this.convertCirclemenu(mc,tag ,frameName);		break;
 		case "cell":		control_xml = this.convertCell(mc,tag ,frameName);				break;
 		case "expList":		control_xml = this.convertExpList(mc,tag ,frameName);			break;
@@ -1099,12 +1099,20 @@ FlaToXML.prototype.convertCell = function(cell,tag ,frameName){
 	return xml_cell;
 }
 /** 转换image */
+<<<<<<< HEAD
 FlaToXML.prototype.convertImg = function( image , tag ,frameName){
 	var suffix = ".png";
 	if(image.parameters.suffix != null){
 		suffix = image.parameters.suffix.value;
 	}
 	
+=======
+FlaToXML.prototype.convertImg = function( image , tag ,frameName){
+	var suffix = ".png"
+	if(image.parameters.suffix != null){
+		suffix = image.parameters.suffix.value;
+	}
+>>>>>>> 5da8eaeee2d7f2d0af965537657b309cbc6db6e5
 	var xml_img = new UIImage();
 	xml_img.setAttribute( UIControlAttribute.kScaleX,formatNumber(image.scaleX));
 	xml_img.setAttribute( UIControlAttribute.kScaleY,formatNumber(image.scaleY));

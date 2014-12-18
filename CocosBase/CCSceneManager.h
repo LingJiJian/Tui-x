@@ -154,6 +154,15 @@ public:
 	// close all ui scene
 	void popAllUIScene();
 
+	// opan a suspend scene
+	void runSuspendScene(CSceneExtension* pScene, Ref* pExtra = NULL, bool isPopup = true);
+
+	// close a suspend scene
+	void popSuspendScene(CSceneExtension* pScene);
+
+	// close all Suspend scene
+	void popAllSuspendScene();
+
 	// is ui scene are running
 	bool isSceneRunning(const char* pSceneName);
 
@@ -210,8 +219,17 @@ protected:
 	// unlock the scene switch event by class name, it will find in switch queue
 	void unlockUISceneSwitch(const char* pClassName);
 
+	// handle the switch event
+	void handleSuspendSceneSwitch(ccUISCENESWITCH& tSceneSwitch);
+
+	// unlock the scene switch event by class name, it will find in switch queue
+	void unlockSuspendSceneSwitch(const char* pClassName);
+
 	// visit all ui scene
 	void visitUIScenes(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags);
+
+	// visit all suspend scene
+	void visitSuspendScenes(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags);
 
 	// let the scene load resources they needed
 	bool loadSceneResources(CSceneExtension* pScene);
@@ -249,6 +267,12 @@ protected:
 
 	// ui scene switch queue
 	std::list<ccUISCENESWITCH> m_lUISceneSwitchQueue;
+
+	// suspend scene array
+	std::vector<CSceneExtension*> m_vRunningSuspendScenes;
+
+	// suspend scene switch queue
+	std::list<ccUISCENESWITCH> m_lSuspendSceneSwitchQueue;
 
 	// ui scene array
 	std::vector<CSceneExtension*> m_vRunningUIScenes;

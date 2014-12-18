@@ -434,13 +434,6 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		extension::EditBox *pEdit = createEditBox(tag, placeHolder, img, inputMode, inputFlag, x, y, w, h, rotation,isUseFrame);
 		container->addChild(pEdit);
 
-	}else if (strcmp(item->first_attribute("type")->value(), kTuiControlMovieView) == 0){//MovieView
-		const char* png = item->first_attribute("png")->value();
-		const char* plist = item->first_attribute("plist")->value();
-		const char* json = item->first_attribute("json")->value();
-		MovieView *pMovieView = createMovieView(tag, json, plist, png, x, y, rotation);
-		container->addChild(pMovieView);
-
 	}else if (strcmp(item->first_attribute("type")->value(), kTuiContainerCircleMenu) == 0){//CircleMenu
 		float w = atof(item->first_attribute("width")->value());
 		float h = atof(item->first_attribute("height")->value());
@@ -827,16 +820,6 @@ EditBox* TuiManager::createEditBox(float tag, const char* placeHolder, const cha
 	pEditBox->setTag(tag);
 	return pEditBox;
 }
-
-MovieView *TuiManager::createMovieView(float tag, const char* json, const char* plist, const char* png, float x, float y, float rotation){
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(plist, png);
-	MovieView *pMovieView = MovieView::create(json);
-	pMovieView->setRotation(rotation);
-	pMovieView->setPosition(Vec2(x, -y));
-	pMovieView->setTag(tag);
-	return pMovieView;
-}
-
 CircleMenu *TuiManager::createCircleMenu(float tag, float x, float y, float w, float h, float rotation){
 	CircleMenu *pMenu = CircleMenu::create(Size(w, h));
 	pMenu->setRotation(rotation);
@@ -866,7 +849,7 @@ CTextRich *TuiManager::createTextRich(float tag, const char *text, int maxLen, f
 			if (item->first_attribute("r"))			r = atoi(item->first_attribute("r")->value());
 			if (item->first_attribute("g"))			g = atoi(item->first_attribute("g")->value());
 			if (item->first_attribute("b"))			b = atoi(item->first_attribute("b")->value());
-			pTextRich->insertElement(text, fontName, textSize, Color3B(r, g, b));
+			pTextRich->insertElement(TuiUtil::replace_all(text, "\\n", "\n").c_str(), fontName, textSize, Color3B(r, g, b));
 
 		}else if (strcmp(item->first_attribute("type")->value(), kTuiControlImage) == 0){//image
 			const char *imgSrc = item->first_attribute("src")->value();
