@@ -304,7 +304,7 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 					pExpNodeItem = createLayout(0, 0, 0, w, h, rotation);
 					iw = atof(iiitem->first_attribute("width")->value());
 					ih = atof(iiitem->first_attribute("height")->value());
-					pExpNodeItem->setContentSize(Size(iw, ih));
+                    pExpNodeItem->setContentSize(Size(iw, ih));
 					for (xml_node<char> *iiiitem = iiitem->first_node(kTuiNodeControl); iiiitem != NULL; iiiitem = iiiitem->next_sibling()){
 						parseControl(pExpNodeItem, iiiitem);
 					}
@@ -431,7 +431,7 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		int inputFlag = atoi(item->first_attribute("inputFlag")->value());
 		const char* placeHolder = item->first_attribute("placeHolder")->value();
 		int isUseFrame = atoi(item->first_attribute("spriteFrame")->value());
-		extension::EditBox *pEdit = createEditBox(tag, placeHolder, img, inputMode, inputFlag, x, y, w, h, rotation,isUseFrame);
+		CEditBox *pEdit = createEditBox(tag, placeHolder, img, inputMode, inputFlag, x, y, w, h, rotation,isUseFrame);
 		container->addChild(pEdit);
 
 	}else if (strcmp(item->first_attribute("type")->value(), kTuiContainerCircleMenu) == 0){//CircleMenu
@@ -805,16 +805,16 @@ CGridPageView* TuiManager::createGridPageView(float tag, Color4B color, int dir,
 	return pView;
 }
 
-EditBox* TuiManager::createEditBox(float tag, const char* placeHolder, const char* file, int inputMode, int inputFlag, float x, float y, float w, float h, float rotation, int isUseFrame){
-	EditBox *pEditBox = NULL;
+CEditBox* TuiManager::createEditBox(float tag, const char* placeHolder, const char* file, int inputMode, int inputFlag, float x, float y, float w, float h, float rotation, int isUseFrame){
+	CEditBox *pEditBox = NULL;
 	if(isUseFrame){
-		pEditBox = EditBox::create(Size(w,h),Scale9Sprite::createWithSpriteFrameName(file));
+		pEditBox = CEditBox::createWith9SpriteFrameName(Size(w,h),file);
 	}else{
-		pEditBox = EditBox::create(Size(w,h),Scale9Sprite::create(file));
+		pEditBox = CEditBox::createWith9Sprite(Size(w,h),file);
 	}
 	pEditBox->setPlaceHolder(placeHolder);
-	pEditBox->setInputMode((EditBox::InputMode)inputMode);
-	pEditBox->setInputFlag((EditBox::InputFlag)inputFlag);
+	pEditBox->setInputMode((CEditBox::InputMode)inputMode);
+	pEditBox->setInputFlag((CEditBox::InputFlag)inputFlag);
 	pEditBox->setRotation(rotation);
 	pEditBox->setPosition(Vec2(x,-y));
 	pEditBox->setTag(tag);

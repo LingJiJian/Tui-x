@@ -333,6 +333,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmatureNode.cpp" />
     <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCFactory.cpp" />
     <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCSlot.cpp" />
+    <ClCompile Include="..\..\..\..\protobuf\pb.c" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\tui\lua_cocos2dx_tui_auto.cpp" />
     <ClCompile Include="..\Classes\tui\TuiBase.cpp" />

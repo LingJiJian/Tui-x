@@ -155,7 +155,7 @@ public:
 	void popAllUIScene();
 
 	// opan a suspend scene
-	void runSuspendScene(CSceneExtension* pScene, Ref* pExtra = NULL, bool isPopup = true);
+	void runSuspendScene(CSceneExtension* pScene, Ref* pExtra = NULL);
 
 	// close a suspend scene
 	void popSuspendScene(CSceneExtension* pScene);

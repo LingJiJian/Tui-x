@@ -20,6 +20,16 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		4561FBDA1A45780200B344D7 /* CEditBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4561FBCC1A45780100B344D7 /* CEditBox.cpp */; };
+		4561FBDB1A45780200B344D7 /* CEditBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4561FBCC1A45780100B344D7 /* CEditBox.cpp */; };
+		4561FBDE1A45780200B344D7 /* CEditBoxImplIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4561FBD21A45780200B344D7 /* CEditBoxImplIOS.mm */; };
+		4561FBDF1A45780200B344D7 /* CEditBoxImplIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4561FBD21A45780200B344D7 /* CEditBoxImplIOS.mm */; };
+		4561FBE01A45780200B344D7 /* CEditBoxImplMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4561FBD41A45780200B344D7 /* CEditBoxImplMac.mm */; };
+		4561FBE11A45780200B344D7 /* CEditBoxImplMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4561FBD41A45780200B344D7 /* CEditBoxImplMac.mm */; };
+		4561FBE21A45780200B344D7 /* CEditBoxImplNone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4561FBD51A45780200B344D7 /* CEditBoxImplNone.cpp */; };
+		4561FBE31A45780200B344D7 /* CEditBoxImplNone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4561FBD51A45780200B344D7 /* CEditBoxImplNone.cpp */; };
+		458E1FAC1A43267E009B5495 /* Guideui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458E1FAA1A43267E009B5495 /* Guideui.cpp */; };
+		458E1FAD1A43267E009B5495 /* Guideui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458E1FAA1A43267E009B5495 /* Guideui.cpp */; };
 		45C1A78919B2EFD900A1B310 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1A75919B2EFD900A1B310 /* AppDelegate.cpp */; };
 		45C1A78A19B2EFD900A1B310 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1A75919B2EFD900A1B310 /* AppDelegate.cpp */; };
 		45C1A78B19B2EFD900A1B310 /* ResoureMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1A75C19B2EFD900A1B310 /* ResoureMgr.cpp */; };
@@ -78,8 +88,6 @@
 		45C1A80419B2EFE300A1B310 /* Layout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1A7C219B2EFE300A1B310 /* Layout.cpp */; };
 		45C1A80519B2EFE300A1B310 /* ListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1A7C419B2EFE300A1B310 /* ListView.cpp */; };
 		45C1A80619B2EFE300A1B310 /* ListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1A7C419B2EFE300A1B310 /* ListView.cpp */; };
-		45C1A80919B2EFE300A1B310 /* MovieView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1A7C819B2EFE300A1B310 /* MovieView.cpp */; };
-		45C1A80A19B2EFE300A1B310 /* MovieView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1A7C819B2EFE300A1B310 /* MovieView.cpp */; };
 		45C1A80B19B2EFE300A1B310 /* NumericStepper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1A7CA19B2EFE300A1B310 /* NumericStepper.cpp */; };
 		45C1A80C19B2EFE300A1B310 /* NumericStepper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1A7CA19B2EFE300A1B310 /* NumericStepper.cpp */; };
 		45C1A80D19B2EFE300A1B310 /* PageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1A7CC19B2EFE300A1B310 /* PageView.cpp */; };
@@ -120,8 +128,6 @@
 		45C1A84119B2EFEE00A1B310 /* CCSceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1A83119B2EFEE00A1B310 /* CCSceneManager.cpp */; };
 		45C1A86019B2F00900A1B310 /* bag in Resources */ = {isa = PBXBuildFile; fileRef = 45C1A85719B2F00900A1B310 /* bag */; };
 		45C1A86119B2F00900A1B310 /* bag in Resources */ = {isa = PBXBuildFile; fileRef = 45C1A85719B2F00900A1B310 /* bag */; };
-		45C1A86219B2F00900A1B310 /* effect in Resources */ = {isa = PBXBuildFile; fileRef = 45C1A85819B2F00900A1B310 /* effect */; };
-		45C1A86319B2F00900A1B310 /* effect in Resources */ = {isa = PBXBuildFile; fileRef = 45C1A85819B2F00900A1B310 /* effect */; };
 		45C1A86419B2F00900A1B310 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 45C1A85919B2F00900A1B310 /* fonts */; };
 		45C1A86519B2F00900A1B310 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 45C1A85919B2F00900A1B310 /* fonts */; };
 		45C1A86619B2F00900A1B310 /* main in Resources */ = {isa = PBXBuildFile; fileRef = 45C1A85A19B2F00900A1B310 /* main */; };
@@ -327,6 +333,16 @@
 		1D6058910D05DD3D006BFB54 /* HelloTuiCpp iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HelloTuiCpp iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4561FBCC1A45780100B344D7 /* CEditBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEditBox.cpp; sourceTree = "<group>"; };
+		4561FBCD1A45780100B344D7 /* CEditBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEditBox.h; sourceTree = "<group>"; };
+		4561FBCE1A45780100B344D7 /* CEditBoxImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEditBoxImpl.h; sourceTree = "<group>"; };
+		4561FBD11A45780200B344D7 /* CEditBoxImplIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEditBoxImplIOS.h; sourceTree = "<group>"; };
+		4561FBD21A45780200B344D7 /* CEditBoxImplIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CEditBoxImplIOS.mm; sourceTree = "<group>"; };
+		4561FBD31A45780200B344D7 /* CEditBoxImplMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEditBoxImplMac.h; sourceTree = "<group>"; };
+		4561FBD41A45780200B344D7 /* CEditBoxImplMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CEditBoxImplMac.mm; sourceTree = "<group>"; };
+		4561FBD51A45780200B344D7 /* CEditBoxImplNone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEditBoxImplNone.cpp; sourceTree = "<group>"; };
+		458E1FAA1A43267E009B5495 /* Guideui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Guideui.cpp; sourceTree = "<group>"; };
+		458E1FAB1A43267E009B5495 /* Guideui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guideui.h; sourceTree = "<group>"; };
 		45C1A75919B2EFD900A1B310 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		45C1A75A19B2EFD900A1B310 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		45C1A75C19B2EFD900A1B310 /* ResoureMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResoureMgr.cpp; sourceTree = "<group>"; };
@@ -400,8 +416,6 @@
 		45C1A7C319B2EFE300A1B310 /* Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
 		45C1A7C419B2EFE300A1B310 /* ListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ListView.cpp; sourceTree = "<group>"; };
 		45C1A7C519B2EFE300A1B310 /* ListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListView.h; sourceTree = "<group>"; };
-		45C1A7C819B2EFE300A1B310 /* MovieView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MovieView.cpp; sourceTree = "<group>"; };
-		45C1A7C919B2EFE300A1B310 /* MovieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieView.h; sourceTree = "<group>"; };
 		45C1A7CA19B2EFE300A1B310 /* NumericStepper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NumericStepper.cpp; sourceTree = "<group>"; };
 		45C1A7CB19B2EFE300A1B310 /* NumericStepper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumericStepper.h; sourceTree = "<group>"; };
 		45C1A7CC19B2EFE300A1B310 /* PageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PageView.cpp; sourceTree = "<group>"; };
@@ -444,7 +458,6 @@
 		45C1A83219B2EFEE00A1B310 /* CCSceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSceneManager.h; sourceTree = "<group>"; };
 		45C1A83319B2EFEE00A1B310 /* cocos-base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cocos-base.h"; sourceTree = "<group>"; };
 		45C1A85719B2F00900A1B310 /* bag */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bag; sourceTree = "<group>"; };
-		45C1A85819B2F00900A1B310 /* effect */ = {isa = PBXFileReference; lastKnownFileType = folder; path = effect; sourceTree = "<group>"; };
 		45C1A85919B2F00900A1B310 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		45C1A85A19B2F00900A1B310 /* main */ = {isa = PBXFileReference; lastKnownFileType = folder; path = main; sourceTree = "<group>"; };
 		45C1A85B19B2F00900A1B310 /* recombine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = recombine; sourceTree = "<group>"; };
@@ -621,6 +634,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4561FBCB1A45780100B344D7 /* CEditBox */ = {
+			isa = PBXGroup;
+			children = (
+				4561FBCC1A45780100B344D7 /* CEditBox.cpp */,
+				4561FBCD1A45780100B344D7 /* CEditBox.h */,
+				4561FBCE1A45780100B344D7 /* CEditBoxImpl.h */,
+				4561FBD11A45780200B344D7 /* CEditBoxImplIOS.h */,
+				4561FBD21A45780200B344D7 /* CEditBoxImplIOS.mm */,
+				4561FBD31A45780200B344D7 /* CEditBoxImplMac.h */,
+				4561FBD41A45780200B344D7 /* CEditBoxImplMac.mm */,
+				4561FBD51A45780200B344D7 /* CEditBoxImplNone.cpp */,
+			);
+			path = CEditBox;
+			sourceTree = "<group>";
+		};
+		458E1FA91A43267E009B5495 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				458E1FAA1A43267E009B5495 /* Guideui.cpp */,
+				458E1FAB1A43267E009B5495 /* Guideui.h */,
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
 		45C1A75819B2EFD900A1B310 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,6 +683,7 @@
 		45C1A75E19B2EFD900A1B310 /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				458E1FA91A43267E009B5495 /* Guide */,
 				45C1A75F19B2EFD900A1B310 /* Bag */,
 				45C1A76319B2EFD900A1B310 /* Main */,
 				45C1A76A19B2EFD900A1B310 /* Recombine */,
@@ -757,6 +795,7 @@
 		45C1A7A119B2EFE300A1B310 /* CocosWidget */ = {
 			isa = PBXGroup;
 			children = (
+				4561FBCB1A45780100B344D7 /* CEditBox */,
 				45C1A7A219B2EFE300A1B310 /* ArmatureBtn.cpp */,
 				45C1A7A319B2EFE300A1B310 /* ArmatureBtn.h */,
 				45C1A7A419B2EFE300A1B310 /* Button.cpp */,
@@ -793,8 +832,6 @@
 				45C1A7C319B2EFE300A1B310 /* Layout.h */,
 				45C1A7C419B2EFE300A1B310 /* ListView.cpp */,
 				45C1A7C519B2EFE300A1B310 /* ListView.h */,
-				45C1A7C819B2EFE300A1B310 /* MovieView.cpp */,
-				45C1A7C919B2EFE300A1B310 /* MovieView.h */,
 				45C1A7CA19B2EFE300A1B310 /* NumericStepper.cpp */,
 				45C1A7CB19B2EFE300A1B310 /* NumericStepper.h */,
 				45C1A7CC19B2EFE300A1B310 /* PageView.cpp */,
@@ -898,7 +935,6 @@
 			isa = PBXGroup;
 			children = (
 				45C1A85719B2F00900A1B310 /* bag */,
-				45C1A85819B2F00900A1B310 /* effect */,
 				45C1A85919B2F00900A1B310 /* fonts */,
 				45C1A85A19B2F00900A1B310 /* main */,
 				45C1A85B19B2F00900A1B310 /* recombine */,
@@ -1085,7 +1121,6 @@
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
-				45C1A86219B2F00900A1B310 /* effect in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				45C1A86019B2F00900A1B310 /* bag in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
@@ -1113,7 +1148,6 @@
 				45C1A86D19B2F00900A1B310 /* store in Resources */,
 				45C1A86919B2F00900A1B310 /* recombine in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
-				45C1A86319B2F00900A1B310 /* effect in Resources */,
 				45C1A86119B2F00900A1B310 /* bag in Resources */,
 				45C1A86519B2F00900A1B310 /* fonts in Resources */,
 				45C1A87119B2F00900A1B310 /* welcome in Resources */,
@@ -1132,6 +1166,7 @@
 				45C1A83C19B2EFEE00A1B310 /* CCSceneExtension.cpp in Sources */,
 				45C1A80119B2EFE300A1B310 /* LabelBMFont.cpp in Sources */,
 				45C1A78919B2EFD900A1B310 /* AppDelegate.cpp in Sources */,
+				4561FBDA1A45780200B344D7 /* CEditBox.cpp in Sources */,
 				45C1A80319B2EFE300A1B310 /* Layout.cpp in Sources */,
 				45C1A79F19B2EFD900A1B310 /* TuiUtil.cpp in Sources */,
 				45C1A7FF19B2EFE300A1B310 /* LabelAtlas.cpp in Sources */,
@@ -1139,7 +1174,6 @@
 				45C1A78B19B2EFD900A1B310 /* ResoureMgr.cpp in Sources */,
 				45C1A79719B2EFD900A1B310 /* Storeui.cpp in Sources */,
 				45C1A78F19B2EFD900A1B310 /* MsgBox.cpp in Sources */,
-				45C1A80919B2EFE300A1B310 /* MovieView.cpp in Sources */,
 				45C1A7FD19B2EFE300A1B310 /* Label.cpp in Sources */,
 				45C1A7F919B2EFE300A1B310 /* ImageView.cpp in Sources */,
 				45C1A83619B2EFEE00A1B310 /* CCBundle.cpp in Sources */,
@@ -1159,6 +1193,7 @@
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				45C1A80519B2EFE300A1B310 /* ListView.cpp in Sources */,
+				4561FBDE1A45780200B344D7 /* CEditBoxImplIOS.mm in Sources */,
 				45C1A7FB19B2EFE300A1B310 /* ImageViewScale9.cpp in Sources */,
 				45C1A7EB19B2EFE300A1B310 /* CircleMenu.cpp in Sources */,
 				45C1A78D19B2EFD900A1B310 /* Bagui.cpp in Sources */,
@@ -1172,12 +1207,15 @@
 				45C1A7F119B2EFE300A1B310 /* ExpandableListView.cpp in Sources */,
 				45C1A81B19B2EFE300A1B310 /* ToggleView.cpp in Sources */,
 				45C1A7EF19B2EFE300A1B310 /* ControlView.cpp in Sources */,
+				4561FBE01A45780200B344D7 /* CEditBoxImplMac.mm in Sources */,
 				45C1A7E919B2EFE300A1B310 /* CheckBox.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				45C1A84019B2EFEE00A1B310 /* CCSceneManager.cpp in Sources */,
 				45C1A79319B2EFD900A1B310 /* Recombineui.cpp in Sources */,
 				45C1A81519B2EFE300A1B310 /* Slider.cpp in Sources */,
 				45C1A79519B2EFD900A1B310 /* ShowPhoneui.cpp in Sources */,
+				458E1FAC1A43267E009B5495 /* Guideui.cpp in Sources */,
+				4561FBE21A45780200B344D7 /* CEditBoxImplNone.cpp in Sources */,
 				45C1A81F19B2EFE300A1B310 /* WidgetProtocol.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1191,6 +1229,7 @@
 				45C1A83D19B2EFEE00A1B310 /* CCSceneExtension.cpp in Sources */,
 				45C1A79019B2EFD900A1B310 /* MsgBox.cpp in Sources */,
 				45C1A7F219B2EFE300A1B310 /* ExpandableListView.cpp in Sources */,
+				4561FBDF1A45780200B344D7 /* CEditBoxImplIOS.mm in Sources */,
 				45C1A79C19B2EFD900A1B310 /* TuiBase.cpp in Sources */,
 				45C1A79619B2EFD900A1B310 /* ShowPhoneui.cpp in Sources */,
 				45C1A83719B2EFEE00A1B310 /* CCBundle.cpp in Sources */,
@@ -1221,10 +1260,11 @@
 				45C1A7EE19B2EFE300A1B310 /* ColorView.cpp in Sources */,
 				45C1A80619B2EFE300A1B310 /* ListView.cpp in Sources */,
 				45C1A7FE19B2EFE300A1B310 /* Label.cpp in Sources */,
-				45C1A80A19B2EFE300A1B310 /* MovieView.cpp in Sources */,
+				4561FBE11A45780200B344D7 /* CEditBoxImplMac.mm in Sources */,
 				45C1A80019B2EFE300A1B310 /* LabelAtlas.cpp in Sources */,
 				45C1A79219B2EFD900A1B310 /* Mainui.cpp in Sources */,
 				45C1A81419B2EFE300A1B310 /* ScrollView.cpp in Sources */,
+				458E1FAD1A43267E009B5495 /* Guideui.cpp in Sources */,
 				45C1A81E19B2EFE300A1B310 /* Widget.cpp in Sources */,
 				45C1A7FA19B2EFE300A1B310 /* ImageView.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
@@ -1232,10 +1272,12 @@
 				45C1A81219B2EFE300A1B310 /* Scale9Sprite.cpp in Sources */,
 				45C1A84119B2EFEE00A1B310 /* CCSceneManager.cpp in Sources */,
 				45C1A81819B2EFE300A1B310 /* TableView.cpp in Sources */,
+				4561FBE31A45780200B344D7 /* CEditBoxImplNone.cpp in Sources */,
 				45C1A81C19B2EFE300A1B310 /* ToggleView.cpp in Sources */,
 				45C1A81019B2EFE300A1B310 /* ProgressBar.cpp in Sources */,
 				45C1A82419B2EFE300A1B310 /* WitlsMacros.cpp in Sources */,
 				45C1A7EC19B2EFE300A1B310 /* CircleMenu.cpp in Sources */,
+				4561FBDB1A45780200B344D7 /* CEditBox.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1319,7 +1361,7 @@
 					"$(SRCROOT)/../Classes",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1349,7 +1391,7 @@
 					"$(SRCROOT)/../Classes",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1366,6 +1408,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = mac/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1395,6 +1438,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = mac/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (

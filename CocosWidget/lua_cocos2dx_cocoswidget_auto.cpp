@@ -20,28 +20,7 @@
 	}     \
 	return 0;     \
 }
-/*
-int lua_cocos2dx_cocoswidget_MovieView_setOnCallBackScriptHandle(lua_State* tolua_S)
-{ 
-	int argc = 0;	
-	bool ok = true;
-	cocos2d::cocoswidget::MovieView* cobj = nullptr;
-	cobj = (cocos2d::cocoswidget::MovieView*)tolua_tousertype(tolua_S, 1, 0);
-	argc = lua_gettop(tolua_S) - 1; 
-	if (2 == argc)
-	{
-		const char* key;
 
-		std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp); key = arg0_tmp.c_str();
-		if (!ok)
-			return 0;
-
-		LUA_FUNCTION nHandler = toluafix_ref_function(tolua_S, 3, 0);
-		cobj->setOnCallBackScriptHandle(key, nHandler);
-	}
-	return 0; 
-}
-*/
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CTextRich, setOnTextRichClickScriptHandler)
 
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CPageView, setOnPageChangedScriptHandler)
@@ -3992,6 +3971,53 @@ int lua_cocos2dx_cocoswidget_CWidgetWindow_setMultiTouchEnabled(lua_State* tolua
     return 0;
 }
 
+int lua_cocos2dx_cocoswidget_CWidgetWindow_setTouchAreaEnabled(lua_State* tolua_S)
+{
+	int argc = 0;
+	cocos2d::cocoswidget::CWidgetWindow* cobj = nullptr;
+	bool ok = true;
+
+#if COCOS2D_DEBUG >= 1
+	tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+	if (!tolua_isusertype(tolua_S, 1, "ccw.CWidgetWindow", 0, &tolua_err)) goto tolua_lerror;
+#endif
+
+	cobj = (cocos2d::cocoswidget::CWidgetWindow*)tolua_tousertype(tolua_S, 1, 0);
+
+#if COCOS2D_DEBUG >= 1
+	if (!cobj)
+	{
+		tolua_error(tolua_S, "invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CWidgetWindow_setTouchAreaEnabled'", nullptr);
+		return 0;
+	}
+#endif
+
+	argc = lua_gettop(tolua_S) - 1;
+	if (argc == 1)
+	{
+		bool arg0;
+
+		ok &= luaval_to_boolean(tolua_S, 2, &arg0);
+		if (!ok)
+			return 0;
+		cobj->setTouchAreaEnabled(arg0);
+		return 0;
+	}
+	CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setTouchAreaEnabled", argc, 1);
+	return 0;
+
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+	tolua_error(tolua_S, "#ferror in function 'lua_cocos2dx_cocoswidget_CWidgetWindow_setTouchAreaEnabled'.", &tolua_err);
+#endif
+
+	return 0;
+}
+
 int lua_cocos2dx_cocoswidget_CWidgetWindow_executeTouchMovedAfterLongClickHandler(lua_State* tolua_S)
 {
     int argc = 0;
@@ -4165,38 +4191,85 @@ int lua_cocos2dx_cocoswidget_CWidgetWindow_create(lua_State* tolua_S)
 #endif
     return 0;
 }
+int lua_cocos2dx_cocoswidget_CWidgetWindow_setTouchArea(lua_State* tolua_S)
+{
+	int argc = 0;
+	cocos2d::cocoswidget::CWidgetWindow* cobj = nullptr;
+	bool ok = true;
+
+#if COCOS2D_DEBUG >= 1
+	tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+	if (!tolua_isusertype(tolua_S, 1, "ccw.CWidgetWindow", 0, &tolua_err)) goto tolua_lerror;
+#endif
+
+	cobj = (cocos2d::cocoswidget::CWidgetWindow*)tolua_tousertype(tolua_S, 1, 0);
+
+#if COCOS2D_DEBUG >= 1
+	if (!cobj)
+	{
+		tolua_error(tolua_S, "invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CWidgetWindow_setTouchArea'", nullptr);
+		return 0;
+	}
+#endif
+
+	argc = lua_gettop(tolua_S) - 1;
+	if (argc == 1)
+	{
+		cocos2d::Rect arg0;
+
+		ok &= luaval_to_rect(tolua_S, 2, &arg0);
+
+		if (!ok)
+			return 0;
+		cobj->setTouchArea(arg0);
+		return 1;
+	}
+	CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "CWidgetWindow", argc, 1);
+	return 0;
+
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+	tolua_error(tolua_S, "#ferror in function 'lua_cocos2dx_cocoswidget_CWidgetWindow_constructor'.", &tolua_err);
+#endif
+
+	return 0;
+}
+
 int lua_cocos2dx_cocoswidget_CWidgetWindow_constructor(lua_State* tolua_S)
 {
-    int argc = 0;
-    cocos2d::cocoswidget::CWidgetWindow* cobj = nullptr;
-    bool ok  = true;
+	int argc = 0;
+	cocos2d::cocoswidget::CWidgetWindow* cobj = nullptr;
+	bool ok = true;
 
 #if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
+	tolua_Error tolua_err;
 #endif
 
 
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
-    {
-        if(!ok)
-            return 0;
-        cobj = new cocos2d::cocoswidget::CWidgetWindow();
-        cobj->autorelease();
-        int ID =  (int)cobj->_ID ;
-        int* luaID =  &cobj->_luaID ;
-        toluafix_pushusertype_ccobject(tolua_S, ID, luaID, (void*)cobj,"ccw.CWidgetWindow");
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "CWidgetWindow",argc, 0);
-    return 0;
+	argc = lua_gettop(tolua_S) - 1;
+	if (argc == 0)
+	{
+		if (!ok)
+			return 0;
+		cobj = new cocos2d::cocoswidget::CWidgetWindow();
+		cobj->autorelease();
+		int ID = (int)cobj->_ID;
+		int* luaID = &cobj->_luaID;
+		toluafix_pushusertype_ccobject(tolua_S, ID, luaID, (void*)cobj, "ccw.CWidgetWindow");
+		return 1;
+	}
+	CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "CWidgetWindow", argc, 0);
+	return 0;
 
 #if COCOS2D_DEBUG >= 1
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CWidgetWindow_constructor'.",&tolua_err);
+	tolua_error(tolua_S, "#ferror in function 'lua_cocos2dx_cocoswidget_CWidgetWindow_constructor'.", &tolua_err);
 #endif
 
-    return 0;
+	return 0;
 }
 
 static int lua_cocos2dx_cocoswidget_CWidgetWindow_finalize(lua_State* tolua_S)
@@ -4228,6 +4301,8 @@ int lua_register_cocos2dx_cocoswidget_CWidgetWindow(lua_State* tolua_S)
         tolua_function(tolua_S,"setTouchPriority",lua_cocos2dx_cocoswidget_CWidgetWindow_setTouchPriority);
         tolua_function(tolua_S,"getTouchPriority",lua_cocos2dx_cocoswidget_CWidgetWindow_getTouchPriority);
         tolua_function(tolua_S,"new",lua_cocos2dx_cocoswidget_CWidgetWindow_constructor);
+		tolua_function(tolua_S, "setTouchArea", lua_cocos2dx_cocoswidget_CWidgetWindow_setTouchArea);
+		tolua_function(tolua_S, "setTouchAreaEnabled", lua_cocos2dx_cocoswidget_CWidgetWindow_setTouchAreaEnabled);
         tolua_function(tolua_S,"create", lua_cocos2dx_cocoswidget_CWidgetWindow_create);
 		
 		tolua_function(tolua_S, "setOnTouchEndedAfterLongClickScriptHandler", lua_cocos2dx_cocoswidget_CWidgetWindow_setOnTouchEndedAfterLongClickScriptHandler);
@@ -10622,50 +10697,7 @@ int lua_cocos2dx_cocoswidget_CColorView_draw(lua_State* tolua_S)
 
     return 0;
 }
-int lua_cocos2dx_cocoswidget_CColorView_getBlendFunc(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::cocoswidget::CColorView* cobj = nullptr;
-    bool ok  = true;
 
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"ccw.CColorView",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::cocoswidget::CColorView*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CColorView_getBlendFunc'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
-    {
-        if(!ok)
-            return 0;
-        const cocos2d::BlendFunc& ret = cobj->getBlendFunc();
-        #pragma warning NO CONVERSION FROM NATIVE FOR BlendFunc;
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getBlendFunc",argc, 0);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CColorView_getBlendFunc'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_cocos2dx_cocoswidget_CColorView_getColor(lua_State* tolua_S)
 {
     int argc = 0;
@@ -11226,7 +11258,7 @@ int lua_register_cocos2dx_cocoswidget_CColorView(lua_State* tolua_S)
         tolua_function(tolua_S,"getOpacity",lua_cocos2dx_cocoswidget_CColorView_getOpacity);
         tolua_function(tolua_S,"onTouchMoved",lua_cocos2dx_cocoswidget_CColorView_onTouchMoved);
         tolua_function(tolua_S,"draw",lua_cocos2dx_cocoswidget_CColorView_draw);
-        tolua_function(tolua_S,"getBlendFunc",lua_cocos2dx_cocoswidget_CColorView_getBlendFunc);
+        //tolua_function(tolua_S,"getBlendFunc",lua_cocos2dx_cocoswidget_CColorView_getBlendFunc);
         tolua_function(tolua_S,"getColor",lua_cocos2dx_cocoswidget_CColorView_getColor);
         tolua_function(tolua_S,"getDisplayedOpacity",lua_cocos2dx_cocoswidget_CColorView_getDisplayedOpacity);
         tolua_function(tolua_S,"onTouchCancelled",lua_cocos2dx_cocoswidget_CColorView_onTouchCancelled);

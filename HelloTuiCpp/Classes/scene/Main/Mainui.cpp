@@ -13,7 +13,7 @@ void Mainui::onLoadScene()
 	Vec2 area = Arp(Vec2(618, 10));
 	CWidgetWindow *panel = (CWidgetWindow*)getPanel(PANEL_MAIN);
 	panel->setTouchAreaEnabled(true);
-	panel->setTouchArea(Rect(area.x, area.y, 92, 36));
+    panel->setTouchArea(cocos2d::Rect(area.x, area.y, 92, 36));
 
 	//注册事件
 	CControlView *ctlv = (CControlView*)this->getControl(PANEL_MAIN,CTLV_LEFT);
@@ -39,8 +39,16 @@ void Mainui::onLoadScene()
 
 	CToggleView *pTgvB = (CToggleView*)this->getControl(PANEL_MAIN, TGV_B);
 	pTgvB->setOnCheckListener(this, ccw_check_selector(Mainui::event_tgvB_check));
-
+    
+    CEditBox *pEditBox = (CEditBox*)this->getControl(PANEL_MAIN, EDIT_LOGIN);
+    pEditBox->setDelegate(this);
+    
 	CSceneManager::getInstance()->runSuspendScene(LoadScene("Guideui"));
+}
+
+void Mainui::editBoxReturn(CEditBox *pEditBox)
+{
+
 }
 
 void Mainui::event_ctlv_left( Ref* pSender, float fx, float fy )

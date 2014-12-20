@@ -7681,6 +7681,54 @@ int lua_cocos2dx_cocosbase_CSceneManager_popUIScene(lua_State* tolua_S)
 
     return 0;
 }
+
+int lua_cocos2dx_cocosbase_CSceneManager_popSuspendScene(lua_State* tolua_S)
+{
+	int argc = 0;
+	cocos2d::CSceneManager* cobj = nullptr;
+	bool ok = true;
+
+#if COCOS2D_DEBUG >= 1
+	tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+	if (!tolua_isusertype(tolua_S, 1, "cc.CSceneManager", 0, &tolua_err)) goto tolua_lerror;
+#endif
+
+	cobj = (cocos2d::CSceneManager*)tolua_tousertype(tolua_S, 1, 0);
+
+#if COCOS2D_DEBUG >= 1
+	if (!cobj)
+	{
+		tolua_error(tolua_S, "invalid 'cobj' in function 'lua_cocos2dx_cocosbase_CSceneManager_popSuspendScene'", nullptr);
+		return 0;
+	}
+#endif
+
+	argc = lua_gettop(tolua_S) - 1;
+	if (argc == 1)
+	{
+		cocos2d::CSceneExtension* arg0;
+
+		ok &= luaval_to_object<cocos2d::CSceneExtension>(tolua_S, 2, "cc.CSceneExtension", &arg0);
+		if (!ok)
+			return 0;
+		cobj->popSuspendScene(arg0);
+		return 0;
+	}
+	CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "popSuspendScene", argc, 1);
+	return 0;
+
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+	tolua_error(tolua_S, "#ferror in function 'lua_cocos2dx_cocosbase_CSceneManager_popSuspendScene'.", &tolua_err);
+#endif
+
+	return 0;
+}
+
 int lua_cocos2dx_cocosbase_CSceneManager_getTouchPriority(lua_State* tolua_S)
 {
     int argc = 0;
@@ -7815,6 +7863,111 @@ int lua_cocos2dx_cocosbase_CSceneManager_popAllUIScene(lua_State* tolua_S)
 
     return 0;
 }
+
+int lua_cocos2dx_cocosbase_CSceneManager_popAllSuspendScene(lua_State* tolua_S)
+{
+	int argc = 0;
+	cocos2d::CSceneManager* cobj = nullptr;
+	bool ok = true;
+
+#if COCOS2D_DEBUG >= 1
+	tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+	if (!tolua_isusertype(tolua_S, 1, "cc.CSceneManager", 0, &tolua_err)) goto tolua_lerror;
+#endif
+
+	cobj = (cocos2d::CSceneManager*)tolua_tousertype(tolua_S, 1, 0);
+
+#if COCOS2D_DEBUG >= 1
+	if (!cobj)
+	{
+		tolua_error(tolua_S, "invalid 'cobj' in function 'lua_cocos2dx_cocosbase_CSceneManager_popAllSuspendScene'", nullptr);
+		return 0;
+	}
+#endif
+
+	argc = lua_gettop(tolua_S) - 1;
+	if (argc == 0)
+	{
+		if (!ok)
+			return 0;
+		cobj->popAllSuspendScene();
+		return 0;
+	}
+	CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "popAllSuspendScene", argc, 0);
+	return 0;
+
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+	tolua_error(tolua_S, "#ferror in function 'lua_cocos2dx_cocosbase_CSceneManager_popAllSuspendScene'.", &tolua_err);
+#endif
+
+	return 0;
+}
+
+int lua_cocos2dx_cocosbase_CSceneManager_runSuspendScene(lua_State* tolua_S)
+{
+	int argc = 0;
+	cocos2d::CSceneManager* cobj = nullptr;
+	bool ok = true;
+
+#if COCOS2D_DEBUG >= 1
+	tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+	if (!tolua_isusertype(tolua_S, 1, "cc.CSceneManager", 0, &tolua_err)) goto tolua_lerror;
+#endif
+
+	cobj = (cocos2d::CSceneManager*)tolua_tousertype(tolua_S, 1, 0);
+
+#if COCOS2D_DEBUG >= 1
+	if (!cobj)
+	{
+		tolua_error(tolua_S, "invalid 'cobj' in function 'lua_cocos2dx_cocosbase_CSceneManager_runSuspendScene'", nullptr);
+		return 0;
+	}
+#endif
+
+	argc = lua_gettop(tolua_S) - 1;
+	if (argc == 1)
+	{
+		cocos2d::CSceneExtension* arg0;
+
+		ok &= luaval_to_object<cocos2d::CSceneExtension>(tolua_S, 2, "cc.CSceneExtension", &arg0);
+		if (!ok)
+			return 0;
+		cobj->runSuspendScene(arg0);
+		return 0;
+	}
+	if (argc == 2)
+	{
+		cocos2d::CSceneExtension* arg0;
+		cocos2d::Ref* arg1;
+
+		ok &= luaval_to_object<cocos2d::CSceneExtension>(tolua_S, 2, "cc.CSceneExtension", &arg0);
+
+		ok &= luaval_to_object<cocos2d::Ref>(tolua_S, 3, "cc.Ref", &arg1);
+		if (!ok)
+			return 0;
+		cobj->runSuspendScene(arg0, arg1);
+		return 0;
+	}
+	CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "runSuspendScene", argc, 1);
+	return 0;
+
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+	tolua_error(tolua_S, "#ferror in function 'lua_cocos2dx_cocosbase_CSceneManager_runSuspendScene'.", &tolua_err);
+#endif
+
+	return 0;
+}
+
 int lua_cocos2dx_cocosbase_CSceneManager_runUIScene(lua_State* tolua_S)
 {
     int argc = 0;
@@ -8117,10 +8270,13 @@ int lua_register_cocos2dx_cocosbase_CSceneManager(lua_State* tolua_S)
         tolua_function(tolua_S,"end",lua_cocos2dx_cocosbase_CSceneManager_end);
         tolua_function(tolua_S,"runWithScene",lua_cocos2dx_cocosbase_CSceneManager_runWithScene);
         tolua_function(tolua_S,"popUIScene",lua_cocos2dx_cocosbase_CSceneManager_popUIScene);
+		tolua_function(tolua_S, "popSuspendScene", lua_cocos2dx_cocosbase_CSceneManager_popSuspendScene);
         tolua_function(tolua_S,"getTouchPriority",lua_cocos2dx_cocosbase_CSceneManager_getTouchPriority);
         tolua_function(tolua_S,"loadScene",lua_cocos2dx_cocosbase_CSceneManager_loadScene);
         tolua_function(tolua_S,"popAllUIScene",lua_cocos2dx_cocosbase_CSceneManager_popAllUIScene);
+		tolua_function(tolua_S, "popAllSuspendScene", lua_cocos2dx_cocosbase_CSceneManager_popAllSuspendScene);
         tolua_function(tolua_S,"runUIScene",lua_cocos2dx_cocosbase_CSceneManager_runUIScene);
+		tolua_function(tolua_S, "runSuspendScene", lua_cocos2dx_cocosbase_CSceneManager_runSuspendScene);
         tolua_function(tolua_S,"replaceScene",lua_cocos2dx_cocosbase_CSceneManager_replaceScene);
         tolua_function(tolua_S,"pushScene",lua_cocos2dx_cocosbase_CSceneManager_pushScene);
         tolua_function(tolua_S,"popScene",lua_cocos2dx_cocosbase_CSceneManager_popScene);

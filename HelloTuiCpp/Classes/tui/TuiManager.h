@@ -34,12 +34,10 @@ SOFTWARE.
 #include "TuiBase.h"
 #include "TuiMacros.h"
 
-#include "GUI/CCEditBox/CCEditBox.h"
-
-using namespace cocos2d::extension;
 using namespace rapidxml;
 using namespace std;
 using namespace cocos2d;
+
 /**
 * @brief The parser interface
 */
@@ -102,7 +100,7 @@ public:
 	CPageView *createPageView(float tag, Color4B color, int dir, int num, float x, float y, float w, float h, float rotation);
 	CGridView *createGridView(float tag, Color4B color, int column, int num, int cellWidth, int cellHeight, float x, float y, float w, float h, float rotation);
 	CGridPageView *createGridPageView(float tag, Color4B color, int dir, int column, int row, int num, int cellWidth, int cellHeight, float x, float y, float w, float h, float rotation);
-	EditBox *createEditBox(float tag, const char* placeHolder, const char* file, int inputMode, int inputFlag, float x, float y, float w, float h, float rotation, int isUseFrame);
+	CEditBox *createEditBox(float tag, const char* placeHolder, const char* file, int inputMode, int inputFlag, float x, float y, float w, float h, float rotation, int isUseFrame);
 	CircleMenu *createCircleMenu(float tag, float x, float y, float w, float h, float rotation);
 	CTextRich *createTextRich(float tag, const char *text, int maxLen, float x, float y, float w, float h, float rotation, int isUseFrame);
 	

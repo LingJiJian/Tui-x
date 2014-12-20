@@ -960,7 +960,7 @@ void CSceneManager::visitSuspendScenes(Renderer* renderer, const Mat4 &parentTra
 	}
 }
 
-void CSceneManager::runSuspendScene(CSceneExtension* pScene, Ref* pExtra /*= NULL*/, bool isPopup /*= true*/)
+void CSceneManager::runSuspendScene(CSceneExtension* pScene, Ref* pExtra /*= NULL*/)
 {
 	CCAssert(pScene != NULL && !dynamic_cast<CCSceneExTransition*>(pScene), "should not null and not transition");
 

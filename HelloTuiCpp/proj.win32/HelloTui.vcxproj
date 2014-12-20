@@ -148,6 +148,10 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\..\CocosNet\CCSocket.cpp" />
     <ClCompile Include="..\..\CocosWidget\ArmatureBtn.cpp" />
     <ClCompile Include="..\..\CocosWidget\Button.cpp" />
+    <ClCompile Include="..\..\CocosWidget\CEditBox\CEditBox.cpp" />
+    <ClCompile Include="..\..\CocosWidget\CEditBox\CEditBoxImplAndroid.cpp" />
+    <ClCompile Include="..\..\CocosWidget\CEditBox\CEditBoxImplNone.cpp" />
+    <ClCompile Include="..\..\CocosWidget\CEditBox\CEditBoxImplWin.cpp" />
     <ClCompile Include="..\..\CocosWidget\CheckBox.cpp" />
     <ClCompile Include="..\..\CocosWidget\CircleMenu.cpp" />
     <ClCompile Include="..\..\CocosWidget\ColorView.cpp" />
@@ -226,6 +230,12 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\..\CocosNet\cocos-net.h" />
     <ClInclude Include="..\..\CocosWidget\ArmatureBtn.h" />
     <ClInclude Include="..\..\CocosWidget\Button.h" />
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBox.h" />
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBoxImpl.h" />
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBoxImplAndroid.h" />
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBoxImplIOS.h" />
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBoxImplMac.h" />
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBoxImplWin.h" />
     <ClInclude Include="..\..\CocosWidget\CheckBox.h" />
     <ClInclude Include="..\..\CocosWidget\CircleMenu.h" />
     <ClInclude Include="..\..\CocosWidget\cocos-widget.h" />
@@ -357,6 +367,10 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\CocosWidget\CEditBox\CEditBoxImplIOS.mm" />
+    <None Include="..\..\CocosWidget\CEditBox\CEditBoxImplMac.mm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

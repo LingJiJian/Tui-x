@@ -1,4 +1,5 @@
 require "tagMap/Tag_welcomeui"
+require "proto/chat_pb"
 
 Welcomeui = class("Welcomeui",function()
 	return TuiBase:create()
