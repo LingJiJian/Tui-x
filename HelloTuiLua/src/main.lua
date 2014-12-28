@@ -42,7 +42,8 @@ local function main()
     -- -- avoid memory leak
     collectgarbage("setpause", 100)
     collectgarbage("setstepmul", 5000)
-    -- --注册场景
+	
+	-- --注册场景
     REGISTER_SCENE_FUNC("MsgBox",MsgBox.create)
     REGISTER_SCENE_FUNC("Showphoneui",Showphoneui.create)
     REGISTER_SCENE_FUNC("Recombineui",Recombineui.create)

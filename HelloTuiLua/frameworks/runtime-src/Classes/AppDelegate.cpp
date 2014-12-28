@@ -40,8 +40,11 @@ bool AppDelegate::applicationDidFinishLaunching()
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
-	FileUtils::getInstance()->addSearchPath("src");
-	FileUtils::getInstance()->addSearchPath("res");
+	FileUtils *pFileUtil = FileUtils::getInstance();
+	pFileUtil->addSearchPath("res");
+	pFileUtil->addSearchPath("src");
+	pFileUtil->addSearchPath("src/proto");
+	pFileUtil->addSearchPath("src/proto/runtime");
 
 	auto engine = LuaEngine::getInstance();
 	ScriptEngineManager::getInstance()->setScriptEngine(engine);
@@ -52,6 +55,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	register_all_cocos2dx_cocosnet(state);
 	register_all_cocos2dx_tui(state);
 	register_all_dragonbones(state);
+	luaopen_pb(state);
 	
 	engine->executeScriptFile("main.lua");
 

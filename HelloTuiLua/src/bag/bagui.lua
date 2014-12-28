@@ -74,7 +74,6 @@ local function event_adapt_tblbag(p_convertview, idx)
 	end
 	return pCell
 end
-
 local function event_adapt_pvbag(p_convertview, idx)
 	local pCell = p_convertview
 	if pCell == nil then
@@ -83,7 +82,12 @@ local function event_adapt_pvbag(p_convertview, idx)
 		TuiManager:getInstance():parseCell(pCell, "cell_page", PATH_BAGUI)
 	else
 
+		 
 	end
+	pCell:getChildByTag(Tag_bagui.BTN_GRID4):setOnClickScriptHandler(function(sender)
+
+	 		CSceneManager:getInstance():runUIScene(LoadScene("MsgBox"))
+	 end)
 	return pCell
 end
 

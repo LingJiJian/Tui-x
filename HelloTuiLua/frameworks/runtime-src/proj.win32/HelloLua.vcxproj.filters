@@ -28,6 +28,9 @@
     <Filter Include="lib\Dragonbones">
       <UniqueIdentifier>{ce35c8de-0dce-4419-ad98-a65936d3c8c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lib\protobuf">
+      <UniqueIdentifier>{97d2fed9-05d5-41dc-9443-970c38bcf9bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -556,6 +559,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\CocosNet\lua_cocos2dx_cocosnet_auto.cpp">
       <Filter>lib\CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\protobuf\pb.c">
+      <Filter>lib\protobuf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

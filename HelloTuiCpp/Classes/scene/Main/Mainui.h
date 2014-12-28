@@ -6,7 +6,7 @@
 
 NS_MAIN_BEGIN
 
-class Mainui : public TuiBase
+class Mainui : public TuiBase , CEditBoxDelegate
 {
 public:
 	CREATE_SCENE_FUNC(Mainui);
@@ -26,6 +26,8 @@ protected:
 	void event_tgvB_check(Ref *pSender, bool bChecked);
 
 	void onMessage(unsigned int uMsg, Ref* pMsgObj, void* wParam, void* lParam);
+    
+    void editBoxReturn(CEditBox* editBox);
 private:
 };
 

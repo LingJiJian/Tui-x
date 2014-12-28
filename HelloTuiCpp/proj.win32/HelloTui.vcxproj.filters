@@ -73,6 +73,9 @@
     <Filter Include="Classes\scene\Guide">
       <UniqueIdentifier>{439b0d9a-169f-4ea2-825e-6c902a4bef9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lib\CocosWidget\EditBox">
+      <UniqueIdentifier>{6ca590d6-1a28-4823-a89b-9287dbfc2249}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -290,6 +293,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\scene\Guide\Guideui.cpp">
       <Filter>Classes\scene\Guide</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CocosWidget\CEditBox\CEditBoxImplNone.cpp">
+      <Filter>lib\CocosWidget\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CocosWidget\CEditBox\CEditBoxImplWin.cpp">
+      <Filter>lib\CocosWidget\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CocosWidget\CEditBox\CEditBox.cpp">
+      <Filter>lib\CocosWidget\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CocosWidget\CEditBox\CEditBoxImplAndroid.cpp">
+      <Filter>lib\CocosWidget\EditBox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -671,10 +686,36 @@
     <ClInclude Include="..\Classes\scene\Guide\Guideui.h">
       <Filter>Classes\scene\Guide</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBoxImplIOS.h">
+      <Filter>lib\CocosWidget\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBoxImplMac.h">
+      <Filter>lib\CocosWidget\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBoxImplWin.h">
+      <Filter>lib\CocosWidget\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBox.h">
+      <Filter>lib\CocosWidget\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBoxImpl.h">
+      <Filter>lib\CocosWidget\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBoxImplAndroid.h">
+      <Filter>lib\CocosWidget\EditBox</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\CocosWidget\CEditBox\CEditBoxImplIOS.mm">
+      <Filter>lib\CocosWidget\EditBox</Filter>
+    </None>
+    <None Include="..\..\CocosWidget\CEditBox\CEditBoxImplMac.mm">
+      <Filter>lib\CocosWidget\EditBox</Filter>
+    </None>
   </ItemGroup>
 </Project>
