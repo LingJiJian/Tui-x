@@ -117,6 +117,54 @@ int lua_register_cocos2dx_tui_TuiUtil(lua_State* tolua_S)
     return 1;
 }
 
+int lua_cocos2dx_tui_TuiBase_getControlByTag(lua_State* tolua_S)
+{
+	int argc = 0;
+	cocos2d::tui::TuiBase* cobj = nullptr;
+	bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+	tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+	if (!tolua_isusertype(tolua_S,1,"tui.TuiBase",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+	cobj = (cocos2d::tui::TuiBase*)tolua_tousertype(tolua_S,1,0);
+
+#if COCOS2D_DEBUG >= 1
+	if (!cobj) 
+	{
+		tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiBase_getControlByTag'", nullptr);
+		return 0;
+	}
+#endif
+
+	argc = lua_gettop(tolua_S)-1;
+	if (argc == 1) 
+	{
+		int arg0;
+
+		ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0);
+		if(!ok)
+			return 0;
+		cocos2d::Ref* ret = cobj->getControlByTag(arg0);
+		object_to_luaval<cocos2d::Ref>(tolua_S, "cc.Ref",(cocos2d::Ref*)ret);
+		return 1;
+	}
+	CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "lua_cocos2dx_tui_TuiBase_getControlByTag",argc, 1);
+	return 0;
+
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+	tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiBase_getControlByTag'.",&tolua_err);
+#endif
+
+	return 0;
+}
+
 int lua_cocos2dx_tui_TuiBase_getAutoRemoveUnusedSpriteFrame(lua_State* tolua_S)
 {
     int argc = 0;

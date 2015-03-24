@@ -43,15 +43,15 @@ NS_TUI_BEGIN
 class TuiBase :public CSceneExtension
 {
 public:
+    CREATE_FUNC(TuiBase);
+    virtual bool init();
+    
 	TuiBase();
 	virtual ~TuiBase();
-
-	CREATE_FUNC(TuiBase);
-	virtual bool init(){ return true; };	
-
-	CC_SYNTHESIZE(bool, m_isAutoRemoveUnusedSpriteFrame, AutoRemoveUnusedSpriteFrame);
-
+    Node* getControlByTag(int tag);
 protected:
+    Node *findNode(Vector<Node*> &pChidren, int tag);
+    CC_SYNTHESIZE(bool, m_isAutoRemoveUnusedSpriteFrame, AutoRemoveUnusedSpriteFrame);
 private:
 };
 

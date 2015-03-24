@@ -1,6 +1,11 @@
+xcuserdata/
+project.xcworkspace/
+cocos2d
+cocos2d-x/
 */bin/
-*/Debug.win32/
+*/proj.win32/Debug.win32/
 .DS_Store
 *.obj
 *.sdf
 *.opensdf
+*._*

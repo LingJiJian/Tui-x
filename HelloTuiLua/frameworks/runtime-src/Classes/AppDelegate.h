@@ -3,13 +3,6 @@
 
 #include "cocos2d.h"
 
-extern "C"{
-#include <lua.h>  
-#include <lualib.h>  
-#include <lauxlib.h>  
-	int luaopen_pb(lua_State *L);
-}
-
 /**
 @brief    The cocos2d Application.
 
@@ -20,6 +13,8 @@ class  AppDelegate : private cocos2d::Application
 public:
     AppDelegate();
     virtual ~AppDelegate();
+
+    virtual void initGLContextAttrs();
 
     /**
     @brief    Implement Director and Scene init code here.
