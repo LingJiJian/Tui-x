@@ -68,7 +68,7 @@ cocos2d::CSceneManager::getInstance()->seekScene(_CLASS_)
 
 #define LUA_COCOS2DX_CCB_SCRIPT_REGISTER(__KEY__) \
 protected:\
-	int m_n##__KEY__##ScriptHandler = 0; \
+	int m_n##__KEY__##ScriptHandler; \
 public:	\
 	void remove##__KEY__##ScriptHandler()\
 {\

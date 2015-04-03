@@ -30,7 +30,7 @@ THE SOFTWARE.
 #include "cocos2d.h"
 #include "CCSceneExtension.h"
 #include "CCBaseMacros.h"
-#include "ccTypes.h"
+#include "base/ccTypes.h"
 
 NS_CC_BEGIN
 

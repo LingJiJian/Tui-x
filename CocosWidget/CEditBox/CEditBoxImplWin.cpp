@@ -35,7 +35,7 @@
 #endif
 
 #include "CEditBox.h"
-#include "proj.win32/Win32InputBox.h"
+#include "Win32InputBox.h"
 #include "glfw3native.h"
 
 NS_CC_WIDGET_BEGIN
@@ -258,8 +258,7 @@ void EditBoxImplWin::openKeyboard()
 	if (text.length())
 		strncpy(pText, text.c_str(), 100);
 	GLView *glView = Director::getInstance()->getOpenGLView();
-	GLFWwindow *glfwWindow = glView->getWindow();
-	HWND hwnd = glfwGetWin32Window(glfwWindow);
+	HWND hwnd = glView->getWin32Window();
 	bool didChange = CWin32InputBox::InputBox("Input", placeHolder.c_str(), pText, 100, false, hwnd) == IDOK;
 	
 	if (didChange) 	

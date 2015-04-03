@@ -1,6 +1,7 @@
 ﻿#include "AppDelegate.h"
 #include "module/ResoureMgr.h"
 #include "tui/TuiManager.h"
+#include "TestScene.h"
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -16,7 +17,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-		glview = GLView::create("HelloTuiCpp");
+		glview = GLViewImpl::create("HelloTuiCpp");
 		director->setOpenGLView(glview);
     }
 
@@ -29,8 +30,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	//regist scene
 	ResoureMgr::getInstance()->registScene();
-    // run
-	CSceneManager::getInstance()->runWithScene(LoadScene("Welcome::Welcomeui"));
+//     run
+//	CSceneManager::getInstance()->runWithScene(LoadScene("Welcome::Welcomeui"));
+    Director::getInstance()->runWithScene(TestScene::create());
 
     return true;
 }

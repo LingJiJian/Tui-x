@@ -26,7 +26,7 @@ THE SOFTWARE.
 
 #include "CCSceneExTransition.h"
 #include "CCSceneManager.h"
-#include "CCScene.h"
+#include "2d/CCScene.h"
 
 NS_CC_BEGIN
 

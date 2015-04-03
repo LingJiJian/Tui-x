@@ -85,7 +85,7 @@ static _CLASS_* getInstance() \
 
 #define LUA_COCOS2DX_CCN_SCRIPT_REGISTER(__KEY__) \
 protected:\
-	int m_n##__KEY__##ScriptHandler = 0; \
+	int m_n##__KEY__##ScriptHandler; \
 public:	\
 	void remove##__KEY__##ScriptHandler()\
 {\

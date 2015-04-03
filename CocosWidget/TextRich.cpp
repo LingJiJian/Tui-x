@@ -272,7 +272,7 @@ void CTextRich::makeAtlasLabelElement(_ccTEXTRICHELEMENT& tElement
 									  , const Color3B& color
 									  , const char* pDescription)
 {
-	CLabel* pLabel = CLabel::createWithSystemFont(str, 
+	CLabel* pLabel = CLabel::createWithSystemFont(str,
 		fontname && strlen(fontname) ? fontname : m_strFontName.c_str(),
 		(int) size == 0 ? m_fFontSize : size);
 
