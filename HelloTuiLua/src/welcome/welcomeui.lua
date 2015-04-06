@@ -123,5 +123,6 @@ function Welcomeui:onLoadScene()
 
  	btnShowPhone = self:getControl(Tag_welcomeui.PANEL_WELCOME,Tag_welcomeui.BTN_SHOWPHONE)
  	btnShowPhone:setOnClickScriptHandler(event_btn_showphone)
+
 end 
 

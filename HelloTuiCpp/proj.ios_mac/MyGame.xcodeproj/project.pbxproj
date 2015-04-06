@@ -184,8 +184,6 @@
 		4586DAD71AC99B1A0079F62E /* tui in Resources */ = {isa = PBXBuildFile; fileRef = 4586DACA1AC99B1A0079F62E /* tui */; };
 		4586DAD81AC99B1A0079F62E /* welcome in Resources */ = {isa = PBXBuildFile; fileRef = 4586DACB1AC99B1A0079F62E /* welcome */; };
 		4586DAD91AC99B1A0079F62E /* welcome in Resources */ = {isa = PBXBuildFile; fileRef = 4586DACB1AC99B1A0079F62E /* welcome */; };
-		4586DADC1AC99FEE0079F62E /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4586DADA1AC99FEE0079F62E /* TestScene.cpp */; };
-		4586DADD1AC99FEE0079F62E /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4586DADA1AC99FEE0079F62E /* TestScene.cpp */; };
 		46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 503AE0F617EB97AB00D1A890 /* Icon.icns */; };
@@ -460,7 +458,6 @@
 		4586DA8A1AC99B000079F62E /* StoreCfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreCfg.h; sourceTree = "<group>"; };
 		4586DA8B1AC99B000079F62E /* Storeui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Storeui.cpp; sourceTree = "<group>"; };
 		4586DA8C1AC99B000079F62E /* Storeui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Storeui.h; sourceTree = "<group>"; };
-		4586DA8E1AC99B000079F62E /* ._Welcomeui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ._Welcomeui.h; sourceTree = "<group>"; };
 		4586DA8F1AC99B000079F62E /* WelcomeCfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeCfg.h; sourceTree = "<group>"; };
 		4586DA901AC99B000079F62E /* Welcomeui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Welcomeui.cpp; sourceTree = "<group>"; };
 		4586DA911AC99B000079F62E /* Welcomeui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Welcomeui.h; sourceTree = "<group>"; };
@@ -485,8 +482,6 @@
 		4586DAC91AC99B1A0079F62E /* store */ = {isa = PBXFileReference; lastKnownFileType = folder; path = store; sourceTree = "<group>"; };
 		4586DACA1AC99B1A0079F62E /* tui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tui; sourceTree = "<group>"; };
 		4586DACB1AC99B1A0079F62E /* welcome */ = {isa = PBXFileReference; lastKnownFileType = folder; path = welcome; sourceTree = "<group>"; };
-		4586DADA1AC99FEE0079F62E /* TestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestScene.cpp; sourceTree = "<group>"; };
-		4586DADB1AC99FEE0079F62E /* TestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScene.h; sourceTree = "<group>"; };
 		46880B8419C43A87006E1F66 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		46880B8519C43A87006E1F66 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		503AE0F617EB97AB00D1A890 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
@@ -982,8 +977,6 @@
 				4586DA851AC99B000079F62E /* ShowPhone */,
 				4586DA891AC99B000079F62E /* Store */,
 				4586DA8D1AC99B000079F62E /* Welcome */,
-				4586DADA1AC99FEE0079F62E /* TestScene.cpp */,
-				4586DADB1AC99FEE0079F62E /* TestScene.h */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -1059,7 +1052,6 @@
 		4586DA8D1AC99B000079F62E /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
-				4586DA8E1AC99B000079F62E /* ._Welcomeui.h */,
 				4586DA8F1AC99B000079F62E /* WelcomeCfg.h */,
 				4586DA901AC99B000079F62E /* Welcomeui.cpp */,
 				4586DA911AC99B000079F62E /* Welcomeui.h */,
@@ -1372,7 +1364,6 @@
 				4586DA241AC99AAB0079F62E /* NumericStepper.cpp in Sources */,
 				4586DA381AC99AAB0079F62E /* WidgetProtocol.cpp in Sources */,
 				4586DA0E1AC99AAB0079F62E /* GradientView.cpp in Sources */,
-				4586DADC1AC99FEE0079F62E /* TestScene.cpp in Sources */,
 				4586DAA71AC99B000079F62E /* ResoureMgr.cpp in Sources */,
 				4586DA3E1AC99AAB0079F62E /* Animation.cpp in Sources */,
 				4586D9DE1AC99AAB0079F62E /* CCSceneManager.cpp in Sources */,
@@ -1451,7 +1442,6 @@
 				4586D9DB1AC99AAB0079F62E /* CCSceneExtension.cpp in Sources */,
 				4586DA0F1AC99AAB0079F62E /* GradientView.cpp in Sources */,
 				4586DA0B1AC99AAB0079F62E /* ControlView.cpp in Sources */,
-				4586DADD1AC99FEE0079F62E /* TestScene.cpp in Sources */,
 				4586DA0D1AC99AAB0079F62E /* ExpandableListView.cpp in Sources */,
 				4586D9D51AC99AAB0079F62E /* CCBundle.cpp in Sources */,
 				4586DA251AC99AAB0079F62E /* NumericStepper.cpp in Sources */,

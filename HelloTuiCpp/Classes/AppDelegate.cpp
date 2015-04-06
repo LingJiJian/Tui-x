@@ -31,8 +31,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	//regist scene
 	ResoureMgr::getInstance()->registScene();
 //     run
-//	CSceneManager::getInstance()->runWithScene(LoadScene("Welcome::Welcomeui"));
-    Director::getInstance()->runWithScene(TestScene::create());
+	CSceneManager::getInstance()->runWithScene(LoadScene("Welcome::Welcomeui"));
 
     return true;
 }
