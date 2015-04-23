@@ -1,0 +1,774 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{fc5cb953-2953-4968-83b3-39e3ff951754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="win32">
+      <UniqueIdentifier>{037a9a02-b906-4cc5-ad98-304acd4e25ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{2d1d0979-58cd-4ab6-b91c-13650158f1fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\runtime">
+      <UniqueIdentifier>{44c0d166-6d84-43b5-8be7-a440c1c0f1ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\runtime\protobuf-lite">
+      <UniqueIdentifier>{28edb895-7c19-408b-abd6-130196087d96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CocosWidget">
+      <UniqueIdentifier>{73f49728-22c9-4778-86a8-1e2d0c47b433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CocosBase">
+      <UniqueIdentifier>{54f7ca8a-3e2e-43c8-b405-ee1538c11a99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CocosNet">
+      <UniqueIdentifier>{3831899c-3c94-482f-9b6a-c635181a82ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tui">
+      <UniqueIdentifier>{28277851-dd94-412e-a0ae-ec7267b3e753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dragonbone">
+      <UniqueIdentifier>{71be3a48-fdf3-4f58-aa07-8dfb18509189}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="SimulatorWindow.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="..\Classes\ConfigParser.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\VisibleRect.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\runtime\ResData.h">
+      <Filter>Classes\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\runtime\Runtime.h">
+      <Filter>Classes\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\runtime\Protos.pb.h">
+      <Filter>Classes\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\extension_set.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\generated_message_util.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\io\coded_stream.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\io\coded_stream_inl.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\io\zero_copy_stream.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\io\zero_copy_stream_impl_lite.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\message_lite.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\repeated_field.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\atomicops.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\atomicops_internals_x86_msvc.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\common.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\hash.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\map-util.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\once.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\platform_macros.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\stl_util.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\stringprintf.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\template_util.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\type_traits.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\wire_format_lite.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\wire_format_lite_inl.h">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\runtime\lua_debugger.h">
+      <Filter>Classes\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\runtime\ConnectWaitLayer.h">
+      <Filter>Classes\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\runtime\ConsoleCommand.h">
+      <Filter>Classes\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\runtime\FileServer.h">
+      <Filter>Classes\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCMsgManager.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneExtension.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneExTransition.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneManager.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\cocos-base.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.hpp">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCBaseMacros.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCBundle.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCMsgDelegate.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\CCInetAddress.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\CCNetDelegate.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\CCNetMacros.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\CCSocket.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\cocos-net.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\lua_cocos2dx_cocosnet_auto.hpp">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\CCBuffer.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\Button.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\CheckBox.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\CircleMenu.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\cocos-widget.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ColorView.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ControlView.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\Ease.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ExpandableListView.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\GradientView.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\GridPageView.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\GridView.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ImageView.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ImageViewScale9.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\Label.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\LabelAtlas.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\LabelBMFont.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\Layout.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ListView.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\lua_cocos2dx_cocoswidget_auto.hpp">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\NumericStepper.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\PageView.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ProgressBar.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\Scale9Sprite.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ScrollView.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\Slider.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\TableView.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\TextRich.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ToggleView.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\Widget.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\WidgetMacros.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\WidgetProtocol.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\WidgetWindow.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\WitlsMacros.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\CEditBox\CEditBox.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\CEditBox\CEditBoxImpl.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\CEditBox\CEditBoxImplWin.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\CEditBox\Win32InputBox.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ArmatureBtn.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\parsers\BaseDataParser.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\parsers\ConstValues.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\parsers\dbtinyxml2.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\parsers\XMLDataParser.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmature.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmatureNode.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCEventDispatcher.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCFactory.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\dbccMacro.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCRenderHeaders.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCSlot.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCTextureAtlas.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\textures\ITextureAtlas.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\textures\TextureAtlasData.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\textures\TextureData.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\DragonBones.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\DragonBonesHeaders.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\lua_dragonbones_auto.hpp">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\animation\Animation.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\animation\AnimationState.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\animation\IAnimatable.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\animation\TimelineState.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\animation\WorldClock.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\core\Armature.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\core\Bone.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\core\Object.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\core\Slot.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\events\EventData.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\events\IEventDispatcher.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\factories\BaseFactory.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\ColorTransform.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\Matrix.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\Point.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\Rectangle.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\Transform.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\AnimationData.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\ArmatureData.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\BoneData.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\DisplayData.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\DragonBonesData.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\EllipseData.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\Frame.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\IAreaData.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\RectangleData.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\SkinData.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\SlotData.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\Timeline.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\TransformFrame.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dragonbones\objects\TransformTimeline.h">
+      <Filter>dragonbone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\TuiBase.h">
+      <Filter>tui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\tuiconsts.h">
+      <Filter>tui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\TuiMacros.h">
+      <Filter>tui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\TuiManager.h">
+      <Filter>tui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\TuiUtil.h">
+      <Filter>tui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\lua_cocos2dx_tui_auto.hpp">
+      <Filter>tui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppMacros.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="SimulatorWindow.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime_win32.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ConfigParser.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\VisibleRect.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\runtime\Landscape_png.cpp">
+      <Filter>Classes\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\runtime\PlayDisable_png.cpp">
+      <Filter>Classes\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\runtime\PlayEnable_png.cpp">
+      <Filter>Classes\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\runtime\Portrait_png.cpp">
+      <Filter>Classes\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\runtime\Runtime.cpp">
+      <Filter>Classes\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\runtime\Shine_png.cpp">
+      <Filter>Classes\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\runtime\Protos.pb.cc">
+      <Filter>Classes\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\extension_set.cc">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\generated_message_util.cc">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\io\coded_stream.cc">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\io\zero_copy_stream.cc">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\io\zero_copy_stream_impl_lite.cc">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\message_lite.cc">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\repeated_field.cc">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\stubs\atomicops_internals_x86_msvc.cc">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\stubs\common.cc">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\stubs\once.cc">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\stubs\stringprintf.cc">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\wire_format_lite.cc">
+      <Filter>Classes\runtime\protobuf-lite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\runtime\lua_debugger.c">
+      <Filter>Classes\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\runtime\ConnectWaitLayer.cpp">
+      <Filter>Classes\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\runtime\ConsoleCommand.cpp">
+      <Filter>Classes\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\runtime\FileServer.cpp">
+      <Filter>Classes\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneExtension.cpp">
+      <Filter>CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneExTransition.cpp">
+      <Filter>CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneManager.cpp">
+      <Filter>CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.cpp">
+      <Filter>CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCBundle.cpp">
+      <Filter>CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCMsgDelegate.cpp">
+      <Filter>CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCMsgManager.cpp">
+      <Filter>CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosNet\CCNetDelegate.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosNet\CCSocket.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosNet\lua_cocos2dx_cocosnet_auto.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosNet\CCBuffer.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosNet\CCInetAddress.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\Button.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\CheckBox.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\CircleMenu.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ColorView.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ControlView.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ExpandableListView.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\GradientView.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\GridPageView.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\GridView.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ImageView.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ImageViewScale9.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\Label.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\LabelAtlas.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\LabelBMFont.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\Layout.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ListView.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\lua_cocos2dx_cocoswidget_auto.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\NumericStepper.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\PageView.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ProgressBar.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\Scale9Sprite.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ScrollView.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\Slider.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\TableView.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\TextRich.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ToggleView.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\Widget.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\WidgetProtocol.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\WidgetWindow.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\WitlsMacros.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\CEditBox\CEditBox.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\CEditBox\CEditBoxImplNone.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\CEditBox\CEditBoxImplWin.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\CEditBox\Win32InputBox.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ArmatureBtn.cpp">
+      <Filter>CocosWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\parsers\BaseDataParser.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\parsers\ConstValues.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\parsers\dbtinyxml2.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\parsers\XMLDataParser.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmature.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmatureNode.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCFactory.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCSlot.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\lua_dragonbones_auto.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\animation\Animation.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\animation\AnimationState.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\animation\TimelineState.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\animation\WorldClock.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\core\Armature.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\core\Bone.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\core\Object.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\core\Slot.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\events\EventData.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dragonbones\factories\BaseFactory.cpp">
+      <Filter>dragonbone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tui\TuiBase.cpp">
+      <Filter>tui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tui\TuiManager.cpp">
+      <Filter>tui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tui\TuiUtil.cpp">
+      <Filter>tui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tui\lua_cocos2dx_tui_auto.cpp">
+      <Filter>tui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\game.ico" />
+  </ItemGroup>
+</Project>

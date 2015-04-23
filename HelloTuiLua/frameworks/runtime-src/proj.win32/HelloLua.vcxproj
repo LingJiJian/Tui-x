@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4E6A7A0E-DDD8-4BAA-8B22-C964069364ED}</ProjectGuid>
+    <ProjectName>HelloLua</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0'">v110</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v110_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0'">v110</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v110_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\cocos2d-x\cocos\2d\cocos2dx.props" />
+    <Import Project="..\..\cocos2d-x\cocos\2d\cocos2d_headers.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\cocos2d-x\cocos\2d\cocos2dx.props" />
+    <Import Project="..\..\cocos2d-x\cocos\2d\cocos2d_headers.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration).win32\</OutDir>
+    <IntDir>$(Configuration).win32\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <SourcePath>$(SourcePath);</SourcePath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration).win32\</OutDir>
+    <IntDir>$(Configuration).win32\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\CocosNet;$(ProjectDir)..\..\..\..\CocosBase;$(ProjectDir)..\..\..\..\CocosWidget;$(ProjectDir)..\..\..\..\dragonbones;$(ProjectDir)..\Classes;$(ProjectDir)..\Classes\runtime;$(ProjectDir)..\Classes\protobuf-lite;$(EngineRoot)external\win32-specific\zlib\include;$(EngineRoot)cocos\scripting\lua-bindings\auto;$(EngineRoot)cocos\scripting\lua-bindings\manual;$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\lua\lua;$(EngineRoot)external\lua\tolua;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;$(EngineRoot);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <MinimalRebuild>false</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;STRICT;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS_DEBUG;COCOS2D_DEBUG=1;GLFW_EXPOSE_NATIVE_WIN32;GLFW_EXPOSE_NATIVE_WGL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <ForcedIncludeFiles>algorithm</ForcedIncludeFiles>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcurl_imp.lib;lua51.lib;websockets.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ProgramDatabaseFile>$(ProjectDir)../../../runtime/win32/$(TargetName).pdb</ProgramDatabaseFile>
+      <OutputFile>$(ProjectDir)../../../runtime/win32/$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <HeaderFileName>HelloLua.h</HeaderFileName>
+      <InterfaceIdentifierFileName>HelloLua_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>HelloLua_p.c</ProxyFileName>
+      <GenerateStublessProxies>true</GenerateStublessProxies>
+      <TypeLibraryName>$(IntDir)/HelloLua.tlb</TypeLibraryName>
+      <DllDataFileName>
+      </DllDataFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Command>if not exist "$(LocalDebuggerWorkingDirectory)" mkdir "$(LocalDebuggerWorkingDirectory)"</Command>
+      <Message>copy files</Message>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>xcopy /Y /Q "$(OutDir)*.dll" "$(ProjectDir)..\..\..\runtime\win32\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Classes;$(ProjectDir)..\Classes\runtime;$(ProjectDir)..\Classes\protobuf-lite;$(EngineRoot)external\win32-specific\zlib\include;$(EngineRoot)cocos\scripting\lua-bindings\auto;$(EngineRoot)cocos\scripting\lua-bindings\manual;$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\lua\lua;$(EngineRoot)external\lua\tolua;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;$(EngineRoot);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;STRICT;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGSNDEBUG;GLFW_EXPOSE_NATIVE_WIN32;GLFW_EXPOSE_NATIVE_WGL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <ForcedIncludeFiles>algorithm</ForcedIncludeFiles>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcurl_imp.lib;lua51.lib;websockets.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <HeaderFileName>HelloLua.h</HeaderFileName>
+      <InterfaceIdentifierFileName>HelloLua_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>HelloLua_p.c</ProxyFileName>
+      <GenerateStublessProxies>true</GenerateStublessProxies>
+      <TypeLibraryName>$(IntDir)/HelloLua.tlb</TypeLibraryName>
+      <DllDataFileName>
+      </DllDataFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Command>if exist "$(LocalDebuggerWorkingDirectory)" rd /s /q "$(LocalDebuggerWorkingDirectory)"
+mkdir "$(LocalDebuggerWorkingDirectory)"
+mkdir "$(LocalDebuggerWorkingDirectory)\src"
+mkdir "$(LocalDebuggerWorkingDirectory)\res"
+xcopy "$(ProjectDir)..\..\..\src" "$(LocalDebuggerWorkingDirectory)\src" /e /Y
+xcopy "$(ProjectDir)..\..\..\res" "$(LocalDebuggerWorkingDirectory)\res" /e /Y
+copy "$(ProjectDir)..\..\..\config.json" "$(LocalDebuggerWorkingDirectory)\config.json" /Y
+</Command>
+      <Message>copy files</Message>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\CocosBase\CCBaseMacros.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\CCBundle.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\CCMsgDelegate.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\CCMsgManager.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneExtension.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneExTransition.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneManager.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\cocos-base.h" />
+    <ClInclude Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.hpp" />
+    <ClInclude Include="..\..\..\..\CocosNet\CCBuffer.h" />
+    <ClInclude Include="..\..\..\..\CocosNet\CCInetAddress.h" />
+    <ClInclude Include="..\..\..\..\CocosNet\CCNetDelegate.h" />
+    <ClInclude Include="..\..\..\..\CocosNet\CCNetMacros.h" />
+    <ClInclude Include="..\..\..\..\CocosNet\CCSocket.h" />
+    <ClInclude Include="..\..\..\..\CocosNet\cocos-net.h" />
+    <ClInclude Include="..\..\..\..\CocosNet\lua_cocos2dx_cocosnet_auto.hpp" />
+    <ClInclude Include="..\..\..\..\CocosWidget\ArmatureBtn.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\Button.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\CEditBox\CEditBox.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\CEditBox\CEditBoxImpl.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\CEditBox\CEditBoxImplWin.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\CEditBox\Win32InputBox.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\CheckBox.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\CircleMenu.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\cocos-widget.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\ColorView.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\ControlView.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\Ease.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\ExpandableListView.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\GradientView.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\GridPageView.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\GridView.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\ImageView.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\ImageViewScale9.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\Label.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\LabelAtlas.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\LabelBMFont.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\Layout.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\ListView.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\lua_cocos2dx_cocoswidget_auto.hpp" />
+    <ClInclude Include="..\..\..\..\CocosWidget\NumericStepper.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\PageView.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\ProgressBar.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\Scale9Sprite.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\ScrollView.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\Slider.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\TableView.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\TextRich.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\ToggleView.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\Widget.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\WidgetMacros.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\WidgetProtocol.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\WidgetWindow.h" />
+    <ClInclude Include="..\..\..\..\CocosWidget\WitlsMacros.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\animation\Animation.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\animation\AnimationState.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\animation\IAnimatable.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\animation\TimelineState.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\animation\WorldClock.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\core\Armature.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\core\Bone.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\core\Object.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\core\Slot.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\DragonBones.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\DragonBonesHeaders.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\events\EventData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\events\IEventDispatcher.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\factories\BaseFactory.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\ColorTransform.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\Matrix.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\Point.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\Rectangle.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\geoms\Transform.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\lua_dragonbones_auto.hpp" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\AnimationData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\ArmatureData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\BoneData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\DisplayData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\DragonBonesData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\EllipseData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\Frame.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\IAreaData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\RectangleData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\SkinData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\SlotData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\Timeline.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\TransformFrame.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\objects\TransformTimeline.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\parsers\BaseDataParser.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\parsers\ConstValues.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\parsers\dbtinyxml2.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\parsers\XMLDataParser.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmature.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmatureNode.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCEventDispatcher.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCFactory.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\dbccMacro.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCRenderHeaders.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCSlot.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCTextureAtlas.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\textures\ITextureAtlas.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\textures\TextureAtlasData.h" />
+    <ClInclude Include="..\..\..\..\dragonbones\textures\TextureData.h" />
+    <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\AppMacros.h" />
+    <ClInclude Include="..\Classes\ConfigParser.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\extension_set.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\generated_message_util.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\io\coded_stream.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\io\coded_stream_inl.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\io\zero_copy_stream.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\io\zero_copy_stream_impl_lite.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\message_lite.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\repeated_field.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\atomicops.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\atomicops_internals_x86_msvc.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\common.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\hash.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\map-util.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\once.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\platform_macros.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\stl_util.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\stringprintf.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\template_util.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\stubs\type_traits.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\wire_format_lite.h" />
+    <ClInclude Include="..\Classes\protobuf-lite\google\protobuf\wire_format_lite_inl.h" />
+    <ClInclude Include="..\Classes\runtime\ConnectWaitLayer.h" />
+    <ClInclude Include="..\Classes\runtime\ConsoleCommand.h" />
+    <ClInclude Include="..\Classes\runtime\FileServer.h" />
+    <ClInclude Include="..\Classes\runtime\lua_debugger.h" />
+    <ClInclude Include="..\Classes\runtime\Protos.pb.h" />
+    <ClInclude Include="..\Classes\runtime\ResData.h" />
+    <ClInclude Include="..\Classes\runtime\Runtime.h" />
+    <ClInclude Include="..\Classes\tui\lua_cocos2dx_tui_auto.hpp" />
+    <ClInclude Include="..\Classes\tui\TuiBase.h" />
+    <ClInclude Include="..\Classes\tui\tuiconsts.h" />
+    <ClInclude Include="..\Classes\tui\TuiMacros.h" />
+    <ClInclude Include="..\Classes\tui\TuiManager.h" />
+    <ClInclude Include="..\Classes\tui\TuiUtil.h" />
+    <ClInclude Include="..\Classes\VisibleRect.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="SimulatorWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\CocosBase\CCBundle.cpp" />
+    <ClCompile Include="..\..\..\..\CocosBase\CCMsgDelegate.cpp" />
+    <ClCompile Include="..\..\..\..\CocosBase\CCMsgManager.cpp" />
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneExtension.cpp" />
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneExTransition.cpp" />
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneManager.cpp" />
+    <ClCompile Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.cpp" />
+    <ClCompile Include="..\..\..\..\CocosNet\CCBuffer.cpp" />
+    <ClCompile Include="..\..\..\..\CocosNet\CCInetAddress.cpp" />
+    <ClCompile Include="..\..\..\..\CocosNet\CCNetDelegate.cpp" />
+    <ClCompile Include="..\..\..\..\CocosNet\CCSocket.cpp" />
+    <ClCompile Include="..\..\..\..\CocosNet\lua_cocos2dx_cocosnet_auto.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\ArmatureBtn.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\Button.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\CEditBox\CEditBox.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\CEditBox\CEditBoxImplNone.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\CEditBox\CEditBoxImplWin.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\CEditBox\Win32InputBox.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\CheckBox.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\CircleMenu.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\ColorView.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\ControlView.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\ExpandableListView.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\GradientView.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\GridPageView.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\GridView.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\ImageView.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\ImageViewScale9.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\Label.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\LabelAtlas.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\LabelBMFont.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\Layout.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\ListView.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\lua_cocos2dx_cocoswidget_auto.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\NumericStepper.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\PageView.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\ProgressBar.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\Scale9Sprite.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\ScrollView.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\Slider.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\TableView.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\TextRich.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\ToggleView.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\Widget.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\WidgetProtocol.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\WidgetWindow.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\WitlsMacros.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\animation\Animation.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\animation\AnimationState.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\animation\TimelineState.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\animation\WorldClock.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\core\Armature.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\core\Bone.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\core\Object.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\core\Slot.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\events\EventData.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\factories\BaseFactory.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\lua_dragonbones_auto.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\parsers\BaseDataParser.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\parsers\ConstValues.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\parsers\dbtinyxml2.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\parsers\XMLDataParser.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmature.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCArmatureNode.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCFactory.cpp" />
+    <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCSlot.cpp" />
+    <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\ConfigParser.cpp" />
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\extension_set.cc" />
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\generated_message_util.cc" />
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\io\coded_stream.cc" />
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\io\zero_copy_stream.cc" />
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\io\zero_copy_stream_impl_lite.cc" />
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\message_lite.cc" />
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\repeated_field.cc" />
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\stubs\atomicops_internals_x86_msvc.cc" />
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\stubs\common.cc" />
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\stubs\once.cc" />
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\stubs\stringprintf.cc" />
+    <ClCompile Include="..\Classes\protobuf-lite\google\protobuf\wire_format_lite.cc" />
+    <ClCompile Include="..\Classes\runtime\ConnectWaitLayer.cpp" />
+    <ClCompile Include="..\Classes\runtime\ConsoleCommand.cpp" />
+    <ClCompile Include="..\Classes\runtime\FileServer.cpp" />
+    <ClCompile Include="..\Classes\runtime\Landscape_png.cpp" />
+    <ClCompile Include="..\Classes\runtime\lua_debugger.c" />
+    <ClCompile Include="..\Classes\runtime\PlayDisable_png.cpp" />
+    <ClCompile Include="..\Classes\runtime\PlayEnable_png.cpp" />
+    <ClCompile Include="..\Classes\runtime\Portrait_png.cpp" />
+    <ClCompile Include="..\Classes\runtime\Protos.pb.cc" />
+    <ClCompile Include="..\Classes\runtime\Runtime.cpp" />
+    <ClCompile Include="..\Classes\runtime\Shine_png.cpp" />
+    <ClCompile Include="..\Classes\tui\lua_cocos2dx_tui_auto.cpp" />
+    <ClCompile Include="..\Classes\tui\TuiBase.cpp" />
+    <ClCompile Include="..\Classes\tui\TuiManager.cpp" />
+    <ClCompile Include="..\Classes\tui\TuiUtil.cpp" />
+    <ClCompile Include="..\Classes\VisibleRect.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Runtime_win32.cpp" />
+    <ClCompile Include="SimulatorWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\game.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\cocos2d-x\cocos\2d\libcocos2d.vcxproj">
+      <Project>{98a51ba8-fc3a-415b-ac8f-8c7bd464e93e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\cocos2d-x\cocos\editor-support\spine\proj.win32\libSpine.vcxproj">
+      <Project>{b7c2a162-dec9-4418-972e-240ab3cbfcae}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\cocos2d-x\cocos\scripting\lua-bindings\proj.win32\libluacocos2d.vcxproj">
+      <Project>{9f2d6ce6-c893-4400-b50c-6db70cc2562f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\cocos2d-x\external\Box2D\proj.win32\libbox2d.vcxproj">
+      <Project>{929480e7-23c0-4df6-8456-096d71547116}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

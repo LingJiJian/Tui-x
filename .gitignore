@@ -4,6 +4,8 @@ cocos2d
 cocos2d-x/
 */bin/
 */proj.win32/Debug.win32/
+*/frameworks/runtime-src/proj.win32/Debug.win32/
+HelloTuiLua/runtime/win32/*
 .DS_Store
 *.obj
 *.sdf

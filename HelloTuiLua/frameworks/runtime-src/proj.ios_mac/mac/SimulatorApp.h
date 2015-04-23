@@ -24,33 +24,29 @@
 
 
 #include <string>
-#import <Cocoa/Cocoa.h>
-
-#import "ConsoleWindowController.h"
-#include "ProjectConfig/ProjectConfig.h"
-#include "ProjectConfig/SimulatorConfig.h"
 #include "AppDelegate.h"
 
-@interface AppController : NSObject <NSApplicationDelegate, NSWindowDelegate, NSFileManagerDelegate>
+void createSimulator(const char* viewName, float width, float height,bool isLandscape = true,float frameZoomFactor = 1.0f);
+
+@interface AppController : NSObject <NSApplicationDelegate, NSWindowDelegate>
 {
-    NSWindow *_window;
+    NSWindow *window;
     NSMenu *menu;
-    
-    AppDelegate *_app;
-    ProjectConfig _project;
-    int _debugLogFile;
-    
-    //log file
-    ConsoleWindowController *_consoleController;
-    NSFileHandle *_fileHandle;
-    
+    NSFileHandle *fileHandle;
     //console pipe
-    NSPipe *_pipe;
-    NSFileHandle *_pipeReadHandle;
+    NSPipe *pipe;
+    NSFileHandle *pipeReadHandle;
 }
 
 @property (nonatomic, assign) IBOutlet NSMenu* menu;
 
--(IBAction)onFileClose:(id)sender;
--(IBAction)onWindowAlwaysOnTop:(id)sender;
+
+- (IBAction) onSetTop:(id)sender;
+- (IBAction) onFileClose:(id)sender;
+- (IBAction) onScreenPortait:(id)sender;
+- (IBAction) onScreenLandscape:(id)sender;
+- (IBAction) onScreenZoomOut:(id)sender;
+- (IBAction) onRelaunch:(id)sender;
+
+
 @end
