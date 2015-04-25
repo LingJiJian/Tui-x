@@ -1,0 +1,12 @@
+
+	<control tag="1" type="panel" name="panel_recombine" x="400" y="240" width="1425.95" height="1069.4" rotation="0">
+		<control tag="2" type="gridPageView" num="50" red="0" green="255" blue="255" alpha="255" column="5" row="5" cellWidth="80" cellHeight="80" x="-183.95" y="30" width="390" height="320" rotation="0" direction="0" spriteFrame="0"></control>
+		<control tag="3" type="button" text="txt" textSize="16" textFont="fonts/Arial.ttf" red="0" green="0" blue="0" normal="recombine/btn_grid_normal.png" select="recombine/btn_grid_select.png" disable="recombine/btn_grid_disable.png" x="368" y="216.35" width="56" height="40" rotation="0" spriteFrame="0"></control>
+		<control tag="4" type="scrollView" red="0" green="255" blue="255" alpha="255" innerWidth="1024.5" innerHeight="1024.05" x="191.8" y="40" width="350" height="300" rotation="0" direction="2">
+			<control tag="5" type="image" image="recombine/img_scrollview.png" x="343.2" y="-361" width="1024" height="1024" scaleX="1" scaleY="1" flipX="0" flipY="0" rotation="0" spriteFrame="0"></control>
+		</control>
+		<control tag="7" type="richText" text="<e type='label' r='225' g='100' b ='0' text='你好中国'></e><e type='label' r='225' g='150' b ='0' text='你好CocosWidget'></e><e type='label' r='125' g='100' b ='0' text='你好Tui-x' size='24'></e><e type='image' src='main/ctlv_left_joystick.png' len='4'></e><e type='anim' name='anim_coin' src='main/anim_coin.plist' len='3'></e><e type='anim' name='anim_coin' src='main/anim_coin.plist' len='3'></e><e type='label' r='255' g='0' b ='0' text='继续papapa...' size='20'></e>" max="20" x="-378.05" y="-229.05" width="384.8" height="85.2" rotation="0" spriteFrame="0"></control>
+	</control>
+	<control tag="8" type="cell" name="cell_grid" x="451.3" y="255.65" width="56" height="40" rotation="0">
+		<control tag="9" type="button" text="txt" textSize="18" textFont="fonts/Arial.ttf" red="255" green="255" blue="0" normal="recombine/btn_grid_normal.png" select="recombine/btn_grid_select.png" disable="recombine/btn_grid_disable.png" x="38" y="-38.65" width="56" height="40" rotation="0" spriteFrame="0"></control>
+	</control>

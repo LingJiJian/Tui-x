@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>frames</key>
+    <dict>
+      <key>sprite 27.png</key>
+      <dict>
+        <key>frame</key>
+        <string>{{0,0},{503,449}}</string>
+        <key>offset</key>
+        <string>{0,0}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{503,449}}</string>
+        <key>sourceSize</key>
+        <string>{503,449}</string>
+      </dict>
+      <key>sprite 31.png</key>
+      <dict>
+        <key>frame</key>
+        <string>{{977,0},{20,19}}</string>
+        <key>offset</key>
+        <string>{0,0}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{20,19}}</string>
+        <key>sourceSize</key>
+        <string>{20,19}</string>
+      </dict>
+      <key>sprite 50.png</key>
+      <dict>
+        <key>frame</key>
+        <string>{{505,0},{242,374}}</string>
+        <key>offset</key>
+        <string>{0,0}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{242,374}}</string>
+        <key>sourceSize</key>
+        <string>{242,374}</string>
+      </dict>
+      <key>sprite 48.png</key>
+      <dict>
+        <key>frame</key>
+        <string>{{749,0},{226,349}}</string>
+        <key>offset</key>
+        <string>{0,0}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{226,349}}</string>
+        <key>sourceSize</key>
+        <string>{226,349}</string>
+      </dict>
+    </dict>
+    <key>metadata</key>
+    <dict>
+      <key>format</key>
+      <integer>2</integer>
+      <key>realTextureFileName</key>
+      <string>armBtn_test2.png</string>
+      <key>textureFileName</key>
+      <string>armBtn_test2.png</string>
+      <key>size</key>
+      <string>{1024,512}</string>
+    </dict>
+  </dict>
+</plist>

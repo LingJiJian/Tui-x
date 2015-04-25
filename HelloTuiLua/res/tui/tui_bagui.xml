@@ -1,0 +1,17 @@
+
+	<control tag="1" type="panel" name="panel_bag" x="400" y="240" width="726.95" height="463.35" rotation="0">
+		<control tag="2" type="gridView" num="25" red="0" green="255" blue="255" alpha="255" column="5" cellWidth="80" cellHeight="80" x="-229.95" y="-12" width="320" height="390" rotation="0" spriteFrame="0"></control>
+		<control tag="3" type="tableView" num="10" red="0" green="255" blue="255" alpha="255" cellWidth="80" cellHeight="80" x="140" y="-190" width="389.9" height="80" rotation="0" direction="0"></control>
+		<control tag="4" type="pageView" num="5" red="0" green="255" blue="255" alpha="255" x="142" y="24.35" width="390" height="320" rotation="0" direction="0"></control>
+		<control tag="5" type="button" text="返回" textSize="20" textFont="fonts/Arial.ttf" red="255" green="0" blue="0" normal="res/bag/btn_grid_normal.png" select="res/bag/btn_grid_select.png" disable="res/bag/btn_grid_disable.png" x="301" y="210.35" width="65" height="46" rotation="0" spriteFrame="0"></control>
+		<control tag="6" type="button" text="复合" textSize="20" textFont="fonts/Arial.ttf" red="255" green="0" blue="0" normal="res/bag/btn_grid_normal.png" select="res/bag/btn_grid_select.png" disable="res/bag/btn_grid_disable.png" x="220" y="210.35" width="65" height="46" rotation="0" spriteFrame="0"></control>
+	</control>
+	<control tag="7" type="cell" name="cell_grid" x="400" y="240" width="65" height="46" rotation="0">
+		<control tag="8" type="button" text="txt" textSize="16" textFont="fonts/Arial.ttf" red="255" green="0" blue="0" normal="res/bag/btn_grid_normal.png" select="res/bag/btn_grid_select.png" disable="res/bag/btn_grid_disable.png" x="41.45" y="-40.05" width="65" height="46" rotation="0" spriteFrame="0"></control>
+	</control>
+	<control tag="9" type="cell" name="cell_page" x="234.95" y="326" width="306" height="192.05" rotation="0">
+		<control tag="10" type="button" text="txt" textSize="16" textFont="fonts/Arial.ttf" red="204" green="51" blue="204" normal="res/bag/btn_grid_normal.png" select="res/bag/btn_grid_select.png" disable="res/bag/btn_grid_disable.png" x="191.25" y="-24.05" width="65" height="46" rotation="0" spriteFrame="0"></control>
+		<control tag="11" type="button" text="txt" textSize="16" textFont="fonts/Arial.ttf" red="255" green="255" blue="0" normal="res/bag/btn_grid_normal.png" select="res/bag/btn_grid_select.png" disable="res/bag/btn_grid_disable.png" x="191.25" y="-170.1" width="65" height="46" rotation="0" spriteFrame="0"></control>
+		<control tag="12" type="button" text="txt" textSize="16" textFont="fonts/Arial.ttf" red="204" green="51" blue="102" normal="res/bag/btn_grid_normal.png" select="res/bag/btn_grid_select.png" disable="res/bag/btn_grid_disable.png" x="314.25" y="-101.15" width="65" height="46" rotation="0" spriteFrame="0"></control>
+		<control tag="13" type="button" text="txt" textSize="16" textFont="fonts/Arial.ttf" red="153" green="255" blue="0" normal="res/bag/btn_grid_normal.png" select="res/bag/btn_grid_select.png" disable="res/bag/btn_grid_disable.png" x="73.25" y="-101.15" width="65" height="46" rotation="0" spriteFrame="0"></control>
+	</control>
