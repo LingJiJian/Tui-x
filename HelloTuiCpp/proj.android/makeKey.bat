@@ -1,1 +1,0 @@
-keytool -genkey -alias product.keystore -keyalg RSA -validity 40000 -keystore product.keystore -storepass password -keypass password -dname "CN=Product OU=Android Team O=Organization L=Hongkong ST=Hongkong C=China"
