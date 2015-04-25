@@ -19,23 +19,24 @@ namespace Main {
 	static const int ARMATURE_BOSS1 = 13 ;
 	static const int TGV_B = 14 ;
 	static const int TGV_A = 15 ;
-	static const int ANIM_COIN = 16 ;
-	static const int NUMSTEP_TEST = 17 ;
-	static const int CTLV_LEFT = 18 ;
-	static const int CKB_TEST = 19 ;
-	static const int BTN_GO = 20 ;
-	static const int PANEL_MSGBOX = 21 ;
-	static const int IMG9_BOXBG = 22 ;
-	static const int BTN_CLOSE = 23 ;
-	static const int LABATLAS_NUM = 24 ;
-	static const int SLIDER_TEST = 25 ;
-	static const int PROG_HP = 26 ;
+	static const int NUMSTEP_TEST = 16 ;
+	static const int CTLV_LEFT = 17 ;
+	static const int CKB_TEST = 18 ;
+	static const int BTN_GO = 19 ;
+	static const int BTN_MAP = 20 ;
+	static const int ANIM_COIN = 21 ;
+	static const int PANEL_MSGBOX = 22 ;
+	static const int IMG9_BOXBG = 23 ;
+	static const int BTN_CLOSE = 24 ;
+	static const int LABATLAS_NUM = 25 ;
+	static const int SLIDER_TEST = 26 ;
+	static const int PROG_HP = 27 ;
 } 
 
 namespace  { 
-	static const int PANEL_GUIDE = 27 ;
-	static const int IMG_GUIDEFINGER = 28 ;
-	static const int LAB_GUIDE = 29 ;
+	static const int PANEL_GUIDE = 28 ;
+	static const int IMG_GUIDEFINGER = 29 ;
+	static const int LAB_GUIDE = 30 ;
 } 
 
 #endif

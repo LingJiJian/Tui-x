@@ -17,10 +17,10 @@ TuiBase::~TuiBase(){
 // GET/SET/IS
 /************************************************************************/
 Node* TuiBase::getControl(int tagPanel,int tagControl){
-	Node* control = getPanel(tagPanel)->getChildByTag(tagControl);
-	return control;
+    Node* control = getPanel(tagPanel)->getChildByTag(tagControl);
+    return control;
 }
 Node* TuiBase::getPanel(int tagPanel){
-	//Override
-	return NULL;
+    //Override
+    return NULL;
 }

@@ -18,21 +18,12 @@ void Welcomeui::onLoadScene()
 		CSceneManager::getInstance()->replaceScene(
 			CCSceneExTransitionFade::create(0.5f, LoadScene("Main::Mainui")));
 		}), NULL));
+		
 }
 
 /************************************************************************/
 //	GET/SET/IS
 /************************************************************************/
-Node * Welcomeui::getPanel( int tagPanel )
-{
-	Node *pPanel = nullptr;
-	switch (tagPanel)
-	{
-	case PANEL_WELCOME:
-		pPanel = this->getChildByTag(PANEL_WELCOME);
-		break;
-	}
-	return pPanel;
-}
+
 
 NS_WELCOME_END

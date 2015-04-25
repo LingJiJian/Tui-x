@@ -19,6 +19,7 @@ protected:
 	void event_ctlv_left(Ref* pSender, float fx, float fy);
 	void event_btn_ok(Ref* pSender);
 	void event_btn_go(Ref* pSender);
+    void event_btn_map(Ref* pSender);
 	void event_btn_bag(Ref* pSender);
 	void event_btn_recombine(Ref* pSender);
 

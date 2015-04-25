@@ -21,15 +21,7 @@ void TuiManager::parseScene(Node* pScene ,const char* sceneName,const char* xmlP
 	xml_document<> doc;
 	doc.parse<0>(buf);
 
-	for(xml_node<char> *item = doc.first_node("control");item != NULL;item = item->next_sibling()){
-		
-		if( strcmp(item->first_attribute("type")->value(),kTuiContainerPanel) == 0){//panel
-
-			if(strcmp(item->first_attribute("name")->value(),sceneName) != 0) continue;//only parse the key panel
-
-			this->parseControl(pScene,item);
-		}
-	}
+	this->foreachXmlParse(pScene,doc.first_node(kTuiNodeControl),sceneName);
 
 	if (m_isAdaptResolution)
 		doAdapterResolution(pScene);
@@ -46,17 +38,24 @@ void TuiManager::parseCell(CLayout* pCell, const char* cellName, const char* xml
 	xml_document<> doc;
 	doc.parse<0>(buf);
 
-	for (xml_node<char> *item = doc.first_node("control"); item != NULL; item = item->next_sibling()){
-
-		if (strcmp(item->first_attribute("type")->value(), kTuiControlCell) == 0){//cell
-
-			if (strcmp(item->first_attribute("name")->value(), cellName) != 0) continue;//only parse the key cell
-
-			this->parseControl(pCell, item);
-		}
-	}
+	this->foreachXmlParse(pCell,doc.first_node(kTuiNodeControl),cellName);
 
 	delete[] buf;
+}
+
+void TuiManager::foreachXmlParse(Node *container, xml_node<char>* xmlItem,const char* targetName )
+{ 
+	for (xml_node<char> *item = xmlItem; item != NULL; item = item->next_sibling()){
+		if(item->first_attribute("name")){
+			if ( strcmp(item->first_attribute("name")->value(), targetName) != 0 ){
+				if(item->first_node(kTuiNodeControl)){
+					this->foreachXmlParse(container,item->first_node(kTuiNodeControl),targetName);
+				}
+			}else{
+				return this->parseControl(container, item);
+			}
+		}
+	}
 }
 
 /////////////////////////////////////////////////////////////////
@@ -208,7 +207,9 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlAnim) == 0){//animation
 		const char* plist = item->first_attribute("plist")->value();
 		const char* name = item->first_attribute("name")->value();
-		Sprite *pSprite = createAnim(tag,name,plist,x,y,rotation);
+        float playTime = atof(item->first_attribute("playTime")->value());
+        float loop = atof(item->first_attribute("isLoop")->value());
+		Sprite *pSprite = createAnim(tag,name,plist,playTime,loop,x,y,rotation);
 		container->addChild(pSprite);
 
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlControl) == 0){//controlView
@@ -405,6 +406,18 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		int b = atoi(item->first_attribute("blue")->value());
 		int a = atoi(item->first_attribute("alpha")->value());
 		CGridView *pView = createGridView(tag, Color4B(r, g, b, a), column, num, cellWidth, cellHeight, x, y, w, h, rotation);
+		container->addChild(pView);
+
+	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlMapView) == 0){//MapView
+		float w = atof(item->first_attribute("width")->value());
+		float h = atof(item->first_attribute("height")->value());
+        const char* file = item->first_attribute("tmx")->value();
+        int offsetX = atoi(item->first_attribute("move_offset_x")->value());
+        int offsetY = atoi(item->first_attribute("move_offset_y")->value());
+        const char* layerCollisionName = item->first_attribute("layer_collision_name")->value();
+        const char* collisionName = item->first_attribute("collision_name")->value();
+        const char* viewLayerName = item->first_attribute("view_layer_name")->value();
+        CMapView *pView = createMapView(tag,file,Vec2(offsetX,offsetY),layerCollisionName,collisionName,viewLayerName, x, y, w, h, rotation);
 		container->addChild(pView);
 
 	}else if (strcmp(item->first_attribute("type")->value(), kTuiControlGridPageView) == 0){//GridPageView
@@ -659,9 +672,9 @@ Armature* TuiManager::createArmature(float tag,const char* name,const char* acti
 	return pArmature;
 }
 
-Sprite* TuiManager::createAnim(float tag,const char* name,const char* plist,float x,float y,float rotation){
+Sprite* TuiManager::createAnim(float tag,const char* name,const char* plist,float playTime,float loop, float x,float y,float rotation){
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(plist);
-	Animation* pAnim = TuiUtil::createAnimWithName(name,0.05f,-1);
+	Animation* pAnim = TuiUtil::createAnimWithName(name,playTime,loop);
 	SpriteFrame *pTmpFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(string(name) + "1.png");
 	Sprite* pSprite = Sprite::create();
 	pSprite->runAction(Animate::create(pAnim));
@@ -777,6 +790,16 @@ CGridView* TuiManager::createGridView(float tag, Color4B color, int column, int 
 	return pView;
 }
 
+CMapView* TuiManager::createMapView(float tag,const char* file,const Vec2& moveTileOffset, const char* layerCollisionName,const char* collisionName,const char* viewLayerName, float x, float y, float w, float h, float rotation ){
+	CMapView* pMapView = CMapView::create(file,Size(w,h));
+    pMapView->setCollisionParam(layerCollisionName,collisionName,viewLayerName);
+    pMapView->setMoveTileOffset(moveTileOffset);
+	pMapView->setRotation(rotation);
+	pMapView->setPosition(x, -y);
+	pMapView->setTag(tag);
+	return pMapView;
+}
+
 CPageView *TuiManager::createPageView(float tag, Color4B color, int dir, int num, float x, float y, float w, float h, float rotation){
 	CPageView *pView = CPageView::create(Size(w, h));
 	if (color.a != 0) pView->setBackgroundColor(color);
@@ -863,7 +886,7 @@ CTextRich *TuiManager::createTextRich(float tag, const char *text, int maxLen, f
 			const char *name = item->first_attribute("name")->value();
 			const char *plist = item->first_attribute("src")->value();
 			int len = atoi(item->first_attribute("len")->value());
-			Sprite *pAnim = createAnim(0, name, plist, 0, 0, 0);
+			Sprite *pAnim = createAnim(0, name, plist,0.05,-1, 0, 0, 0);
 			pTextRich->insertElement(pAnim, len);
 		}
 	}
@@ -913,3 +936,5 @@ void TuiManager::setAdaptResolution(bool b, float designWidth/* =800 */, float d
 		m_fScaleResolutionY = 1.0f;
 	}
 }
+
+

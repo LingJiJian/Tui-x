@@ -13,7 +13,6 @@ public:
 
 	void onLoadScene();
 
-	Node *getPanel(int tagPanel);
 protected:
 private:
 };

@@ -9,7 +9,7 @@ void MsgBox::onLoadScene()
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("main/mainui.plist");
 	TuiManager::getInstance()->parseScene(this,"panel_msgbox",PATH_MAIN);
 	//注册事件
-	CButton *pBtnClose = (CButton*)getControl(PANEL_MSGBOX,BTN_CLOSE);
+	CButton *pBtnClose = (CButton*)getControl(PANEL_MSGBOX, BTN_CLOSE);
 	pBtnClose->setOnClickListener(this,ccw_click_selector(MsgBox::event_btn_close));
 	
 	CSlider *pSlider = (CSlider*)getControl(PANEL_MSGBOX,SLIDER_TEST);
@@ -37,21 +37,16 @@ void MsgBox::event_slider_test(Ref *pSender,int value)
 /************************************************************************/
 //	GET/SET/IS
 /************************************************************************/
-Node* MsgBox::getControl(int tagPanel, int tagControl){
-	Node* control = getPanel(tagPanel)->getChildByTag(tagControl);
-	return control;
-}
-
-Node *MsgBox::getPanel( int tagPanel )
+Node* MsgBox::getPanel( int tagPanel )
 {
-	Node *pPanel = nullptr;
-	switch (tagPanel)
-	{
-	case PANEL_MSGBOX:
-		pPanel = this->getChildByTag(PANEL_MSGBOX);
-		break;
-	}
-	return pPanel;
+    Node *pPanel = nullptr;
+    switch (tagPanel)
+    {
+        case PANEL_MSGBOX:
+            pPanel = this->getChildByTag(PANEL_MSGBOX);
+            break;
+    }
+    return pPanel;
 }
 
 void MsgBox::onEnterScene()

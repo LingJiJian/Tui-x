@@ -10,9 +10,8 @@ class Bagui : public TuiBase
 {
 public:
 	CREATE_SCENE_FUNC(Bagui);
-
+    Node* getPanel( int tagPanel );
 	void onLoadScene();
-	Node* getPanel(int tagPanel);
 protected:
 	Ref* event_adapt_gvBag(Ref* pConvertCell, unsigned int uIdx);
 	Ref* event_adapt_tblBag(Ref* pConvertCell, unsigned int uIdx);

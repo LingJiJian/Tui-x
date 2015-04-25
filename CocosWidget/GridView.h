@@ -75,7 +75,7 @@ class CGridView : public CScrollView, public CDataSourceAdapterProtocol
 public:
 	CGridView();
 	virtual ~CGridView();
-	bool initWithParams(const Size& tViewSize, const Size& tCellSize, unsigned int uCellCount,
+	virtual bool initWithParams(const Size& tViewSize, const Size& tCellSize, unsigned int uCellCount,
 		Ref* pListener, SEL_DataSoucreAdapterHandler pHandler);
 	static CGridView* create(const Size& tViewSize);
 	static CGridView* create(const Size& tViewSize, const Size& tCellSize, unsigned int uCellCount,

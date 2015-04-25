@@ -9,8 +9,7 @@ public:
 	CREATE_SCENE_FUNC(Recomebineui);
 
 	virtual void onLoadScene();
-
-	Node *getPanel(int tagPanel);
+    Node* getPanel( int tagPanel );
 protected:
 	Ref* adapt_gpv_bag(Ref* pConvertCell, unsigned int uIdx);
 

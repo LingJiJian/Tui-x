@@ -52,15 +52,14 @@ void Recomebineui::event_btn_back(Ref* pSender)
 /************************************************************************/
 //	GET/SET/IS
 /************************************************************************/
-
-Node * Recomebineui::getPanel(int tagPanel)
+Node* Recomebineui::getPanel( int tagPanel )
 {
-	Node *pPanel = nullptr;
-	switch (tagPanel)
-	{
-	case PANEL_RECOMBINE:
-		pPanel = this->getChildByTag(PANEL_RECOMBINE);
-		break;
-	}
-	return pPanel;
+    Node *pPanel = nullptr;
+    switch (tagPanel)
+    {
+        case PANEL_RECOMBINE:
+            pPanel = this->getChildByTag(PANEL_RECOMBINE);
+            break;
+    }
+    return pPanel;
 }

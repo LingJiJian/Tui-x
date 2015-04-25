@@ -36,5 +36,6 @@ static const char* kTuiControlEditBox = "editBox";
 static const char* kTuiControlRichText = "richText";
 static const char* kTuiControlMovieView = "movieView";
 static const char* kTuiControlCell = "cell";
+static const char* kTuiControlMapView = "mapView";
 
 #endif//TUICONSTS_H

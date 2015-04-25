@@ -19,14 +19,14 @@ void Storeui::onLoadScene()
 	ArmatureBtn *pBtn = (ArmatureBtn*)this->getControl(PANEL_STORE,ARMBTN_TEST2);
 	pBtn->setOnClickListener(this,ccw_click_selector(Storeui::event_btn_test));
 	
-	CExpandableListView *pExpList = (CExpandableListView*)this->getControl(PANEL_STORE, EXPLIST_TEST);
+	CExpandableListView *pExpList = (CExpandableListView*)this->getControl(PANEL_STORE,EXPLIST_TEST);
 	CButton *pBtnExp1 = (CButton *)pExpList->getExpandableNodeAtIndex(0)->getItemNodeAtIndex(0)->getChildByTag(BTN_EXPPAY1);
 	pBtnExp1->setOnClickListener(this, ccw_click_selector(Storeui::event_explist_btn));
 }
 
 void Storeui::event_explist_btn(Ref* pSender)
 {
-	CCLOG("click explist btnpay1 ");
+	CCLOG("click explist btnpay! ");
 }
 
 void Storeui::event_btn_test( Ref* pSender )
@@ -44,16 +44,16 @@ void Storeui::event_btn_pay(Ref* pSender)
 /************************************************************************/
 //	GET/SET/IS
 /************************************************************************/
-Node * Storeui::getPanel( int tagPanel )
+Node* Storeui::getPanel( int tagPanel )
 {
-	Node *pPanel = nullptr;
-	switch (tagPanel)
-	{
-	case PANEL_STORE:
-		pPanel = this->getChildByTag(PANEL_STORE);
-		break;
-	}
-	return pPanel;
+    Node *pPanel = nullptr;
+    switch (tagPanel)
+    {
+        case PANEL_STORE:
+            pPanel = this->getChildByTag(PANEL_STORE);
+            break;
+    }
+    return pPanel;
 }
 
 NS_STORE_END

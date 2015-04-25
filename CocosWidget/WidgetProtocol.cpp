@@ -350,6 +350,121 @@ void CScrollableProtocol::removeOnScrollingScriptHandler()
 }
 #endif
 
+CMoveProtocol::CMoveProtocol()
+: m_pMoveingHandler(NULL)
+, m_pMoveingListener(NULL)
+, m_pMoveEndHandler(nullptr)
+, m_pMoveEndListener(nullptr)
+#if USING_LUA
+, m_nMoveingScriptHandler(0)
+#endif
+{
+    
+}
+
+CMoveProtocol::~CMoveProtocol()
+{
+#if USING_LUA
+    removeOnMoveingScriptHandler();
+    removeOnMoveEndScriptHandler();
+#endif
+}
+
+void CMoveProtocol::setOnMoveingListener(Ref* pListener, SEL_MoveingHandler pHandler)
+{
+    m_pMoveingListener = pListener;
+    m_pMoveingHandler = pHandler;
+}
+
+void CMoveProtocol::executeMoveingHandler(Ref* pSender)
+{
+    if( m_pMoveingListener && m_pMoveingHandler )
+    {
+        (m_pMoveingListener->*m_pMoveingHandler)(pSender);
+    }
+#if USING_LUA
+    else if( m_nMoveingScriptHandler != 0 )
+    {
+        executeMoveingScriptHandler(pSender);
+    }
+#endif
+}
+
+void CMoveProtocol::executeMoveEndHandler(Ref* pSender)
+{
+    if( m_pMoveEndListener && m_pMoveEndHandler )
+    {
+        (m_pMoveEndListener->*m_pMoveEndHandler)(pSender);
+    }
+#if USING_LUA
+    else if( m_nMoveEndScriptHandler != 0 )
+    {
+        executeMoveEndScriptHandler(pSender);
+    }
+#endif
+}
+
+
+#if USING_LUA
+void CMoveProtocol::executeMoveingScriptHandler(Ref* pSender)
+{
+    if( m_nMoveingScriptHandler != 0 )
+    {
+        LuaEngine* pEngine = LuaEngine::getInstance();
+        LuaStack* pStack = pEngine->getLuaStack();
+        
+        pStack->pushObject(pSender, "Ref");
+        
+        pStack->executeFunctionByHandler(m_nMoveingScriptHandler, 1);
+        pStack->clean();
+    }
+}
+
+void CMoveProtocol::executeMoveEndScriptHandler(Ref* pSender)
+{
+    if( m_nMoveEndScriptHandler != 0 )
+    {
+        LuaEngine* pEngine = LuaEngine::getInstance();
+        LuaStack* pStack = pEngine->getLuaStack();
+        
+        pStack->pushObject(pSender, "Ref");
+        
+        pStack->executeFunctionByHandler(m_nMoveEndScriptHandler, 1);
+        pStack->clean();
+    }
+}
+
+void CMoveProtocol::setOnMoveIngScriptHandler(int nHandler)
+{
+    removeOnMoveingScriptHandler();
+    m_nMoveingScriptHandler = nHandler;
+}
+
+void CMoveProtocol::setOnMoveEndScriptHandler(int nHandler)
+{
+    removeOnMoveEndScriptHandler();
+    m_nMoveEndScriptHandler = nHandler;
+}
+
+void CMoveProtocol::removeOnMoveingScriptHandler()
+{
+    if( m_nMoveingScriptHandler != 0 )
+    {
+        ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nMoveingScriptHandler);
+        m_nMoveingScriptHandler = 0;
+    }
+}
+
+void CMoveProtocol::removeOnMoveEndScriptHandler()
+{
+    if( m_nMoveEndScriptHandler != 0 )
+    {
+        ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(m_nMoveEndScriptHandler);
+        m_nMoveEndScriptHandler = 0;
+    }
+}
+#endif
+
 
 CProgressEndedProtocol::CProgressEndedProtocol()
 : m_pProgressEndedListener(NULL)

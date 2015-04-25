@@ -94,16 +94,16 @@ void Bagui::event_btn_gv(Ref* pSender)
 /************************************************************************/
 //	GET/SET/IS
 /************************************************************************/
-Node* Bagui::getPanel(int tagPanel)
+Node* Bagui::getPanel( int tagPanel )
 {
-	Node* pPanel = nullptr;
-	switch (tagPanel)
-	{
-	case PANEL_BAG:
-		pPanel = this->getChildByTag(PANEL_BAG);
-		break;
-	}
-	return pPanel;
+    Node *pPanel = nullptr;
+    switch (tagPanel)
+    {
+        case PANEL_BAG:
+            pPanel = this->getChildByTag(PANEL_BAG);
+            break;
+    }
+    return pPanel;
 }
 
 NS_BAG_END

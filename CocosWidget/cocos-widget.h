@@ -69,6 +69,10 @@ class NumericStepper;
 class MovieView;
 class CircleMenu;
 class CEditBox;
+class CMapView;
+class CMapGrid;
+class CMapRole;
+class CGridNode;
 
 NS_CC_WIDGET_END
 
@@ -103,5 +107,6 @@ NS_CC_WIDGET_END
 #include "NumericStepper.h"
 #include "CircleMenu.h"
 #include "CEditBox/CEditBox.h"
+#include "MapView.h"
 
 #endif //__CCWIDGET_H__

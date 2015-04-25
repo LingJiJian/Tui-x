@@ -68,6 +68,7 @@ public:
 	*
 	* @param b
 	*/
+
 	void setAdaptResolution(bool b, float designWidth = 800, float designHeight = 480);
 
 	CC_SYNTHESIZE_READONLY(float, m_fScaleResolutionX, ScaleResolutionX);
@@ -90,7 +91,7 @@ public:
 	CLabelAtlas *createLabelAtlas(float tag,const char* num, const char* file,float x,float y,float w,float h,float rotation);
 	CLabelBMFont *createLabelBMFont(float tag, const char* text, const char* file, float x, float y, float w, float h, float rotation);
 	Armature *createArmature(float tag, const char* name, const char* actionName,const char* png, const char* plist, const char* xml, float x, float y, float rotation);
-	Sprite *createAnim(float tag,const char* name,const char* plist,float x,float y,float rotation);
+	Sprite *createAnim(float tag,const char* name,const char* plist,float playTime,float loop, float x,float y,float rotation);
 	CControlView *createControl(float tag, const char* baseboard, const char* joystick, float x, float y, float rotation, int isUseFrame);
 	CCheckBox *createCheckBox(float tag, const char* normal1, const char* normal2, const char* select1, const char* select2, const char* disable1, const char* disable2, float x, float y, float rotation, int isUseFrame);
 	ArmatureBtn *createArmatureBtn(float tag,const char* name,const char* normal,const char* select, const char* png,const char* plist,const char* xml,float x,float y,float rotation);
@@ -103,7 +104,7 @@ public:
 	CEditBox *createEditBox(float tag, const char* placeHolder, const char* file, int inputMode, int inputFlag, float x, float y, float w, float h, float rotation, int isUseFrame);
 	CircleMenu *createCircleMenu(float tag, float x, float y, float w, float h, float rotation);
 	CTextRich *createTextRich(float tag, const char *text, int maxLen, float x, float y, float w, float h, float rotation, int isUseFrame);
-	
+	CMapView *createMapView(float tag,const char* file,const Vec2& moveTileOffset, const char* layerCollisionName,const char* collisionName,const char* viewLayerName, float x, float y, float w, float h, float rotation );
 protected:
 	/**
 	* @brief load xml file and cache
@@ -118,6 +119,8 @@ protected:
 	* @param xmlNode
 	*/
 	void parseControl(Node* container,xml_node<char>*);
+
+	void foreachXmlParse(Node* container, xml_node<char>* item,const char* targetName);
 
 	void doAdapterResolution(Node* container);
 private:

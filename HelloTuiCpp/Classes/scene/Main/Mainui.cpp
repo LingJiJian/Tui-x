@@ -25,12 +25,15 @@ void Mainui::onLoadScene()
 	CButton *pBtnGo = (CButton*)this->getControl(PANEL_MAIN,BTN_GO);
 	pBtnGo->setOnClickListener(this,ccw_click_selector(Mainui::event_btn_go));
 
-	CButton *pBtnPhone = (CButton*)this->getControl(PANEL_MAIN, BTN_SHOWPHONE);
+	CButton *pBtnPhone = (CButton*) this->getControl(PANEL_MAIN, BTN_SHOWPHONE);
 	pBtnPhone->setOnClickListener(this, ccw_click_selector(Mainui::event_btn_showphone));
 
-	CButton *pBtnBag = (CButton*)this->getControl(PANEL_MAIN, BTN_BAG);
+    CButton* pBtnBag = (CButton*)this->getChildByTag(PANEL_MAIN)->getChildByTag(BTN_BAG);
 	pBtnBag->setOnClickListener(this, ccw_click_selector(Mainui::event_btn_bag));
 
+    CButton *pBtnMap = (CButton*)this->getControl(PANEL_MAIN, BTN_MAP);
+    pBtnMap->setOnClickListener(this, ccw_click_selector(Mainui::event_btn_map));
+    
 	CButton *pBtnRecombine = (CButton*)this->getControl(PANEL_MAIN, BTN_RECOMBINE);
 	pBtnRecombine->setOnClickListener(this, ccw_click_selector(Mainui::event_btn_recombine));
 
@@ -72,6 +75,11 @@ void Mainui::event_btn_ok(Ref* pSender)
 	CSceneManager::getInstance()->runUIScene(LoadScene("Main::MsgBox"));
 }
 
+void Mainui::event_btn_map(Ref* pSender)
+{
+    CSceneManager::getInstance()->replaceScene(CCSceneExTransitionFade::create(0.5f, LoadScene("Mapui")));
+}
+
 void Mainui::event_btn_showphone(Ref* pSender)
 {
 	CSceneManager::getInstance()->replaceScene(
@@ -102,15 +110,16 @@ void Mainui::event_btn_recombine(Ref* pSender)
 /************************************************************************/
 Node* Mainui::getPanel( int tagPanel )
 {
-	Node *pPanel = nullptr;
-	switch (tagPanel)
-	{
-	case PANEL_MAIN:
-		pPanel = this->getChildByTag(PANEL_MAIN);
-		break;
-	}
-	return pPanel;
+    Node *pPanel = nullptr;
+    switch (tagPanel)
+    {
+        case PANEL_MAIN:
+            pPanel = this->getChildByTag(PANEL_MAIN);
+            break;
+    }
+    return pPanel;
 }
+
 
 void Mainui::onMessage(unsigned int uMsg, Ref* pMsgObj, void* wParam, void* lParam)
 {

@@ -414,6 +414,7 @@ UIControlType.kPageView = "pageView";
 UIControlType.kTableView = "tableView";
 UIControlType.kGridView = "gridView";
 UIControlType.kScrollView = "scrollView";
+UIControlType.kMapView = "mapView";
 UIControlType.kLayout = "layout";
 UIControlType.kGridPageView = "gridPageView";
 UIControlType.kMoiveView = "movieView";
@@ -496,9 +497,13 @@ UIControlAttribute.kPng = "png";
 UIControlAttribute.kPlist = "plist";
 UIControlAttribute.kJson = "json";
 UIControlAttribute.kFnt = "fnt";
-/** 纵列数 */
-UIControlAttribute.kColumn = "column";
-UIControlAttribute.kRow = "row";
+UIControlAttribute.kTmx = "tmx";
+/** 地图 */
+UIControlAttribute.kMoveOffsetX = "move_offset_x";
+UIControlAttribute.kMoveOffsetY = "move_offset_y";
+UIControlAttribute.kLayerCollisionName = "layer_collision_name";
+UIControlAttribute.kCollisionName = "collision_name";
+UIControlAttribute.kViewLayerName = "view_layer_name";
 /** Cell尺寸 */
 UIControlAttribute.kCellWidth = "cellWidth";
 UIControlAttribute.kCellHeight = "cellHeight";
@@ -532,6 +537,8 @@ UIControlAttribute.kPlay = "play";
 /** 长按自增长 */
 UIControlAttribute.kLongClickRun = "longClickRun";
 UIControlAttribute.kStep = "step";
+UIControlAttribute.kPlayTime = "playTime";
+UIControlAttribute.kIsLoop = "isLoop";
 
 /**
  @brief 控件基类
@@ -709,6 +716,15 @@ UIGridView.extend( UIControl );
 UIGridView.prototype.init = function(){
 	UIGridView.superClass.prototype.init.call(this);
 	this.setAttribute( UIControlAttribute.kType, UIControlType.kGridView );
+}
+/////////////////MapView//////////////////////////////////////////////
+UIMapView = function(){
+	UIMapView.superClass.call(this);
+}
+UIMapView.extend( UIControl );
+UIMapView.prototype.init = function(){
+	UIMapView.superClass.prototype.init.call(this);
+	this.setAttribute( UIControlAttribute.kType, UIControlType.kMapView );
 }
 /////////////////ArmatureBtn//////////////////////////////////////////////
 UIArmatureBtn = function(){
@@ -1058,6 +1074,7 @@ FlaToXML.prototype.convertMC = function( mc ,tag ,frameName){
 		case "circlemenu":	control_xml = this.convertCirclemenu(mc,tag ,frameName);		break;
 		case "cell":		control_xml = this.convertCell(mc,tag ,frameName);				break;
 		case "expList":		control_xml = this.convertExpList(mc,tag ,frameName);			break;
+		case "map":			control_xml = this.convertMapView(mc,tag ,frameName);			break;
 	}
 	return control_xml;
 }
@@ -1101,15 +1118,21 @@ FlaToXML.prototype.convertCell = function(cell,tag ,frameName){
 /** 转换image */
 FlaToXML.prototype.convertImg = function( image , tag ,frameName){
 	var suffix = ".png";
-	if(image.parameters.suffix != null){
+	var flipX = false;
+	var flipY = false;
+	if(image.parameters && image.parameters.suffix != null){
 		suffix = image.parameters.suffix.value;
+	}
+	if(image.parameters && image.parameters.flipX != null){
+		flipX = image.parameters.flipX.value
+		flipY = image.parameters.flipY.value
 	}
 	
 	var xml_img = new UIImage();
 	xml_img.setAttribute( UIControlAttribute.kScaleX,formatNumber(image.scaleX));
 	xml_img.setAttribute( UIControlAttribute.kScaleY,formatNumber(image.scaleY));
-	xml_img.setAttribute( UIControlAttribute.kFlipX,formatBoolean(image.parameters.flipX.value));
-	xml_img.setAttribute( UIControlAttribute.kFlipY,formatBoolean(image.parameters.flipY.value));
+	xml_img.setAttribute( UIControlAttribute.kFlipX,formatBoolean(flipX));
+	xml_img.setAttribute( UIControlAttribute.kFlipY,formatBoolean(flipY));
 	xml_img.setAttribute( UIControlAttribute.kImage, image.libraryItem.name + suffix );
 	
 	this.fullNormalAttirbute( xml_img,this.th, image ,tag ,frameName);
@@ -1133,6 +1156,8 @@ FlaToXML.prototype.convertAnim = function(anim ,tag ,frameName){
 	xml_anim.setAttribute(UIControlAttribute.kName,anim.name);
 	xml_anim.setAttribute(UIControlAttribute.kPlist,anim.libraryItem.name + ".plist");
 	xml_anim.setAttribute(UIControlAttribute.kPng,anim.libraryItem.name + ".png");
+	xml_anim.setAttribute(UIControlAttribute.kPlayTime,anim.parameters.playTime.value);
+	xml_anim.setAttribute(UIControlAttribute.kIsLoop,anim.parameters.isLoop.value);
 	this.fullNormalAttirbute( xml_anim,this.th, anim ,tag ,frameName);
 	return xml_anim;
 }
@@ -1401,6 +1426,21 @@ FlaToXML.prototype.convertGridPageView = function(gridPageView,tag,frameName){
 	this.fullNormalAttirbute(xml_gridPageView,this.th, gridPageView,tag ,frameName);
 	return xml_gridPageView;
 }
+/** 转换MapView */
+FlaToXML.prototype.convertMapView = function(mapView,tag,frameName){
+	var xml_map = new UIMapView();
+	var params = mapView.parameters;
+	xml_map.setAttribute(UIControlAttribute.kTmx,params.file.value);
+	xml_map.setAttribute(UIControlAttribute.kMoveOffsetX,params.move_offset_x.value);
+	xml_map.setAttribute(UIControlAttribute.kMoveOffsetY,params.move_offset_y.value);
+	xml_map.setAttribute(UIControlAttribute.kLayerCollisionName,params.layer_collision_name.value);
+	xml_map.setAttribute(UIControlAttribute.kCollisionName,params.collision_name.value);
+	xml_map.setAttribute(UIControlAttribute.kViewLayerName,params.view_layer_name.value);
+
+	this.fullNormalAttirbute(xml_map,this.th, mapView,tag ,frameName);
+	return xml_map;
+}
+
 /** 转换armatureBtn */
 FlaToXML.prototype.convertArmatureBtn = function(armatureBtn,tag ,frameName){
 	var xml_armatureBtn = new UIArmatureBtn();

@@ -11,14 +11,3 @@ void Guideui::onLoadScene()
 /************************************************************************/
 //	GET/SET/IS
 /************************************************************************/
-Node * Guideui::getPanel( int tagPanel )
-{
-	Node *pPanel = nullptr;
-	switch (tagPanel)
-	{
-	case PANEL_GUIDE:
-		pPanel = this->getChildByTag(PANEL_GUIDE);
-		break;
-	}
-	return pPanel;
-}

@@ -1,5 +1,5 @@
 #include "lua_dragonbones_auto.hpp"
-#include "DBCCRenderHeaders.h"
+#include "renderer/cocos2d-x-3.2/DBCCRenderHeaders.h"
 #include "DragonBonesHeaders.h"
 #include "tolua_fix.h"
 #include "LuaBasicConversions.h"

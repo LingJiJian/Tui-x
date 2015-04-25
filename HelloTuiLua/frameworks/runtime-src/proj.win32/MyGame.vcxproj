@@ -219,6 +219,7 @@ xcopy /Y /Q "$(ProjectDir)..\Classes\ide-support\lang" "$(ProjectDir)..\..\..\ru
     <ClInclude Include="..\..\..\..\CocosWidget\Layout.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\ListView.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\lua_cocos2dx_cocoswidget_auto.hpp" />
+    <ClInclude Include="..\..\..\..\CocosWidget\MapView.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\NumericStepper.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\PageView.h" />
     <ClInclude Include="..\..\..\..\CocosWidget\ProgressBar.h" />
@@ -337,6 +338,7 @@ xcopy /Y /Q "$(ProjectDir)..\Classes\ide-support\lang" "$(ProjectDir)..\..\..\ru
     <ClCompile Include="..\..\..\..\CocosWidget\Layout.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\ListView.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\lua_cocos2dx_cocoswidget_auto.cpp" />
+    <ClCompile Include="..\..\..\..\CocosWidget\MapView.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\NumericStepper.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\PageView.cpp" />
     <ClCompile Include="..\..\..\..\CocosWidget\ProgressBar.cpp" />
@@ -387,8 +389,14 @@ xcopy /Y /Q "$(ProjectDir)..\Classes\ide-support\lang" "$(ProjectDir)..\..\..\ru
       <Project>{98a51ba8-fc3a-415b-ac8f-8c7bd464e93e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\cocos2d-x\cocos\editor-support\spine\proj.win32\libSpine.vcxproj">
+      <Project>{b7c2a162-dec9-4418-972e-240ab3cbfcae}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\cocos2d-x\cocos\scripting\lua-bindings\proj.win32\libluacocos2d.vcxproj">
       <Project>{9f2d6ce6-c893-4400-b50c-6db70cc2562f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\cocos2d-x\external\Box2D\proj.win32\libbox2d.vcxproj">
+      <Project>{929480e7-23c0-4df6-8456-096d71547116}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\cocos2d-x\tools\simulator\libsimulator\proj.win32\libsimulator.vcxproj">
       <Project>{001b324a-bb91-4e83-875c-c92f75c40857}</Project>

@@ -26,8 +26,10 @@ LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CTextRich, setOnTextRichClickScriptHandler)
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CPageView, setOnPageChangedScriptHandler)
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CGridPageView, setOnPageChangedScriptHandler)
 
+LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CMapView, setOnMoveIngScriptHandler)
+LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CMapView,setOnMoveEndScriptHandler)
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CScrollView, setOnScrollingScriptHandler)
-LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CEditBox, registerScriptEditBoxHandler);
+LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CEditBox, registerScriptEditBoxHandler)
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CProgressBar, setOnProgressEndedScriptHandler)
 
 LUA_COCOS2DX_CCW_SCRIPT_HANDLER(CProgressBar, setOnValueChangedScriptHandler)
@@ -10108,6 +10110,320 @@ int lua_register_cocos2dx_cocoswidget_CEditBox(lua_State* tolua_S)
     return 1;
 }
 
+int lua_cocos2dx_cocoswidget_CMapView_setAutoSearchEnabled(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::cocoswidget::CMapView* cobj = nullptr;
+    bool ok  = true;
+    
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+    
+    
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"ccw.CMapView",0,&tolua_err)) goto tolua_lerror;
+#endif
+    
+    cobj = (cocos2d::cocoswidget::CMapView*)tolua_tousertype(tolua_S,1,0);
+    
+#if COCOS2D_DEBUG >= 1
+    if (!cobj)
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CMapView_setAutoSearchEnabled'", nullptr);
+        return 0;
+    }
+#endif
+    
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 1)
+    {
+        bool arg0;
+        
+        ok &= luaval_to_boolean(tolua_S, 2,&arg0);
+        if(!ok)
+            return 0;
+        cobj->setAutoSearchEnabled(arg0);
+        return 0;
+    }
+    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setAutoSearchEnabled",argc, 1);
+    return 0;
+    
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CMapView_setAutoSearchEnabled'.",&tolua_err);
+#endif
+    
+    return 0;
+}
+
+int lua_cocos2dx_cocoswidget_CMapView_setRole(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::cocoswidget::CMapView* cobj = nullptr;
+    bool ok  = true;
+    
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+    
+    
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"ccw.CMapView",0,&tolua_err)) goto tolua_lerror;
+#endif
+    
+    cobj = (cocos2d::cocoswidget::CMapView*)tolua_tousertype(tolua_S,1,0);
+    
+#if COCOS2D_DEBUG >= 1
+    if (!cobj)
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CMapView_setRole'", nullptr);
+        return 0;
+    }
+#endif
+    
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 3)
+    {
+        cocos2d::Node* arg0;
+        cocos2d::Vec2 arg1;
+        double arg2;
+
+        ok &= luaval_to_object<cocos2d::Node>(tolua_S, 2, "cc.Node",&arg0);
+        ok &= luaval_to_point(tolua_S, 3, &arg1);
+        ok &= luaval_to_number(tolua_S, 4,&arg2);
+        if(!ok)
+            return 0;
+        cobj->setRole(arg0,arg1,arg2);
+        return 0;
+    }
+    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setRole",argc, 3);
+    return 0;
+    
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CMapView_setRole'.",&tolua_err);
+#endif
+    
+    return 0;
+}
+
+int lua_cocos2dx_cocoswidget_CMapView_getRole(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::cocoswidget::CMapView* cobj = nullptr;
+    bool ok  = true;
+    
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+    
+    
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"ccw.CMapView",0,&tolua_err)) goto tolua_lerror;
+#endif
+    
+    cobj = (cocos2d::cocoswidget::CMapView*)tolua_tousertype(tolua_S,1,0);
+    
+#if COCOS2D_DEBUG >= 1
+    if (!cobj)
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CMapView_getRole'", nullptr);
+        return 0;
+    }
+#endif
+    
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 0)
+    {
+        if(!ok)
+            return 0;
+        cocos2d::cocoswidget::CMapRole* ret = cobj->getRole();
+        object_to_luaval<cocos2d::cocoswidget::CMapRole>(tolua_S, "ccw.CMapRole",(cocos2d::cocoswidget::CMapRole*)ret);
+        return 1;
+    }
+    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getRole",argc, 0);
+    return 0;
+    
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CMapView_getRole'.",&tolua_err);
+#endif
+    
+    return 0;
+}
+
+int lua_cocos2dx_cocoswidget_CMapView_getTileMap(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::cocoswidget::CMapView* cobj = nullptr;
+    bool ok  = true;
+    
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+    
+    
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"ccw.CMapView",0,&tolua_err)) goto tolua_lerror;
+#endif
+    
+    cobj = (cocos2d::cocoswidget::CMapView*)tolua_tousertype(tolua_S,1,0);
+    
+#if COCOS2D_DEBUG >= 1
+    if (!cobj)
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CMapView_getTileMap'", nullptr);
+        return 0;
+    }
+#endif
+    
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 0)
+    {
+        if(!ok)
+            return 0;
+        cocos2d::experimental::TMXTiledMap* ret = cobj->getTileMap();
+        object_to_luaval<cocos2d::experimental::TMXTiledMap>(tolua_S, "ccexp.TMXTiledMap",(cocos2d::experimental::TMXTiledMap*)ret);
+        return 1;
+    }
+    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getTileMap",argc, 0);
+    return 0;
+    
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CMapView_getTileMap'.",&tolua_err);
+#endif
+    
+    return 0;
+}
+
+int lua_cocos2dx_cocoswidget_CMapView_tilePosFromLocation(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::cocoswidget::CMapView* cobj = nullptr;
+    bool ok  = true;
+    
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+    
+    
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"ccw.CMapView",0,&tolua_err)) goto tolua_lerror;
+#endif
+    
+    cobj = (cocos2d::cocoswidget::CMapView*)tolua_tousertype(tolua_S,1,0);
+    
+#if COCOS2D_DEBUG >= 1
+    if (!cobj)
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CMapView_tilePosFromLocation'", nullptr);
+        return 0;
+    }
+#endif
+    
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 1)
+    {
+		cocos2d::Point arg0;
+        ok &= luaval_to_point(tolua_S, 2, &arg0);
+        if(!ok)
+            return 0;
+       
+        const cocos2d::Vec2& ret = cobj->tilePosFromLocation(arg0);
+        vec2_to_luaval(tolua_S, ret);
+        return 1;
+    }
+    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getRole",argc, 1);
+    return 0;
+    
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CMapView_tilePosFromLocation'.",&tolua_err);
+#endif
+    
+    return 0;
+}
+
+int lua_cocos2dx_cocoswidget_CMapRole_getDirection(lua_State* tolua_S){
+    int argc = 0;
+    cocos2d::cocoswidget::CMapRole* cobj = nullptr;
+    bool ok  = true;
+    
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+    
+    
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"ccw.CMapRole",0,&tolua_err)) goto tolua_lerror;
+#endif
+    
+    cobj = (cocos2d::cocoswidget::CMapRole*)tolua_tousertype(tolua_S,1,0);
+    
+#if COCOS2D_DEBUG >= 1
+    if (!cobj)
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CMapRole_getDirection'", nullptr);
+        return 0;
+    }
+#endif
+    
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 0)
+    {
+        if(!ok)
+            return 0;
+        double ret = (double)cobj->getDirection();
+        tolua_pushnumber(tolua_S,(lua_Number)ret);
+        return 1;
+    }
+    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getDirection",argc, 0);
+    return 0;
+    
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CMapRole_getDirection'.",&tolua_err);
+#endif
+    
+    return 0;
+}
+
+int lua_register_cocos2dx_cocoswidget_CMapView(lua_State* tolua_S)
+{
+    tolua_usertype(tolua_S,"ccw.CMapView");
+    tolua_cclass(tolua_S,"CMapView","ccw.CMapView","ccw.CScrollView",nullptr);
+    
+    tolua_beginmodule(tolua_S,"CMapView");
+    tolua_function(tolua_S, "setOnMoveIngScriptHandler", lua_cocos2dx_cocoswidget_CMapView_setOnMoveIngScriptHandler);
+    tolua_function(tolua_S, "setOnMoveEndScriptHandler", lua_cocos2dx_cocoswidget_CMapView_setOnMoveEndScriptHandler);
+    tolua_function(tolua_S, "getRole",lua_cocos2dx_cocoswidget_CMapView_getRole);
+    tolua_function(tolua_S, "setRole",lua_cocos2dx_cocoswidget_CMapView_setRole);
+    tolua_function(tolua_S,"tilePosFromLocation",lua_cocos2dx_cocoswidget_CMapView_tilePosFromLocation);
+	tolua_function(tolua_S, "setAutoSearchEnabled", lua_cocos2dx_cocoswidget_CMapView_setAutoSearchEnabled);
+    tolua_endmodule(tolua_S);
+    std::string typeName = typeid(cocos2d::cocoswidget::CMapView).name();
+    g_luaType[typeName] = "ccw.CMapView";
+    g_typeCast["CMapView"] = "ccw.CMapView";
+    return 1;
+}
+
+int lua_register_cocos2dx_cocoswidget_CMapRole(lua_State* tolua_S)
+{
+    tolua_usertype(tolua_S,"ccw.CMapRole");
+    tolua_cclass(tolua_S,"CMapRole","ccw.CMapRole","ccw.CWidget",nullptr);
+    
+    tolua_beginmodule(tolua_S,"CMapRole");
+	tolua_function(tolua_S, "getDirection", lua_cocos2dx_cocoswidget_CMapRole_getDirection);
+    tolua_endmodule(tolua_S);
+    std::string typeName = typeid(cocos2d::cocoswidget::CMapRole).name();
+    g_luaType[typeName] = "ccw.CMapRole";
+    g_typeCast["CMapRole"] = "ccw.CMapRole";
+    return 1;
+}
+
+
 int lua_cocos2dx_cocoswidget_CColorView_onTouchEnded(lua_State* tolua_S)
 {
     int argc = 0;
@@ -13902,7 +14218,7 @@ int lua_cocos2dx_cocoswidget_CScrollView_setContentOffset(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     if (argc == 1)
     {
-        cocos2d::Point arg0;
+        cocos2d::Vec2 arg0;
         
         ok &= luaval_to_point(tolua_S, 2, &arg0);
         if(!ok)
@@ -28346,62 +28662,51 @@ int lua_register_cocos2dx_cocoswidget_CircleMenu(lua_State* tolua_S)
 }
 TOLUA_API int register_all_cocos2dx_cocoswidget(lua_State* tolua_S)
 {
-    tolua_open(tolua_S);
-    
-    tolua_module(tolua_S,nullptr,0);
-    tolua_beginmodule(tolua_S,nullptr);
-    
-    //lua_register_cocos2dx_cocoswidget_CWidgetTouchProtocol(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CWidget(tolua_S);
-    //lua_register_cocos2dx_cocoswidget_CClickableProtocol(tolua_S);
-    lua_register_cocos2dx_cocoswidget_ArmatureBtn(tolua_S);
-    //lua_register_cocos2dx_cocoswidget_CLayoutableProtocol(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CLayout(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CTableViewCell(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CGridPageViewPage(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CScale9Sprite(tolua_S);
-    //lua_register_cocos2dx_cocoswidget_CLongClickableProtocol(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CImageViewScale9(tolua_S);
-    //lua_register_cocos2dx_cocoswidget_CScrollableProtocol(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CScrollView(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CColorView(tolua_S);
-    //lua_register_cocos2dx_cocoswidget_CDataSourceAdapterProtocol(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CTableView(tolua_S);
-    //lua_register_cocos2dx_cocoswidget_CPageChangeableProtocol(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CGridPageView(tolua_S);
-    //lua_register_cocos2dx_cocoswidget_CTextRichClickableProtocol(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CTextRich(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CircleMenu(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CListView(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CLabelAtlas(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CPageViewCell(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CWidgetWindow(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CButton(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CGradientView(tolua_S);
-    //lua_register_cocos2dx_cocoswidget_CControlableProtocol(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CImageView(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CGridPageViewCell(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CExpandableListView(tolua_S);
-    //lua_register_cocos2dx_cocoswidget_CProgressEndedProtocol(tolua_S);
-    //lua_register_cocos2dx_cocoswidget_MovieView(tolua_S);
-    //lua_register_cocos2dx_cocoswidget_CCheckableProtocol(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CToggleView(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CPageView(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CGridViewCell(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CExpandableNode(tolua_S);
-    //lua_register_cocos2dx_cocoswidget_CValueChangeableProtocol(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CControlView(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CLabel(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CProgressBar(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CSlider(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CCheckBox(tolua_S);
-    lua_register_cocos2dx_cocoswidget_NumericStepper(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CScrollViewContainer(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CGridView(tolua_S);
-    lua_register_cocos2dx_cocoswidget_CLabelBMFont(tolua_S);
+	tolua_open(tolua_S);
+	
+	tolua_module(tolua_S,nullptr,0);
+	tolua_beginmodule(tolua_S,nullptr);
+
+	lua_register_cocos2dx_cocoswidget_CWidget(tolua_S);
+	lua_register_cocos2dx_cocoswidget_ArmatureBtn(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CLayout(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CTableViewCell(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CGridPageViewPage(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CScale9Sprite(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CImageViewScale9(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CScrollView(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CColorView(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CTableView(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CGridPageView(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CTextRich(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CircleMenu(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CListView(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CLabelAtlas(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CPageViewCell(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CWidgetWindow(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CButton(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CGradientView(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CImageView(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CGridPageViewCell(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CExpandableListView(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CToggleView(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CPageView(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CGridViewCell(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CExpandableNode(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CControlView(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CLabel(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CProgressBar(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CSlider(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CCheckBox(tolua_S);
+	lua_register_cocos2dx_cocoswidget_NumericStepper(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CScrollViewContainer(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CGridView(tolua_S);
+	lua_register_cocos2dx_cocoswidget_CLabelBMFont(tolua_S);
     lua_register_cocos2dx_cocoswidget_CEditBox(tolua_S);
-    
-    tolua_endmodule(tolua_S);
-    return 1;
+    lua_register_cocos2dx_cocoswidget_CMapView(tolua_S);
+    lua_register_cocos2dx_cocoswidget_CMapRole(tolua_S);
+
+	tolua_endmodule(tolua_S);
+	return 1;
 }
 

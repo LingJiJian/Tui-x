@@ -225,7 +225,7 @@ void CScrollView::onTouchMoved(Touch *pTouch, float fDuration)
 		stoppedDeaccelerateScroll();
 		stoppedAnimatedScroll();
     }
-    
+
     if( m_bDragable )
     {
         m_tScrollDistance = tNodePoint - m_tLastMovePoint;

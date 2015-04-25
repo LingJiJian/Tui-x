@@ -67,6 +67,8 @@ typedef void (Ref::*SEL_ControlHandler)(Ref* pSender, float fx, float fy);
 typedef void (Ref::*SEL_ValueChangedHandler)(Ref* pSender, int nValue);
 typedef void (Ref::*SEL_ProgressEndedHandler)(Ref* pSender);
 typedef void (Ref::*SEL_ScrollingHandler)(Ref* pSender);
+typedef void (Ref::*SEL_MoveingHandler)(Ref* pSender);
+typedef void (Ref::*SEL_MoveEndHandler)(Ref* pSender);
 typedef void (Ref::*SEL_PageChangedHandler)(Ref* pSender, unsigned int nPageIdx);
 typedef Ref* (Ref::*SEL_DataSoucreAdapterHandler)(Ref* pConvertCell, unsigned int uIdx);
 typedef CWidgetTouchModel (Ref::*SEL_TouchBeganHandler)(Ref* pSender, Touch* pTouch);
@@ -87,6 +89,8 @@ typedef void (Ref::*SEL_TextRichClickHandler)(Ref* pSender, const char* descript
 #define ccw_touchbegan_selector(_SELECTOR_) (cocos2d::cocoswidget::SEL_TouchBeganHandler)(&_SELECTOR_)
 #define ccw_touchevent_selector(_SELECTOR_) (cocos2d::cocoswidget::SEL_TouchEventHandler)(&_SELECTOR_)
 #define ccw_textrichclick_selector(_SELECTOR_) (cocos2d::cocoswidget::SEL_TextRichClickHandler)(&_SELECTOR_)
+#define ccw_moveing_selector(_SELECTOR_) (cocos2d::cocoswidget::SEL_MoveingHandler)(&_SELECTOR_)
+#define ccw_moveend_selector(_SELECTOR_) (cocos2d::cocoswidget::SEL_MoveEndHandler)(&_SELECTOR_)
 
 
 class CWidgetTouchProtocol
@@ -192,6 +196,34 @@ protected:
 public:
 	virtual void setOnScrollingScriptHandler(int nHandler);
 	virtual void removeOnScrollingScriptHandler();
+#endif
+};
+
+class CMoveProtocol
+{
+public:
+    CMoveProtocol();
+    virtual ~CMoveProtocol();
+    void setOnMoveingListener(Ref* pListener, SEL_MoveingHandler pHandler);
+    void setOnMoveEndListener(Ref* pListener, SEL_MoveEndHandler pHandler);
+protected:
+    Ref* m_pMoveingListener;
+    SEL_MoveingHandler m_pMoveingHandler;
+    void executeMoveingHandler(Ref* pSender);
+    Ref* m_pMoveEndListener;
+    SEL_MoveEndHandler m_pMoveEndHandler;
+    void executeMoveEndHandler(Ref* pSender);
+#if USING_LUA
+protected:
+    int m_nMoveingScriptHandler;
+    void executeMoveingScriptHandler(Ref* pSender);
+    int m_nMoveEndScriptHandler;
+    void executeMoveEndScriptHandler(Ref* pSender);
+public:
+    virtual void setOnMoveIngScriptHandler(int nHandler);
+    virtual void removeOnMoveingScriptHandler();
+    virtual void setOnMoveEndScriptHandler(int nHandler);
+    virtual void removeOnMoveEndScriptHandler();
 #endif
 };
 

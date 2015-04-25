@@ -389,6 +389,9 @@
     <ClInclude Include="..\..\..\..\dragonbones\DragonBones.h">
       <Filter>dragonbones</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\MapView.h">
+      <Filter>CocosWidget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -613,6 +616,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\dragonbones\renderer\cocos2d-x-3.2\DBCCSlot.cpp">
       <Filter>dragonbones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\MapView.cpp">
+      <Filter>CocosWidget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

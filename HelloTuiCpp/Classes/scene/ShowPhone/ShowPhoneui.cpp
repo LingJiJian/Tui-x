@@ -21,18 +21,19 @@ void ShowPhoneui::event_menu_phone(Ref* pSender)
 	CSceneManager::getInstance()->replaceScene(
 		CCSceneExTransitionFade::create(0.5f, LoadScene("Main::Mainui")));
 }
-
-Node * ShowPhoneui::getPanel(int tagPanel)
+/************************************************************************/
+//	GET/SET/IS
+/************************************************************************/
+Node* ShowPhoneui::getPanel( int tagPanel )
 {
-	Node *pPanel = nullptr;
-	switch (tagPanel)
-	{
-	case PANEL_SHOWPHONE:
-		pPanel = this->getChildByTag(PANEL_SHOWPHONE);
-		break;
-	}
-	return pPanel;
+    Node *pPanel = nullptr;
+    switch (tagPanel)
+    {
+        case PANEL_SHOWPHONE:
+            pPanel = this->getChildByTag(PANEL_SHOWPHONE);
+            break;
+    }
+    return pPanel;
 }
-
 
 NS_SHOWPHONE_END
