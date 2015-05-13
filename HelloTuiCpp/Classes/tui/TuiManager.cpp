@@ -460,9 +460,8 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 
 	}else if (strcmp(item->first_attribute("type")->value(), kTuiControlRichText) == 0){
 		const char* text = item->first_attribute("text")->value();
-		int maxLen = atoi(item->first_attribute("max")->value());
 		int isSpriteFrame = atoi(item->first_attribute("spriteFrame")->value());
-		CTextRich *pTextRich = createTextRich(tag, text, maxLen, x, y, w, h, rotation, isSpriteFrame);
+		CTextRich *pTextRich = createTextRich(tag, text, x, y, w, h, rotation, isSpriteFrame);
 		container->addChild(pTextRich);
 	}
 }
@@ -851,9 +850,9 @@ CircleMenu *TuiManager::createCircleMenu(float tag, float x, float y, float w, f
 	return pMenu;
 }
 
-CTextRich *TuiManager::createTextRich(float tag, const char *text, int maxLen, float x, float y, float w, float h, float rotation, int isUseFrame){
+CTextRich *TuiManager::createTextRich(float tag, const char *text, float x, float y, float w, float h, float rotation, int isUseFrame){
 	CTextRich *pTextRich = CTextRich::create();
-	pTextRich->setMaxLineLength(maxLen);
+	pTextRich->setMaxLineWidth(w);
 
 	char* buf = new char[string(text).size() + 1];
 	memcpy(buf, text, string(text).size() + 1);
@@ -862,32 +861,38 @@ CTextRich *TuiManager::createTextRich(float tag, const char *text, int maxLen, f
 	doc.parse<0>(buf);
 	
 	for (xml_node<char> *item = doc.first_node("e"); item != NULL; item = item->next_sibling()){
+		int tag = atoi(item->first_attribute("tag")->value());
 		if (strcmp(item->first_attribute("type")->value(), kTuiControlLabel) == 0){ //label
 			const char *text = item->first_attribute("text")->value();
 			float textSize = 22;
 			const char *fontName = "";
-			int r = 255, g = 255, b = 255;
+			bool isOutLine = false;
+			bool isUnderLine = false;
+			int r = 255, g = 255, b = 255, r2 = 255, g2 = 255, b2 = 255;
 			if (item->first_attribute("size"))		textSize = atof(item->first_attribute("size")->value());
 			if (item->first_attribute("font"))		fontName = item->first_attribute("font")->value();
 			if (item->first_attribute("r"))			r = atoi(item->first_attribute("r")->value());
 			if (item->first_attribute("g"))			g = atoi(item->first_attribute("g")->value());
 			if (item->first_attribute("b"))			b = atoi(item->first_attribute("b")->value());
-			pTextRich->insertElement(TuiUtil::replace_all(text, "\\n", "\n").c_str(), fontName, textSize, Color3B(r, g, b));
+			if (item->first_attribute("isOutLine")) isOutLine = atoi(item->first_attribute("isOutLine")->value());
+			if (item->first_attribute("isUnderLine")) isUnderLine = atoi(item->first_attribute("isUnderLine")->value());
+			if (item->first_attribute("r2"))		r2 = atoi(item->first_attribute("r2")->value());
+			if (item->first_attribute("g2"))		g2 = atoi(item->first_attribute("g2")->value());
+			if (item->first_attribute("b2"))		b2 = atoi(item->first_attribute("b2")->value());
+			pTextRich->insertElement(tag,TuiUtil::replace_all(text, "\\n", "\n").c_str(), fontName, textSize, Color3B(r, g, b),isUnderLine,isOutLine,Color4B(r2, g2, b2,255));
 
-		}else if (strcmp(item->first_attribute("type")->value(), kTuiControlImage) == 0){//image
+		}else if (strcmp(item->first_attribute("type")->value(), kTuiControlImage) == 0){ //image
 			const char *imgSrc = item->first_attribute("src")->value();
-			int len = atoi(item->first_attribute("len")->value());
-			if (isUseFrame){
-				pTextRich->insertElement(CImageView::createWithSpriteFrameName(imgSrc), len);
-			}else{
-				pTextRich->insertElement(CImageView::create(imgSrc), len);
-			}
-		}else if (strcmp(item->first_attribute("type")->value(), kTuiControlAnim) == 0){//anim
-			const char *name = item->first_attribute("name")->value();
-			const char *plist = item->first_attribute("src")->value();
-			int len = atoi(item->first_attribute("len")->value());
-			Sprite *pAnim = createAnim(0, name, plist,0.05,-1, 0, 0, 0);
-			pTextRich->insertElement(pAnim, len);
+			bool isAnim = false;
+			float delay = 0.1;
+			int isLoop = 0;
+			const char *plist = "";
+			if (item->first_attribute("isAnim"))	isAnim = atoi(item->first_attribute("isAnim")->value());
+			if (item->first_attribute("plist"))		plist = item->first_attribute("plist")->value();
+			if (item->first_attribute("delay"))		delay = atof(item->first_attribute("delay")->value());
+			if (item->first_attribute("isLoop"))	isLoop = atoi(item->first_attribute("isLoop")->value()); 
+			if (plist != "") SpriteFrameCache::getInstance()->addSpriteFramesWithFile(plist);
+			pTextRich->insertElement(tag,imgSrc,isAnim,delay,isLoop);
 		}
 	}
 	delete[] buf;

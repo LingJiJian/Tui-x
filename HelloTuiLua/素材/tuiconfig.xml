@@ -1,4 +1,4 @@
 <config type="lua">
-	<path name="resPath" value= "F:\WorkSpace\C++WorkSpace\cocos2d-x-3.2\project\HelloTuiLua\res"></path>
-	<path name="tagPath" value= "F:\WorkSpace\C++WorkSpace\cocos2d-x-3.2\project\HelloTuiLua\src"></path>
+	<path name="resPath" value= "G:\Demo\Tui-x\HelloTuiLua\res"></path>
+	<path name="tagPath" value= "G:\Demo\Tui-x\HelloTuiLua\src"></path>
 </config>

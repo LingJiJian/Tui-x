@@ -124,5 +124,10 @@ function Welcomeui:onLoadScene()
  	btnShowPhone = self:getControl(Tag_welcomeui.PANEL_WELCOME,Tag_welcomeui.BTN_SHOWPHONE)
  	btnShowPhone:setOnClickScriptHandler(event_btn_showphone)
 
+ 	self.btnShowMap = self:getControl(Tag_welcomeui.PANEL_WELCOME,Tag_welcomeui.BTN_SHOWMAP)
+ 	self.btnShowMap:setOnClickScriptHandler(function(pSender)
+ 		CSceneManager:getInstance():replaceScene(
+		CCSceneExTransitionFade:create(0.5,LoadScene("Mapui")))
+ 	end)
 end 
 

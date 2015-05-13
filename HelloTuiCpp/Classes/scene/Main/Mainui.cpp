@@ -45,7 +45,7 @@ void Mainui::onLoadScene()
     
     CEditBox *pEditBox = (CEditBox*)this->getControl(PANEL_MAIN, EDIT_LOGIN);
     pEditBox->setDelegate(this);
-    
+	
 	CSceneManager::getInstance()->runSuspendScene(LoadScene("Guideui"));
 }
 

@@ -103,7 +103,7 @@ public:
 	CGridPageView *createGridPageView(float tag, Color4B color, int dir, int column, int row, int num, int cellWidth, int cellHeight, float x, float y, float w, float h, float rotation);
 	CEditBox *createEditBox(float tag, const char* placeHolder, const char* file, int inputMode, int inputFlag, float x, float y, float w, float h, float rotation, int isUseFrame);
 	CircleMenu *createCircleMenu(float tag, float x, float y, float w, float h, float rotation);
-	CTextRich *createTextRich(float tag, const char *text, int maxLen, float x, float y, float w, float h, float rotation, int isUseFrame);
+	CTextRich *createTextRich(float tag, const char *text, float x, float y, float w, float h, float rotation, int isUseFrame);
 	CMapView *createMapView(float tag,const char* file,const Vec2& moveTileOffset, const char* layerCollisionName,const char* collisionName,const char* viewLayerName, float x, float y, float w, float h, float rotation );
 protected:
 	/**

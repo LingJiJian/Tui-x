@@ -1190,68 +1190,6 @@ int lua_cocos2dx_tui_TuiManager_parseScene(lua_State* tolua_S)
 
     return 0;
 }
-int lua_cocos2dx_tui_TuiManager_createAnim(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::tui::TuiManager* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"tui.TuiManager",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::tui::TuiManager*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_tui_TuiManager_createAnim'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 7) 
-    {
-        double arg0;
-        const char* arg1;
-        const char* arg2;
-        double arg4;
-        double arg5;
-        double arg6;
-
-        ok &= luaval_to_number(tolua_S, 2,&arg0);
-
-        std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-
-		std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
-
-        ok &= luaval_to_number(tolua_S, 5,&arg4);
-
-        ok &= luaval_to_number(tolua_S, 6,&arg5);
-
-        ok &= luaval_to_number(tolua_S, 7,&arg6);
-        if(!ok)
-            return 0;
-        cocos2d::Sprite* ret = cobj->createAnim(arg0, arg1, arg2, arg4, arg5, arg6);
-        object_to_luaval<cocos2d::Sprite>(tolua_S, "cc.Sprite",(cocos2d::Sprite*)ret);
-        return 1;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "createAnim",argc, 7);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_tui_TuiManager_createAnim'.",&tolua_err);
-#endif
-
-    return 0;
-}
 
 int lua_cocos2dx_tui_TuiManager_createCircleMenu(lua_State* tolua_S)
 {
@@ -1511,7 +1449,6 @@ int lua_register_cocos2dx_tui_TuiManager(lua_State* tolua_S)
         tolua_function(tolua_S,"createLabel",lua_cocos2dx_tui_TuiManager_createLabel);
         tolua_function(tolua_S,"createImage9",lua_cocos2dx_tui_TuiManager_createImage9);
         tolua_function(tolua_S,"parseScene",lua_cocos2dx_tui_TuiManager_parseScene);
-        tolua_function(tolua_S,"createAnim",lua_cocos2dx_tui_TuiManager_createAnim);
         tolua_function(tolua_S,"createCircleMenu",lua_cocos2dx_tui_TuiManager_createCircleMenu);
         tolua_function(tolua_S,"getInstance", lua_cocos2dx_tui_TuiManager_getInstance);
 		tolua_function(tolua_S, "setAdaptResolution", lua_cocos2dx_tui_TuiManager_setAdaptResolution);

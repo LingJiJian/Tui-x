@@ -5,6 +5,7 @@ require "welcome/welcomeui"
 require "welcome/dialog/msgBox"
 require "showphone/showphoneui"
 require "recombine/recombineui"
+require "map/mapui"
 require "bag/bagui"
 
 -- cclog
@@ -42,13 +43,14 @@ local function main()
     -- -- avoid memory leak
     collectgarbage("setpause", 100)
     collectgarbage("setstepmul", 5000)
-	
-	-- --注册场景
+
+	--注册场景
     REGISTER_SCENE_FUNC("MsgBox",MsgBox.create)
     REGISTER_SCENE_FUNC("Showphoneui",Showphoneui.create)
     REGISTER_SCENE_FUNC("Recombineui",Recombineui.create)
     REGISTER_SCENE_FUNC("Bagui",Bagui.create)
     REGISTER_SCENE_FUNC("Welcomeui",Welcomeui.create)
+    REGISTER_SCENE_FUNC("Mapui",Mapui.create)
 
     CSceneManager:getInstance():runWithScene(LoadScene("Welcomeui"))
 end

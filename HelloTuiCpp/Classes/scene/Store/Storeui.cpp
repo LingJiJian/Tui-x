@@ -22,6 +22,10 @@ void Storeui::onLoadScene()
 	CExpandableListView *pExpList = (CExpandableListView*)this->getControl(PANEL_STORE,EXPLIST_TEST);
 	CButton *pBtnExp1 = (CButton *)pExpList->getExpandableNodeAtIndex(0)->getItemNodeAtIndex(0)->getChildByTag(BTN_EXPPAY1);
 	pBtnExp1->setOnClickListener(this, ccw_click_selector(Storeui::event_explist_btn));
+
+	CTextRich* pTextRich = (CTextRich*)this->getControl(PANEL_STORE,RTF_TEST);
+	pTextRich->setTouchEnabled(true);
+	pTextRich->setOnTextRichClickListener(this,ccw_textrichclick_selector(Storeui::event_rtf_test));
 }
 
 void Storeui::event_explist_btn(Ref* pSender)
@@ -39,6 +43,11 @@ void Storeui::event_btn_pay(Ref* pSender)
 {
 	Node *pBtn = (Node*)pSender;
 	CCLOG("pay index :%d", pBtn->getParent()->getTag());
+}
+
+void Storeui::event_rtf_test( Ref* pSender,int tag )
+{
+	CCLOG("click tag :%d", tag);
 }
 
 /************************************************************************/

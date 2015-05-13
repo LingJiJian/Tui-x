@@ -5,6 +5,7 @@ cocos2d-x/
 */bin/
 */proj.win32/Debug.win32/
 HelloTuiLua/frameworks/runtime-src/proj.win32/Debug.win32/
+HelloTuiLua/runtime/win32/*
 *.suo
 .DS_Store
 *.obj
