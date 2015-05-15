@@ -41,7 +41,7 @@ function Mapui:onLoadScene()
 	TuiManager:getInstance():parseScene(self,"panel_map",PATH_MAP)
 
 	local mapView = self:getControl(Tag_map.PANEL_MAP,Tag_map.MAP_TEST)
-	mapView:setRole(cc.Sprite:create("map/img_icon.png"),cc.p(0,0),5)
+	mapView:setRole(cc.Sprite:create("map/img_icon.png"),cc.p(0,0),10)
     
     local btnBack = self:getControl(Tag_map.PANEL_MAP,Tag_map.BTN_BACK)
 	btnBack:setOnClickScriptHandler(event_btn_back)

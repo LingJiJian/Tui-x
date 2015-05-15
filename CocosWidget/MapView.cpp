@@ -521,12 +521,16 @@ void CMapView::onMoveRole()
         
         if (diff.x != 0 && abs(diff.x) >= _role->getSpeed()) {
             diff.x > 0 ? currentPos.x += _role->getSpeed() : currentPos.x -= _role->getSpeed();
+        }else{
+            currentPos.x = tmpTarget.x;
         }
         if (diff.y != 0 && abs(diff.y) >= _role->getSpeed()) {
             diff.y > 0 ? currentPos.y += _role->getSpeed() : currentPos.y -= _role->getSpeed();
+        }else{
+            currentPos.y = tmpTarget.y;
         }
 		_role->setPosition(currentPos);
-		if (tmpTarget.distance(currentPos) <= _role->getSpeed())
+		if (tmpTarget == currentPos)
 		{
 			_movePaths.erase(_movePaths.begin());
 
