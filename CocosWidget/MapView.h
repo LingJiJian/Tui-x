@@ -138,6 +138,7 @@ public:
     bool isMoveing(){ return _isMoveing; };
     CC_SYNTHESIZE(float, _speed, Speed);
     CC_SYNTHESIZE(eRoleDirection,_direction,Direction);
+	CC_SYNTHESIZE(float,_angel,Angel);
 protected:
     void onUpdateDirection();
 protected:
@@ -180,14 +181,17 @@ protected:
     void performedAnimatedMoveing(float dt);
     void stoppedAnimatedMove();
     void onMoveing(){};
+	void onMoveRole();
+	void makeMovePaths(const Vec2& targetPos);
 protected:
     CMapRole* _role;
-    bool _bAnimatedMoveing;
+    bool _animatedMoveing;
     bool _focusOnRole;
     Vec2 _moveTileOffset;
     string _layerCollisionName;
     string _tileCollisionName;
     string _viewLayerName;
+	vector<Vec2> _movePaths;
 };
 
 NS_CC_WIDGET_END

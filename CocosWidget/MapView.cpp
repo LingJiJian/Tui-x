@@ -282,8 +282,9 @@ VectNode AStar::getVisited()
 //////////////////////////////////////////////////////////////////////////
 CMapRole::CMapRole()
 :_node(nullptr)
-,_speed(0.1f)
+,_speed(1)
 ,_lastPosition(Vec2::ZERO)
+,_angel(0)
 {
 }
 
@@ -321,19 +322,44 @@ void CMapRole::setNode(Node* node)
 }
 
 void CMapRole::onUpdateDirection(){
-//    if (_lastPosition != getPosition()) {
-//        Vec2 lastPosition = _lastPosition;
-//        _lastPosition = getPosition();
-//        float angle = CC_RADIANS_TO_DEGREES(Vec2::angle(lastPosition, _lastPosition));
-//        log("angle %f",angle);
-//       
-//    }
+    if (_lastPosition != getPosition()) {
+        Vec2 oldPos = _lastPosition;
+        _lastPosition = getPosition();
+			
+		Vec2 offsetPos = _lastPosition - oldPos;
+		float offsetX = offsetPos.x;
+		float offsetY = offsetPos.y;
+
+        float angle = atan2(offsetY,offsetX) * 180 / 3.1415;
+		if(angle<0) angle+= 360;
+
+        //log("angle %f",angle);
+		_angel = angle;
+
+		if(angle> 337.5 || angle<= 22.5){
+			_direction = Right;
+		}else if(angle> 22.5 && angle<= 67.5){
+			_direction = RightDown;
+		}else if(angle> 67.5 && angle<= 112.5){
+			_direction = Down;
+		}else if(angle> 112.5 && angle<= 157.5){
+			_direction = LeftDown;
+		}else if(angle> 157.5 && angle<= 202.5){
+			_direction = Left;
+		}else if(angle> 202.5 && angle<= 247.5){
+			_direction = LeftUp;
+		}else if(angle> 247.5 && angle<= 292.5){
+			_direction = LeftUp;
+		}else if(angle> 292.5 && angle<= 337.5){
+			_direction = Up;
+		}
+    }
 }
 
 CMapView::CMapView()
 :_role(nullptr),
 _autoSearchEnable(true),
-_bAnimatedMoveing(false),
+_animatedMoveing(false),
 _focusOnRole(true),
 _moveTileOffset(Vec2::ZERO)
 {
@@ -415,28 +441,31 @@ void CMapView::onTouchMoved( Touch* pTouch, float fDuration )
 
 void CMapView::perpareAnimatedMove()
 {
-    if( !_bAnimatedMoveing )
+    if( !_animatedMoveing )
     {
         schedule(schedule_selector(CMapView::performedAnimatedMoveing));
-        _bAnimatedMoveing = true;
+        _animatedMoveing = true;
     }
 }
 
 void CMapView::performedAnimatedMoveing(float dt)
 {
     this->onMoveing();
+	this->onMoveRole();
     this->executeMoveingHandler(this);
     if (_focusOnRole) {
         onFocusOnRole();
     }
+
+	_role->onUpdateDirection();
 }
 
 void CMapView::stoppedAnimatedMove()
 {
-    if( _bAnimatedMoveing )
+    if( _animatedMoveing )
     {
         unschedule(schedule_selector(CMapView::performedAnimatedMoveing));
-        _bAnimatedMoveing = false;
+        _animatedMoveing = false;
         
         this->onMoveing();
         this->executeMoveingHandler(this);
@@ -455,38 +484,53 @@ void CMapView::onTouchEnded( Touch* pTouch, float fDuration )
     if (_autoSearchEnable && _role) {
         Vec2 tilePos = tilePosFromLocation(_role->getPosition());
         _grid->setStartNode(tilePos.x,tilePos.y);
-
-            AStar::getInstance()->findPath(_grid);
-            VectNode path = AStar::getInstance()->getPath();
-            auto viewLayer = _tileMap->getLayer(_viewLayerName);
-            float speed = _role->getSpeed();
-        
-            Vector<FiniteTimeAction*> actions;
-            if (path.size() > 1) {
-                Size tileSize = _tileMap->getTileSize();
-                float moveModeTime = viewLayer->getPositionAt(Vec2(0, 0)).distance(viewLayer->getPositionAt(Vec2(0,1))) / speed;
-                float moveTime1 = viewLayer->getPositionAt(path.at(1)->getPosition()).distance(_role->getPosition()) / speed;
-                actions.pushBack(MoveTo::create( moveTime1,viewLayer->getPositionAt(path.at(1)->getPosition()) + _moveTileOffset ));
-                
-                for (int i = 2; i < path.size() - 1; i++)
-                {
-//                    log("x = %d y = %d ",path.at(i)->x,path.at(i)->y);
-                    Vec2 tileRealPos = viewLayer->getPositionAt(path.at(i)->getPosition());
-                    actions.pushBack(MoveTo::create(moveModeTime,tileRealPos + _moveTileOffset));
-                }
-                float moveTime2 = (viewLayer->getPositionAt(path.at(path.size() - 2)->getPosition()) + _moveTileOffset).distance(desPos) / speed;
-                actions.pushBack(MoveTo::create( moveTime2,desPos));
-
-            }else if(path.size() == 1){
-                float moveTime = _role->getPosition().distance(desPos) / speed;
-                actions.pushBack(MoveTo::create( moveTime,desPos));
-            }
-            actions.pushBack(CallFunc::create(std::bind(&CMapView::stoppedAnimatedMove,this)));
-            _role->stopAllActions();
-            _role->runAction(Sequence::create(actions));
-        
-            perpareAnimatedMove();
+        AStar::getInstance()->findPath(_grid);
+		makeMovePaths(desPos);
+			
+        perpareAnimatedMove();
     }
+}
+
+void CMapView::makeMovePaths(const Vec2& targetPos)
+{
+	_movePaths.clear();
+	auto viewLayer = _tileMap->getLayer(_viewLayerName);
+	VectNode path = AStar::getInstance()->getPath();
+	if (path.size() > 1)
+	{
+		for (int i = 1; i < path.size() - 1; i++)
+		{
+			Vec2 tmpPos = viewLayer->getPositionAt(path.at(i)->getPosition()) + _moveTileOffset;
+			_movePaths.push_back(tmpPos);
+		}
+		_movePaths.push_back(targetPos);
+
+	}else if(path.size() == 1){
+
+		_movePaths.push_back(targetPos);
+	}
+}
+
+void CMapView::onMoveRole()
+{
+	if (_role && _movePaths.size() > 0)
+	{
+		Vec2 tmpTarget = _movePaths.at(0);
+		Vec2 currentPos = _role->getPosition();
+		Vec2 diff = tmpTarget - currentPos;
+
+		diff.x > 0 ? currentPos.x += _role->getSpeed() : currentPos.x -= _role->getSpeed(); 
+		diff.y > 0 ? currentPos.y += _role->getSpeed() : currentPos.y -= _role->getSpeed();
+
+		_role->setPosition(currentPos);
+		if ((diff.x <= 1) && (diff.y <= 1))
+		{
+			_movePaths.erase(_movePaths.begin());
+
+			if (_movePaths.size() == 0 ) 
+				stoppedAnimatedMove();
+		}
+	}
 }
 
 Vec2 CMapView::tilePosFromLocation( const Vec2& localPos )
@@ -556,23 +600,26 @@ void CMapView::onFocusOnRole()
     Vec2 desPos = Vec2(x,y);
     Vec2 centerPos = Vec2(visible.width/2,visible.height/2);
     getContainer()->setPosition(centerPos-desPos);
-    
-    _role->onUpdateDirection();
 }
 
 void CMapView::setRole( Node* role ,const Vec2& pos,float speed)
 {
-    if (_role == nullptr) {
-        _role = CMapRole::create();
-        _tileMap->addChild(_role);
-    }
-    _role->setNode(role);
-    _role->setPosition(pos);
-    _role->setSpeed(speed);
-    
-    if (_focusOnRole) {
-        onFocusOnRole();
-    }
+	if (role)
+	{
+		if (_role == nullptr) {
+			_role = CMapRole::create();
+			_tileMap->addChild(_role);
+		}
+		_role->setNode(role);
+		_role->setPosition(pos);
+		_role->setSpeed(speed);
+
+		if (_focusOnRole) {
+			onFocusOnRole();
+		}
+	}else{
+		CC_SAFE_RELEASE_NULL(_role);
+	}
 }
 
 void CMapView::setMoveTileOffset(const Vec2& pos)
