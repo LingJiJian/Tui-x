@@ -47,7 +47,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 {
     // set default FPS
     Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
-   
+    Director::getInstance()->setDisplayStats(true);
+    
     // register lua module
     auto engine = LuaEngine::getInstance();
     ScriptEngineManager::getInstance()->setScriptEngine(engine);
@@ -62,6 +63,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     LuaStack* stack = engine->getLuaStack();
     stack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
+    
     
     //glview->setDesignResolutionSize(800, 480, ResolutionPolicy::EXACT_FIT);
     

@@ -516,14 +516,17 @@ void CMapView::onMoveRole()
 	if (_role && _movePaths.size() > 0)
 	{
 		Vec2 tmpTarget = _movePaths.at(0);
-		Vec2 currentPos = _role->getPosition();
+		Vec2 currentPos = Vec2(_role->getPosition());
 		Vec2 diff = tmpTarget - currentPos;
-
-		diff.x > 0 ? currentPos.x += _role->getSpeed() : currentPos.x -= _role->getSpeed(); 
-		diff.y > 0 ? currentPos.y += _role->getSpeed() : currentPos.y -= _role->getSpeed();
-
+        
+        if (diff.x != 0 && abs(diff.x) >= _role->getSpeed()) {
+            diff.x > 0 ? currentPos.x += _role->getSpeed() : currentPos.x -= _role->getSpeed();
+        }
+        if (diff.y != 0 && abs(diff.y) >= _role->getSpeed()) {
+            diff.y > 0 ? currentPos.y += _role->getSpeed() : currentPos.y -= _role->getSpeed();
+        }
 		_role->setPosition(currentPos);
-		if ((diff.x <= 1) && (diff.y <= 1))
+		if (tmpTarget.distance(currentPos) <= _role->getSpeed())
 		{
 			_movePaths.erase(_movePaths.begin());
 

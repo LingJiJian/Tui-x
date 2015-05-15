@@ -356,6 +356,7 @@ CMoveProtocol::CMoveProtocol()
 , m_pMoveEndHandler(nullptr)
 , m_pMoveEndListener(nullptr)
 #if USING_LUA
+, m_nMoveEndScriptHandler(0)
 , m_nMoveingScriptHandler(0)
 #endif
 {
