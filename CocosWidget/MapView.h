@@ -161,7 +161,7 @@ public:
 	CC_SYNTHESIZE(bool,_autoSearchEnable,AutoSearchEnabled);
     
     void setFocusOnRole(bool b);
-    void setMoveTileOffset(const Vec2& pos);
+	void setMoveTileOffset(const Vec2& pos){ _moveTileOffset = pos; }; 
     void setCollisionParam(const std::string& layerCollisionName,
                            const std::string& tileCollisionName,
                            const std::string& viewLayerName);

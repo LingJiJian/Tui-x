@@ -452,11 +452,11 @@ void CMapView::performedAnimatedMoveing(float dt)
 {
     this->onMoveing();
 	this->onMoveRole();
+
     this->executeMoveingHandler(this);
     if (_focusOnRole) {
         onFocusOnRole();
     }
-
 	_role->onUpdateDirection();
 }
 
@@ -537,6 +537,8 @@ void CMapView::onMoveRole()
 			if (_movePaths.size() == 0 ) 
 				stoppedAnimatedMove();
 		}
+	}else{
+		stoppedAnimatedMove();
 	}
 }
 
@@ -627,11 +629,6 @@ void CMapView::setRole( Node* role ,const Vec2& pos,float speed)
 	}else{
 		CC_SAFE_RELEASE_NULL(_role);
 	}
-}
-
-void CMapView::setMoveTileOffset(const Vec2& pos)
-{
-    _moveTileOffset = pos;
 }
 
 void CMapView::setFocusOnRole(bool b)
