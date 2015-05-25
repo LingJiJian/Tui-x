@@ -507,6 +507,8 @@ UIControlAttribute.kViewLayerName = "view_layer_name";
 /** Cell尺寸 */
 UIControlAttribute.kCellWidth = "cellWidth";
 UIControlAttribute.kCellHeight = "cellHeight";
+UIControlAttribute.kColumn = "column";
+UIControlAttribute.kRow = "row";
 /** 摇杆的两个图片 */
 UIControlAttribute.kcontrol_baseboard = "baseboard";
 UIControlAttribute.kcontrol_joystick = "joystick";
@@ -1362,6 +1364,7 @@ FlaToXML.prototype.convertExpList = function(expList,tag ,frameName){
 FlaToXML.prototype.convertPageView = function(pageView,tag ,frameName){
 	var xml_pageView = new UIPageView();
 	var params = pageView.parameters;
+	xml_pageView.setAttribute(UIControlAttribute.kName,pageView.name);
 	xml_pageView.setAttribute(UIControlAttribute.kTextAlpha,params.bgAlpha.value);
 	xml_pageView.setAttribute(UIControlAttribute.kTextRed,parseInt(params.bgColor.value.substr(1,2),16));
 	xml_pageView.setAttribute(UIControlAttribute.kTextGreen,parseInt(params.bgColor.value.substr(3,2),16));
@@ -1371,12 +1374,16 @@ FlaToXML.prototype.convertPageView = function(pageView,tag ,frameName){
 	xml_pageView.setAttribute(UIControlAttribute.kNum,params.num.value);
 
 	this.fullNormalAttirbute( xml_pageView,this.th, pageView ,tag ,frameName);
+	//获取mc的timeline
+	var timeline = pageView.libraryItem.timeline;
+	this.fetchElement( timeline, xml_pageView , frameName);	
 	return xml_pageView;
 }
 /** 转换tableView */
 FlaToXML.prototype.convertTableView = function(tableView,tag ,frameName){
 	var xml_tableView = new UITableView();
 	var params = tableView.parameters;
+	xml_tableView.setAttribute(UIControlAttribute.kName,tableView.name);
 	xml_tableView.setAttribute(UIControlAttribute.kTextAlpha,params.bgAlpha.value);
 	xml_tableView.setAttribute(UIControlAttribute.kTextRed,parseInt(params.bgColor.value.substr(1,2),16));
 	xml_tableView.setAttribute(UIControlAttribute.kTextGreen,parseInt(params.bgColor.value.substr(3,2),16));
@@ -1388,12 +1395,16 @@ FlaToXML.prototype.convertTableView = function(tableView,tag ,frameName){
 	xml_tableView.setAttribute(UIControlAttribute.kCellHeight,params.cellHeight.value);
 
 	this.fullNormalAttirbute( xml_tableView,this.th, tableView ,tag ,frameName);
+	//获取mc的timeline
+	var timeline = tableView.libraryItem.timeline;
+	this.fetchElement( timeline, xml_tableView , frameName);	
 	return xml_tableView;
 }
 /** 转换gridView */
 FlaToXML.prototype.convertGridView = function(gridView,tag,frameName){
 	var xml_gridView = new UIGridView();
 	var params = gridView.parameters;
+	xml_gridView.setAttribute(UIControlAttribute.kName,gridView.name);
 	xml_gridView.setAttribute(UIControlAttribute.kTextAlpha,params.bgAlpha.value);
 	xml_gridView.setAttribute(UIControlAttribute.kTextRed,parseInt(params.bgColor.value.substr(1,2),16));
 	xml_gridView.setAttribute(UIControlAttribute.kTextGreen,parseInt(params.bgColor.value.substr(3,2),16));
@@ -1405,12 +1416,16 @@ FlaToXML.prototype.convertGridView = function(gridView,tag,frameName){
 	xml_gridView.setAttribute(UIControlAttribute.kCellHeight,params.cellHeight.value);
 
 	this.fullNormalAttirbute(xml_gridView,this.th, gridView,tag ,frameName);
+	//获取mc的timeline
+	var timeline = gridView.libraryItem.timeline;
+	this.fetchElement( timeline, xml_gridView , frameName);	
 	return xml_gridView;
 }
 /** 转换GridPageView */
 FlaToXML.prototype.convertGridPageView = function(gridPageView,tag,frameName){
 	var xml_gridPageView = new UIGridPageView();
 	var params = gridPageView.parameters;
+	xml_gridPageView.setAttribute(UIControlAttribute.kName,gridPageView.name);
 	xml_gridPageView.setAttribute(UIControlAttribute.kTextAlpha,params.bgAlpha.value);
 	xml_gridPageView.setAttribute(UIControlAttribute.kTextRed,parseInt(params.bgColor.value.substr(1,2),16));
 	xml_gridPageView.setAttribute(UIControlAttribute.kTextGreen,parseInt(params.bgColor.value.substr(3,2),16));
@@ -1424,6 +1439,9 @@ FlaToXML.prototype.convertGridPageView = function(gridPageView,tag,frameName){
 	xml_gridPageView.setAttribute(UIControlAttribute.kCellHeight,params.cellHeight.value);
 	
 	this.fullNormalAttirbute(xml_gridPageView,this.th, gridPageView,tag ,frameName);
+	//获取mc的timeline
+	var timeline = gridPageView.libraryItem.timeline;
+	this.fetchElement( timeline, xml_gridPageView , frameName);
 	return xml_gridPageView;
 }
 /** 转换MapView */

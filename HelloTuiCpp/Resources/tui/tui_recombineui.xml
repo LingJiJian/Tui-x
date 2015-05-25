@@ -1,11 +1,12 @@
 
 	<control tag="1" type="panel" name="panel_recombine" x="400" y="240" width="1427.55" height="1091.75" rotation="0">
-		<control tag="2" type="gridPageView" num="40" red="0" green="255" blue="255" alpha="255" column="5" row="5" cellWidth="80" cellHeight="80" x="-179.55" y="-0.65" width="390" height="320" rotation="0" direction="0" spriteFrame="0"></control>
-		<control tag="3" type="scrollView" red="0" green="255" blue="255" alpha="255" innerWidth="1024" innerHeight="1024" x="197" y="12.25" width="350" height="300" rotation="0" direction="2">
-			<control tag="4" type="image" image="recombine/img_scrollview.png" x="337" y="-362" width="1024" height="1024" scaleX="1" scaleY="1" flipX="0" flipY="0" rotation="0" spriteFrame="0"></control>
+		<control tag="2" type="gridPageView" num="40" red="0" green="255" blue="255" alpha="255" name="gpv_bag" cellWidth="80" cellHeight="80" column="5" row="5" x="-179.55" y="-0.65" width="390" height="320" rotation="0" direction="0" spriteFrame="0">
+			<control tag="4" type="cell" name="cell_grid" x="-205" y="-83.9" width="52" height="50" rotation="0">
+				<control tag="5" type="button" text="click" textSize="18" textFont="fonts/Arial.ttf" red="255" green="0" blue="0" normal="bag/btn_grid_normal.png" select="bag/btn_grid_select.png" disable="bag/btn_grid_disable.png" x="40" y="-40" width="52" height="50" rotation="0" spriteFrame="0"></control>
+			</control>
 		</control>
-		<control tag="6" type="button" text="txt" textSize="16" textFont="fonts/Arial.ttf" red="0" green="0" blue="0" normal="bag/btn_grid_normal.png" select="bag/btn_grid_select.png" disable="bag/btn_grid_disable.png" x="354" y="205" width="52" height="50" rotation="0" spriteFrame="0"></control>
-	</control>
-	<control tag="7" type="cell" name="cell_grid" x="451.3" y="255.65" width="52" height="50" rotation="0">
-		<control tag="8" type="button" text="click" textSize="18" textFont="fonts/Arial.ttf" red="255" green="0" blue="0" normal="bag/btn_grid_normal.png" select="bag/btn_grid_select.png" disable="bag/btn_grid_disable.png" x="40" y="-40" width="52" height="50" rotation="0" spriteFrame="0"></control>
+		<control tag="6" type="scrollView" red="0" green="255" blue="255" alpha="255" innerWidth="1024" innerHeight="1024" x="197" y="12.25" width="350" height="300" rotation="0" direction="2">
+			<control tag="7" type="image" image="recombine/img_scrollview.png" x="337" y="-362" width="1024" height="1024" scaleX="1" scaleY="1" flipX="0" flipY="0" rotation="0" spriteFrame="0"></control>
+		</control>
+		<control tag="9" type="button" text="txt" textSize="16" textFont="fonts/Arial.ttf" red="0" green="0" blue="0" normal="bag/btn_grid_normal.png" select="bag/btn_grid_select.png" disable="bag/btn_grid_disable.png" x="354" y="205" width="52" height="50" rotation="0" spriteFrame="0"></control>
 	</control>

@@ -52,14 +52,14 @@ void TuiManager::foreachXmlParse(Node *container, xml_node<char>* xmlItem,const 
 					this->foreachXmlParse(container,item->first_node(kTuiNodeControl),targetName);
 				}
 			}else{
-				return this->parseControl(container, item);
+				return this->parseControl(container, item,targetName);
 			}
 		}
 	}
 }
 
 /////////////////////////////////////////////////////////////////
-void TuiManager::parseControl(Node* container,xml_node<char> *item)
+void TuiManager::parseControl(Node* container,xml_node<char> *item,const char* targetName)
 { 
 	int tag = atof(item->first_attribute("tag")->value());
 	int x = atof(item->first_attribute("x")->value());
@@ -73,13 +73,14 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		container->addChild(pPanel);
 		//recursive
 		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
-			parseControl(pPanel, iitem);
+			parseControl(pPanel, iitem,targetName);
 		}
 
-	}else if (strcmp(item->first_attribute("type")->value(),kTuiControlCell) == 0){//cell
+	}else if (strcmp(item->first_attribute("type")->value(),kTuiControlCell) == 0 &&
+              (TuiUtil::split(targetName,"_")[0] == kTuiControlCell) ){//cell
 		//recursive
 		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
-			parseControl(container, iitem);
+			parseControl(container, iitem,targetName);
 		}
 
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlImage) == 0){//image
@@ -233,7 +234,7 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		container->addChild(pView);
 		//recursive
 		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
-			parseControl(pView->getContainer(), iitem);
+			parseControl(pView->getContainer(), iitem,targetName);
 		}
 
 	}else if (strcmp(item->first_attribute("type")->value(), kTuiContainerLayout) == 0){//layout
@@ -243,7 +244,7 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		container->addChild(pLayout);
 		//recursive
 		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
-			parseControl(pLayout, iitem);
+			parseControl(pLayout, iitem,targetName);
 		}
 		Vector<Node*> vet = pLayout->getChildren();
 		for (Node *pChild : vet){//Offset coordinates Because CLayout zero point in the lower left corner
@@ -268,7 +269,7 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 
 			CLayout *pLayout = createLayout(i, 0, 0, w, h, rotation);
 			for (xml_node<char> *iiitem = iitem->first_node(kTuiNodeControl); iiitem != NULL; iiitem = iiitem->next_sibling()){
-				parseControl(pLayout, iiitem);
+				parseControl(pLayout, iiitem,targetName);
 			}
 			Vector<Node*> vet = pLayout->getChildren();
 			for (Node *pChild : vet){//Offset coordinates Because CLayout zero point in the lower left corner
@@ -300,14 +301,14 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 			CLayout *pExpNodeItem = nullptr;
 			for (xml_node<char> *iiitem = iitem->first_node(kTuiNodeControl); iiitem != NULL; iiitem = iiitem->next_sibling()){
 				if (strcmp(iiitem->first_attribute("type")->value(), kTuiContainerLayout) != 0){
-					parseControl(pExpNode, iiitem);
+					parseControl(pExpNode, iiitem,targetName);
 				}else{
 					pExpNodeItem = createLayout(0, 0, 0, w, h, rotation);
 					iw = atof(iiitem->first_attribute("width")->value());
 					ih = atof(iiitem->first_attribute("height")->value());
                     pExpNodeItem->setContentSize(Size(iw, ih));
 					for (xml_node<char> *iiiitem = iiitem->first_node(kTuiNodeControl); iiiitem != NULL; iiiitem = iiiitem->next_sibling()){
-						parseControl(pExpNodeItem, iiiitem);
+						parseControl(pExpNodeItem, iiiitem,targetName);
 					}
 				}
 			}
@@ -379,6 +380,11 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		int a = atoi(item->first_attribute("alpha")->value());
 		CPageView *pPageView = createPageView(tag, Color4B(r,g,b,a), dir, num, x, y, w, h, rotation);
 		container->addChild(pPageView);
+        
+        //recursive
+        for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
+            parseControl(pPageView, iitem,targetName);
+        }
 
 	}else if (strcmp(item->first_attribute("type")->value(), kTuiControlTable) == 0){//TableView
 		float w = atof(item->first_attribute("width")->value());
@@ -393,6 +399,11 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		int a = atoi(item->first_attribute("alpha")->value());
 		CTableView *pView = createTableView(tag, Color4B(r, g, b, a), dir, num, cellWidth, cellHeight, x, y, w, h, rotation);
 		container->addChild(pView);
+        
+        //recursive
+        for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
+            parseControl(pView, iitem,targetName);
+        }
 
 	}else if (strcmp(item->first_attribute("type")->value(), kTuiControlGridView) == 0){//GridView
 		float w = atof(item->first_attribute("width")->value());
@@ -407,6 +418,11 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		int a = atoi(item->first_attribute("alpha")->value());
 		CGridView *pView = createGridView(tag, Color4B(r, g, b, a), column, num, cellWidth, cellHeight, x, y, w, h, rotation);
 		container->addChild(pView);
+        
+        //recursive
+        for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
+            parseControl(pView, iitem,targetName);
+        }
 
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlMapView) == 0){//MapView
 		float w = atof(item->first_attribute("width")->value());
@@ -435,6 +451,11 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		int a = atoi(item->first_attribute("alpha")->value());
 		CGridPageView *pView = createGridPageView(tag, Color4B(r, g, b, a), dir, column, row, num, cellWidth, cellHeight, x, y, w, h, rotation);
 		container->addChild(pView);
+        
+        //recursive
+        for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
+            parseControl(pView, iitem,targetName);
+        }
 
 	}else if(strcmp(item->first_attribute("type")->value(),kTuiControlEditBox) == 0){//EditBox
 		float w = atof(item->first_attribute("width")->value());
@@ -454,7 +475,7 @@ void TuiManager::parseControl(Node* container,xml_node<char> *item)
 		container->addChild(pMenu);
 		//recursive
 		for (xml_node<char> *iitem = item->first_node(kTuiNodeControl); iitem != NULL; iitem = iitem->next_sibling()){
-			parseControl(pMenu, iitem);
+			parseControl(pMenu, iitem,targetName);
 		}
 		pMenu->reloadData();
 
