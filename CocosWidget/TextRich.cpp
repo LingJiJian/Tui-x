@@ -559,7 +559,8 @@ Sprite* CTextRich::getCacheImage()
 Node* CTextRich::makeLabel( Label* pTarget,const Color3B& color, const std::string& text, const std::string& fontName, int fontSize,bool isUnder, int tag,bool isOutLine,const Color4B& outLineColor)
 {
 	bool fileExist = FileUtils::getInstance()->isFileExist(fontName);
-
+	pTarget->disableEffect();
+	pTarget->setColor(Color3B::WHITE);
 	if (fileExist) {
 		TTFConfig ttfConfig(fontName.c_str(),fontSize,GlyphCollection::DYNAMIC);
 		pTarget->setTTFConfig(ttfConfig);
