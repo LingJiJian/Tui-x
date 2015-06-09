@@ -118,9 +118,9 @@ protected:
 	* @param container
 	* @param xmlNode
 	*/
-	void parseControl(Node* container,xml_node<char>*);
-
-	void foreachXmlParse(Node* container, xml_node<char>* item,const char* targetName);
+    void parseControl(Node* container,xml_node<char>* item,const char* targetName);
+    
+    void foreachXmlParse(Node* container, xml_node<char>* item,const char* targetName);
 
 	void doAdapterResolution(Node* container);
 private:
