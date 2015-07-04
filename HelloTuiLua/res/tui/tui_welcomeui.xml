@@ -29,5 +29,5 @@
 		<control tag="26" type="labelAtlas" num="123456" image="main/dialog/labAtlas_num.png" x="0" y="0" width="312" height="34" rotation="0" spriteFrame="0"></control>
 		<control tag="27" type="slider" bg="main/dialog/slider_test_bg.png" progress="main/dialog/slider_test_progress.png" thumb="main/dialog/slider_test_thumb.png" max="100" min="0" cur="15" x="0" y="61.45" width="500" height="52" rotation="0" spriteFrame="0"></control>
 		<control tag="28" type="progress" bg="main/dialog/prog_hp_bg.png" progress="main/dialog/prog_hp_progress.png" max="100" min="0" cur="15" showLabel="1" x="0" y="99.95" width="300" height="23" rotation="0" spriteFrame="0"></control>
-		<control tag="29" type="labelBMFont" text="美好的一天123456789______________\nzeeeeeeeerrrjoaienroicf : )" fnt="main/dialog/labBmf_test.fnt" x="-241.5" y="-92.65" width="0" height="0" rotation="0"></control>
+		<control tag="29" type="labelBMFont" text="美好的一天123456789______________\nzeeeeeeeerrrjoaienroicf : )" fnt="main/dialog/labBmf_test.fnt" x="-241.5" y="-92.65" width="512" height="76.8" rotation="0"></control>
 	</control>

@@ -251,6 +251,41 @@ TH = function(){
 	}
 }
 /////////////////////////////////////////////////////////////////////
+/* i18n语言输出 */
+TI18n = function(){
+	this.obj = {};			//实体
+	this.parseContent = function(i18nPath)
+	{
+		if(FLfile.exists(i18nPath)){
+			var i18nXml = XML(FLfile.read(i18nPath))
+			var children = i18nXml.elements();
+			for(var j = 0; j < children.length(); j++){
+				this.obj[children[j].@k] = children[j].@v;
+			}
+		}	
+		
+		var arr1 = {}
+		var arr2 = {}
+		for(var k in this.obj){
+			if(k == this.obj[k]){
+				arr1[k] = this.obj[k];
+			}else{
+				arr2[k] = this.obj[k];
+			}
+		}
+		
+		var ret = "<language>\n";
+		for(var k in arr1){
+			ret += "\t<item k=\""+ k +"\" v=\"" + arr1[k] + "\"></item> \n";
+		}
+		for(var k in arr2){
+			ret += "\t<item k=\""+ k +"\" v=\"" + arr2[k] + "\"></item> \n";
+		}
+		ret += "</language>";
+		return ret;
+	}
+}
+/////////////////////////////////////////////////////////////////////
 /** 默认的xml 节点名字 */
 XMLNode = {};
 XMLNode.root = "root";
@@ -900,6 +935,8 @@ FlaToXML = function(){
 	this.obj_fla = null;
 	/** TH,保存文件 */
 	this.th = null;
+	/** i18n 语言 */
+	this.i18n = null;
 	
 	/** 导出哪些层,默认为导出所有层 */
 	this.export_layer_type = kExportLayerAll;
@@ -962,6 +999,7 @@ FlaToXML.prototype.convert = function( objfla, xmlfile, uiname ){
 	this.txml = new UIXML( uiname );
 	
 	this.th = new TH();
+	this.i18n = new TI18n();
 	
 	if( xmlfile == "" || xmlfile == null ){
 		xmlfile = "tui_"+objfla.name.split(".")[0] + ".xml";
@@ -969,8 +1007,9 @@ FlaToXML.prototype.convert = function( objfla, xmlfile, uiname ){
 	
 	var flaname = this.obj_fla.name;
 	trace( "FlaToXML: 开始转换fla[" + flaname + "]文件为xml:[" + xmlfile + "] ui文件" );
+	objfla.editScene(0);//默认回到主场景
 	
-	if( this.isExportLayerCurrent() ){
+	if( this.isExportLayerCurrent() ){		
 		//导出当前层
 		var timeline = objfla.getTimeline();
 		if( timeline.currentLayer < 0 || timeline.currentLayer == undefined ){
@@ -1038,7 +1077,12 @@ FlaToXML.prototype.fullNormalAttirbute = function( xml,th, element ,tag,frameNam
 	xml.setAttribute( UIControlAttribute.kRotation, formatNumber(element.rotation) );
 	
 	th.obj[element.name] = {"controlName":element.name,"index":tag,"frameName":frameName};
-
+	
+	var attrValue = xml.getAttribute( UIControlAttribute.kText );		
+	if (attrValue != null && attrValue != "" ){	 
+		this.i18n.obj[ attrValue ] = attrValue;
+	}
+	
 	xml.setAttribute( UIControlAttribute.kWidth, formatNumber(element.width) );
 	xml.setAttribute( UIControlAttribute.kHeight, formatNumber(element.height) );
 	xml.setAttribute( UIControlAttribute.kTag, formatNumber(tag));
@@ -1230,7 +1274,6 @@ FlaToXML.prototype.convertArmature = function(armature,tag ,frameName){
 /** 转换label */
 FlaToXML.prototype.convertText = function(label,tag ,frameName){
 	var xml_label = new UILabel();
-	this.fullNormalAttirbute( xml_label,this.th, label ,tag ,frameName);
 	//for(var k in label.textRuns[0].textAttrs){
 	//	trace("key:"+k + "  "+label.textRuns[0].textAttrs[k]);
 	//}
@@ -1289,6 +1332,7 @@ if(label.filters != undefined){
 	xml_label.setAttribute(UIControlAttribute.kStrokeSize,strokeSize);
 	xml_label.setAttribute(UIControlAttribute.kShadowDistance,shadowDistance);
 	xml_label.setAttribute(UIControlAttribute.kShadowBlur,shadowBlur);
+	this.fullNormalAttirbute( xml_label,this.th, label ,tag ,frameName);
 	return xml_label;
 }
 /** 转换LabelAtlas */
@@ -1639,7 +1683,7 @@ changeTagPath = function(){
 	return tagPath;
 }
 //导出所有资源
-exportAll = function(resPath,tagPath,tagType){
+exportAll = function(resPath,tagPath,i18nPath,tagType){
 	
 	var sceneName = fl.getDocumentDOM().name.replace(".fla","");
 	var xmlFile = "tui/tui_"+sceneName+".xml";//xml资源路径
@@ -1652,6 +1696,7 @@ exportAll = function(resPath,tagPath,tagType){
 	}
 	var saveXmlPath = resPath + "/" + xmlFile;
 	var saveTagPath = tagPath + "/" ;
+	var saveI18nPath = i18nPath + "/i18n.xml" ;
 	
 	if (tagType == "cpp"){
 		saveTagPath += "tagMap/Tag_" + sceneName + ".h"; //cpp
@@ -1664,6 +1709,7 @@ exportAll = function(resPath,tagPath,tagType){
 	
 	FLfile.write(saveXmlPath,tui.txml.xml);
 	FLfile.write(saveTagPath,tui.th.parseContent(tagType));
+	FLfile.write(saveI18nPath,tui.i18n.parseContent(saveI18nPath));
 	trace(tui.txml.xml);
 }
 //加载xml配置表
@@ -1696,4 +1742,5 @@ cls();
 var configs = loadConfig();
 var uriResPath = decodeURI(FLfile.platformPathToURI(configs.resPath))
 var uriTagPath = decodeURI(FLfile.platformPathToURI(configs.tagPath))
-exportAll( uriResPath ,uriTagPath ,configs.type);
+var i18nPath = decodeURI(FLfile.platformPathToURI(configs.i18nPath))
+exportAll( uriResPath ,uriTagPath ,i18nPath ,configs.type);

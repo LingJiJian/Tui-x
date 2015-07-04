@@ -1,4 +1,5 @@
 <config type="lua">
 	<path name="resPath" value= "/Users/air/Documents/github/Tui-x/HelloTuiLua/res"></path>
 	<path name="tagPath" value= "/Users/air/Documents/github/Tui-x/HelloTuiLua/src"></path>
+	<path name="i18nPath" value= "/Users/air/Documents/github/Tui-x/HelloTuiLua/res"></path>
 </config>
