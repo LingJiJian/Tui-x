@@ -28,6 +28,7 @@ Tui是一个创建cocos2d-x UI界面的解决方案，而builder用的则是Flas
 11.优化创建组件的方式
 12.CocosBase支持悬浮层和局部点击区，Guide利器
 13.合并tilemap地图编辑器，可直接开发mmoarpg
+14.支持国际化i18n
 
 说明:
 
