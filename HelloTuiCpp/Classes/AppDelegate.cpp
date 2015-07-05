@@ -31,6 +31,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 		director->setOpenGLView(glview);
     }
 
+    //use i18n file
+    TuiManager::getInstance()->loadI18nFile("i18n.xml");
+
 	//glview->setDesignResolutionSize(800,480,ResolutionPolicy::EXACT_FIT);
 
     // turn on display FPS

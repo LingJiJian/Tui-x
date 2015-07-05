@@ -1,0 +1,23 @@
+<language>
+	<item k="click" v="click"></item> 
+	<item k="txt" v="txt"></item> 
+	<item k="This is Normal" v="This is Normal"></item> 
+	<item k="OutLine" v="OutLine"></item> 
+	<item k="Shadow" v="Shadow"></item> 
+	<item k="中文字体" v="中文字体"></item> 
+	<item k="背包" v="背包"></item> 
+	<item k="旋转" v="旋转"></item> 
+	<item k="对话框" v="对话框"></item> 
+	<item k="复合" v="复合"></item> 
+	<item k="列表" v="列表"></item> 
+	<item k="地图" v="地图"></item> 
+	<item k="<e type='label' tag='1' isUnderLine='1' r='225' g='100' b ='0' text='你好中国'></e><e type='label' tag='2' isOutLine='1' font='fonts/Arial.ttf' r='225' g='150' b ='0' r2='255' g2='255' b2 ='255' text='你好CocosWidget'></e><e type='label' tag='3' r='125' g='100' b ='0' text='你好Tui-x' size='24'></e><e type='image' tag='4' src='main/ctlv_left_joystick.png'></e><e type='image' tag='5' isAnim='1' src='anim_coin' plist='main/anim_coin.plist' isLoop='1' delay='0.1' ></e><e type='label' tag='7' r='255' g='0' b ='0' text='来个\n换行吧' size='20'></e>" v="<e type='label' tag='1' isUnderLine='1' r='225' g='100' b ='0' text='你好中国'></e><e type='label' tag='2' isOutLine='1' font='fonts/Arial.ttf' r='225' g='150' b ='0' r2='255' g2='255' b2 ='255' text='你好CocosWidget'></e><e type='label' tag='3' r='125' g='100' b ='0' text='你好Tui-x' size='24'></e><e type='image' tag='4' src='main/ctlv_left_joystick.png'></e><e type='image' tag='5' isAnim='1' src='anim_coin' plist='main/anim_coin.plist' isLoop='1' delay='0.1' ></e><e type='label' tag='7' r='255' g='0' b ='0' text='来个\n换行吧' size='20'></e>"></item> 
+	<item k="这是拓展文本" v="这是拓展文本"></item> 
+	<item k="click1" v="click1"></item> 
+	<item k="click4" v="click4"></item> 
+	<item k="click3" v="click3"></item> 
+	<item k="click2" v="click2"></item> 
+	<item k="back" v="back"></item> 
+	<item k="请点击这个按钮，不要问我为什么。。。" v="请点击这个按钮，不要问我为什么。。"></item> 
+	<item k="美好的一天0123456789\nHelloWorld!!\nxxxxx : )" v="美好的一天0123456789\n你好世界!!\nxxxxx : )"></item> 
+</language>

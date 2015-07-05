@@ -71,8 +71,11 @@ public:
 
 	void setAdaptResolution(bool b, float designWidth = 800, float designHeight = 480);
 
+    void loadI18nFile(const string& pathXML);
+    
 	CC_SYNTHESIZE_READONLY(float, m_fScaleResolutionX, ScaleResolutionX);
 	CC_SYNTHESIZE_READONLY(float, m_fScaleResolutionY, ScaleResolutionY);
+    map<string,string> getI18nMap() { return m_i18nMap; };
 public:
 
 	CWidgetWindow *createPanel(float tag,float x,float y,int w,int h,float rotation);
@@ -125,6 +128,7 @@ protected:
 	void doAdapterResolution(Node* container);
 private:
 	map<string,string> m_DataMap;
+	map<string,string> m_i18nMap;
 	
 	bool m_isAdaptResolution;
 };

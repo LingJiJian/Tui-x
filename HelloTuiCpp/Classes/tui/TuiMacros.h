@@ -21,4 +21,7 @@ public: static __CLASS__* getInstance(){\
 #define Arp(_p_) Vec2((float)(_p_.x * TuiManager::getInstance()->getScaleResolutionX()), \
 	(float)(_p_.y * TuiManager::getInstance()->getScaleResolutionY()))
 
+#define i18n(_str_) \
+(strcmp(TuiManager::getInstance()->getI18nMap()[_str_].c_str(),"") == 1 ? _str_ : TuiManager::getInstance()->getI18nMap()[_str_].c_str())
+
 #endif
