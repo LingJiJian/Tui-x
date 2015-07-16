@@ -2,6 +2,7 @@
 #include "CCLuaEngine.h"
 #include "SimpleAudioEngine.h"
 #include "cocos2d.h"
+#include "TuiManager.h"
 #include "lua_module_register.h"
 
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_LINUX)
@@ -60,6 +61,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     FileUtils::getInstance()->addSearchPath("src");
     FileUtils::getInstance()->addSearchPath("res");
+    
+    //use i18n file
+    cocos2d::tui::TuiManager::getInstance()->loadI18nFile("res/i18n.xml");
     
     LuaStack* stack = engine->getLuaStack();
     stack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));

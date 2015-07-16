@@ -14,6 +14,8 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		4587CE701AD4B72C007328F7 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4587CE6F1AD4B72C007328F7 /* map */; };
 		4587CE711AD4B72C007328F7 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 4587CE6F1AD4B72C007328F7 /* map */; };
+		45A30D361B48BA550038E99D /* i18n.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45A30D351B48BA550038E99D /* i18n.xml */; };
+		45A30D371B48BA550038E99D /* i18n.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45A30D351B48BA550038E99D /* i18n.xml */; };
 		45AD98DD1AB885A500690125 /* MapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45AD98DB1AB885A500690125 /* MapView.cpp */; };
 		45AD98DE1AB885A500690125 /* MapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45AD98DB1AB885A500690125 /* MapView.cpp */; };
 		45AD98E31AB885C700690125 /* Mapui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45AD98E11AB885C700690125 /* Mapui.cpp */; };
@@ -276,6 +278,7 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4587CE6F1AD4B72C007328F7 /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; path = map; sourceTree = "<group>"; };
 		4587CE721AD4B745007328F7 /* Tag_map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag_map.h; sourceTree = "<group>"; };
+		45A30D351B48BA550038E99D /* i18n.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = i18n.xml; sourceTree = "<group>"; };
 		45AD98DB1AB885A500690125 /* MapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapView.cpp; sourceTree = "<group>"; };
 		45AD98DC1AB885A500690125 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
 		45AD98E01AB885C700690125 /* MapCfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCfg.h; sourceTree = "<group>"; };
@@ -370,7 +373,6 @@
 		45DEB4081AB7B6BE00430759 /* ColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorView.h; sourceTree = "<group>"; };
 		45DEB4091AB7B6BE00430759 /* ControlView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ControlView.cpp; sourceTree = "<group>"; };
 		45DEB40A1AB7B6BE00430759 /* ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlView.h; sourceTree = "<group>"; };
-		45DEB40B1AB7B6BE00430759 /* Ease.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ease.h; sourceTree = "<group>"; };
 		45DEB40C1AB7B6BE00430759 /* ExpandableListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExpandableListView.cpp; sourceTree = "<group>"; };
 		45DEB40D1AB7B6BE00430759 /* ExpandableListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandableListView.h; sourceTree = "<group>"; };
 		45DEB40E1AB7B6BE00430759 /* GradientView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GradientView.cpp; sourceTree = "<group>"; };
@@ -856,7 +858,6 @@
 				45DEB4081AB7B6BE00430759 /* ColorView.h */,
 				45DEB4091AB7B6BE00430759 /* ControlView.cpp */,
 				45DEB40A1AB7B6BE00430759 /* ControlView.h */,
-				45DEB40B1AB7B6BE00430759 /* Ease.h */,
 				45DEB40C1AB7B6BE00430759 /* ExpandableListView.cpp */,
 				45DEB40D1AB7B6BE00430759 /* ExpandableListView.h */,
 				45DEB40E1AB7B6BE00430759 /* GradientView.cpp */,
@@ -1118,6 +1119,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				45A30D351B48BA550038E99D /* i18n.xml */,
 				4587CE6F1AD4B72C007328F7 /* map */,
 				45DEB3B41AB7B6A700430759 /* bag */,
 				45DEB3B51AB7B6A700430759 /* main */,
@@ -1307,6 +1309,7 @@
 				45DEB5321AB7B6BE00430759 /* libDragonbones_demo.vcxproj.filters in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
+				45A30D361B48BA550038E99D /* i18n.xml in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				45DEB3C11AB7B6A700430759 /* showphone in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
@@ -1338,6 +1341,7 @@
 				45DEB3C81AB7B6A700430759 /* welcome in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				45DEB5311AB7B6BE00430759 /* libDragonbones_demo.vcxproj in Resources */,
+				45A30D371B48BA550038E99D /* i18n.xml in Resources */,
 				45DEB5231AB7B6BE00430759 /* Android.mk in Resources */,
 				45DEB3C01AB7B6A700430759 /* recombine in Resources */,
 				4587CE711AD4B72C007328F7 /* map in Resources */,

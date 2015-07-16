@@ -384,7 +384,6 @@
 		454EA7DB1AC1C34C0097AFD9 /* ColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorView.h; sourceTree = "<group>"; };
 		454EA7DC1AC1C34C0097AFD9 /* ControlView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ControlView.cpp; sourceTree = "<group>"; };
 		454EA7DD1AC1C34C0097AFD9 /* ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlView.h; sourceTree = "<group>"; };
-		454EA7DE1AC1C34C0097AFD9 /* Ease.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ease.h; sourceTree = "<group>"; };
 		454EA7DF1AC1C34C0097AFD9 /* ExpandableListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExpandableListView.cpp; sourceTree = "<group>"; };
 		454EA7E01AC1C34C0097AFD9 /* ExpandableListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandableListView.h; sourceTree = "<group>"; };
 		454EA7E11AC1C34C0097AFD9 /* GradientView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GradientView.cpp; sourceTree = "<group>"; };
@@ -712,7 +711,6 @@
 				454EA7DB1AC1C34C0097AFD9 /* ColorView.h */,
 				454EA7DC1AC1C34C0097AFD9 /* ControlView.cpp */,
 				454EA7DD1AC1C34C0097AFD9 /* ControlView.h */,
-				454EA7DE1AC1C34C0097AFD9 /* Ease.h */,
 				454EA7DF1AC1C34C0097AFD9 /* ExpandableListView.cpp */,
 				454EA7E01AC1C34C0097AFD9 /* ExpandableListView.h */,
 				454EA7E11AC1C34C0097AFD9 /* GradientView.cpp */,
@@ -1278,7 +1276,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					F293B3C715EB7BE500256477 = {
-						DevelopmentTeam = MDDB52YB8L;
+						DevelopmentTeam = 8R9L2ZPWDB;
 					};
 				};
 			};
@@ -1819,6 +1817,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1840,6 +1839,7 @@
 					"$(_COCOS_LIB_IOS_END)",
 				);
 				PRODUCT_NAME = "HelloTuiLua iOS";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/ios $(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END) $(SRCROOT)/../Classes $(SRCROOT)/../../../../CocosWidget $(SRCROOT)/../../../../dragonbones $(SRCROOT)/../../../../CocosBase $(SRCROOT)/../../../../CocosNet";
@@ -1852,6 +1852,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
@@ -1872,6 +1873,7 @@
 					"$(_COCOS_LIB_IOS_END)",
 				);
 				PRODUCT_NAME = "HelloTuiLua iOS";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/ios $(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END) $(SRCROOT)/../Classes $(SRCROOT)/../../../../CocosWidget $(SRCROOT)/../../../../dragonbones $(SRCROOT)/../../../../CocosBase $(SRCROOT)/../../../../CocosNet";

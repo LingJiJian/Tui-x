@@ -1,0 +1,10 @@
+<language>
+	<item k="txt" v="txt"></item> 
+	<item k="<e type='label' tag='1' isUnderLine='1' r='225' g='100' b ='0' text='你好中国'></e><e type='label' tag='2' isOutLine='1' font='fonts/Arial.ttf' r='225' g='150' b ='0' r2='255' g2='255' b2 ='255' text='你好CocosWidget'></e><e type='label' tag='3' r='125' g='100' b ='0' text='你好Tui-x' size='24'></e><e type='image' tag='4' src='main/ctlv_left_joystick.png'></e><e type='image' tag='5' isAnim='1' src='anim_coin' plist='main/anim_coin.plist' isLoop='1' delay='0.1' ></e><e type='label' tag='7' r='255' g='0' b ='0' text='来个\n换行吧' size='20'></e>" v="<e type='label' tag='1' isUnderLine='1' r='225' g='100' b ='0' text='你好中国'></e><e type='label' tag='2' isOutLine='1' font='fonts/Arial.ttf' r='225' g='150' b ='0' r2='255' g2='255' b2 ='255' text='你好CocosWidget'></e><e type='label' tag='3' r='125' g='100' b ='0' text='你好Tui-x' size='24'></e><e type='image' tag='4' src='main/ctlv_left_joystick.png'></e><e type='image' tag='5' isAnim='1' src='anim_coin' plist='main/anim_coin.plist' isLoop='1' delay='0.1' ></e><e type='label' tag='7' r='255' g='0' b ='0' text='来个\n换行吧' size='20'></e>"></item> 
+	<item k="返回" v="返回"></item> 
+	<item k="复合" v="复合"></item> 
+	<item k="这是中文" v="这是中文"></item> 
+	<item k="这是阴影" v="这是阴影"></item> 
+	<item k="美好的一天123456789______________\nzeeeeeeeerrrjoaienroicf : )" v="美好的一天123456789______________\nzeeeeeeeerrrjoaienroicf : )"></item> 
+	<item k="hello world" v="你好世界"></item> 
+</language>

@@ -1,4 +1,5 @@
 <config type="cpp">
 	<path name="resPath" value= "/Users/air/Documents/github/Tui-x/HelloTuiCpp/Resources"></path>
 	<path name="tagPath" value= "/Users/air/Documents/github/Tui-x/HelloTuiCpp/Classes/tui"></path>
+	<path name="i18nPath" value= "/Users/air/Documents/github/Tui-x/HelloTuiCpp/Resources"></path>
 </config>

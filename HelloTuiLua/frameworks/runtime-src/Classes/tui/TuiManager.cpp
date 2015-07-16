@@ -583,7 +583,7 @@ CButton* TuiManager::createBtn(float tag, Color3B color, int fontSize, const cha
     }else{
         pBtn = CButton::createWith9Sprite(Size(w,h),normal,select,disable);
     }
-    if (lab) pBtn->initText(lab, font, fontSize, Size::ZERO, color);
+    if (lab) pBtn->initText(i18n(lab), font, fontSize, Size::ZERO, color);
     pBtn->setRotation(rotation);
     pBtn->setPosition(Vec2(x,-y));
     pBtn->setTag(tag);
@@ -647,7 +647,7 @@ CProgressBar* TuiManager::createProgress(float tag, int max, int min, int cur, c
 CLabel* TuiManager::createLabel(float tag, const char* text, const char* font, int alignment, float fontSize, int r, int g, int b, float x, float y, float w, float h,
                                 int r2,int g2,int b2,float strokeSize,int shadowDistance,float shadowBlur,float rotation)
 {
-    CLabel *pLabel = CLabel::createWithTTF(text,font,fontSize);
+    CLabel *pLabel = CLabel::createWithTTF(i18n(text),font,fontSize);
     
     if(shadowDistance != 0){
         pLabel->setTextColor(Color4B(r,g,b,255));
@@ -677,7 +677,7 @@ CLabelAtlas* TuiManager::createLabelAtlas(float tag, const char* num, const char
 }
 
 CLabelBMFont* TuiManager::createLabelBMFont(float tag, const char* text, const char* file, float x, float y, float w, float h, float rotation){
-    CLabelBMFont *pLabBMFont = CLabelBMFont::create(TuiUtil::replace_all(text,"\\n","\n"), file, TextHAlignment::LEFT);
+    CLabelBMFont *pLabBMFont = CLabelBMFont::create(TuiUtil::replace_all(i18n(text),"\\n","\n"), file, TextHAlignment::LEFT);
     pLabBMFont->setAnchorPoint(Vec2(0, 1));
     pLabBMFont->setRotation(rotation);
     pLabBMFont->setPosition(Vec2(x, -y));
@@ -935,6 +935,21 @@ void TuiManager::loadXml(const string& path)
     {
         string pathAbs = FileUtils::getInstance()->fullPathForFilename(path);
         m_DataMap[path] = FileUtils::getInstance()->getStringFromFile(pathAbs);
+    }
+}
+
+void TuiManager::loadI18nFile(const string& path)
+{
+    string pathAbs = FileUtils::getInstance()->fullPathForFilename(path);
+    string xmlContent = FileUtils::getInstance()->getStringFromFile(pathAbs);
+    char* buf = new char[xmlContent.size() + 1];
+    memcpy(buf, xmlContent.c_str(), xmlContent.size() + 1);
+    xml_document<> doc;
+    doc.parse<0>(buf);
+    
+    xml_node<char> *root = doc.first_node("language");
+    for (xml_node<char> *item = root->first_node("item"); item != NULL; item = item->next_sibling()){
+        m_i18nMap[ item->first_attribute("k")->value() ] = item->first_attribute("v")->value();
     }
 }
 
