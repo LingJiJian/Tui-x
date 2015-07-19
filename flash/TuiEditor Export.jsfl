@@ -1682,11 +1682,101 @@ changeTagPath = function(){
 	}
 	return tagPath;
 }
+//xml to lua
+exportLuaFromXml = function( luaFilePath, xml) {
+	var data = xml.replace(/\" /g, '",');
+	data = data.replace(/\<control/g, '{');
+	data = data.replace(/\>\<\/control\>/g, '},');
+	data = data.replace(/\"\>/g, '", child={');
+	data = data.replace(/\<\/control\>/g, '}},');
+
+	data = data.replace(/ tag="([^"]*)"/g, " tag=$1");
+	data = data.replace(/,x="([^"]*)"/g, ",x=$1");
+	data = data.replace(/,y="([^"]*)"/g, ",y=$1");
+	data = data.replace(/,width="([^"]*)"/g, ",width=$1");
+	data = data.replace(/,height="([^"]*)"/g, ",height=$1");
+	data = data.replace(/,rotation="([^"]*)"/g, ",rotation=$1");
+	data = data.replace(/,red="([^"]*)"/g, ",red=$1");
+	data = data.replace(/,green="([^"]*)"/g, ",green=$1");
+	data = data.replace(/,blue="([^"]*)"/g, ",blue=$1");
+	data = data.replace(/,bgAlpha="([^"]*)"/g, ",bgAlpha=$1");
+	data = data.replace(/,num="([^"]*)"/g, ",num=$1");
+
+	data = data.replace(/,alignment="([^"]*)"/g, ",alignment=$1");
+	data = data.replace(/,textSize="([^"]*)"/g, ",textSize=$1");
+	data = data.replace(/,scaleX="([^"]*)"/g, ",scaleX=$1");
+	data = data.replace(/,scaleY="([^"]*)"/g, ",scaleY=$1");
+	data = data.replace(/,strokeRed="([^"]*)"/g, ",strokeRed=$1");
+	data = data.replace(/,strokeGreen="([^"]*)"/g, ",strokeGreen=$1");
+	data = data.replace(/,strokeBlue="([^"]*)"/g, ",strokeBlue=$1");
+	data = data.replace(/,strokeSize="([^"]*)"/g, ",strokeSize=$1");
+	data = data.replace(/,shadowDistance="([^"]*)"/g, ",shadowDistance=$1");
+	data = data.replace(/,shadowBlur="([^"]*)"/g, ",shadowBlur=$1");
+
+	data = data.replace(/,inputMode="([^"]*)"/g, ",inputMode=$1");
+	data = data.replace(/,inputFlag="([^"]*)"/g, ",inputFlag=$1");
+	data = data.replace(/,cellWidth="([^"]*)"/g, ",cellWidth=$1");
+	data = data.replace(/,cellHeight="([^"]*)"/g, ",cellHeight=$1");
+	data = data.replace(/,alpha="([^"]*)"/g, ",alpha=$1");
+	data = data.replace(/,direction="([^"]*)"/g, ",direction=$1");
+	data = data.replace(/,max="([^"]*)"/g, ",max=$1");
+	data = data.replace(/,min="([^"]*)"/g, ",min=$1");
+	data = data.replace(/,cur="([^"]*)"/g, ",cur=$1");
+	data = data.replace(/,showLabel="([^"]*)"/g, ",showLabel=$1");
+	data = data.replace(/,spriteFrame="([^"]*)"/g, ",spriteFrame=$1");
+	data = data.replace(/,isLongClickRun="([^"]*)"/g, ",isLongClickRun=$1");
+	data = data.replace(/,scaleProportion="([^"]*)"/g, ",scaleProportion=$1");
+	
+	data = data.replace(/,capLeft="([^"]*)"/g, ",capLeft=$1");
+	data = data.replace(/,capTop="([^"]*)"/g, ",capTop=$1");
+	data = data.replace(/,capWidth="([^"]*)"/g, ",capWidth=$1");
+	data = data.replace(/,capHeight="([^"]*)"/g, ",capHeight=$1");
+	var lua = "local data = {" + data + "\n\
+}\n\
+local controls = {}\n\
+function controls.getAllControls()\n\
+    return data\n\
+end\n\
+\n\
+function controls.getControl(id)\n\
+    return data[id]\n\
+end\n\
+\n\
+local findNodeByTag\n\
+findNodeByTag = function (node, tag)\n\
+    for i,v in ipairs(node) do\n\
+        if v.tag == tag then\n\
+            return node[i]\n\
+        end\n\
+        if v.child ~= nil then\n\
+        	local t = findNodeByTag(v.child, tag)\n\
+        	if t ~= nil then return t end\n\
+        end\n\
+    end\n\
+    return nil\n\
+end\n\
+\n\
+function controls.getControlByTag(tag)\n\
+	return findNodeByTag(data, tag)\n\
+end\n\
+\n\
+return controls"
+trace(lua);
+FLfile.write(luaFilePath,lua);
+}
 //导出所有资源
-exportAll = function(resPath,tagPath,i18nPath,tagType){
+exportAll = function(pathArr,config){
+	
+	var resPath = pathArr[0];
+	var tagPath = pathArr[1];
+	var i18nPath = pathArr[2];
+	var uiPath = pathArr[3];
+	var tagType = config.type;
+	var parseType = config.parseType;
 	
 	var sceneName = fl.getDocumentDOM().name.replace(".fla","");
 	var xmlFile = "tui/tui_"+sceneName+".xml";//xml资源路径
+	var uiFile = "tui/tui_"+sceneName+".lua";//lua资源路径
 	
 	if (!FLfile.exists(tagPath + "/tagMap")) {
 		FLfile.createFolder(tagPath + "/tagMap");
@@ -1697,6 +1787,7 @@ exportAll = function(resPath,tagPath,i18nPath,tagType){
 	var saveXmlPath = resPath + "/" + xmlFile;
 	var saveTagPath = tagPath + "/" ;
 	var saveI18nPath = i18nPath + "/i18n.xml" ;
+	var saveUiFile = uiPath + "/" + uiFile;
 	
 	if (tagType == "cpp"){
 		saveTagPath += "tagMap/Tag_" + sceneName + ".h"; //cpp
@@ -1710,8 +1801,10 @@ exportAll = function(resPath,tagPath,i18nPath,tagType){
 	FLfile.write(saveXmlPath,tui.txml.xml);
 	FLfile.write(saveTagPath,tui.th.parseContent(tagType));
 	FLfile.write(saveI18nPath,tui.i18n.parseContent(saveI18nPath));
+	if (parseType == "lua") exportLuaFromXml(saveUiFile,tui.txml.xml);
 	trace(tui.txml.xml);
 }
+
 //加载xml配置表
 loadConfig = function() {
 	var filePath = fl.getDocumentDOM().path;
@@ -1730,11 +1823,13 @@ loadConfig = function() {
 	var configs = {};
 	var children = context.elements();
 	configs.type = context.@type;
+	configs.parseType = context.@parseType;
 	for(var j = 0; j < children.length(); j++){
 		configs[children[j].@name] = children[j].@value;
 	}
 	return configs;
 }
+
 //把该jsfl放到 C:\Users\Administrator\AppData\Local\Adobe\Flash CS6\zh_CN\Configuration\Commands 下
 //即可使用 FlashCS中的命令版TuiEditer(Commands)
 //配置请参考tuiconfig.xml
@@ -1743,4 +1838,5 @@ var configs = loadConfig();
 var uriResPath = decodeURI(FLfile.platformPathToURI(configs.resPath))
 var uriTagPath = decodeURI(FLfile.platformPathToURI(configs.tagPath))
 var i18nPath = decodeURI(FLfile.platformPathToURI(configs.i18nPath))
-exportAll( uriResPath ,uriTagPath ,i18nPath ,configs.type);
+var uiPath = decodeURI(FLfile.platformPathToURI(configs.uiPath))
+exportAll([uriResPath,uriTagPath,i18nPath,uiPath],configs);
