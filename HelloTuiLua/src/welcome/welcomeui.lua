@@ -129,5 +129,4 @@ function Welcomeui:onLoadScene()
  		CSceneManager:getInstance():replaceScene(
 		CCSceneExTransitionFade:create(0.5,LoadScene("Mapui")))
  	end)
-end 
-
+end

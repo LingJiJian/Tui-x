@@ -50,7 +50,7 @@ function MsgBox:onLoadScene()
 		self.progHp:setValue(n_value)
 	end)
 
-	self.btn = CButton:create("main/btn_green_normal.png","main/btn_green_select.png")
+	self.btn = CButton:create("main/btn_green_normal.png","")
 	self.btn:setPosition(cc.p(100,100))
 	self.btn:setText("点击")
 	self:getPanel(Tag_welcomeui.PANEL_MSGBOX):addChild(self.btn)
