@@ -46,6 +46,8 @@ local function main()
 
 	--注册场景
     REGISTER_SCENE_FUNC("MsgBox",MsgBox.create)
+    REGISTER_SCENE_FUNC("MsgBoxTwo",MsgBoxTwo.create)
+    REGISTER_SCENE_FUNC("MsgBoxThree",MsgBoxThree.create)
     REGISTER_SCENE_FUNC("Showphoneui",Showphoneui.create)
     REGISTER_SCENE_FUNC("Recombineui",Recombineui.create)
     REGISTER_SCENE_FUNC("Bagui",Bagui.create)

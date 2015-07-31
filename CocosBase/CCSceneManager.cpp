@@ -574,8 +574,11 @@ void CSceneManager::handleUISceneSwitch(ccUISCENESWITCH& tSceneSwitch)
 				tSceneSwitch.pScene->release();
 				m_vRunningUIScenes.erase(itr);
 			}
+
 			if (m_vRunningUIScenes.size() == 0)
 				m_pRunningScene->setModalable(false);
+			else
+				(*m_vRunningUIScenes.begin())->setModalable(false);
 		}
 		break;
 	}

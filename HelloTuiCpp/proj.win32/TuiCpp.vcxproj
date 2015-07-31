@@ -206,7 +206,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\scene\Guide\Guideui.cpp" />
     <ClCompile Include="..\Classes\scene\Main\dialog\MsgBox.cpp" />
     <ClCompile Include="..\Classes\scene\Main\Mainui.cpp" />
-    <ClCompile Include="..\Classes\scene\Main\SlideMenu.cpp" />
     <ClCompile Include="..\Classes\scene\Map\Mapui.cpp" />
     <ClCompile Include="..\Classes\scene\Recombine\Recombineui.cpp" />
     <ClCompile Include="..\Classes\scene\ShowPhone\ShowPhoneui.cpp" />
@@ -330,7 +329,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\scene\Main\dialog\MsgBox.h" />
     <ClInclude Include="..\Classes\scene\Main\MainCfg.h" />
     <ClInclude Include="..\Classes\scene\Main\Mainui.h" />
-    <ClInclude Include="..\Classes\scene\Main\SlideMenu.h" />
     <ClInclude Include="..\Classes\scene\Map\MapCfg.h" />
     <ClInclude Include="..\Classes\scene\Map\Mapui.h" />
     <ClInclude Include="..\Classes\scene\Recombine\Recombineui.h" />

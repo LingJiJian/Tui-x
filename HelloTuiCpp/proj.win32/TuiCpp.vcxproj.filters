@@ -315,9 +315,6 @@
     <ClCompile Include="..\..\CocosWidget\CEditBox\Win32InputBox.cpp">
       <Filter>lib\CocosWidget\EditBox</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\scene\Main\SlideMenu.cpp">
-      <Filter>Classes\scene\Main</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -721,9 +718,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\tui\tagMap\Tag_map.h">
       <Filter>lib\tui\tagMap</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\scene\Main\SlideMenu.h">
-      <Filter>Classes\scene\Main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -63,7 +63,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     FileUtils::getInstance()->addSearchPath("res");
     
     //use i18n file
-    cocos2d::tui::TuiManager::getInstance()->loadI18nFile("res/i18n.xml");
+    cocos2d::tui::TuiManager::getInstance()->loadI18nFile("i18n.xml");
     
     LuaStack* stack = engine->getLuaStack();
     stack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
