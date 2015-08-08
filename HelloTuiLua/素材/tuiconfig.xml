@@ -1,4 +1,6 @@
-<config type="lua">
-	<path name="resPath" value= "F:\WorkSpace\C++WorkSpace\cocos2d-x-3.2\project\HelloTuiLua\res"></path>
-	<path name="tagPath" value= "F:\WorkSpace\C++WorkSpace\cocos2d-x-3.2\project\HelloTuiLua\src"></path>
+<config type="lua" parseType="xml" ><!-- parseType is "xml" or "lua" -->
+	<path name="resPath" value="/Users/air/Documents/github/Tui-x/HelloTuiLua/res"></path>
+	<path name="tagPath" value="/Users/air/Documents/github/Tui-x/HelloTuiLua/src"></path>
+	<path name="i18nPath" value="/Users/air/Documents/github/Tui-x/HelloTuiLua/res"></path>
+	<Path name="uiPath" value="/Users/air/Documents/github/Tui-x/HelloTuiLua/res"></Path>
 </config>

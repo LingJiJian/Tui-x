@@ -207,6 +207,8 @@
 		454EA9771AC1C74E0097AFD9 /* OpenglConstants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 454EA94E1AC1C74E0097AFD9 /* OpenglConstants.lua */; };
 		454EA9781AC1C74E0097AFD9 /* StudioConstants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 454EA94F1AC1C74E0097AFD9 /* StudioConstants.lua */; };
 		454EA9791AC1C74E0097AFD9 /* StudioConstants.lua in Resources */ = {isa = PBXBuildFile; fileRef = 454EA94F1AC1C74E0097AFD9 /* StudioConstants.lua */; };
+		4563D6AB1AEC7896009CDB8B /* MapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4563D6A91AEC7896009CDB8B /* MapView.cpp */; };
+		4563D6AC1AEC7896009CDB8B /* MapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4563D6A91AEC7896009CDB8B /* MapView.cpp */; };
 		5023811817EBBCAC00990C9B /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5023810817EBBCAC00990C9B /* AppController.mm */; };
 		5023811917EBBCAC00990C9B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5023810917EBBCAC00990C9B /* Default-568h@2x.png */; };
 		5023811A17EBBCAC00990C9B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5023810A17EBBCAC00990C9B /* Default.png */; };
@@ -382,7 +384,6 @@
 		454EA7DB1AC1C34C0097AFD9 /* ColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorView.h; sourceTree = "<group>"; };
 		454EA7DC1AC1C34C0097AFD9 /* ControlView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ControlView.cpp; sourceTree = "<group>"; };
 		454EA7DD1AC1C34C0097AFD9 /* ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlView.h; sourceTree = "<group>"; };
-		454EA7DE1AC1C34C0097AFD9 /* Ease.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ease.h; sourceTree = "<group>"; };
 		454EA7DF1AC1C34C0097AFD9 /* ExpandableListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExpandableListView.cpp; sourceTree = "<group>"; };
 		454EA7E01AC1C34C0097AFD9 /* ExpandableListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandableListView.h; sourceTree = "<group>"; };
 		454EA7E11AC1C34C0097AFD9 /* GradientView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GradientView.cpp; sourceTree = "<group>"; };
@@ -570,6 +571,8 @@
 		454EA94D1AC1C74E0097AFD9 /* Opengl.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Opengl.lua; path = ../../../Opengl.lua; sourceTree = "<group>"; };
 		454EA94E1AC1C74E0097AFD9 /* OpenglConstants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OpenglConstants.lua; path = ../../../OpenglConstants.lua; sourceTree = "<group>"; };
 		454EA94F1AC1C74E0097AFD9 /* StudioConstants.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = StudioConstants.lua; path = ../../../StudioConstants.lua; sourceTree = "<group>"; };
+		4563D6A91AEC7896009CDB8B /* MapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapView.cpp; sourceTree = "<group>"; };
+		4563D6AA1AEC7896009CDB8B /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
 		5023810717EBBCAC00990C9B /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		5023810817EBBCAC00990C9B /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
 		5023810917EBBCAC00990C9B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -708,7 +711,6 @@
 				454EA7DB1AC1C34C0097AFD9 /* ColorView.h */,
 				454EA7DC1AC1C34C0097AFD9 /* ControlView.cpp */,
 				454EA7DD1AC1C34C0097AFD9 /* ControlView.h */,
-				454EA7DE1AC1C34C0097AFD9 /* Ease.h */,
 				454EA7DF1AC1C34C0097AFD9 /* ExpandableListView.cpp */,
 				454EA7E01AC1C34C0097AFD9 /* ExpandableListView.h */,
 				454EA7E11AC1C34C0097AFD9 /* GradientView.cpp */,
@@ -724,6 +726,8 @@
 				454EA7EB1AC1C34C0097AFD9 /* Label.cpp */,
 				454EA7EC1AC1C34C0097AFD9 /* Label.h */,
 				454EA7ED1AC1C34C0097AFD9 /* LabelAtlas.cpp */,
+				4563D6A91AEC7896009CDB8B /* MapView.cpp */,
+				4563D6AA1AEC7896009CDB8B /* MapView.h */,
 				454EA7EE1AC1C34C0097AFD9 /* LabelAtlas.h */,
 				454EA7EF1AC1C34C0097AFD9 /* LabelBMFont.cpp */,
 				454EA7F01AC1C34C0097AFD9 /* LabelBMFont.h */,
@@ -1272,7 +1276,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					F293B3C715EB7BE500256477 = {
-						DevelopmentTeam = MDDB52YB8L;
+						DevelopmentTeam = 8R9L2ZPWDB;
 					};
 				};
 			};
@@ -1488,6 +1492,7 @@
 				454EA9091AC1C43E0097AFD9 /* EventData.cpp in Sources */,
 				454EA84F1AC1C34C0097AFD9 /* ProgressBar.cpp in Sources */,
 				454EA8291AC1C34C0097AFD9 /* CheckBox.cpp in Sources */,
+				4563D6AC1AEC7896009CDB8B /* MapView.cpp in Sources */,
 				454EA8F11AC1C43E0097AFD9 /* CCInetAddress.cpp in Sources */,
 				454EA8311AC1C34C0097AFD9 /* ExpandableListView.cpp in Sources */,
 				454EA9051AC1C43E0097AFD9 /* Object.cpp in Sources */,
@@ -1587,6 +1592,7 @@
 				454EA81E1AC1C34C0097AFD9 /* CEditBoxImplMac.mm in Sources */,
 				454EA91C1AC1C43E0097AFD9 /* DBCCFactory.cpp in Sources */,
 				454EA9081AC1C43E0097AFD9 /* EventData.cpp in Sources */,
+				4563D6AB1AEC7896009CDB8B /* MapView.cpp in Sources */,
 				454EA9371AC1C6AD0097AFD9 /* TuiManager.cpp in Sources */,
 				454EA8161AC1C34C0097AFD9 /* Button.cpp in Sources */,
 				F293BB9C15EB831F00256477 /* AppDelegate.cpp in Sources */,
@@ -1811,6 +1817,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1832,6 +1839,7 @@
 					"$(_COCOS_LIB_IOS_END)",
 				);
 				PRODUCT_NAME = "HelloTuiLua iOS";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/ios $(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END) $(SRCROOT)/../Classes $(SRCROOT)/../../../../CocosWidget $(SRCROOT)/../../../../dragonbones $(SRCROOT)/../../../../CocosBase $(SRCROOT)/../../../../CocosNet";
@@ -1844,6 +1852,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
@@ -1864,6 +1873,7 @@
 					"$(_COCOS_LIB_IOS_END)",
 				);
 				PRODUCT_NAME = "HelloTuiLua iOS";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/ios $(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END) $(SRCROOT)/../Classes $(SRCROOT)/../../../../CocosWidget $(SRCROOT)/../../../../dragonbones $(SRCROOT)/../../../../CocosBase $(SRCROOT)/../../../../CocosNet";

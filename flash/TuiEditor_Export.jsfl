@@ -251,6 +251,41 @@ TH = function(){
 	}
 }
 /////////////////////////////////////////////////////////////////////
+/* i18n语言输出 */
+TI18n = function(){
+	this.obj = {};			//实体
+	this.parseContent = function(i18nPath)
+	{
+		if(FLfile.exists(i18nPath)){
+			var i18nXml = XML(FLfile.read(i18nPath))
+			var children = i18nXml.elements();
+			for(var j = 0; j < children.length(); j++){
+				this.obj[children[j].@k] = children[j].@v;
+			}
+		}	
+		
+		var arr1 = {}
+		var arr2 = {}
+		for(var k in this.obj){
+			if(k == this.obj[k]){
+				arr1[k] = this.obj[k];
+			}else{
+				arr2[k] = this.obj[k];
+			}
+		}
+		
+		var ret = "<language>\n";
+		for(var k in arr1){
+			ret += "\t<item k=\""+ k +"\" v=\"" + arr1[k] + "\"></item> \n";
+		}
+		for(var k in arr2){
+			ret += "\t<item k=\""+ k +"\" v=\"" + arr2[k] + "\"></item> \n";
+		}
+		ret += "</language>";
+		return ret;
+	}
+}
+/////////////////////////////////////////////////////////////////////
 /** 默认的xml 节点名字 */
 XMLNode = {};
 XMLNode.root = "root";
@@ -507,6 +542,8 @@ UIControlAttribute.kViewLayerName = "view_layer_name";
 /** Cell尺寸 */
 UIControlAttribute.kCellWidth = "cellWidth";
 UIControlAttribute.kCellHeight = "cellHeight";
+UIControlAttribute.kColumn = "column";
+UIControlAttribute.kRow = "row";
 /** 摇杆的两个图片 */
 UIControlAttribute.kcontrol_baseboard = "baseboard";
 UIControlAttribute.kcontrol_joystick = "joystick";
@@ -898,6 +935,8 @@ FlaToXML = function(){
 	this.obj_fla = null;
 	/** TH,保存文件 */
 	this.th = null;
+	/** i18n 语言 */
+	this.i18n = null;
 	
 	/** 导出哪些层,默认为导出所有层 */
 	this.export_layer_type = kExportLayerAll;
@@ -960,6 +999,7 @@ FlaToXML.prototype.convert = function( objfla, xmlfile, uiname ){
 	this.txml = new UIXML( uiname );
 	
 	this.th = new TH();
+	this.i18n = new TI18n();
 	
 	if( xmlfile == "" || xmlfile == null ){
 		xmlfile = "tui_"+objfla.name.split(".")[0] + ".xml";
@@ -967,8 +1007,9 @@ FlaToXML.prototype.convert = function( objfla, xmlfile, uiname ){
 	
 	var flaname = this.obj_fla.name;
 	trace( "FlaToXML: 开始转换fla[" + flaname + "]文件为xml:[" + xmlfile + "] ui文件" );
+	objfla.editScene(0);//默认回到主场景
 	
-	if( this.isExportLayerCurrent() ){
+	if( this.isExportLayerCurrent() ){		
 		//导出当前层
 		var timeline = objfla.getTimeline();
 		if( timeline.currentLayer < 0 || timeline.currentLayer == undefined ){
@@ -1029,14 +1070,20 @@ FlaToXML.prototype.fullNormalAttirbute = function( xml,th, element ,tag,frameNam
 	
 	//xml.setAttribute( UIControlAttribute.kName,element.name);
 	xml.setAttribute( UIControlAttribute.kX, formatNumber( element.x ) );
-	xml.setAttribute( UIControlAttribute.kY, formatNumber( element.y) );
+	//xml.setAttribute( UIControlAttribute.kY, formatNumber( element.y) );
+	xml.setAttribute( UIControlAttribute.kY, - element.y );
 	if(element.parameters && element.parameters.spriteFrame){
 		xml.setAttribute( UIControlAttribute.kSpriteFrame, formatBoolean(element.parameters.spriteFrame.value));
 	}
 	xml.setAttribute( UIControlAttribute.kRotation, formatNumber(element.rotation) );
 	
 	th.obj[element.name] = {"controlName":element.name,"index":tag,"frameName":frameName};
-
+	
+	var attrValue = xml.getAttribute( UIControlAttribute.kText );		
+	if (attrValue != null && attrValue != "" ){	 
+		this.i18n.obj[ attrValue ] = attrValue;
+	}
+	
 	xml.setAttribute( UIControlAttribute.kWidth, formatNumber(element.width) );
 	xml.setAttribute( UIControlAttribute.kHeight, formatNumber(element.height) );
 	xml.setAttribute( UIControlAttribute.kTag, formatNumber(tag));
@@ -1140,29 +1187,6 @@ FlaToXML.prototype.convertImg = function( image , tag ,frameName){
 }
 /** 转换image9 */
 FlaToXML.prototype.convertImg9 = function( image9 , tag ,frameName){
-	image9.scalingGrid = true;
-	var doc = fl.getDocumentDOM();
-	doc.breakApart();
-	var rect = item.scalingGridRect;
-	doc.setSelectionRect( { left:-1000, top:-1000, right:rect.left, bottom:rect.top } );
-	doc.group();
-	doc.setSelectionRect( { left:rect.left, top:-1000, right:rect.right, bottom:rect.top } );
-	doc.group();
-	doc.setSelectionRect( { left:rect.right, top:-1000, right:1000, bottom:rect.top } );
-	doc.group();
-	doc.setSelectionRect( { left:-1000, top:rect.top, right:rect.left, bottom:rect.bottom } );
-	doc.group();
-	doc.setSelectionRect( { left:rect.left, top:rect.top, right:rect.right, bottom:rect.bottom } );
-	doc.group();
-	doc.setSelectionRect( { left:rect.right, top:rect.top, right:1000, bottom:rect.bottom } );
-	doc.group();
-	doc.setSelectionRect( { left:-1000, top:rect.bottom, right:rect.left, bottom:1000 } );
-	doc.group();
-	doc.setSelectionRect( { left:rect.left, top:rect.bottom, right:rect.right, bottom:1000 } );
-	doc.group();
-	doc.setSelectionRect( { left:rect.right, top:rect.bottom, right:1000, bottom:1000 } );
-	doc.group();
-
 	var xml_img9 = new UIImage9();
 	xml_img9.setAttribute( UIControlAttribute.kUp,image9.parameters.up.value);
 	xml_img9.setAttribute( UIControlAttribute.kDown,image9.parameters.down.value);
@@ -1251,7 +1275,6 @@ FlaToXML.prototype.convertArmature = function(armature,tag ,frameName){
 /** 转换label */
 FlaToXML.prototype.convertText = function(label,tag ,frameName){
 	var xml_label = new UILabel();
-	this.fullNormalAttirbute( xml_label,this.th, label ,tag ,frameName);
 	//for(var k in label.textRuns[0].textAttrs){
 	//	trace("key:"+k + "  "+label.textRuns[0].textAttrs[k]);
 	//}
@@ -1310,6 +1333,7 @@ if(label.filters != undefined){
 	xml_label.setAttribute(UIControlAttribute.kStrokeSize,strokeSize);
 	xml_label.setAttribute(UIControlAttribute.kShadowDistance,shadowDistance);
 	xml_label.setAttribute(UIControlAttribute.kShadowBlur,shadowBlur);
+	this.fullNormalAttirbute( xml_label,this.th, label ,tag ,frameName);
 	return xml_label;
 }
 /** 转换LabelAtlas */
@@ -1385,6 +1409,7 @@ FlaToXML.prototype.convertExpList = function(expList,tag ,frameName){
 FlaToXML.prototype.convertPageView = function(pageView,tag ,frameName){
 	var xml_pageView = new UIPageView();
 	var params = pageView.parameters;
+	xml_pageView.setAttribute(UIControlAttribute.kName,pageView.name);
 	xml_pageView.setAttribute(UIControlAttribute.kTextAlpha,params.bgAlpha.value);
 	xml_pageView.setAttribute(UIControlAttribute.kTextRed,parseInt(params.bgColor.value.substr(1,2),16));
 	xml_pageView.setAttribute(UIControlAttribute.kTextGreen,parseInt(params.bgColor.value.substr(3,2),16));
@@ -1394,12 +1419,16 @@ FlaToXML.prototype.convertPageView = function(pageView,tag ,frameName){
 	xml_pageView.setAttribute(UIControlAttribute.kNum,params.num.value);
 
 	this.fullNormalAttirbute( xml_pageView,this.th, pageView ,tag ,frameName);
+	//获取mc的timeline
+	var timeline = pageView.libraryItem.timeline;
+	this.fetchElement( timeline, xml_pageView , frameName);	
 	return xml_pageView;
 }
 /** 转换tableView */
 FlaToXML.prototype.convertTableView = function(tableView,tag ,frameName){
 	var xml_tableView = new UITableView();
 	var params = tableView.parameters;
+	xml_tableView.setAttribute(UIControlAttribute.kName,tableView.name);
 	xml_tableView.setAttribute(UIControlAttribute.kTextAlpha,params.bgAlpha.value);
 	xml_tableView.setAttribute(UIControlAttribute.kTextRed,parseInt(params.bgColor.value.substr(1,2),16));
 	xml_tableView.setAttribute(UIControlAttribute.kTextGreen,parseInt(params.bgColor.value.substr(3,2),16));
@@ -1411,12 +1440,16 @@ FlaToXML.prototype.convertTableView = function(tableView,tag ,frameName){
 	xml_tableView.setAttribute(UIControlAttribute.kCellHeight,params.cellHeight.value);
 
 	this.fullNormalAttirbute( xml_tableView,this.th, tableView ,tag ,frameName);
+	//获取mc的timeline
+	var timeline = tableView.libraryItem.timeline;
+	this.fetchElement( timeline, xml_tableView , frameName);	
 	return xml_tableView;
 }
 /** 转换gridView */
 FlaToXML.prototype.convertGridView = function(gridView,tag,frameName){
 	var xml_gridView = new UIGridView();
 	var params = gridView.parameters;
+	xml_gridView.setAttribute(UIControlAttribute.kName,gridView.name);
 	xml_gridView.setAttribute(UIControlAttribute.kTextAlpha,params.bgAlpha.value);
 	xml_gridView.setAttribute(UIControlAttribute.kTextRed,parseInt(params.bgColor.value.substr(1,2),16));
 	xml_gridView.setAttribute(UIControlAttribute.kTextGreen,parseInt(params.bgColor.value.substr(3,2),16));
@@ -1428,12 +1461,16 @@ FlaToXML.prototype.convertGridView = function(gridView,tag,frameName){
 	xml_gridView.setAttribute(UIControlAttribute.kCellHeight,params.cellHeight.value);
 
 	this.fullNormalAttirbute(xml_gridView,this.th, gridView,tag ,frameName);
+	//获取mc的timeline
+	var timeline = gridView.libraryItem.timeline;
+	this.fetchElement( timeline, xml_gridView , frameName);	
 	return xml_gridView;
 }
 /** 转换GridPageView */
 FlaToXML.prototype.convertGridPageView = function(gridPageView,tag,frameName){
 	var xml_gridPageView = new UIGridPageView();
 	var params = gridPageView.parameters;
+	xml_gridPageView.setAttribute(UIControlAttribute.kName,gridPageView.name);
 	xml_gridPageView.setAttribute(UIControlAttribute.kTextAlpha,params.bgAlpha.value);
 	xml_gridPageView.setAttribute(UIControlAttribute.kTextRed,parseInt(params.bgColor.value.substr(1,2),16));
 	xml_gridPageView.setAttribute(UIControlAttribute.kTextGreen,parseInt(params.bgColor.value.substr(3,2),16));
@@ -1447,6 +1484,9 @@ FlaToXML.prototype.convertGridPageView = function(gridPageView,tag,frameName){
 	xml_gridPageView.setAttribute(UIControlAttribute.kCellHeight,params.cellHeight.value);
 	
 	this.fullNormalAttirbute(xml_gridPageView,this.th, gridPageView,tag ,frameName);
+	//获取mc的timeline
+	var timeline = gridPageView.libraryItem.timeline;
+	this.fetchElement( timeline, xml_gridPageView , frameName);
 	return xml_gridPageView;
 }
 /** 转换MapView */
@@ -1643,11 +1683,101 @@ changeTagPath = function(){
 	}
 	return tagPath;
 }
+//xml to lua
+exportLuaFromXml = function( luaFilePath, xml) {
+	var data = xml.replace(/\" /g, '",');
+	data = data.replace(/\<control/g, '{');
+	data = data.replace(/\>\<\/control\>/g, '},');
+	data = data.replace(/\"\>/g, '", child={');
+	data = data.replace(/\<\/control\>/g, '}},');
+
+	data = data.replace(/ tag="([^"]*)"/g, " tag=$1");
+	data = data.replace(/,x="([^"]*)"/g, ",x=$1");
+	data = data.replace(/,y="([^"]*)"/g, ",y=$1");
+	data = data.replace(/,width="([^"]*)"/g, ",width=$1");
+	data = data.replace(/,height="([^"]*)"/g, ",height=$1");
+	data = data.replace(/,rotation="([^"]*)"/g, ",rotation=$1");
+	data = data.replace(/,red="([^"]*)"/g, ",red=$1");
+	data = data.replace(/,green="([^"]*)"/g, ",green=$1");
+	data = data.replace(/,blue="([^"]*)"/g, ",blue=$1");
+	data = data.replace(/,bgAlpha="([^"]*)"/g, ",bgAlpha=$1");
+	data = data.replace(/,num="([^"]*)"/g, ",num=$1");
+
+	data = data.replace(/,alignment="([^"]*)"/g, ",alignment=$1");
+	data = data.replace(/,textSize="([^"]*)"/g, ",textSize=$1");
+	data = data.replace(/,scaleX="([^"]*)"/g, ",scaleX=$1");
+	data = data.replace(/,scaleY="([^"]*)"/g, ",scaleY=$1");
+	data = data.replace(/,strokeRed="([^"]*)"/g, ",strokeRed=$1");
+	data = data.replace(/,strokeGreen="([^"]*)"/g, ",strokeGreen=$1");
+	data = data.replace(/,strokeBlue="([^"]*)"/g, ",strokeBlue=$1");
+	data = data.replace(/,strokeSize="([^"]*)"/g, ",strokeSize=$1");
+	data = data.replace(/,shadowDistance="([^"]*)"/g, ",shadowDistance=$1");
+	data = data.replace(/,shadowBlur="([^"]*)"/g, ",shadowBlur=$1");
+
+	data = data.replace(/,inputMode="([^"]*)"/g, ",inputMode=$1");
+	data = data.replace(/,inputFlag="([^"]*)"/g, ",inputFlag=$1");
+	data = data.replace(/,cellWidth="([^"]*)"/g, ",cellWidth=$1");
+	data = data.replace(/,cellHeight="([^"]*)"/g, ",cellHeight=$1");
+	data = data.replace(/,alpha="([^"]*)"/g, ",alpha=$1");
+	data = data.replace(/,direction="([^"]*)"/g, ",direction=$1");
+	data = data.replace(/,max="([^"]*)"/g, ",max=$1");
+	data = data.replace(/,min="([^"]*)"/g, ",min=$1");
+	data = data.replace(/,cur="([^"]*)"/g, ",cur=$1");
+	data = data.replace(/,showLabel="([^"]*)"/g, ",showLabel=$1");
+	data = data.replace(/,spriteFrame="([^"]*)"/g, ",spriteFrame=$1");
+	data = data.replace(/,isLongClickRun="([^"]*)"/g, ",isLongClickRun=$1");
+	data = data.replace(/,scaleProportion="([^"]*)"/g, ",scaleProportion=$1");
+	
+	data = data.replace(/,capLeft="([^"]*)"/g, ",capLeft=$1");
+	data = data.replace(/,capTop="([^"]*)"/g, ",capTop=$1");
+	data = data.replace(/,capWidth="([^"]*)"/g, ",capWidth=$1");
+	data = data.replace(/,capHeight="([^"]*)"/g, ",capHeight=$1");
+	var lua = "local data = {" + data + "\n\
+}\n\
+local controls = {}\n\
+function controls.getAllControls()\n\
+    return data\n\
+end\n\
+\n\
+function controls.getControl(id)\n\
+    return data[id]\n\
+end\n\
+\n\
+local findNodeByTag\n\
+findNodeByTag = function (node, tag)\n\
+    for i,v in ipairs(node) do\n\
+        if v.tag == tag then\n\
+            return node[i]\n\
+        end\n\
+        if v.child ~= nil then\n\
+        	local t = findNodeByTag(v.child, tag)\n\
+        	if t ~= nil then return t end\n\
+        end\n\
+    end\n\
+    return nil\n\
+end\n\
+\n\
+function controls.getControlByTag(tag)\n\
+	return findNodeByTag(data, tag)\n\
+end\n\
+\n\
+return controls"
+trace(lua);
+FLfile.write(luaFilePath,lua);
+}
 //导出所有资源
-exportAll = function(resPath,tagPath,tagType){
+exportAll = function(pathArr,config){
+	
+	var resPath = pathArr[0];
+	var tagPath = pathArr[1];
+	var i18nPath = pathArr[2];
+	var uiPath = pathArr[3];
+	var tagType = config.type;
+	var parseType = config.parseType;
 	
 	var sceneName = fl.getDocumentDOM().name.replace(".fla","");
 	var xmlFile = "tui/tui_"+sceneName+".xml";//xml资源路径
+	var uiFile = "tui/tui_"+sceneName+".lua";//lua资源路径
 	
 	if (!FLfile.exists(tagPath + "/tagMap")) {
 		FLfile.createFolder(tagPath + "/tagMap");
@@ -1657,6 +1787,8 @@ exportAll = function(resPath,tagPath,tagType){
 	}
 	var saveXmlPath = resPath + "/" + xmlFile;
 	var saveTagPath = tagPath + "/" ;
+	var saveI18nPath = i18nPath + "/i18n.xml" ;
+	var saveUiFile = uiPath + "/" + uiFile;
 	
 	if (tagType == "cpp"){
 		saveTagPath += "tagMap/Tag_" + sceneName + ".h"; //cpp
@@ -1669,8 +1801,11 @@ exportAll = function(resPath,tagPath,tagType){
 	
 	FLfile.write(saveXmlPath,tui.txml.xml);
 	FLfile.write(saveTagPath,tui.th.parseContent(tagType));
+	FLfile.write(saveI18nPath,tui.i18n.parseContent(saveI18nPath));
+	if (parseType == "lua") exportLuaFromXml(saveUiFile,tui.txml.xml);
 	trace(tui.txml.xml);
 }
+
 //加载xml配置表
 loadConfig = function() {
 	var filePath = fl.getDocumentDOM().path;
@@ -1689,11 +1824,13 @@ loadConfig = function() {
 	var configs = {};
 	var children = context.elements();
 	configs.type = context.@type;
+	configs.parseType = context.@parseType;
 	for(var j = 0; j < children.length(); j++){
 		configs[children[j].@name] = children[j].@value;
 	}
 	return configs;
 }
+
 //把该jsfl放到 C:\Users\Administrator\AppData\Local\Adobe\Flash CS6\zh_CN\Configuration\Commands 下
 //即可使用 FlashCS中的命令版TuiEditer(Commands)
 //配置请参考tuiconfig.xml
@@ -1701,4 +1838,6 @@ cls();
 var configs = loadConfig();
 var uriResPath = decodeURI(FLfile.platformPathToURI(configs.resPath))
 var uriTagPath = decodeURI(FLfile.platformPathToURI(configs.tagPath))
-exportAll( uriResPath ,uriTagPath ,configs.type);
+var i18nPath = decodeURI(FLfile.platformPathToURI(configs.i18nPath))
+var uiPath = decodeURI(FLfile.platformPathToURI(configs.uiPath))
+exportAll([uriResPath,uriTagPath,i18nPath,uiPath],configs);

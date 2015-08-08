@@ -2,6 +2,7 @@
 #include "tui/TuiManager.h"
 #include "tui/tagMap/Tag_main.h"
 #include "dialog/MsgBox.h"
+#include "SlideMenu.h"
 
 NS_MAIN_BEGIN
 
@@ -45,8 +46,12 @@ void Mainui::onLoadScene()
     
     CEditBox *pEditBox = (CEditBox*)this->getControl(PANEL_MAIN, EDIT_LOGIN);
     pEditBox->setDelegate(this);
-    
+	
 	CSceneManager::getInstance()->runSuspendScene(LoadScene("Guideui"));
+
+	auto menu = SlideMenu::create();
+	menu->setPosition(-400,-200);
+	this->getPanel(PANEL_MAIN)->addChild(menu);
 }
 
 void Mainui::editBoxReturn(CEditBox *pEditBox)

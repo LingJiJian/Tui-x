@@ -1,4 +1,5 @@
-﻿var doc = fl.getDocumentDOM();
+﻿//切割九宫格
+var doc = fl.getDocumentDOM();
 var lib = doc.library;
 var items = lib.getSelectedItems();
 for each (var item in items)
@@ -36,3 +37,4 @@ for each (var item in items)
 		doc.group();
 	}
 }
+doc.editScene(0);

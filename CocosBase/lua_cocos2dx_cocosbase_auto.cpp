@@ -8017,22 +8017,6 @@ int lua_cocos2dx_cocosbase_CSceneManager_runUIScene(lua_State* tolua_S)
         cobj->runUIScene(arg0, arg1);
         return 0;
     }
-    if (argc == 3) 
-    {
-        cocos2d::CSceneExtension* arg0;
-        cocos2d::Ref* arg1;
-        bool arg2;
-
-        ok &= luaval_to_object<cocos2d::CSceneExtension>(tolua_S, 2, "cc.CSceneExtension",&arg0);
-
-        ok &= luaval_to_object<cocos2d::Ref>(tolua_S, 3, "cc.Ref",&arg1);
-
-        ok &= luaval_to_boolean(tolua_S, 4,&arg2);
-        if(!ok)
-            return 0;
-        cobj->runUIScene(arg0, arg1, arg2);
-        return 0;
-    }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "runUIScene",argc, 1);
     return 0;
 

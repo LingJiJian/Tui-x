@@ -33,92 +33,144 @@ THE SOFTWARE.
 #include "WidgetProtocol.h"
 #include "Widget.h"
 #include "Layout.h"
-#include "ImageView.h"
 #include <vector>
 
 NS_CC_WIDGET_BEGIN
 
-enum _ccATLASTYPE
+class RichElement : public Ref
 {
-	ccATLASTYPELABEL,
-	ccATLASTYPESPRITE
+public:
+	enum class Type
+	{
+		TEXT,
+		IMAGE,
+		CUSTOM
+	};
+	RichElement(){};
+	virtual ~RichElement(){};
+	bool init(int tag, const Color3B& color=Color3B::WHITE, GLubyte opacity=255);
+protected:
+	Type _type;
+	int _tag;
+	Color3B _color;
+	GLubyte _opacity;
+	friend class CTextRich;
 };
 
-struct _ccTEXTRICHELEMENT
+class RichElementText : public RichElement
 {
-	_ccATLASTYPE eATLASTYPE;
-	std::string strDESCRIPTION;
-	Node* pATLASITEM;
+public:
+	RichElementText(){_type = Type::TEXT;};
+	virtual ~RichElementText(){};
+	bool init(int tag, const Color3B& color, const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine,bool isOutLine,const Color4B& outLineColor);
+	static RichElementText* create(int tag, const Color3B& color, const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine = false,bool isOutLine = false,const Color4B& outLineColor=Color4B::WHITE);
+protected:
+	std::string _text;
+	std::string _fontName;
+	float _fontSize;
+	bool _isUnderLine;
+	bool _isOutLine;
+	Color4B _outLineColor;
+	friend class CTextRich;
+
 };
 
-struct _ccTEXTRICHELEMENTRECT
+class RichElementImage : public RichElement
 {
-	Rect tRECT;
-	std::string strDESCRIPTION;
+public:
+	RichElementImage(){_type = Type::IMAGE;};
+	virtual ~RichElementImage(){};
+	bool init(int tag, const std::string& filePath,bool isAnim,float delay,bool isLoop);
+	static RichElementImage* create(int tag,const std::string& filePath,bool isAnim=false,float delay=0.0f,bool isLoop=true);
+protected:
+	std::string _filePath;
+	Rect _textureRect;
+	int _textureType;
+	bool _isAnim;
+	bool _isLoop;
+	float _delay;
+	friend class CTextRich;
 };
 
-typedef std::vector<_ccTEXTRICHELEMENT> CTextRichAtlasLine;
-typedef std::vector<CTextRichAtlasLine*> CTextRichAtlas;
+class RichElementCustomNode : public RichElement
+{
+public:
+	RichElementCustomNode(){_type = Type::CUSTOM;};
+	virtual ~RichElementCustomNode(){CC_SAFE_RELEASE(_customNode);};
+	bool init(int tag, Node* customNode);
+	static RichElementCustomNode* create(int tag, Node* customNode);
+protected:
+	Node* _customNode;
+	friend class CTextRich;
+};
+
+class RichCacheElement : public Ref
+{
+public:
+	RichCacheElement():_isUse(false),_node(nullptr){};
+	virtual ~RichCacheElement();
+	bool init(bool isUse, Node* node);
+	static RichCacheElement* create(bool isUse, Node* node);
+protected:
+	bool _isUse;
+	Node* _node;
+	friend class CTextRich;
+};
 
 /**
  * class  : CTextRich
- * author : Jason lee
- * email  : jason.lee.c@foxmail.com
+ * author : Lingjijian
+ * email  : 342854406@qq.com
  * descpt : text rich define
  */
-class CTextRich
-: public Node
-, public CWidget
-, public CTextRichClickableProtocol
+class CTextRich :  public Node, public CWidget, public CTextRichClickableProtocol
 {
 public:
 	CTextRich();
 	virtual ~CTextRich();
-	virtual bool init();
 	static CTextRich* create();
 
-	const char* getFontName();
-	void setFontName(const char* pFontName);
-	float getFontSize() const;
-	void setFontSize(float fFontSize);
-	unsigned int getMaxLineLength() const;
-	void setMaxLineLength(unsigned int uLen);
-	float getVerticalSpacing() const;
-	void setVerticalSpacing(float fSpacing);
+	void insertElement(int tag,const char* pString, const char* pFontName = NULL, float fFontSize = 0.0f, const Color3B& tColor = Color3B::WHITE,bool isUnderLine = false,bool isOutLine = false,const Color4B& outLineColor=Color4B::WHITE);
+	void insertElement(int tag,const char* path, bool isAnim,float delay,bool isLoop );
+	void insertElement(int tag,Node* pNode);
 
-	void insertElement(const char* pString, 
-		const char* pFontName = NULL, 
-		float fFontSize = 0.0f, 
-		const Color3B& tColor = Color3B::WHITE, 
-		const char* pDescription = NULL);
-
-	void insertElement(Node* pNode,
-		unsigned int uLen = 0,
-		const char* pDescription = NULL);
-
+	CC_SYNTHESIZE(int,_maxLineWidth,MaxLineWidth);
+	void setVerticalSpace(float space);
 	void removeAllElements();
 	void reloadData();
-
+	std::vector< std::string > split(const std::string& s,const std::string& delim);
+	std::string getSubStringOfUTF8String(const std::string& str,std::string::size_type start,std::string::size_type length);
+	virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
 public:
 	virtual CWidgetTouchModel onTouchBegan(Touch* pTouch);
 	virtual void onTouchMoved(Touch* pTouch, float fDuration);
 	virtual void onTouchEnded(Touch* pTouch, float fDuration);
 	virtual void onTouchCancelled(Touch* pTouch, float fDuration);
-
+	
 protected:
-	void pushAtlasLine();
-	void pushAtlasElementAtLast(const _ccTEXTRICHELEMENT& tAtlas);
-	void makeAtlasLabelElement(_ccTEXTRICHELEMENT& tElement, const char* str, const char* fontname, float size, const Color3B& color, const char* pDescription);
+	virtual bool init() override;
+	void onDraw(const Mat4 &transform, uint32_t flags);
+	CustomCommand _customCommand;
 
+	void pushToContainer(Node* renderer);
+	void handleTextRenderer(const std::string& text, const std::string& fontName, float fontSize,bool isUnder, const Color3B& color, GLubyte opacity,int tag,bool isOutLine,const Color4B& outLineColor);
+	void handleImageRenderer(const std::string& fileParh, const Color3B& color, GLubyte opacity,int tag,bool isAnim,float delay,bool isLoop);
+	void handleCustomRenderer(Node* renderer,int tag);
+	void formarRenderers();
+	void addNewLine();
+
+	Label* getCacheLabel();
+	Sprite* getCacheImage();
+	Node* makeLabel(Label* pTarget,const Color3B& color, const std::string& text, const std::string& fontName, int fontSize,bool isUnder, int tag,bool isOutLine,const Color4B& outLineColor);
+	Node* makeImage(Sprite* pTarget, const std::string& filePath,int tag,bool isAnim,float delay,bool isLoop);
 protected:
-	float m_fVerticalSpacing;
-	unsigned int m_uCharCursor;
-	unsigned int m_uMaxLineLength;
-	std::string m_strFontName;
-	float m_fFontSize;
-
-	std::vector<_ccTEXTRICHELEMENTRECT> m_vRichTextAtlasDescriptions;
-	CTextRichAtlas* m_pRichTextAtlas;
+	Vector<RichElement*> _richElements;
+	std::vector<Vector<Node*>*> _elementRenders;
+	Vector<RichCacheElement*> _cacheLabElements;
+	Vector<RichCacheElement*> _cacheImgElements;
+	std::set<int> _underLineTags;
+	float _leftSpaceWidth;
+	float _verticalSpace;
 };
 
 NS_CC_WIDGET_END

@@ -1,0 +1,5 @@
+
+	<control tag="1" type="panel" name="panel_map" x="400" y="240" width="800" height="480" rotation="0">
+		<control tag="2" type="mapView" tmx="map/ortho-test1.tmx" move_offset_x="20" move_offset_y="20" layer_collision_name="layer_collision" collision_name="collision" view_layer_name="layer1" x="0" y="0" width="800" height="480" rotation="0"></control>
+		<control tag="3" type="button" text="txt" textSize="16" textFont="fonts/Arial.ttf" red="0" green="0" blue="0" normal="main/btn_green_normal.png" select="main/btn_green_select.png" disable="main/btn_green_disable.png" x="343" y="211.45" width="92" height="36" rotation="0" spriteFrame="0"></control>
+	</control>

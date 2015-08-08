@@ -18,7 +18,9 @@ void MsgBox::onLoadScene()
 
 void MsgBox::event_btn_close( Ref *pSender )
 {
-	CSceneManager::getInstance()->popUIScene(this);
+	//CSceneManager::getInstance()->popUIScene(this);
+	CSceneManager::getInstance()->runUIScene(LoadScene("Bag::Bagui"));
+	
 }
 
 void MsgBox::event_slider_test(Ref *pSender,int value)

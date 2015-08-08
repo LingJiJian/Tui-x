@@ -79,8 +79,11 @@ Ref* Bagui::event_adapt_pageBag(Ref* pConvertCell, unsigned int uIdx)
 
 void Bagui::event_btn_back(Ref* pSender)
 {
+	/*
 	CSceneManager::getInstance()->replaceScene(
 		CCSceneExTransitionFade::create(0.5f, LoadScene("Main::Mainui")));
+		*/
+	CSceneManager::getInstance()->popUIScene(this);
 }
 
 void Bagui::event_btn_gv(Ref* pSender)

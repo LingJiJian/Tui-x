@@ -71,8 +71,11 @@ public:
 
 	void setAdaptResolution(bool b, float designWidth = 800, float designHeight = 480);
 
+    void loadI18nFile(const string& pathXML);
+    
 	CC_SYNTHESIZE_READONLY(float, m_fScaleResolutionX, ScaleResolutionX);
 	CC_SYNTHESIZE_READONLY(float, m_fScaleResolutionY, ScaleResolutionY);
+    map<string,string> getI18nMap() { return m_i18nMap; };
 public:
 
 	CWidgetWindow *createPanel(float tag,float x,float y,int w,int h,float rotation);
@@ -103,7 +106,7 @@ public:
 	CGridPageView *createGridPageView(float tag, Color4B color, int dir, int column, int row, int num, int cellWidth, int cellHeight, float x, float y, float w, float h, float rotation);
 	CEditBox *createEditBox(float tag, const char* placeHolder, const char* file, int inputMode, int inputFlag, float x, float y, float w, float h, float rotation, int isUseFrame);
 	CircleMenu *createCircleMenu(float tag, float x, float y, float w, float h, float rotation);
-	CTextRich *createTextRich(float tag, const char *text, int maxLen, float x, float y, float w, float h, float rotation, int isUseFrame);
+	CTextRich *createTextRich(float tag, const char *text, float x, float y, float w, float h, float rotation, int isUseFrame);
 	CMapView *createMapView(float tag,const char* file,const Vec2& moveTileOffset, const char* layerCollisionName,const char* collisionName,const char* viewLayerName, float x, float y, float w, float h, float rotation );
 protected:
 	/**
@@ -118,13 +121,14 @@ protected:
 	* @param container
 	* @param xmlNode
 	*/
-	void parseControl(Node* container,xml_node<char>*);
+	void parseControl(Node* container,xml_node<char>* item,const char* targetName);
 
 	void foreachXmlParse(Node* container, xml_node<char>* item,const char* targetName);
 
 	void doAdapterResolution(Node* container);
 private:
 	map<string,string> m_DataMap;
+	map<string,string> m_i18nMap;
 	
 	bool m_isAdaptResolution;
 };

@@ -650,7 +650,9 @@ CWidgetTouchModel CButton::onTouchBegan(Touch* pTouch)
 		CC_SAFE_SET_VISIBLE(m_pNormalImage, false);
 		CC_SAFE_SET_VISIBLE(m_pDisabledImage, false);
 		m_pSelectedImage->setVisible(true);
-	}
+    }else{
+        if(m_pNormalImage) this->setScale(1.2);
+    }
 	return eWidgetTouchTransient;
 }
 
@@ -702,6 +704,7 @@ void CButton::onTouchEnded(Touch* pTouch, float fDuration)
 			executeClickHandler(this);
 		}
 		CC_SAFE_SET_VISIBLE(m_pNormalImage, true);
+        if(m_pNormalImage) this->setScale(1);
 	}
 }
 

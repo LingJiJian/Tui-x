@@ -35,7 +35,6 @@ NS_CC_BEGIN
 
 CSceneManager::CSceneManager()
 : m_bSendCleanupToScene(false)
-, m_bPopup(true)
 , m_pRunningScene(NULL)
 , m_pNextScene(NULL)
 {
@@ -266,7 +265,7 @@ void CSceneManager::end()
 	Director::getInstance()->end();
 }
 
-void CSceneManager::runUIScene(CSceneExtension* pScene, Ref* pExtra /* = NULL */,bool isPopup /* = true */)
+void CSceneManager::runUIScene(CSceneExtension* pScene, Ref* pExtra /* = NULL */)
 {
 	CCAssert(pScene != NULL && !dynamic_cast<CCSceneExTransition*>(pScene), "should not null and not transition");
 
@@ -286,17 +285,6 @@ void CSceneManager::runUIScene(CSceneExtension* pScene, Ref* pExtra /* = NULL */
 	{
 		m_lUISceneSwitchQueue.back().bLockedSwitch = false;
 	}
-
-	m_bPopup = isPopup;
-	if (m_bPopup)
-	{
-		for (auto uiScene : m_vRunningUIScenes)
-		{
-			if (pScene != uiScene)
-				uiScene->setModalable(true);
-		}
-		m_pRunningScene->setModalable(true);
-	}
 }
 
 void CSceneManager::popUIScene(CSceneExtension* pScene)
@@ -311,16 +299,6 @@ void CSceneManager::popUIScene(CSceneExtension* pScene)
 	tSceneSwitch.eType = eUISceneSwitchPopScene;
 	tSceneSwitch.bLockedSwitch = false;
 	m_lUISceneSwitchQueue.push_back(tSceneSwitch);
-
-	if (m_bPopup)
-	{
-		if (m_vRunningUIScenes.size() >= 2){
-			auto preUISceneIt = m_vRunningUIScenes.end() - 2;
-			(*preUISceneIt)->setModalable(false);
-		}
-		if (m_vRunningUIScenes.size() == 1)
-			m_pRunningScene->setModalable(false);
-	}
 }
 
 void CSceneManager::popAllUIScene()
@@ -335,15 +313,6 @@ void CSceneManager::popAllUIScene()
 		tSceneSwitch.eType = eUISceneSwitchPopScene;
 		tSceneSwitch.bLockedSwitch = false;
 		m_lUISceneSwitchQueue.push_back(tSceneSwitch);
-	}
-
-	if (m_bPopup)
-	{
-		for (auto uiScene : m_vRunningUIScenes)
-		{
-			uiScene->setModalable(false);
-		}
-		m_pRunningScene->setModalable(false);
 	}
 }
 
@@ -587,6 +556,10 @@ void CSceneManager::handleUISceneSwitch(ccUISCENESWITCH& tSceneSwitch)
 			tSceneSwitch.pScene->onEnter();
 			tSceneSwitch.pScene->onEnterTransitionDidFinish();
 			m_vRunningUIScenes.push_back(tSceneSwitch.pScene);
+
+			for (auto uiScene : m_vRunningUIScenes)
+				uiScene->setModalable( tSceneSwitch.pScene != uiScene );
+			m_pRunningScene->setModalable(true);
 		}
 		break;
 	case eUISceneSwitchPopScene:
@@ -594,11 +567,18 @@ void CSceneManager::handleUISceneSwitch(ccUISCENESWITCH& tSceneSwitch)
 			vector<CSceneExtension*>::iterator itr = std::find(m_vRunningUIScenes.begin(), m_vRunningUIScenes.end(), tSceneSwitch.pScene);
 			if( itr != m_vRunningUIScenes.end() )
 			{
+				(*itr)->setModalable(false); //reset modalable 
+
 				tSceneSwitch.pScene->onExitTransitionDidStart();
 				tSceneSwitch.pScene->onExit();
 				tSceneSwitch.pScene->release();
 				m_vRunningUIScenes.erase(itr);
 			}
+
+			if (m_vRunningUIScenes.size() == 0)
+				m_pRunningScene->setModalable(false);
+			else
+				(m_vRunningUIScenes.back())->setModalable(false);
 		}
 		break;
 	}

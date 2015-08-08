@@ -31,7 +31,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
 		director->setOpenGLView(glview);
     }
 
-	glview->setDesignResolutionSize(800,480,ResolutionPolicy::EXACT_FIT);
+    //use i18n file
+    TuiManager::getInstance()->loadI18nFile("i18n.xml");
+
+	//glview->setDesignResolutionSize(800,480,ResolutionPolicy::EXACT_FIT);
 
     // turn on display FPS
     director->setDisplayStats(true);
@@ -42,6 +45,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	ResoureMgr::getInstance()->registScene();
 //     run
 	CSceneManager::getInstance()->runWithScene(LoadScene("Welcome::Welcomeui"));
+
     return true;
 }
 

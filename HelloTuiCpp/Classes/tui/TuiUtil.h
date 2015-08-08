@@ -74,7 +74,14 @@ public:
 	* @return string
 	*/
 	static string replace_all(string str, const string& old_value, const string& new_value);
-
+    /*
+     * @brief split string ,such as => split(string("ff_a"),"_") => ["ff","a"]
+     *
+     * @param str text
+     * @param delim
+     * @return string
+     */
+    static vector< string > split(const string& s,const string& delim);
 protected:
 private:
 };

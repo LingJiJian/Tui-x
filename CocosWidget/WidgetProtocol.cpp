@@ -143,22 +143,22 @@ void CTextRichClickableProtocol::setOnTextRichClickListener(Ref* pListener, SEL_
 	m_pRichTextClickHandler = pHandler;
 }
 
-void CTextRichClickableProtocol::executeTextRichClickHandler(Ref* pSender, const char* pDescription)
+void CTextRichClickableProtocol::executeTextRichClickHandler(Ref* pSender, int tag)
 {
 	if( m_pRichTextClickListener && m_pRichTextClickHandler )
 	{
-		(m_pRichTextClickListener->*m_pRichTextClickHandler)(pSender, pDescription);
+		(m_pRichTextClickListener->*m_pRichTextClickHandler)(pSender, tag);
 	}
 #if USING_LUA
 	else if( m_nRichTextClickScriptHandler != 0 )
 	{
-		executeTextRichScriptHandler(pSender, pDescription);
+		executeTextRichScriptHandler(pSender, tag);
 	}
 #endif
 }
 
 #if USING_LUA
-void CTextRichClickableProtocol::executeTextRichScriptHandler(Ref* pSender, const char* pDescription)
+void CTextRichClickableProtocol::executeTextRichScriptHandler(Ref* pSender, int tag)
 {
 	if( m_nRichTextClickScriptHandler != 0 )
 	{
@@ -167,9 +167,9 @@ void CTextRichClickableProtocol::executeTextRichScriptHandler(Ref* pSender, cons
 
 		pStack->pushObject(pSender, "Ref");
 
-		if( pDescription )
+		if( tag > 0 )
 		{
-			pStack->pushString(pDescription);
+			pStack->pushInt(tag);
 		}
 		else
 		{
@@ -356,6 +356,7 @@ CMoveProtocol::CMoveProtocol()
 , m_pMoveEndHandler(nullptr)
 , m_pMoveEndListener(nullptr)
 #if USING_LUA
+, m_nMoveEndScriptHandler(0)
 , m_nMoveingScriptHandler(0)
 #endif
 {

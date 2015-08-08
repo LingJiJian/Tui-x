@@ -138,6 +138,7 @@ public:
     bool isMoveing(){ return _isMoveing; };
     CC_SYNTHESIZE(float, _speed, Speed);
     CC_SYNTHESIZE(eRoleDirection,_direction,Direction);
+	CC_SYNTHESIZE(float,_angel,Angel);
 protected:
     void onUpdateDirection();
 protected:
@@ -160,7 +161,7 @@ public:
 	CC_SYNTHESIZE(bool,_autoSearchEnable,AutoSearchEnabled);
     
     void setFocusOnRole(bool b);
-    void setMoveTileOffset(const Vec2& pos);
+	void setMoveTileOffset(const Vec2& pos){ _moveTileOffset = pos; }; 
     void setCollisionParam(const std::string& layerCollisionName,
                            const std::string& tileCollisionName,
                            const std::string& viewLayerName);
@@ -180,14 +181,17 @@ protected:
     void performedAnimatedMoveing(float dt);
     void stoppedAnimatedMove();
     void onMoveing(){};
+	void onMoveRole();
+	void makeMovePaths(const Vec2& targetPos);
 protected:
     CMapRole* _role;
-    bool _bAnimatedMoveing;
+    bool _animatedMoveing;
     bool _focusOnRole;
     Vec2 _moveTileOffset;
     string _layerCollisionName;
     string _tileCollisionName;
     string _viewLayerName;
+	vector<Vec2> _movePaths;
 };
 
 NS_CC_WIDGET_END

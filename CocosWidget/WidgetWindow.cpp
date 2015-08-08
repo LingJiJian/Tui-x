@@ -521,6 +521,7 @@ void CWidgetWindow::onTouchCancelled(Touch *pTouch, Event *pEvent)
 
 void CWidgetWindow::onTouchesBegan(const std::vector<Touch*>&touches, Event *unused_event)
 {
+	if(m_bModalable) return;
 	for(unsigned int i=0;i<touches.size(); i++)
 	{
 		Touch* pTouch = touches.at(i);

@@ -93,6 +93,8 @@ public:
     virtual void setReturnType(CEditBox::KeyboardReturnType returnType);
     virtual bool isEditing();
     
+    std::string getSubStringOfUTF8String(const std::string& str, std::string::size_type start, std::string::size_type length);
+    
     virtual void setText(const char* pText);
     virtual const char* getText(void);
     virtual void refreshInactiveText();
