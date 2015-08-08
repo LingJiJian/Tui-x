@@ -1140,6 +1140,29 @@ FlaToXML.prototype.convertImg = function( image , tag ,frameName){
 }
 /** 转换image9 */
 FlaToXML.prototype.convertImg9 = function( image9 , tag ,frameName){
+	image9.scalingGrid = true;
+	var doc = fl.getDocumentDOM();
+	doc.breakApart();
+	var rect = item.scalingGridRect;
+	doc.setSelectionRect( { left:-1000, top:-1000, right:rect.left, bottom:rect.top } );
+	doc.group();
+	doc.setSelectionRect( { left:rect.left, top:-1000, right:rect.right, bottom:rect.top } );
+	doc.group();
+	doc.setSelectionRect( { left:rect.right, top:-1000, right:1000, bottom:rect.top } );
+	doc.group();
+	doc.setSelectionRect( { left:-1000, top:rect.top, right:rect.left, bottom:rect.bottom } );
+	doc.group();
+	doc.setSelectionRect( { left:rect.left, top:rect.top, right:rect.right, bottom:rect.bottom } );
+	doc.group();
+	doc.setSelectionRect( { left:rect.right, top:rect.top, right:1000, bottom:rect.bottom } );
+	doc.group();
+	doc.setSelectionRect( { left:-1000, top:rect.bottom, right:rect.left, bottom:1000 } );
+	doc.group();
+	doc.setSelectionRect( { left:rect.left, top:rect.bottom, right:rect.right, bottom:1000 } );
+	doc.group();
+	doc.setSelectionRect( { left:rect.right, top:rect.bottom, right:1000, bottom:1000 } );
+	doc.group();
+
 	var xml_img9 = new UIImage9();
 	xml_img9.setAttribute( UIControlAttribute.kUp,image9.parameters.up.value);
 	xml_img9.setAttribute( UIControlAttribute.kDown,image9.parameters.down.value);
