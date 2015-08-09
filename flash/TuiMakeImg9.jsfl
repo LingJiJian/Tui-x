@@ -1,7 +1,11 @@
-﻿//切割九宫格
+﻿//遍历库 切割九宫格
+/*
+	之前的img9的九宫图有人说看起来不直观, 现在只要对舞台上的位图进行 "转换元件" 操作,并勾选开启九宫格，转换成影片剪辑后，再运行该脚本就可以了。刚刚转化完的元件就是九宫图，拉伸看看？
+*/
 var doc = fl.getDocumentDOM();
 var lib = doc.library;
 var items = lib.getSelectedItems();
+var count = 0;
 for each (var item in items)
 {
 	if (item.scalingGrid)
@@ -35,6 +39,8 @@ for each (var item in items)
 		doc.group();
 		doc.setSelectionRect( { left:rect.right, top:rect.bottom, right:1000, bottom:1000 } );
 		doc.group();
+		count ++;
 	}
 }
-doc.editScene(0);
+
+fl.outputPanel.trace( "转化完成, 成功量: "+count);

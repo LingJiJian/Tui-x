@@ -44,3 +44,6 @@ dragonbones/renderer/cocos2d-x-3.2/dbccMacro.h 里的USING_LUA设置成0，反�
 
 注意：Tui-x 3.x和Tui-x 2.2.x接口有少量区别！具体请看HelloTui							
 教程：http://blog.csdn.net/ab342854406/article/details/37706111
+
+Tips：
+之前的img9的九宫图看起来不直观,新增了TuiMakeImg9.jsfl,使用过程请看注释。(该脚本不影响TuiEditor_Export.jsfl工作)
