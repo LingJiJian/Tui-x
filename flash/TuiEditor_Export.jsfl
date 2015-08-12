@@ -1070,8 +1070,7 @@ FlaToXML.prototype.fullNormalAttirbute = function( xml,th, element ,tag,frameNam
 	
 	//xml.setAttribute( UIControlAttribute.kName,element.name);
 	xml.setAttribute( UIControlAttribute.kX, formatNumber( element.x ) );
-	//xml.setAttribute( UIControlAttribute.kY, formatNumber( element.y) );
-	xml.setAttribute( UIControlAttribute.kY, - element.y );
+	xml.setAttribute( UIControlAttribute.kY, formatNumber( element.y) );
 	if(element.parameters && element.parameters.spriteFrame){
 		xml.setAttribute( UIControlAttribute.kSpriteFrame, formatBoolean(element.parameters.spriteFrame.value));
 	}
