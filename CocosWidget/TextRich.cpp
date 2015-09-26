@@ -618,7 +618,9 @@ Node* CTextRich::makeImage( Sprite* pTarget, const std::string& filePath,int tag
 		pTarget->setContentSize(v.at(0)->getOriginalSize());
 		pTarget->stopAllActions();
 		pTarget->runAction(Animate::create(pAnim));
-	}
+	}else{
+		pTarget->stopAllActions();
+    }
 
 	pTarget->setTag(tag);
 	return pTarget;
