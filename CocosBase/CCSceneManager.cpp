@@ -880,6 +880,7 @@ void CSceneManager::debugSceneSwitchInfo()
 	CCLOG("%s",strStackText.c_str());
 #endif
 }
+#endif
 
 void CSceneManager::handleSuspendSceneSwitch(ccUISCENESWITCH& tSceneSwitch)
 {
@@ -990,7 +991,5 @@ void CSceneManager::popAllSuspendScene()
 		m_lSuspendSceneSwitchQueue.push_back(tSceneSwitch);
 	}
 }
-
-#endif
 
 NS_CC_END
