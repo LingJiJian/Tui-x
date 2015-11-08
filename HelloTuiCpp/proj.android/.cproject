@@ -171,14 +171,14 @@
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="TuiCpp.null.31159645" name="TuiCpp"/>
+		<project id="HelloTuiCpp.null.31159645" name="HelloTuiCpp"/>
 	</storageModule>
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Default">
-			<resource resourceType="PROJECT" workspacePath="/TuiCpp"/>
+			<resource resourceType="PROJECT" workspacePath="/HelloTuiCpp"/>
 		</configuration>
 		<configuration configurationName="Debug">
-			<resource resourceType="PROJECT" workspacePath="/TuiCpp"/>
+			<resource resourceType="PROJECT" workspacePath="/HelloTuiCpp"/>
 		</configuration>
 	</storageModule>
 </cproject>

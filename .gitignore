@@ -12,3 +12,5 @@ HelloTuiLua/runtime/win32/*
 *.sdf
 *.opensdf
 *._*
+win32/
+Build/

@@ -26,7 +26,7 @@ AppDelegate::AppDelegate()
 AppDelegate::~AppDelegate()
 {
     SimpleAudioEngine::end();
-
+    
 #if (COCOS2D_DEBUG > 0) && (CC_CODE_IDE_DEBUG_SUPPORT > 0)
     // NOTE:Please don't remove this call if you want to debug with Cocos Code IDE
     RuntimeEngine::getInstance()->end();
@@ -40,7 +40,7 @@ void AppDelegate::initGLContextAttrs()
     //set OpenGL context attributions,now can only set six attributions:
     //red,green,blue,alpha,depth,stencil
     GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
-
+    
     GLView::setGLContextAttrs(glContextAttrs);
 }
 
@@ -55,10 +55,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     ScriptEngineManager::getInstance()->setScriptEngine(engine);
     lua_State* L = engine->getLuaStack()->getLuaState();
     lua_module_register(L);
-
+    
     // If you want to use Quick-Cocos2d-X, please uncomment below code
     // register_all_quick_manual(L);
-
+    
     FileUtils::getInstance()->addSearchPath("src");
     FileUtils::getInstance()->addSearchPath("res");
     
@@ -93,7 +93,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 void AppDelegate::applicationDidEnterBackground()
 {
     Director::getInstance()->stopAnimation();
-
+    
     SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }
 
@@ -101,6 +101,6 @@ void AppDelegate::applicationDidEnterBackground()
 void AppDelegate::applicationWillEnterForeground()
 {
     Director::getInstance()->startAnimation();
-
+    
     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }

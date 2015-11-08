@@ -31,6 +31,14 @@
 #include "platform/win32/PlayerWin.h"
 #include "platform/win32/PlayerMenuServiceWin.h"
 
+// define 1 to open console ui and setup windows system menu, 0 to disable
+#include "ide-support/CodeIDESupport.h"
+#if (CC_CODE_IDE_DEBUG_SUPPORT > 0)
+#define SIMULATOR_WITH_CONSOLE_AND_MENU 1
+#else
+#define SIMULATOR_WITH_CONSOLE_AND_MENU 0
+#endif
+
 USING_NS_CC;
 
 static WNDPROC g_oldWindowProc = NULL;
@@ -54,9 +62,9 @@ INT_PTR CALLBACK AboutDialogCallback(HWND hDlg, UINT message, WPARAM wParam, LPA
 }
 void onHelpAbout()
 {
-    DialogBox(GetModuleHandle(NULL), 
-        MAKEINTRESOURCE(IDD_DIALOG_ABOUT), 
-        Director::getInstance()->getOpenGLView()->getWin32Window(), 
+    DialogBox(GetModuleHandle(NULL),
+        MAKEINTRESOURCE(IDD_DIALOG_ABOUT),
+        Director::getInstance()->getOpenGLView()->getWin32Window(),
         AboutDialogCallback);
 }
 
@@ -88,6 +96,15 @@ std::string getCurAppPath(void)
     char fuldir[MAX_PATH] = { 0 };
     _fullpath(fuldir, strPath.c_str(), MAX_PATH);
     return fuldir;
+}
+
+static void initGLContextAttrs()
+{
+    //set OpenGL context attributions,now can only set six attributions:
+    //red,green,blue,alpha,depth,stencil
+    GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
+
+    GLView::setGLContextAttrs(glContextAttrs);
 }
 
 SimulatorWin *SimulatorWin::_instance = nullptr;
@@ -146,7 +163,7 @@ void SimulatorWin::openNewPlayerWithProjectConfig(const ProjectConfig &config)
     commandLine.append(getApplicationExePath());
     commandLine.append(" ");
     commandLine.append(config.makeCommandLine());
-    
+
     CCLOG("SimulatorWin::openNewPlayerWithProjectConfig(): %s", commandLine.c_str());
 
     // http://msdn.microsoft.com/en-us/library/windows/desktop/ms682499(v=vs.85).aspx
@@ -164,15 +181,15 @@ void SimulatorWin::openNewPlayerWithProjectConfig(const ProjectConfig &config)
     MultiByteToWideChar(CP_UTF8, 0, commandLine.c_str(), -1, command, MAX_COMMAND);
 
     BOOL success = CreateProcess(NULL,
-                                 command,   // command line 
-                                 NULL,      // process security attributes 
-                                 NULL,      // primary thread security attributes 
-                                 FALSE,     // handles are inherited 
-                                 0,         // creation flags 
-                                 NULL,      // use parent's environment 
-                                 NULL,      // use parent's current directory 
-                                 &si,       // STARTUPINFO pointer 
-                                 &pi);      // receives PROCESS_INFORMATION 
+                                 command,   // command line
+                                 NULL,      // process security attributes
+                                 NULL,      // primary thread security attributes
+                                 FALSE,     // handles are inherited
+                                 0,         // creation flags
+                                 NULL,      // use parent's environment
+                                 NULL,      // use parent's current directory
+                                 &si,       // STARTUPINFO pointer
+                                 &pi);      // receives PROCESS_INFORMATION
 
     if (!success)
     {
@@ -234,6 +251,7 @@ int SimulatorWin::run()
     _app = new AppDelegate();
     RuntimeEngine::getInstance()->setProjectConfig(_project);
 
+#if (SIMULATOR_WITH_CONSOLE_AND_MENU > 0)
     // create console window
     if (_project.isShowConsole())
     {
@@ -253,6 +271,7 @@ int SimulatorWin::run()
             }
         }
     }
+#endif
 
     // log file
     if (_project.isWriteDebugLogToFile())
@@ -317,6 +336,7 @@ int SimulatorWin::run()
     const bool isResize = _project.isResizeWindow();
     std::stringstream title;
     title << "Cocos Simulator - " << ConfigParser::getInstance()->getInitViewName();
+    initGLContextAttrs();
     auto glview = GLViewImpl::createWithRect(title.str(), frameRect, frameScale);
     _hwnd = glview->getWin32Window();
     player::PlayerWin::createWithHwnd(_hwnd);
@@ -333,7 +353,7 @@ int SimulatorWin::run()
     // set window position
     if (_project.getProjectDir().length())
     {
-        setZoom(_project.getFrameScale()); 
+        setZoom(_project.getFrameScale());
     }
     Vec2 pos = _project.getWindowOffset();
     if (pos.x != 0 && pos.y != 0)
@@ -346,9 +366,11 @@ int SimulatorWin::run()
     // path for looking Lang file, Studio Default images
     FileUtils::getInstance()->addSearchPath(getApplicationPath().c_str());
 
+#if SIMULATOR_WITH_CONSOLE_AND_MENU > 0
     // init player services
     setupUI();
     DrawMenuBar(_hwnd);
+#endif
 
     // prepare
     FileUtils::getInstance()->setPopupNotify(false);
@@ -356,11 +378,6 @@ int SimulatorWin::run()
     auto app = Application::getInstance();
 
     g_oldWindowProc = (WNDPROC)SetWindowLong(_hwnd, GWL_WNDPROC, (LONG)SimulatorWin::windowProc);
-
-    // update window size
-    RECT rect;
-    GetWindowRect(_hwnd, &rect);
-    MoveWindow(_hwnd, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top + GetSystemMetrics(SM_CYMENU), FALSE);
 
     // startup message loop
     return app->run();
@@ -432,6 +449,10 @@ void SimulatorWin::setupUI()
     scaleMenuVector.push_back(scale50Menu);
     scaleMenuVector.push_back(scale25Menu);
 
+    // About
+    menuBar->addItem("HELP_MENU", tr("Help"));
+    menuBar->addItem("ABOUT_MENUITEM", tr("About"), "HELP_MENU");
+
     menuBar->addItem("REFRESH_MENU_SEP", "-", "VIEW_MENU");
     menuBar->addItem("REFRESH_MENU", tr("Refresh"), "VIEW_MENU");
 
@@ -488,8 +509,8 @@ void SimulatorWin::setupUI()
                             RECT rect;
                             GetWindowRect(hwnd, &rect);
                             MoveWindow(hwnd, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top + GetSystemMetrics(SM_CYMENU), FALSE);
-                        
-                            // fix: can not update window on some windows system 
+
+                            // fix: can not update window on some windows system
                             ::SendMessage(hwnd, WM_MOVE, NULL, NULL);
                         }
                         else if (data.find("VIEWSIZE_ITEM_MENU_") == 0) // begin with VIEWSIZE_ITEM_MENU_
@@ -517,6 +538,11 @@ void SimulatorWin::setupUI()
                             project.changeFrameOrientationToLandscape();
                             _instance->openProjectWithProjectConfig(project);
                         }
+                        else if (data == "ABOUT_MENUITEM")
+                        {
+                            onHelpAbout();
+                        }
+
                     }
                 }
             }
@@ -642,7 +668,7 @@ std::string SimulatorWin::getUserDocumentPath()
     char* tempstring = new char[length + 1];
     wcstombs(tempstring, filePath, length + 1);
     string userDocumentPath(tempstring);
-    free(tempstring);
+    delete [] tempstring;
 
     userDocumentPath = convertPathFormatToUnixStyle(userDocumentPath);
     userDocumentPath.append("/");
@@ -715,6 +741,7 @@ LRESULT CALLBACK SimulatorWin::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, L
 
     switch (uMsg)
     {
+    case WM_SYSCOMMAND:
     case WM_COMMAND:
     {
         if (HIWORD(wParam) == 0)
@@ -744,10 +771,12 @@ LRESULT CALLBACK SimulatorWin::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, L
     }
     case WM_KEYDOWN:
     {
+#if (SIMULATOR_WITH_CONSOLE_AND_MENU > 0)
         if (wParam == VK_F5)
         {
             _instance->relaunch();
         }
+#endif
         break;
     }
 
@@ -773,7 +802,7 @@ LRESULT CALLBACK SimulatorWin::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, L
         HDROP hDrop = (HDROP)wParam;
 
         const int count = DragQueryFileW(hDrop, 0xffffffff, NULL, 0);
-        
+
         if (count > 0)
         {
             int fileIndex = 0;
