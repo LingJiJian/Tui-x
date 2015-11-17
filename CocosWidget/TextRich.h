@@ -37,15 +37,25 @@ THE SOFTWARE.
 
 NS_CC_WIDGET_BEGIN
 
+enum class Type
+{
+	TEXT,
+	IMAGE,
+	ANIM,
+	NEWLINE,
+};
+
+enum class RichTextAlign
+{
+	DESIGN_CENTER,
+	REAL_CENTER,
+	LEFT_TOP,
+};
+
 class RichElement : public Ref
 {
 public:
-	enum class Type
-	{
-		TEXT,
-		IMAGE,
-		CUSTOM
-	};
+	
 	RichElement(){};
 	virtual ~RichElement(){};
 	bool init(int tag, const Color3B& color=Color3B::WHITE, GLubyte opacity=255);
@@ -54,6 +64,7 @@ protected:
 	int _tag;
 	Color3B _color;
 	GLubyte _opacity;
+	std::string _data;
 	friend class CTextRich;
 };
 
@@ -80,27 +91,34 @@ class RichElementImage : public RichElement
 public:
 	RichElementImage(){_type = Type::IMAGE;};
 	virtual ~RichElementImage(){};
-	bool init(int tag, const std::string& filePath,bool isAnim,float delay,bool isLoop);
-	static RichElementImage* create(int tag,const std::string& filePath,bool isAnim=false,float delay=0.0f,bool isLoop=true);
+	bool init(int tag, const std::string& filePath);
+	static RichElementImage* create(int tag,const std::string& filePath);
 protected:
 	std::string _filePath;
-	Rect _textureRect;
-	int _textureType;
-	bool _isAnim;
-	bool _isLoop;
-	float _delay;
 	friend class CTextRich;
 };
 
-class RichElementCustomNode : public RichElement
+class RichElementNewline : public RichElement
 {
 public:
-	RichElementCustomNode(){_type = Type::CUSTOM;};
-	virtual ~RichElementCustomNode(){CC_SAFE_RELEASE(_customNode);};
-	bool init(int tag, Node* customNode);
-	static RichElementCustomNode* create(int tag, Node* customNode);
+	RichElementNewline(){_type = Type::NEWLINE;};
+	virtual ~RichElementNewline(){};
+	bool init(int tag);
+	static RichElementNewline* create(int tag);
 protected:
-	Node* _customNode;
+	friend class CTextRich;
+};
+
+class RichElementAnim : public RichElement
+{
+public:
+	RichElementAnim(){_type = Type::ANIM;};
+	bool init(int tag,const std::string& filePath,bool isLoop,float delay);
+	static RichElementAnim* create(int tag,const std::string& filePath,bool isLoop,float delay);
+protected:
+	std::string _filePath;
+	bool _isLoop;
+	float _delay;
 	friend class CTextRich;
 };
 
@@ -116,7 +134,47 @@ protected:
 	Node* _node;
 	friend class CTextRich;
 };
+//////////////////////////////////////////////////////////////////////////
 
+struct RenderElement
+{
+	int _type;
+	std::string strChar;
+	int width;
+	int height;
+	bool isOutLine;
+	bool isUnderLine;
+	int fontSize;
+	std::string fontName;
+	Color3B color;
+	std::string data;
+	std::string img;
+	std::string anim;
+	bool isNewLine;
+	Vec2 pos;
+public:
+	RenderElement clone(){
+		RenderElement copy;
+		copy._type = _type;
+		copy.strChar = strChar;
+		copy.width = width;
+		copy.height = height;
+		copy.isOutLine = isOutLine;
+		copy.isUnderLine = isUnderLine;
+		copy.fontSize = fontSize;
+		copy.fontName = fontName;
+		copy.color = color;
+		copy.data = data;
+		copy.img = img;
+		copy.anim = anim;
+		copy.isNewLine = isNewLine;
+		copy.pos = pos;
+		return copy;
+	}
+	friend class CTextRich;
+};
+
+//////////////////////////////////////////////////////////////////////////
 /**
  * class  : CTextRich
  * author : Lingjijian
@@ -135,12 +193,15 @@ public:
 	void insertElement(int tag,Node* pNode);
 
 	CC_SYNTHESIZE(int,_maxLineWidth,MaxLineWidth);
+	CC_SYNTHESIZE_READONLY(int,_realLineWidth,RealLineWidth);
+	CC_SYNTHESIZE_READONLY(int,_realLineHeight,RealLineHeight);
+	CC_SYNTHESIZE(int,_alignType,AlignType)
+
 	void setVerticalSpace(float space);
 	void removeAllElements();
 	void reloadData();
-	std::vector< std::string > split(const std::string& s,const std::string& delim);
-	std::string getSubStringOfUTF8String(const std::string& str,std::string::size_type start,std::string::size_type length);
-	virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
+	Node* getContainer(){ return _innerContainer; };
+
 public:
 	virtual CWidgetTouchModel onTouchBegan(Touch* pTouch);
 	virtual void onTouchMoved(Touch* pTouch, float fDuration);
@@ -149,28 +210,26 @@ public:
 	
 protected:
 	virtual bool init() override;
-	void onDraw(const Mat4 &transform, uint32_t flags);
-	CustomCommand _customCommand;
-
-	void pushToContainer(Node* renderer);
-	void handleTextRenderer(const std::string& text, const std::string& fontName, float fontSize,bool isUnder, const Color3B& color, GLubyte opacity,int tag,bool isOutLine,const Color4B& outLineColor);
-	void handleImageRenderer(const std::string& fileParh, const Color3B& color, GLubyte opacity,int tag,bool isAnim,float delay,bool isLoop);
-	void handleCustomRenderer(Node* renderer,int tag);
 	void formarRenderers();
-	void addNewLine();
 
 	Label* getCacheLabel();
 	Sprite* getCacheImage();
-	Node* makeLabel(Label* pTarget,const Color3B& color, const std::string& text, const std::string& fontName, int fontSize,bool isUnder, int tag,bool isOutLine,const Color4B& outLineColor);
-	Node* makeImage(Sprite* pTarget, const std::string& filePath,int tag,bool isAnim,float delay,bool isLoop);
+	Label* _getMesureLabel();
+	Size _getMesureSpriteContentSize(std::string path);
+	DrawNode* _getDrawNode();
+	Label* makeLabel(Label* pTarget,RichElementText* elem,std::string strChar);
+	Sprite* makeImage(Sprite* pTarget, RichElementImage* elem);
+	Sprite* makeSprite(Sprite* pTarget, RichElementAnim* elem);
 protected:
 	Vector<RichElement*> _richElements;
-	std::vector<Vector<Node*>*> _elementRenders;
+	std::vector<RenderElement> _elemRenderArr;
 	Vector<RichCacheElement*> _cacheLabElements;
 	Vector<RichCacheElement*> _cacheImgElements;
-	std::set<int> _underLineTags;
-	float _leftSpaceWidth;
+	Label* _mesureLabel;
+	Sprite* _mesureSprite;
+	DrawNode* _drawNode;
 	float _verticalSpace;
+	Node *_innerContainer;
 };
 
 NS_CC_WIDGET_END

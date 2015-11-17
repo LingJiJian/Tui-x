@@ -83,6 +83,11 @@ public:
      * @return string
      */
     static vector< string > split(const string& s,const string& delim);
+
+	static vector< string > separateUtf8(const std::string& inStr);
+
+	static bool isChinese(const std::string& s);
+
 protected:
 private:
 };
