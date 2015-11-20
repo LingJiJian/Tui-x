@@ -24714,14 +24714,12 @@ int lua_cocos2dx_cocoswidget_CTextRich_insertElement(lua_State* tolua_S)
 #endif
     argc = lua_gettop(tolua_S)-1;
     do{
-        if (argc == 2) {
-            unsigned int arg0;
-            ok &= luaval_to_uint32(tolua_S, 2,&arg0);
-			if (!ok) { break; }
-			cocos2d::Node* arg1;
-			ok &= luaval_to_object<cocos2d::Node>(tolua_S, 3, "cc.Node",&arg1);
-            if (!ok) { break; }
-            cobj->insertElement(arg0, arg1);
+        if (argc == 1) {
+			const char* arg1;
+			 std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg1_tmp); arg1 = arg1_tmp.c_str();
+            
+			 if (!ok) { break; }
+            cobj->insertElement(arg1);
             return 0;
         }
     }while(0);

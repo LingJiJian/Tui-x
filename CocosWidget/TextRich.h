@@ -58,10 +58,9 @@ public:
 	
 	RichElement(){};
 	virtual ~RichElement(){};
-	bool init(int tag, const Color3B& color=Color3B::WHITE, GLubyte opacity=255);
+	bool init(const Color3B& color=Color3B::WHITE, GLubyte opacity=255);
 protected:
 	Type _type;
-	int _tag;
 	Color3B _color;
 	GLubyte _opacity;
 	std::string _data;
@@ -73,8 +72,8 @@ class RichElementText : public RichElement
 public:
 	RichElementText(){_type = Type::TEXT;};
 	virtual ~RichElementText(){};
-	bool init(int tag, const Color3B& color, const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine,bool isOutLine,const Color4B& outLineColor);
-	static RichElementText* create(int tag, const Color3B& color, const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine = false,bool isOutLine = false,const Color4B& outLineColor=Color4B::WHITE);
+	bool init(const Color3B& color, const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine,bool isOutLine,const Color4B& outLineColor);
+	static RichElementText* create(const Color3B& color, const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine = false,bool isOutLine = false,const Color4B& outLineColor=Color4B::WHITE);
 protected:
 	std::string _text;
 	std::string _fontName;
@@ -91,8 +90,8 @@ class RichElementImage : public RichElement
 public:
 	RichElementImage(){_type = Type::IMAGE;};
 	virtual ~RichElementImage(){};
-	bool init(int tag, const std::string& filePath);
-	static RichElementImage* create(int tag,const std::string& filePath);
+	bool init(const std::string& filePath);
+	static RichElementImage* create(const std::string& filePath);
 protected:
 	std::string _filePath;
 	friend class CTextRich;
@@ -103,8 +102,8 @@ class RichElementNewline : public RichElement
 public:
 	RichElementNewline(){_type = Type::NEWLINE;};
 	virtual ~RichElementNewline(){};
-	bool init(int tag);
-	static RichElementNewline* create(int tag);
+	bool init();
+	static RichElementNewline* create();
 protected:
 	friend class CTextRich;
 };
@@ -113,8 +112,8 @@ class RichElementAnim : public RichElement
 {
 public:
 	RichElementAnim(){_type = Type::ANIM;};
-	bool init(int tag,const std::string& filePath,bool isLoop,float delay);
-	static RichElementAnim* create(int tag,const std::string& filinsertElementePath,bool isLoop,float delay);
+	bool init(const std::string& filePath,bool isLoop,float delay);
+	static RichElementAnim* create(const std::string& filinsertElementePath,bool isLoop,float delay);
 protected:
 	std::string _filePath;
 	bool _isLoop;
@@ -192,9 +191,9 @@ public:
 	virtual ~CTextRich();
 	static CTextRich* create();
 
-	void insertElement(int tag,const char* pString, const char* pFontName = NULL, float fFontSize = 0.0f, const Color3B& tColor = Color3B::WHITE,bool isUnderLine = false,bool isOutLine = false,const Color4B& outLineColor=Color4B::WHITE);
-	void insertElement(int tag,const char* path,float delay,bool isLoop);
-	void insertElement(int tag,const char* path);
+	void insertElement(const char* pString, const char* pFontName, float fFontSize, const Color3B& tColor = Color3B::WHITE,bool isUnderLine = false,bool isOutLine = false,const Color4B& outLineColor=Color4B::WHITE);
+	void insertElement(const char* path,float delay,bool isLoop);
+	void insertElement(const char* path);
 
 	CC_SYNTHESIZE(int,_maxLineWidth,MaxLineWidth);
 	CC_SYNTHESIZE_READONLY(int,_realLineWidth,RealLineWidth);

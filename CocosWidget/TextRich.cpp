@@ -31,19 +31,18 @@ using namespace std;
 
 NS_CC_WIDGET_BEGIN
 
-bool RichElement::init(int tag, const Color3B &color, GLubyte opacity)
+bool RichElement::init(const Color3B &color, GLubyte opacity)
 {
-	_tag = tag;
 	_color = color;
 	_opacity = opacity;
 	return true;
 }
 
 
-RichElementText* RichElementText::create(int tag, const Color3B &color,const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine,bool isOutLine,const Color4B& outLineColor)
+RichElementText* RichElementText::create(const Color3B &color,const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine,bool isOutLine,const Color4B& outLineColor)
 {
 	RichElementText* element = new (std::nothrow) RichElementText();
-	if (element && element->init(tag, color, text, fontName, fontSize,isUnderLine,isOutLine,outLineColor))
+	if (element && element->init(color, text, fontName, fontSize,isUnderLine,isOutLine,outLineColor))
 	{
 		element->autorelease();
 		return element;
@@ -52,9 +51,9 @@ RichElementText* RichElementText::create(int tag, const Color3B &color,const std
 	return nullptr;
 }
 
-bool RichElementText::init(int tag, const Color3B &color, const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine,bool isOutLine,const Color4B& outLineColor)
+bool RichElementText::init(const Color3B &color, const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine,bool isOutLine,const Color4B& outLineColor)
 {
-	if (RichElement::init(tag, color))
+	if (RichElement::init(color))
 	{
 		_text = text;
 		_fontName = fontName;
@@ -67,10 +66,10 @@ bool RichElementText::init(int tag, const Color3B &color, const std::string& tex
 	return false;
 }
 
-RichElementImage* RichElementImage::create(int tag, const std::string& filePath)
+RichElementImage* RichElementImage::create(const std::string& filePath)
 {
 	RichElementImage* element = new (std::nothrow) RichElementImage();
-	if (element && element->init(tag, filePath))
+	if (element && element->init( filePath))
 	{
 		element->autorelease();
 		return element;
@@ -79,9 +78,9 @@ RichElementImage* RichElementImage::create(int tag, const std::string& filePath)
 	return nullptr;
 }
 
-bool RichElementImage::init(int tag, const std::string& filePath)
+bool RichElementImage::init(const std::string& filePath)
 {
-	if (RichElement::init(tag))
+	if (RichElement::init())
 	{
 		_filePath = filePath;
 		return true;
@@ -89,10 +88,10 @@ bool RichElementImage::init(int tag, const std::string& filePath)
 	return false;
 }
 
-RichElementNewline* RichElementNewline::create(int tag)
+RichElementNewline* RichElementNewline::create()
 {
 	RichElementNewline* element = new (std::nothrow) RichElementNewline();
-	if (element && element->init(tag))
+	if (element && element->init())
 	{
 		element->autorelease();
 		return element;
@@ -101,19 +100,19 @@ RichElementNewline* RichElementNewline::create(int tag)
 	return nullptr;
 }
 
-bool RichElementNewline::init(int tag)
+bool RichElementNewline::init()
 {
-	if (RichElement::init(tag))
+	if (RichElement::init())
 	{
 		return true;
 	}
 	return false;
 }
 
-RichElementAnim* RichElementAnim::create(int tag,const std::string& filePath,bool isLoop,float delay)
+RichElementAnim* RichElementAnim::create(const std::string& filePath,bool isLoop,float delay)
 {
 	RichElementAnim* element = new (std::nothrow) RichElementAnim();
-	if (element && element->init(tag, filePath,isLoop,delay))
+	if (element && element->init(filePath,isLoop,delay))
 	{
 		element->autorelease();
 		return element;
@@ -122,9 +121,9 @@ RichElementAnim* RichElementAnim::create(int tag,const std::string& filePath,boo
 	return nullptr;
 }
 
-bool RichElementAnim::init(int tag,const std::string& filePath,bool isLoop,float delay)
+bool RichElementAnim::init(const std::string& filePath,bool isLoop,float delay)
 {
-	if (RichElement::init(tag))
+	if (RichElement::init())
 	{
 		_filePath = filePath;
 		_isLoop = isLoop;
@@ -215,19 +214,19 @@ void CTextRich::removeAllElements()
 	_elemRenderArr.clear();
 }
 
-void CTextRich::insertElement(int tag,const char* pString, const char* pFontName /* = NULL */, float fFontSize /* = 0.0f */, const Color3B& tColor /* = Color3B::WHITE */,bool isUnderLine /* = false */,bool isOutLine /* = false */,const Color4B& outLineColor/* =Color4B::WHITE */)
+void CTextRich::insertElement(const char* pString, const char* pFontName /* = NULL */, float fFontSize /* = 0.0f */, const Color3B& tColor /* = Color3B::WHITE */,bool isUnderLine /* = false */,bool isOutLine /* = false */,const Color4B& outLineColor/* =Color4B::WHITE */)
 {
-	_richElements.pushBack(RichElementText::create(tag,tColor,pString,pFontName,fFontSize,isUnderLine,isOutLine,outLineColor));
+	_richElements.pushBack(RichElementText::create(tColor,pString,pFontName,fFontSize,isUnderLine,isOutLine,outLineColor));
 }
 
-void CTextRich::insertElement( int tag,const char* path,float delay,bool isLoop )
+void CTextRich::insertElement(const char* path,float delay,bool isLoop )
 {
-	_richElements.pushBack(RichElementAnim::create(tag,path,isLoop,delay));
+	_richElements.pushBack(RichElementAnim::create(path,isLoop,delay));
 }
 
-void CTextRich::insertElement( int tag,const char* path )
+void CTextRich::insertElement(const char* path )
 {
-	_richElements.pushBack(RichElementImage::create(tag,path));
+	_richElements.pushBack(RichElementImage::create(path));
 }
 
 void CTextRich::reloadData()
@@ -585,13 +584,13 @@ Label* CTextRich::makeLabel( Label* pTarget,RenderElement elem ,std::string strC
 	config.fontFilePath = elem.fontName;
 	config.fontSize = elem.fontSize;
 	
+	pTarget->disableEffect();
 	if (elem.isOutLine)
 	{
-		pTarget->setColor(elem.color);
+		pTarget->setTextColor(Color4B(elem.color));
 		pTarget->enableShadow(Color4B(0,0,0,255),Size(1,-1));
 	}else{
-		pTarget->disableEffect();
-		pTarget->setColor(elem.color);
+		pTarget->setTextColor(Color4B(elem.color));
 	}
 	pTarget->setString(strChar);
 	if (elem.isUnderLine)
