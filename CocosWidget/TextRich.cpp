@@ -503,7 +503,7 @@ void CTextRich::formarRenderers()
 				_lineWidth += elem.width;
 			}
 			this->addChild(_obj);
-			_obj->setPosition(elem.pos);
+			_obj->setPosition(Vec2(elem.pos.x,elem.pos.y + _realLineHeight));
 		}
 		_realLineWidth = MAX(_lineWidth,_realLineWidth);
 	}
@@ -540,6 +540,7 @@ Label* CTextRich::getCacheLabel()
 	}
 	if (ret == nullptr){
 		ret = Label::create();
+		ret->setAnchorPoint(Vec2::ZERO);
 		_cacheLabElements.pushBack(RichCacheElement::create(true,ret));
 	}
 	return ret;
@@ -561,6 +562,7 @@ Sprite* CTextRich::getCacheImage()
 	}
 	if (ret == nullptr){
 		ret = Sprite::create();
+		ret->setAnchorPoint(Vec2::ZERO);
 		_cacheImgElements.pushBack(RichCacheElement::create(true,ret));
 	}
 	return ret;
@@ -578,23 +580,27 @@ DrawNode* CTextRich::_getDrawNode()
 
 Label* CTextRich::makeLabel( Label* pTarget,RenderElement elem ,std::string strChar)
 {
+
+	TTFConfig config;
+	config.fontFilePath = elem.fontName;
+	config.fontSize = elem.fontSize;
 	
 	if (elem.isOutLine)
 	{
+		pTarget->setColor(elem.color);
 		pTarget->enableShadow(Color4B(0,0,0,255),Size(1,-1));
+	}else{
+		pTarget->disableEffect();
+		pTarget->setColor(elem.color);
 	}
-	pTarget->setAnchorPoint(Vec2(0,0));
-	pTarget->setColor(elem.color);
-	//pTarget->setFontSize(elem->_fontSize)
 	pTarget->setString(strChar);
 	if (elem.isUnderLine)
 	{
-		_getDrawNode()->drawLine(elem.pos,Vec2(elem.pos.x + pTarget->getContentSize().width,elem.pos.y),Color4F(1,1,1,1));
+		_getDrawNode()->drawLine(Vec2(elem.pos.x,elem.pos.y + _realLineHeight),
+			Vec2(elem.pos.x + pTarget->getContentSize().width,elem.pos.y + _realLineHeight),
+			Color4F(1,1,1,1));
 	}
-	if (elem.data != "")
-	{
-		
-	}
+	pTarget->setUserData(  elem.data != "" ?  new std::string(elem.data) : nullptr );
 	return pTarget;
 }
 
