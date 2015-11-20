@@ -143,22 +143,22 @@ void CTextRichClickableProtocol::setOnTextRichClickListener(Ref* pListener, SEL_
 	m_pRichTextClickHandler = pHandler;
 }
 
-void CTextRichClickableProtocol::executeTextRichClickHandler(Ref* pSender, int tag)
+void CTextRichClickableProtocol::executeTextRichClickHandler(Ref* pSender,const char* data)
 {
 	if( m_pRichTextClickListener && m_pRichTextClickHandler )
 	{
-		(m_pRichTextClickListener->*m_pRichTextClickHandler)(pSender, tag);
+		(m_pRichTextClickListener->*m_pRichTextClickHandler)(pSender, data);
 	}
 #if USING_LUA
 	else if( m_nRichTextClickScriptHandler != 0 )
 	{
-		executeTextRichScriptHandler(pSender, tag);
+		executeTextRichScriptHandler(pSender, data);
 	}
 #endif
 }
 
 #if USING_LUA
-void CTextRichClickableProtocol::executeTextRichScriptHandler(Ref* pSender, int tag)
+void CTextRichClickableProtocol::executeTextRichScriptHandler(Ref* pSender, const char* data)
 {
 	if( m_nRichTextClickScriptHandler != 0 )
 	{
@@ -167,9 +167,9 @@ void CTextRichClickableProtocol::executeTextRichScriptHandler(Ref* pSender, int 
 
 		pStack->pushObject(pSender, "Ref");
 
-		if( tag > 0 )
+		if( strlen(data) > 0 )
 		{
-			pStack->pushInt(tag);
+			pStack->pushString(data);
 		}
 		else
 		{

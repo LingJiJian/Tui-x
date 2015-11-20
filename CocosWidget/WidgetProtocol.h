@@ -73,7 +73,7 @@ typedef void (Ref::*SEL_PageChangedHandler)(Ref* pSender, unsigned int nPageIdx)
 typedef Ref* (Ref::*SEL_DataSoucreAdapterHandler)(Ref* pConvertCell, unsigned int uIdx);
 typedef CWidgetTouchModel (Ref::*SEL_TouchBeganHandler)(Ref* pSender, Touch* pTouch);
 typedef bool (Ref::*SEL_TouchEventHandler)(Ref* pSender, Touch* pTouch, float fDuration);
-typedef void (Ref::*SEL_TextRichClickHandler)(Ref* pSender, int tag);
+typedef void (Ref::*SEL_TextRichClickHandler)(Ref* pSender, const char* data);
 
 
 #define ccw_click_selector(_SELECTOR_) (cocos2d::cocoswidget::SEL_ClickHandler)(&_SELECTOR_)
@@ -134,11 +134,11 @@ public:
 protected:
 	Ref* m_pRichTextClickListener;
 	SEL_TextRichClickHandler m_pRichTextClickHandler;
-	void executeTextRichClickHandler(Ref* pSender, int tag);
+	void executeTextRichClickHandler(Ref* pSender, const char* data);
 #if USING_LUA
 protected:
 	int m_nRichTextClickScriptHandler;
-	void executeTextRichScriptHandler(Ref* pSender, int tag);
+	void executeTextRichScriptHandler(Ref* pSender, const char* data);
 public:
 	virtual void setOnTextRichClickScriptHandler(int nHandler);
 	virtual void removeOnTextRichClickScriptHandler();

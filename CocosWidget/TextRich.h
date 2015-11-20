@@ -200,17 +200,13 @@ public:
 	CC_SYNTHESIZE_READONLY(int,_realLineWidth,RealLineWidth);
 	CC_SYNTHESIZE_READONLY(int,_realLineHeight,RealLineHeight);
 	CC_SYNTHESIZE(RichTextAlign,_alignType,AlignType)
+	CC_SYNTHESIZE(float,_verticalSpace,VerticalSpace);
 
-	void setVerticalSpace(float space);
 	void removeAllElements();
 	void reloadData();
-	Node* getContainer(){ return _innerContainer; };
-
 public:
 	virtual CWidgetTouchModel onTouchBegan(Touch* pTouch);
-	virtual void onTouchMoved(Touch* pTouch, float fDuration);
 	virtual void onTouchEnded(Touch* pTouch, float fDuration);
-	virtual void onTouchCancelled(Touch* pTouch, float fDuration);
 	
 protected:
 	virtual bool init() override;
@@ -232,8 +228,6 @@ protected:
 	Label* _mesureLabel;
 	Sprite* _mesureSprite;
 	DrawNode* _drawNode;
-	float _verticalSpace;
-	Node *_innerContainer;
 };
 
 NS_CC_WIDGET_END

@@ -373,7 +373,7 @@ void CTextRich::formarRenderers()
 	//sort all lines
 	std::map< int, std::vector<RenderElement> > rendElemLineMap;
 	std::set< int > linePosYSet;
-	int len = _elemRenderArr.size();
+	len = _elemRenderArr.size();
 	for (int i=0;i<len;i++)
 	{
 		RenderElement elem = _elemRenderArr.at(i);
@@ -502,7 +502,7 @@ void CTextRich::formarRenderers()
 				makeAnim((Sprite*)_obj,elem);
 				_lineWidth += elem.width;
 			}
-			_innerContainer->addChild(_obj);
+			this->addChild(_obj);
 			_obj->setPosition(elem.pos);
 		}
 		_realLineWidth = MAX(_lineWidth,_realLineWidth);
@@ -511,19 +511,17 @@ void CTextRich::formarRenderers()
 	// align
 	if (_alignType == RichTextAlign::DESIGN_CENTER)
 	{
-		_innerContainer->setPosition( Vec2(-_maxLineWidth/2,_realLineHeight/2) );
+		this->setContentSize(Size(getMaxLineWidth()/2,getRealLineHeight()/2) );
+		this->setAnchorPoint(Vec2(0.5,0.5));
 	}else if (_alignType == RichTextAlign::REAL_CENTER)
 	{
-		_innerContainer->setPosition(  Vec2(-_realLineWidth/2,_realLineHeight/2) );
+		this->setContentSize(Size(getRealLineWidth()/2,getRealLineHeight()/2) );
+		this->setAnchorPoint(Vec2(0.5,0.5));
 	}else if (_alignType == RichTextAlign::LEFT_TOP)
 	{
-		_innerContainer->setPosition(Vec2(0,0));
+		this->setContentSize(Size(getRealLineWidth()/2,getRealLineHeight()/2) );
+		this->setAnchorPoint(Vec2(0,1));
 	}
-}
-
-void CTextRich::setVerticalSpace(float space)
-{
-	_verticalSpace = space;
 }
 
 Label* CTextRich::getCacheLabel()
@@ -573,7 +571,7 @@ DrawNode* CTextRich::_getDrawNode()
 	if (_drawNode == nullptr)
 	{
 		_drawNode = DrawNode::create();
-		_innerContainer->addChild(_drawNode);
+		this->addChild(_drawNode);
 	}
 	return _drawNode;
 }
@@ -609,10 +607,7 @@ Sprite* CTextRich::makeImage( Sprite* pTarget,RenderElement elem )
 	}else{
 		pTarget->setTexture(elem.img);
 	}
-	if (elem.data != "")
-	{
-		
-	}
+	pTarget->setUserData(  elem.data != "" ?  new std::string(elem.data) : nullptr );
 	return pTarget;
 }
 
@@ -641,21 +636,13 @@ Sprite* CTextRich::makeAnim( Sprite* pTarget,RenderElement elem )
 	pTarget->setContentSize(v.at(0)->getOriginalSize());
 	pTarget->stopAllActions();
 	pTarget->runAction(Animate::create(pAnim));
-	if (elem.data != "")
-	{
-		
-	}
+	pTarget->setUserData(  elem.data != "" ?  new std::string(elem.data) : nullptr );
     return pTarget;
 }
 
 CWidgetTouchModel CTextRich::onTouchBegan(Touch* pTouch)
 {
 	return eWidgetTouchTransient;
-}
-
-void CTextRich::onTouchMoved(Touch* pTouch, float fDuration)
-{
-
 }
 
 void CTextRich::onTouchEnded(Touch* pTouch, float fDuration)
@@ -671,17 +658,14 @@ void CTextRich::onTouchEnded(Touch* pTouch, float fDuration)
 			Node* pNode = _children.at(i);
 			if( pNode->getBoundingBox().containsPoint(tInsidePoint) )
 			{
-				executeTextRichClickHandler(this,pNode->getTag());
+				std::string *data = static_cast<std::string*>( pNode->getUserData() );
+				if(data != nullptr)
+					executeTextRichClickHandler(pNode,(*data).c_str());
 				return;
 			}
 		}
 		executeTextRichClickHandler(this, NULL);
 	}
-}
-
-void CTextRich::onTouchCancelled(Touch* pTouch, float fDuration)
-{
-
 }
 
 Label* CTextRich::_getMesureLabel()
