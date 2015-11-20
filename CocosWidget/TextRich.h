@@ -114,7 +114,7 @@ class RichElementAnim : public RichElement
 public:
 	RichElementAnim(){_type = Type::ANIM;};
 	bool init(int tag,const std::string& filePath,bool isLoop,float delay);
-	static RichElementAnim* create(int tag,const std::string& filePath,bool isLoop,float delay);
+	static RichElementAnim* create(int tag,const std::string& filinsertElementePath,bool isLoop,float delay);
 protected:
 	std::string _filePath;
 	bool _isLoop;
@@ -138,7 +138,7 @@ protected:
 
 struct RenderElement
 {
-	int _type;
+	Type _type;
 	std::string strChar;
 	int width;
 	int height;
@@ -150,6 +150,8 @@ struct RenderElement
 	std::string data;
 	std::string img;
 	std::string anim;
+	bool isLoop;
+	float delay;
 	bool isNewLine;
 	Vec2 pos;
 public:
@@ -167,6 +169,8 @@ public:
 		copy.data = data;
 		copy.img = img;
 		copy.anim = anim;
+		copy.isLoop = isLoop;
+		copy.delay = delay;
 		copy.isNewLine = isNewLine;
 		copy.pos = pos;
 		return copy;
@@ -189,13 +193,13 @@ public:
 	static CTextRich* create();
 
 	void insertElement(int tag,const char* pString, const char* pFontName = NULL, float fFontSize = 0.0f, const Color3B& tColor = Color3B::WHITE,bool isUnderLine = false,bool isOutLine = false,const Color4B& outLineColor=Color4B::WHITE);
-	void insertElement(int tag,const char* path, bool isAnim,float delay,bool isLoop );
-	void insertElement(int tag,Node* pNode);
+	void insertElement(int tag,const char* path,float delay,bool isLoop);
+	void insertElement(int tag,const char* path);
 
 	CC_SYNTHESIZE(int,_maxLineWidth,MaxLineWidth);
 	CC_SYNTHESIZE_READONLY(int,_realLineWidth,RealLineWidth);
 	CC_SYNTHESIZE_READONLY(int,_realLineHeight,RealLineHeight);
-	CC_SYNTHESIZE(int,_alignType,AlignType)
+	CC_SYNTHESIZE(RichTextAlign,_alignType,AlignType)
 
 	void setVerticalSpace(float space);
 	void removeAllElements();
@@ -215,11 +219,11 @@ protected:
 	Label* getCacheLabel();
 	Sprite* getCacheImage();
 	Label* _getMesureLabel();
-	Size _getMesureSpriteContentSize(std::string path);
+	Size _getMesureSpriteContentSize(const std::string& path);
 	DrawNode* _getDrawNode();
-	Label* makeLabel(Label* pTarget,RichElementText* elem,std::string strChar);
-	Sprite* makeImage(Sprite* pTarget, RichElementImage* elem);
-	Sprite* makeSprite(Sprite* pTarget, RichElementAnim* elem);
+	Label* makeLabel(Label* pTarget,RenderElement elem,std::string strChar);
+	Sprite* makeImage(Sprite* pTarget, RenderElement elem);
+	Sprite* makeAnim(Sprite* pTarget, RenderElement elem);
 protected:
 	Vector<RichElement*> _richElements;
 	std::vector<RenderElement> _elemRenderArr;

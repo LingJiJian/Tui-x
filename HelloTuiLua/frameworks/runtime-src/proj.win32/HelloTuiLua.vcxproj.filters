@@ -10,11 +10,20 @@
     <Filter Include="resource">
       <UniqueIdentifier>{2d1d0979-58cd-4ab6-b91c-13650158f1fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CocosWdiget">
+      <UniqueIdentifier>{777ee85d-5297-4084-8fce-9ad68c895043}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CocosNet">
+      <UniqueIdentifier>{0fd694e0-4139-46de-9553-caf67f963640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CocosWdiget\CEditbox">
+      <UniqueIdentifier>{9a38f111-aee1-46a4-b818-b66a267ba0d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CocosBase">
+      <UniqueIdentifier>{86b03c76-4d30-4d4e-8a2b-3eac41a67a90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
@@ -26,6 +35,9 @@
     <ClInclude Include="targetver.h">
       <Filter>win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\lua_module_register.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
     <ClInclude Include="..\Classes\ide-support\CodeIDESupport.h">
       <Filter>Classes</Filter>
     </ClInclude>
@@ -35,11 +47,194 @@
     <ClInclude Include="..\Classes\ide-support\RuntimeLuaImpl.h">
       <Filter>Classes</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\ide-support\SimpleConfigParser.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\lua_cocos2dx_tui_auto.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\TuiBase.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\tuiconsts.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\TuiMacros.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\TuiManager.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tui\TuiUtil.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\CheckBox.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\CircleMenu.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\cocos-widget.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ColorView.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ControlView.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ExpandableListView.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\GradientView.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\GridPageView.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\GridView.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ImageView.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ImageViewScale9.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\Label.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\LabelAtlas.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\LabelBMFont.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\Layout.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ListView.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\lua_cocos2dx_cocoswidget_auto.hpp">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\MapView.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\NumericStepper.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\PageView.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ProgressBar.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\Scale9Sprite.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ScrollView.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\Slider.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\TableView.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\TextRich.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ToggleView.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\Widget.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\WidgetMacros.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\WidgetProtocol.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\WidgetWindow.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\WitlsMacros.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\ArmatureBtn.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\Button.h">
+      <Filter>CocosWdiget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\CEditBox\CEditBoxImplWin.h">
+      <Filter>CocosWdiget\CEditbox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\CEditBox\Win32InputBox.h">
+      <Filter>CocosWdiget\CEditbox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\CEditBox\CEditBox.h">
+      <Filter>CocosWdiget\CEditbox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosWidget\CEditBox\CEditBoxImpl.h">
+      <Filter>CocosWdiget\CEditbox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\CCSocket.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\cocos-net.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\lua_cocos2dx_cocosnet_auto.hpp">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\CCBuffer.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\CCInetAddress.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\CCNetDelegate.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosNet\CCNetMacros.h">
+      <Filter>CocosNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCMsgManager.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneExtension.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneExTransition.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCSceneManager.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\cocos-base.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.hpp">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCBaseMacros.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCBundle.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\CocosBase\CCMsgDelegate.h">
+      <Filter>CocosBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
@@ -52,6 +247,168 @@
     </ClCompile>
     <ClCompile Include="..\Classes\ide-support\RuntimeLuaImpl.cpp">
       <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ide-support\SimpleConfigParser.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tui\lua_cocos2dx_tui_auto.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tui\TuiBase.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tui\TuiManager.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tui\TuiUtil.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\CheckBox.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\CircleMenu.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ColorView.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ControlView.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ExpandableListView.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\GradientView.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\GridPageView.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\GridView.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ImageView.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ImageViewScale9.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\Label.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\LabelAtlas.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\LabelBMFont.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\Layout.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ListView.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\lua_cocos2dx_cocoswidget_auto.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\MapView.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\NumericStepper.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\PageView.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ProgressBar.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\Scale9Sprite.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ScrollView.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\Slider.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\TableView.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\TextRich.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ToggleView.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\Widget.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\WidgetProtocol.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\WidgetWindow.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\WitlsMacros.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\ArmatureBtn.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\Button.cpp">
+      <Filter>CocosWdiget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\CEditBox\CEditBoxImplNone.cpp">
+      <Filter>CocosWdiget\CEditbox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\CEditBox\CEditBoxImplWin.cpp">
+      <Filter>CocosWdiget\CEditbox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\CEditBox\Win32InputBox.cpp">
+      <Filter>CocosWdiget\CEditbox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosWidget\CEditBox\CEditBox.cpp">
+      <Filter>CocosWdiget\CEditbox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosNet\CCSocket.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosNet\lua_cocos2dx_cocosnet_auto.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosNet\CCBuffer.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosNet\CCInetAddress.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosNet\CCNetDelegate.cpp">
+      <Filter>CocosNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneExtension.cpp">
+      <Filter>CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneExTransition.cpp">
+      <Filter>CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCSceneManager.cpp">
+      <Filter>CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\lua_cocos2dx_cocosbase_auto.cpp">
+      <Filter>CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCBundle.cpp">
+      <Filter>CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCMsgDelegate.cpp">
+      <Filter>CocosBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\CocosBase\CCMsgManager.cpp">
+      <Filter>CocosBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

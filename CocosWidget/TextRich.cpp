@@ -67,10 +67,10 @@ bool RichElementText::init(int tag, const Color3B &color, const std::string& tex
 	return false;
 }
 
-RichElementImage* RichElementImage::create(int tag, const std::string& filePath,bool isAnim,float delay,bool isLoop)
+RichElementImage* RichElementImage::create(int tag, const std::string& filePath)
 {
 	RichElementImage* element = new (std::nothrow) RichElementImage();
-	if (element && element->init(tag, filePath,isAnim,delay,isLoop))
+	if (element && element->init(tag, filePath))
 	{
 		element->autorelease();
 		return element;
@@ -79,14 +79,11 @@ RichElementImage* RichElementImage::create(int tag, const std::string& filePath,
 	return nullptr;
 }
 
-bool RichElementImage::init(int tag, const std::string& filePath,bool isAnim,float delay,bool isLoop)
+bool RichElementImage::init(int tag, const std::string& filePath)
 {
 	if (RichElement::init(tag))
 	{
 		_filePath = filePath;
-		_isAnim = isAnim;
-		_delay = delay;
-		_isLoop = isLoop;
 		return true;
 	}
 	return false;
@@ -163,7 +160,6 @@ RichCacheElement::~RichCacheElement()
 }
 
 CTextRich::CTextRich():
-	_leftSpaceWidth(0.0f),
 	_verticalSpace(0.0f),
 	_maxLineWidth(300),
 	_mesureLabel(nullptr),
@@ -215,7 +211,7 @@ void CTextRich::removeAllElements()
 	{
 		_cacheLabElements.at(i)->_isUse = false;
 	}
-	if(_drawNode) _drawNode.clear();
+	if(_drawNode) _drawNode->clear();
 	_elemRenderArr.clear();
 }
 
@@ -224,14 +220,14 @@ void CTextRich::insertElement(int tag,const char* pString, const char* pFontName
 	_richElements.pushBack(RichElementText::create(tag,tColor,pString,pFontName,fFontSize,isUnderLine,isOutLine,outLineColor));
 }
 
-void CTextRich::insertElement( int tag,const char* path, bool isAnim,float delay,bool isLoop )
+void CTextRich::insertElement( int tag,const char* path,float delay,bool isLoop )
 {
-	_richElements.pushBack(RichElementImage::create(tag,path,isAnim,delay,isLoop));
+	_richElements.pushBack(RichElementAnim::create(tag,path,isLoop,delay));
 }
 
-void CTextRich::insertElement( int tag,Node* pNode )
+void CTextRich::insertElement( int tag,const char* path )
 {
-	_richElements.pushBack(RichElementCustomNode::create(tag,pNode));
+	_richElements.pushBack(RichElementImage::create(tag,path));
 }
 
 void CTextRich::reloadData()
@@ -246,20 +242,20 @@ void CTextRich::reloadData()
 			std::vector<std::string> _charArr = tui::TuiUtil::separateUtf8(elemText->_text);
 			for (std::vector<std::string>::iterator iter = _charArr.begin(); iter != _charArr.end(); iter++)
 			{
-				Label* lab = this->_getMesureLabel();
-				this->makeLabel(lab,elemText,(*iter));
-				Size size = lab->getContentSize();
 				RenderElement rendElem;
 				rendElem._type = Type::TEXT;
 				rendElem.strChar = (*iter);
-				rendElem.width = size.width;
-				rendElem.height = size.height;
 				rendElem.isOutLine = elemText->_isOutLine;
 				rendElem.isUnderLine = elemText->_isUnderLine;
 				rendElem.fontSize = elemText->_fontSize;
 				rendElem.fontName = elemText->_fontName;
 				rendElem.data = elemText->_data;
 
+				Label* lab = this->_getMesureLabel();
+				this->makeLabel(lab,rendElem,(*iter));
+				Size size = lab->getContentSize();
+				rendElem.width = size.width;
+				rendElem.height = size.height;
 				_elemRenderArr.push_back( rendElem );
 			}
 
@@ -310,7 +306,7 @@ void CTextRich::formarRenderers()
 	{
 		RenderElement elem = _elemRenderArr[i];
 
-		if (rendElem.isNewLine){ //new line
+		if (elem.isNewLine){ //new line
 
 			oneLine = 0;
 			lines++;
@@ -319,10 +315,9 @@ void CTextRich::formarRenderers()
 
 			if( oneLine + elem.width > _maxLineWidth )
 			{
-
 				if (elem._type == Type::TEXT)
 				{
-					if (TuiUtil::isChinese(elem.strChar) || elem.strChar == " " )
+					if (tui::TuiUtil::isChinese(elem.strChar) || elem.strChar == " " )
 					{
 						oneLine = 0;
 						lines++;
@@ -335,7 +330,7 @@ void CTextRich::formarRenderers()
 						int idx = i;
 						while( idx > 0) {
 							idx = idx - 1;
-							if ( _elemRenderArr[ idx ] || _elemRenderArr[ idx ].strChar == " " )
+							if ( _elemRenderArr.at(idx).strChar == " " )
 							{
 								spaceIdx = idx;
 								break;
@@ -355,14 +350,14 @@ void CTextRich::formarRenderers()
 
 							for (int _i = spaceIdx + 1; _i <= i; ++_i)
 							{
-								RenderElement _elem = _elemRenderArr[ _i ]
+								RenderElement _elem = _elemRenderArr.at(_i);
 								_elem.pos = Vec2( oneLine,-lines * 27 );
 								oneLine += elem.width;
 							}
 
 						}
 					}
-				}else if (elem.img != "" or elem.anim != "" ) {
+				}else if (elem.img != "" || elem.anim != "" ) {
 					lines++;
 					elem.pos = Vec2( 0,-lines * 27 );
 					oneLine = elem.width;
@@ -381,7 +376,7 @@ void CTextRich::formarRenderers()
 	int len = _elemRenderArr.size();
 	for (int i=0;i<len;i++)
 	{
-		RenderElement elem = _elemRenderArr[i];
+		RenderElement elem = _elemRenderArr.at(i);
 		if ( !elem.isNewLine ){
 			
 			auto it = rendElemLineMap.find(elem.pos.y);
@@ -399,15 +394,15 @@ void CTextRich::formarRenderers()
 	{
 		int posY = (*it);
 		std::string oneLine = "";
-		RenderElement _lastEleme = rendElemLineMap[posY][1]
-		RenderElement _lastDiffStarEleme = rendElemLineMap[posY][1]
+		RenderElement _lastEleme = rendElemLineMap[posY][1];
+		RenderElement _lastDiffStarEleme = rendElemLineMap[posY][1];
 		if( rendElemLineMap[posY].size() > 0 )
 		{
 			std::vector<RenderElement> _arr;
 
 			for(auto& elem : rendElemLineMap[posY])
 			{
-				if( _lastEleme._type == Type:TEXT && elem._type == Type:TEXT )
+				if( _lastEleme._type == Type::TEXT && elem._type == Type::TEXT )
 				{
 					if (_lastEleme.color == elem.color)
 					{
@@ -415,9 +410,9 @@ void CTextRich::formarRenderers()
 						oneLine += elem.strChar;
 					}else{
 						// diff color
-						if (_lastDiffStarEleme._type == Type:TEXT)
+						if (_lastDiffStarEleme._type == Type::TEXT)
 						{
-							RenderElement _newElem = _lastDiffStarEleme.clone()
+							RenderElement _newElem = _lastDiffStarEleme.clone();
 							_newElem.strChar = oneLine;
 							_arr.push_back(_newElem);
 
@@ -428,9 +423,9 @@ void CTextRich::formarRenderers()
 				}else if( elem._type == Type::IMAGE )
 				{
 					//interrupt
-					if (_lastDiffStarEleme._type == Type:TEXT )
+					if (_lastDiffStarEleme._type == Type::TEXT )
 					{
-						RenderElement _newElem = _lastDiffStarEleme.clone()
+						RenderElement _newElem = _lastDiffStarEleme.clone();
 						_newElem.strChar = oneLine;
 						oneLine = "";
 						_arr.push_back(_newElem);
@@ -440,27 +435,27 @@ void CTextRich::formarRenderers()
 				}else if ( elem._type == Type::ANIM )
 				{
 					//interrupt
-					if (_lastDiffStarEleme._type == Type:TEXT )
+					if (_lastDiffStarEleme._type == Type::TEXT )
 					{
-						RenderElement _newElem = _lastDiffStarEleme.clone()
+						RenderElement _newElem = _lastDiffStarEleme.clone();
 						_newElem.strChar = oneLine;
 						oneLine = "";
 						_arr.push_back(_newElem);
 					}
 					_arr.push_back(elem);
 
-				}else if ( _lastEleme._type != Type:TEXT )
+				}else if ( _lastEleme._type != Type::TEXT )
 				{
 					//interrupt
 					_lastDiffStarEleme = elem;
-					if ( lem._type == Type::TEXT )
+					if ( elem._type == Type::TEXT )
 					{
 						oneLine = elem.strChar;
 					}
 				}
 				_lastEleme = elem;
 			}
-			RenderElement _newElem = _lastDiffStarEleme.clone()
+			RenderElement _newElem = _lastDiffStarEleme.clone();
 			_newElem.strChar = oneLine;
 			_arr.push_back(_newElem);
 			rendLineArrs.push_back(_arr);
@@ -468,7 +463,7 @@ void CTextRich::formarRenderers()
 	}
 
 	// offset position
-	int _offsetLineY = 0
+	int _offsetLineY = 0;
 	_realLineHeight = 0;
 	for(auto& lines : rendLineArrs)
 	{
@@ -486,43 +481,43 @@ void CTextRich::formarRenderers()
 	}
 
 	//place all position
-	_realLineWidth = 0
+	_realLineWidth = 0;
 	Node* _obj = nullptr;
 	for(auto& lines : rendLineArrs)
 	{
-		int _lineWidth = 0
+		int _lineWidth = 0;
 		for(auto& elem : lines)
 		{
 			if ( elem._type == Type::TEXT )
 			{
 				_obj = getCacheLabel();
-				makeLabel(_obj,elem,elem.strChar);
-				_lineWidth += _obj:getContentSize().width
+				makeLabel((Label*)_obj,elem,elem.strChar);
+				_lineWidth += _obj->getContentSize().width;
 			}else if (elem._type == Type::IMAGE){
 				_obj = getCacheImage();
-				makeImage(_obj,elem)
-				_lineWidth += _obj:getContentSize().width
+				makeImage((Sprite*)_obj,elem);
+				_lineWidth += _obj->getContentSize().width;
 			}else if (elem._type == Type::ANIM){
 				_obj = getCacheImage();
-				makeAnim(_obj,elem);
+				makeAnim((Sprite*)_obj,elem);
 				_lineWidth += elem.width;
 			}
 			_innerContainer->addChild(_obj);
 			_obj->setPosition(elem.pos);
 		}
-		_realLineWidth = MAX(_lineWidth,_realLineWidth)
+		_realLineWidth = MAX(_lineWidth,_realLineWidth);
 	}
 
 	// align
 	if (_alignType == RichTextAlign::DESIGN_CENTER)
 	{
-		_innerContainer->setPosition( Vec2(-_maxLineWidth/2,_realLineHeight/2) )
+		_innerContainer->setPosition( Vec2(-_maxLineWidth/2,_realLineHeight/2) );
 	}else if (_alignType == RichTextAlign::REAL_CENTER)
 	{
-		_innerContainer->setPosition(  Vec2(-_realLineWidth/2,_realLineHeight/2) )
+		_innerContainer->setPosition(  Vec2(-_realLineWidth/2,_realLineHeight/2) );
 	}else if (_alignType == RichTextAlign::LEFT_TOP)
 	{
-		_innerContainer->setPosition(Vec2(0,0))
+		_innerContainer->setPosition(Vec2(0,0));
 	}
 }
 
@@ -577,51 +572,51 @@ DrawNode* CTextRich::_getDrawNode()
 {
 	if (_drawNode == nullptr)
 	{
-		_drawNode = DrawNode::create()
-		_innerContainer->addChild(_drawNode)
+		_drawNode = DrawNode::create();
+		_innerContainer->addChild(_drawNode);
 	}
-	return _drawNode
+	return _drawNode;
 }
 
-Label* CTextRich::makeLabel( Label* pTarget,RichElementText* elem ,std::string strChar)
+Label* CTextRich::makeLabel( Label* pTarget,RenderElement elem ,std::string strChar)
 {
 	
 	if (elem.isOutLine)
 	{
 		pTarget->enableShadow(Color4B(0,0,0,255),Size(1,-1));
 	}
-	pTarget->setAnchorPoint(Vec2(0,0))
-	pTarget->setColor(elem.color)
-	pTarget->setFontSize(elem.fontSize)
-	pTarget->setString(strChar)
+	pTarget->setAnchorPoint(Vec2(0,0));
+	pTarget->setColor(elem.color);
+	//pTarget->setFontSize(elem->_fontSize)
+	pTarget->setString(strChar);
 	if (elem.isUnderLine)
 	{
-		_getDrawNode()->drawLine(elem.pos,Vec2(elem.pos.x + pTarget->getContentSize().width,elem.pos.y),Color4F(1,1,1,1))
+		_getDrawNode()->drawLine(elem.pos,Vec2(elem.pos.x + pTarget->getContentSize().width,elem.pos.y),Color4F(1,1,1,1));
 	}
-	if (elem.data)
+	if (elem.data != "")
 	{
 		
 	}
 	return pTarget;
 }
 
-Sprite* CTextRich::makeImage( Sprite* pTarget,RichElementImage* elem )
+Sprite* CTextRich::makeImage( Sprite* pTarget,RenderElement elem )
 {
 	pTarget->stopAllActions();
-	auto spriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(filePath);
+	auto spriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(elem.img);
 	if(spriteFrame && pTarget->isFrameDisplayed(spriteFrame) == false){
 		pTarget->setSpriteFrame(spriteFrame);
 	}else{
-		pTarget->setTexture(filePath);
+		pTarget->setTexture(elem.img);
 	}
-	if (elem.data)
+	if (elem.data != "")
 	{
 		
 	}
 	return pTarget;
 }
 
-Sprite* CTextRich::makeSprite( Sprite* pTarget,RichElementAnim* elem )
+Sprite* CTextRich::makeAnim( Sprite* pTarget,RenderElement elem )
 {
 	SpriteFrameCache *pCache = SpriteFrameCache::getInstance();
 	Vector<SpriteFrame*> v;
@@ -631,7 +626,7 @@ Sprite* CTextRich::makeSprite( Sprite* pTarget,RichElementAnim* elem )
 	char buf[128] = {0};
 	do
 	{
-		sprintf(buf,"%s%d.png",filePath.c_str(),index++);
+		sprintf(buf,"%s%d.png",elem.anim.c_str(),index++);
 		pFrame = pCache->getSpriteFrameByName(buf);
 		if(pFrame == NULL){
 			break;
@@ -640,13 +635,13 @@ Sprite* CTextRich::makeSprite( Sprite* pTarget,RichElementAnim* elem )
 	} while (true);
 
 	Animation *pAnim = Animation::createWithSpriteFrames(v);
-	pAnim->setLoops(isLoop?-1:0);
+	pAnim->setLoops(elem.isLoop?-1:0);
 	pAnim->setRestoreOriginalFrame(true);
-	pAnim->setDelayPerUnit(delay);
+	pAnim->setDelayPerUnit(elem.delay);
 	pTarget->setContentSize(v.at(0)->getOriginalSize());
 	pTarget->stopAllActions();
 	pTarget->runAction(Animate::create(pAnim));
-	if (elem.data)
+	if (elem.data != "")
 	{
 		
 	}
@@ -698,7 +693,7 @@ Label* CTextRich::_getMesureLabel()
 	return _mesureLabel;
 }
 
-Size CTextRich::_getMesureSpriteContentSize(path)
+Size CTextRich::_getMesureSpriteContentSize(const std::string& path)
 {
 	if (_mesureSprite == nullptr)
 	{
@@ -713,7 +708,7 @@ Size CTextRich::_getMesureSpriteContentSize(path)
 		_mesureSprite->setSpriteFrame(spriteFrame);
 		return _mesureSprite->getContentSize();
 	}else{
-		CCLOG("miss SpriteFrame: ",path);
+		CCLOG("miss SpriteFrame: ",path.c_str());
 		return Size();
 	}
 }
