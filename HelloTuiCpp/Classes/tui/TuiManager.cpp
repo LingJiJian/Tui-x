@@ -882,11 +882,11 @@ CTextRich *TuiManager::createTextRich(float tag, const char *text, float x, floa
     doc.parse<0>(buf);
     
     for (xml_node<char> *item = doc.first_node("e"); item != NULL; item = item->next_sibling()){
-        int tag = atoi(item->first_attribute("tag")->value());
         if (strcmp(item->first_attribute("type")->value(), kTuiControlLabel) == 0){ //label
             const char *text = item->first_attribute("text")->value();
             float textSize = 22;
             const char *fontName = "";
+            const char *data = "";
             bool isOutLine = false;
             bool isUnderLine = false;
             int r = 255, g = 255, b = 255, r2 = 255, g2 = 255, b2 = 255;
@@ -900,26 +900,38 @@ CTextRich *TuiManager::createTextRich(float tag, const char *text, float x, floa
             if (item->first_attribute("r2"))		r2 = atoi(item->first_attribute("r2")->value());
             if (item->first_attribute("g2"))		g2 = atoi(item->first_attribute("g2")->value());
             if (item->first_attribute("b2"))		b2 = atoi(item->first_attribute("b2")->value());
-            pTextRich->insertElement(tag,TuiUtil::replace_all(text, "\\n", "\n").c_str(), fontName, textSize, Color3B(r, g, b),isUnderLine,isOutLine,Color4B(r2, g2, b2,255));
+            if (item->first_attribute("data"))      data = item->first_attribute("data")->value();
+            pTextRich->insertElement(text, fontName, textSize, Color3B(r, g, b),isUnderLine,isOutLine,Color4B(r2, g2, b2,255),data);
             
         }else if (strcmp(item->first_attribute("type")->value(), kTuiControlImage) == 0){ //image
+            
             const char *imgSrc = item->first_attribute("src")->value();
-            bool isAnim = false;
+            const char *data = "";
+            if (item->first_attribute("data"))      data = item->first_attribute("data")->value();
+            pTextRich->insertElement(imgSrc,data);
+            
+        }else if (strcmp(item->first_attribute("type")->value(), kTuiControlAnim) == 0){ //anim
+            
+            const char *imgSrc = item->first_attribute("src")->value();
             float delay = 0.1;
             int isLoop = 0;
             const char *plist = "";
-            if (item->first_attribute("isAnim"))	isAnim = atoi(item->first_attribute("isAnim")->value());
+            const char* data = "";
             if (item->first_attribute("plist"))		plist = item->first_attribute("plist")->value();
             if (item->first_attribute("delay"))		delay = atof(item->first_attribute("delay")->value());
-            if (item->first_attribute("isLoop"))	isLoop = atoi(item->first_attribute("isLoop")->value()); 
+            if (item->first_attribute("isLoop"))	isLoop = atoi(item->first_attribute("isLoop")->value());
             if (plist != "") SpriteFrameCache::getInstance()->addSpriteFramesWithFile(plist);
-            pTextRich->insertElement(tag,imgSrc,isAnim,delay,isLoop);
+            if (item->first_attribute("data"))      data = item->first_attribute("data")->value();
+            pTextRich->insertElement(imgSrc,delay,isLoop,data);
+            
+        }else if(strcmp(item->first_attribute("type")->value(),"newline") == 0 ){// newline
+            
+            pTextRich->insertElement(1);
         }
-    }
+     }
     delete[] buf;
     
     pTextRich->reloadData();
-    pTextRich->setAnchorPoint(Vec2(0, 1));
     pTextRich->setRotation(rotation);
     pTextRich->setPosition(Vec2(x, -y));
     pTextRich->setTag(tag);

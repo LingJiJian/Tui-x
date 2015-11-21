@@ -1581,7 +1581,6 @@ FlaToXML.prototype.convertRichText = function(richText,tag ,frameName){
 	var xml_richText = new UIRichText();
 	var params = richText.parameters;
 	xml_richText.setAttribute( UIControlAttribute.kText,params.text.value);
-	xml_richText.setAttribute( UIControlAttribute.ksliderMax,params.maxLen.value);
 	this.fullNormalAttirbute( xml_richText,this.th, richText ,tag ,frameName);
 	return xml_richText;
 }

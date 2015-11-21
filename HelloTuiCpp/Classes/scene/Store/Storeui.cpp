@@ -45,9 +45,9 @@ void Storeui::event_btn_pay(Ref* pSender)
 	CCLOG("pay index :%d", pBtn->getParent()->getTag());
 }
 
-void Storeui::event_rtf_test( Ref* pSender,int tag )
+void Storeui::event_rtf_test( Ref* pSender,const char* data )
 {
-	CCLOG("click tag :%d", tag);
+	CCLOG(data);
 }
 
 /************************************************************************/

@@ -17,7 +17,7 @@ protected:
 	void event_btn_test(Ref* pSender);
 	void event_btn_pay(Ref* pSender);
 	void event_explist_btn(Ref* pSender);
-	void event_rtf_test(Ref* pSender,int tag);
+	void event_rtf_test(Ref* pSender,const char* data);
 private:
 };
 

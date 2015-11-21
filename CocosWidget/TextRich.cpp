@@ -26,7 +26,6 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "TextRich.h"
 #include "WitlsMacros.h"
-#include "tui/TuiUtil.h"
 using namespace std;
 
 NS_CC_WIDGET_BEGIN
@@ -39,10 +38,10 @@ bool RichElement::init(const Color3B &color, GLubyte opacity)
 }
 
 
-RichElementText* RichElementText::create(const Color3B &color,const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine,bool isOutLine,const Color4B& outLineColor)
+RichElementText* RichElementText::create(const Color3B &color,const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine,bool isOutLine,const Color4B& outLineColor,const char* data)
 {
 	RichElementText* element = new (std::nothrow) RichElementText();
-	if (element && element->init(color, text, fontName, fontSize,isUnderLine,isOutLine,outLineColor))
+	if (element && element->init(color, text, fontName, fontSize,isUnderLine,isOutLine,outLineColor,data))
 	{
 		element->autorelease();
 		return element;
@@ -51,7 +50,7 @@ RichElementText* RichElementText::create(const Color3B &color,const std::string&
 	return nullptr;
 }
 
-bool RichElementText::init(const Color3B &color, const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine,bool isOutLine,const Color4B& outLineColor)
+bool RichElementText::init(const Color3B &color, const std::string& text, const std::string& fontName, float fontSize,bool isUnderLine,bool isOutLine,const Color4B& outLineColor,const char* data)
 {
 	if (RichElement::init(color))
 	{
@@ -61,15 +60,16 @@ bool RichElementText::init(const Color3B &color, const std::string& text, const 
 		_isUnderLine = isUnderLine;
 		_isOutLine = isOutLine;
 		_outLineColor = outLineColor;
+        _data = data;
 		return true;
 	}
 	return false;
 }
 
-RichElementImage* RichElementImage::create(const std::string& filePath)
+RichElementImage* RichElementImage::create(const std::string& filePath,const char* data)
 {
 	RichElementImage* element = new (std::nothrow) RichElementImage();
-	if (element && element->init( filePath))
+	if (element && element->init( filePath,data))
 	{
 		element->autorelease();
 		return element;
@@ -78,11 +78,12 @@ RichElementImage* RichElementImage::create(const std::string& filePath)
 	return nullptr;
 }
 
-bool RichElementImage::init(const std::string& filePath)
+bool RichElementImage::init(const std::string& filePath,const char* data)
 {
 	if (RichElement::init())
 	{
 		_filePath = filePath;
+        _data = data;
 		return true;
 	}
 	return false;
@@ -109,10 +110,10 @@ bool RichElementNewline::init()
 	return false;
 }
 
-RichElementAnim* RichElementAnim::create(const std::string& filePath,bool isLoop,float delay)
+RichElementAnim* RichElementAnim::create(const std::string& filePath,bool isLoop,float delay,const char* data)
 {
 	RichElementAnim* element = new (std::nothrow) RichElementAnim();
-	if (element && element->init(filePath,isLoop,delay))
+	if (element && element->init(filePath,isLoop,delay,data))
 	{
 		element->autorelease();
 		return element;
@@ -121,13 +122,14 @@ RichElementAnim* RichElementAnim::create(const std::string& filePath,bool isLoop
 	return nullptr;
 }
 
-bool RichElementAnim::init(const std::string& filePath,bool isLoop,float delay)
+bool RichElementAnim::init(const std::string& filePath,bool isLoop,float delay,const char* data)
 {
 	if (RichElement::init())
 	{
 		_filePath = filePath;
 		_isLoop = isLoop;
 		_delay = delay;
+        _data = data;
 		return true;
 	}
 	return false;
@@ -159,6 +161,8 @@ RichCacheElement::~RichCacheElement()
 }
 
 CTextRich::CTextRich():
+    _alignType(RichTextAlign::DESIGN_CENTER),
+    _drawNode(nullptr),
 	_verticalSpace(0.0f),
 	_maxLineWidth(300),
 	_mesureLabel(nullptr),
@@ -181,6 +185,7 @@ CTextRich* CTextRich::create()
 	CTextRich* widget = new (std::nothrow) CTextRich();
 	if (widget && widget->init())
 	{
+        widget->setTouchEnabled(true);
 		widget->autorelease();
 		return widget;
 	}
@@ -190,10 +195,9 @@ CTextRich* CTextRich::create()
 
 bool CTextRich::init()
 {
-	if (Node::init())
-	{
-		return true;
-	}
+    if (Node::init()) {
+        return true;
+    }
 	return false;
 }
 
@@ -214,19 +218,24 @@ void CTextRich::removeAllElements()
 	_elemRenderArr.clear();
 }
 
-void CTextRich::insertElement(const char* pString, const char* pFontName /* = NULL */, float fFontSize /* = 0.0f */, const Color3B& tColor /* = Color3B::WHITE */,bool isUnderLine /* = false */,bool isOutLine /* = false */,const Color4B& outLineColor/* =Color4B::WHITE */)
+void CTextRich::insertElement(const char* pString, const char* pFontName, float fFontSize, const Color3B& tColor,bool isUnderLine,bool isOutLine,const Color4B& outLineColor,const char* data)
 {
-	_richElements.pushBack(RichElementText::create(tColor,pString,pFontName,fFontSize,isUnderLine,isOutLine,outLineColor));
+	_richElements.pushBack(RichElementText::create(tColor,pString,pFontName,fFontSize,isUnderLine,isOutLine,outLineColor,data));
 }
 
-void CTextRich::insertElement(const char* path,float delay,bool isLoop )
+void CTextRich::insertElement(const char* path,float delay,bool isLoop,const char* data )
 {
-	_richElements.pushBack(RichElementAnim::create(path,isLoop,delay));
+	_richElements.pushBack(RichElementAnim::create(path,isLoop,delay,data));
 }
 
-void CTextRich::insertElement(const char* path )
+void CTextRich::insertElement(const char* path,const char* data)
 {
-	_richElements.pushBack(RichElementImage::create(path));
+	_richElements.pushBack(RichElementImage::create(path,data));
+}
+
+void CTextRich::insertElement(int newline)
+{
+    _richElements.pushBack(RichElementNewline::create());
 }
 
 void CTextRich::reloadData()
@@ -238,7 +247,7 @@ void CTextRich::reloadData()
 		if (elem->_type == Type::TEXT)
 		{
 			RichElementText* elemText = dynamic_cast<RichElementText*>(elem);
-			std::vector<std::string> _charArr = tui::TuiUtil::separateUtf8(elemText->_text);
+			std::vector<std::string> _charArr = CTextRich::separateUtf8(elemText->_text);
 			for (std::vector<std::string>::iterator iter = _charArr.begin(); iter != _charArr.end(); iter++)
 			{
 				RenderElement rendElem;
@@ -249,6 +258,7 @@ void CTextRich::reloadData()
 				rendElem.fontSize = elemText->_fontSize;
 				rendElem.fontName = elemText->_fontName;
 				rendElem.data = elemText->_data;
+                rendElem.color = elemText->_color;
 
 				Label* lab = this->_getMesureLabel();
 				this->makeLabel(lab,rendElem,(*iter));
@@ -280,6 +290,8 @@ void CTextRich::reloadData()
 			rendElem.anim = elemAnim->_filePath;
 			rendElem.width = size.width;
 			rendElem.height = size.height;
+            rendElem.delay = elemAnim->_delay;
+            rendElem.isLoop = elemAnim->_isLoop;
 			rendElem.data = elemAnim->_data;
 
 			_elemRenderArr.push_back( rendElem );
@@ -316,7 +328,7 @@ void CTextRich::formarRenderers()
 			{
 				if (elem._type == Type::TEXT)
 				{
-					if (tui::TuiUtil::isChinese(elem.strChar) || elem.strChar == " " )
+					if (CTextRich::isChinese(elem.strChar) || elem.strChar == " " )
 					{
 						oneLine = 0;
 						lines++;
@@ -367,6 +379,8 @@ void CTextRich::formarRenderers()
 				oneLine += elem.width;
 			}
 		}
+        
+        _elemRenderArr[i] = elem;
 	}
 
 	//sort all lines
@@ -383,7 +397,7 @@ void CTextRich::formarRenderers()
 				rendElemLineMap[ elem.pos.y ] = std::vector<RenderElement>();
 			}
 			rendElemLineMap[ elem.pos.y ].push_back( elem );
-			linePosYSet.insert( elem.pos.y );
+			linePosYSet.insert( -1 * (elem.pos.y) );
 		}
 	}
 	// all lines in arr
@@ -391,10 +405,10 @@ void CTextRich::formarRenderers()
 	std::set<int>::const_iterator it=linePosYSet.begin();
 	for(; it!=linePosYSet.end(); ++it)
 	{
-		int posY = (*it);
+		int posY = -1 * (*it);
 		std::string oneLine = "";
-		RenderElement _lastEleme = rendElemLineMap[posY][1];
-		RenderElement _lastDiffStarEleme = rendElemLineMap[posY][1];
+		RenderElement _lastEleme = rendElemLineMap[posY][0];
+		RenderElement _lastDiffStarEleme = rendElemLineMap[posY][0];
 		if( rendElemLineMap[posY].size() > 0 )
 		{
 			std::vector<RenderElement> _arr;
@@ -464,19 +478,25 @@ void CTextRich::formarRenderers()
 	// offset position
 	int _offsetLineY = 0;
 	_realLineHeight = 0;
-	for(auto& lines : rendLineArrs)
-	{
+    
+    for (int i=0; i<rendLineArrs.size(); i++) {
+        auto lines = rendLineArrs[i];
 		int _lineHeight = 0;
-		for(auto& elem : lines)
-		{
+        
+        for(auto& elem : lines){
 			_lineHeight = MAX( _lineHeight,elem.height );
 		}
 		_realLineHeight = _realLineHeight + _lineHeight;
 		_offsetLineY = _offsetLineY + (_lineHeight - 27);
-		for(auto& elem : lines)
+        
+        for(int j=0;j<lines.size();j++)
 		{
-			elem.pos.y = elem.pos.y - _offsetLineY;
+            auto elem = lines[j];
+			elem.pos = Vec2(elem.pos.x,elem.pos.y - _offsetLineY);
+            lines[j] = elem;
+            _realLineHeight = MAX(_realLineHeight,abs(elem.pos.y));
 		}
+        rendLineArrs[i] = lines;
 	}
 
 	//place all position
@@ -510,16 +530,18 @@ void CTextRich::formarRenderers()
 	// align
 	if (_alignType == RichTextAlign::DESIGN_CENTER)
 	{
-		this->setContentSize(Size(getMaxLineWidth()/2,getRealLineHeight()/2) );
-		this->setAnchorPoint(Vec2(0.5,0.5));
+        setAnchorPoint(Vec2(0.5,0.5));
+        setContentSize(Size(getMaxLineWidth(),getRealLineHeight()) );
+		
 	}else if (_alignType == RichTextAlign::REAL_CENTER)
 	{
-		this->setContentSize(Size(getRealLineWidth()/2,getRealLineHeight()/2) );
-		this->setAnchorPoint(Vec2(0.5,0.5));
+        setAnchorPoint(Vec2(0.5,0.5));
+		setContentSize(Size(getRealLineWidth(),getRealLineHeight()) );
+		
 	}else if (_alignType == RichTextAlign::LEFT_TOP)
 	{
-		this->setContentSize(Size(getRealLineWidth()/2,getRealLineHeight()/2) );
-		this->setAnchorPoint(Vec2(0,1));
+        setAnchorPoint(Vec2(0,1));
+		setContentSize(Size(getRealLineWidth(),getRealLineHeight()) );
 	}
 }
 
@@ -585,7 +607,8 @@ Label* CTextRich::makeLabel( Label* pTarget,RenderElement elem ,std::string strC
 	config.fontSize = elem.fontSize;
 	
 	pTarget->disableEffect();
-	if (elem.isOutLine)
+    pTarget->setTTFConfig(config);
+    if (elem.isOutLine)
 	{
 		pTarget->setTextColor(Color4B(elem.color));
 		pTarget->enableShadow(Color4B(0,0,0,255),Size(1,-1));
@@ -653,9 +676,6 @@ CWidgetTouchModel CTextRich::onTouchBegan(Touch* pTouch)
 void CTextRich::onTouchEnded(Touch* pTouch, float fDuration)
 {
 	unsigned int nCount = _children.size();
-	Vec2 tPoint = _parent->convertTouchToNodeSpace(pTouch);
-	if( getBoundingBox().containsPoint(tPoint) )
-	{
 		Vec2 tInsidePoint = convertTouchToNodeSpace(pTouch);
 
 		for (int i = nCount - 1; i >= 0; --i)
@@ -669,8 +689,6 @@ void CTextRich::onTouchEnded(Touch* pTouch, float fDuration)
 				return;
 			}
 		}
-		executeTextRichClickHandler(this, NULL);
-	}
 }
 
 Label* CTextRich::_getMesureLabel()
@@ -702,5 +720,96 @@ Size CTextRich::_getMesureSpriteContentSize(const std::string& path)
 	}
 }
 
+
+std::vector< std::string > CTextRich::separateUtf8( const std::string & sin )
+{
+    int l = sin.length();
+    std::vector<std::string> ret;
+    ret.clear();
+    for(int p = 0; p < l; ) {
+        int size, n = l - p;
+        unsigned char c = sin[p], cc = sin[p + 1];
+        if(c < 0x80) {
+            size = 1;
+        } else if(c < 0xc2) {
+            return ret;
+        } else if(c < 0xe0) {
+            if(n < 2) {
+                return ret;
+            }
+            if(!((sin[p + 1] ^ 0x80) < 0x40)) {
+                return ret;
+            }
+            size = 2;
+        } else if(c < 0xf0) {
+            if(n < 3) {
+                return ret;
+            }
+            if(!((sin[p + 1] ^ 0x80) < 0x40 &&
+                 (sin[p + 2] ^ 0x80) < 0x40 &&
+                 (c >= 0xe1 || cc >= 0xa0))) {
+                return ret;
+            }
+            size = 3;
+        } else if(c < 0xf8) {
+            if(n < 4) {
+                return ret;
+            }
+            if(!((sin[p + 1] ^ 0x80) < 0x40 &&
+                 (sin[p + 2] ^ 0x80) < 0x40 &&
+                 (sin[p + 3] ^ 0x80) < 0x40 &&
+                 (c >= 0xf1 || cc >= 0x90))) {
+                return ret;
+            }
+            size = 4;
+        } else if (c < 0xfc) {
+            if(n < 5) {
+                return ret;
+            }
+            if(!((sin[p + 1] ^ 0x80) < 0x40 &&
+                 (sin[p + 2] ^ 0x80) < 0x40 &&
+                 (sin[p + 3] ^ 0x80) < 0x40 &&
+                 (sin[p + 4] ^ 0x80) < 0x40 &&
+                 (c >= 0xfd || cc >= 0x88))) {
+                return ret;
+            }
+            size = 5;
+        } else if (c < 0xfe) {
+            if(n < 6) {
+                return ret;
+            }
+            if(!((sin[p + 1] ^ 0x80) < 0x40 &&
+                 (sin[p + 2] ^ 0x80) < 0x40 &&
+                 (sin[p + 3] ^ 0x80) < 0x40 &&
+                 (sin[p + 4] ^ 0x80) < 0x40 &&
+                 (sin[p + 5] ^ 0x80) < 0x40 &&
+                 (c >= 0xfd || cc >= 0x84))) {
+                return ret;
+            }
+            size = 6;
+        } else {
+            return ret;
+        }
+        std::string temp = "";
+        temp = sin.substr(p, size);
+        ret.push_back(temp);
+        p += size;
+    }
+    return ret;
+}
+
+bool CTextRich::isChinese(const std::string &inStr)
+{
+    unsigned char *str = (unsigned char *)inStr.c_str();
+    size_t length = inStr.length();
+    for (size_t i=0; i< length; ++i)
+    {
+        if (str[i] > 160)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 NS_CC_WIDGET_END
