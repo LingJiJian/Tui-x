@@ -161,7 +161,7 @@ RichCacheElement::~RichCacheElement()
 }
 
 CTextRich::CTextRich():
-    _alignType(RichTextAlign::DESIGN_CENTER),
+    _alignType(RichTextAlign::LEFT_TOP),
     _drawNode(nullptr),
 	_verticalSpace(0.0f),
 	_maxLineWidth(300),
