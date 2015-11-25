@@ -24715,71 +24715,87 @@ int lua_cocos2dx_cocoswidget_CTextRich_insertElement(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     do{
         if (argc == 1) {
-			const char* arg1;
-			 std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg1_tmp); arg1 = arg1_tmp.c_str();
-            
-			 if (!ok) { break; }
-            cobj->insertElement(arg1);
-            return 0;
-        }
-    }while(0);
-    ok  = true;
-    do{
-        if (argc == 5) {
 			unsigned int arg0;
 			ok &= luaval_to_uint32(tolua_S, 2,&arg0);
 
-            const char* arg1;
-            std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
-            
-			bool arg2;
-			ok &= luaval_to_boolean(tolua_S, 4,&arg2);
+			 if (!ok) { break; }
+            cobj->insertElement(arg0);
+            return 0;
+        }
+    }while(0);
+	ok  = true;
+	do{
+		if (argc == 2) {
+			if (!ok) { break; }
+			const char* arg0;
+			std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp); arg0 = arg0_tmp.c_str();
+	
+			if (!ok) { break; }
+			const char* arg1;
+			std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
+
+			if (!ok) { break; }
+			cobj->insertElement(arg0,arg1);
+			return 0;
+		}
+	}while(0);
+    ok  = true;
+    do{
+        if (argc == 4) {
+
+            const char* arg0;
+            std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp); arg0 = arg0_tmp.c_str();
 
             if (!ok) { break; }
-            double arg3;
-            ok &= luaval_to_number(tolua_S, 5,&arg3);
+            double arg1;
+            ok &= luaval_to_number(tolua_S, 3,&arg1);
             
             if (!ok) { break; }
-			bool arg4;
-			ok &= luaval_to_boolean(tolua_S, 6,&arg4);
-            
+			bool arg2;
+			ok &= luaval_to_boolean(tolua_S, 4,&arg2);
+			
+			if (!ok) { break; }
+			const char* arg3;
+			std::string arg3_tmp; ok &= luaval_to_std_string(tolua_S, 5, &arg3_tmp); arg3 = arg3_tmp.c_str();
+
             if (!ok) { break; }
-            cobj->insertElement(arg0, arg1, arg2, arg3,arg4);
+            cobj->insertElement(arg0, arg1, arg2, arg3);
             return 0;
         }
     }while(0);
     ok  = true;
     do{
         if (argc == 8) {
-			unsigned int arg0;
-			ok &= luaval_to_uint32(tolua_S, 2,&arg0);
-
+            const char* arg0;
+            std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp); arg0 = arg0_tmp.c_str();
+            
+            if (!ok) { break; }
             const char* arg1;
             std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 3, &arg1_tmp); arg1 = arg1_tmp.c_str();
             
             if (!ok) { break; }
-            const char* arg2;
-            std::string arg2_tmp; ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp); arg2 = arg2_tmp.c_str();
+            double arg2;
+            ok &= luaval_to_number(tolua_S, 4,&arg2);
             
             if (!ok) { break; }
-            double arg3;
-            ok &= luaval_to_number(tolua_S, 5,&arg3);
-            
-            if (!ok) { break; }
-            cocos2d::Color3B arg4;
-            ok &= luaval_to_color3b(tolua_S, 6, &arg4);
+            cocos2d::Color3B arg3;
+            ok &= luaval_to_color3b(tolua_S, 5, &arg3);
             
 			if (!ok) { break; }
+			bool arg4;
+			ok &= luaval_to_boolean(tolua_S, 6,&arg4);
+            
+            if (!ok) { break; }
 			bool arg5;
 			ok &= luaval_to_boolean(tolua_S, 7,&arg5);
-            
-            if (!ok) { break; }
-			bool arg6;
-			ok &= luaval_to_boolean(tolua_S, 8,&arg6);
 
 			if (!ok) { break; }
-			cocos2d::Color4B arg7;
-			ok &= luaval_to_color4b(tolua_S, 9, &arg7);
+			cocos2d::Color4B arg6;
+			ok &= luaval_to_color4b(tolua_S, 8, &arg6);
+
+			if (!ok) { break; }
+			const char* arg7;
+			std::string arg7_tmp; ok &= luaval_to_std_string(tolua_S, 9, &arg7_tmp); arg7 = arg7_tmp.c_str();
 
 			if (!ok) { break; }
             cobj->insertElement(arg0, arg1, arg2, arg3, arg4,arg5,arg6,arg7);
@@ -25130,6 +25146,54 @@ tolua_lerror:
     return 0;
 }
 
+int lua_cocos2dx_cocoswidget_CTextRich_setAlignType(lua_State* tolua_S)
+{
+	int argc = 0;
+	cocos2d::cocoswidget::CTextRich* cobj = nullptr;
+	bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+	tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+	if (!tolua_isusertype(tolua_S,1,"ccw.CTextRich",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+	cobj = (cocos2d::cocoswidget::CTextRich*)tolua_tousertype(tolua_S,1,0);
+
+#if COCOS2D_DEBUG >= 1
+	if (!cobj)
+	{
+		tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CTextRich_setAlignType'", nullptr);
+		return 0;
+	}
+#endif
+
+	argc = lua_gettop(tolua_S)-1;
+	if (argc == 1)
+	{
+		unsigned int arg0;
+
+		ok &= luaval_to_uint32(tolua_S, 2,&arg0);
+		if(!ok)
+			return 0;
+		cobj->setAlignType((cocos2d::cocoswidget::RichTextAlign)arg0);
+		return 0;
+	}
+	CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setAlignType",argc, 1);
+	return 0;
+
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+	tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CTextRich_setAlignType'.",&tolua_err);
+#endif
+
+	return 0;
+}
+
+
 int lua_cocos2dx_cocoswidget_CTextRich_getMaxLineWidth(lua_State* tolua_S)
 {
     int argc = 0;
@@ -25173,6 +25237,96 @@ tolua_lerror:
 #endif
     
     return 0;
+}
+
+int lua_cocos2dx_cocoswidget_CTextRich_getRealLineWidth(lua_State* tolua_S)
+{
+	int argc = 0;
+	cocos2d::cocoswidget::CTextRich* cobj = nullptr;
+	bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+	tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+	if (!tolua_isusertype(tolua_S,1,"ccw.CTextRich",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+	cobj = (cocos2d::cocoswidget::CTextRich*)tolua_tousertype(tolua_S,1,0);
+
+#if COCOS2D_DEBUG >= 1
+	if (!cobj)
+	{
+		tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CTextRich_getRealLineWidth'", nullptr);
+		return 0;
+	}
+#endif
+
+	argc = lua_gettop(tolua_S)-1;
+	if (argc == 0)
+	{
+		if(!ok)
+			return 0;
+		unsigned int ret = cobj->getRealLineWidth();
+		tolua_pushnumber(tolua_S,(lua_Number)ret);
+		return 1;
+	}
+	CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getRealLineWidth",argc, 0);
+	return 0;
+
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+	tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CTextRich_getRealLineWidth'.",&tolua_err);
+#endif
+
+	return 0;
+}
+
+int lua_cocos2dx_cocoswidget_CTextRich_getRealLineHeight(lua_State* tolua_S)
+{
+	int argc = 0;
+	cocos2d::cocoswidget::CTextRich* cobj = nullptr;
+	bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+	tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+	if (!tolua_isusertype(tolua_S,1,"ccw.CTextRich",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+	cobj = (cocos2d::cocoswidget::CTextRich*)tolua_tousertype(tolua_S,1,0);
+
+#if COCOS2D_DEBUG >= 1
+	if (!cobj)
+	{
+		tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocoswidget_CTextRich_getRealLineHeight'", nullptr);
+		return 0;
+	}
+#endif
+
+	argc = lua_gettop(tolua_S)-1;
+	if (argc == 0)
+	{
+		if(!ok)
+			return 0;
+		unsigned int ret = cobj->getRealLineHeight();
+		tolua_pushnumber(tolua_S,(lua_Number)ret);
+		return 1;
+	}
+	CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getRealLineWidth",argc, 0);
+	return 0;
+
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+	tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocoswidget_CTextRich_getRealLineHeight'.",&tolua_err);
+#endif
+
+	return 0;
 }
 
 int lua_cocos2dx_cocoswidget_CTextRich_removeAllElements(lua_State* tolua_S)
@@ -25304,6 +25458,9 @@ int lua_register_cocos2dx_cocoswidget_CTextRich(lua_State* tolua_S)
     tolua_function(tolua_S,"reloadData",lua_cocos2dx_cocoswidget_CTextRich_reloadData);
     tolua_function(tolua_S,"setMaxLineWidth",lua_cocos2dx_cocoswidget_CTextRich_setMaxLineWidth);
     tolua_function(tolua_S,"getMaxLineWidth",lua_cocos2dx_cocoswidget_CTextRich_getMaxLineWidth);
+	tolua_function(tolua_S,"setAlignType",lua_cocos2dx_cocoswidget_CTextRich_setAlignType);
+	tolua_function(tolua_S,"getRealLineWidth",lua_cocos2dx_cocoswidget_CTextRich_getRealLineWidth);
+	tolua_function(tolua_S,"getRealLineHeight",lua_cocos2dx_cocoswidget_CTextRich_getRealLineHeight);
     tolua_function(tolua_S,"removeAllElements",lua_cocos2dx_cocoswidget_CTextRich_removeAllElements);
     tolua_function(tolua_S,"new",lua_cocos2dx_cocoswidget_CTextRich_constructor);
     tolua_function(tolua_S,"create", lua_cocos2dx_cocoswidget_CTextRich_create);

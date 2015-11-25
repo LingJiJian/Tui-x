@@ -1,12 +1,12 @@
-
 	<control tag="1" type="panel" name="panel_recombine" x="400" y="240" width="1425.95" height="1069.4" rotation="0">
 		<control tag="2" type="gridPageView" num="50" red="0" green="255" blue="255" alpha="255" name="gpv_bag" cellWidth="80" cellHeight="80" column="5" row="5" x="-183.95" y="30" width="390" height="320" rotation="0" direction="0" spriteFrame="0"></control>
 		<control tag="4" type="button" text="txt" textSize="16" textFont="fonts/Arial.ttf" red="0" green="0" blue="0" normal="recombine/btn_grid_normal.png" select="recombine/btn_grid_select.png" disable="recombine/btn_grid_disable.png" x="368" y="216.35" width="56" height="40" rotation="0" spriteFrame="0"></control>
 		<control tag="5" type="scrollView" red="0" green="255" blue="255" alpha="255" innerWidth="1024.5" innerHeight="1024.05" x="191.8" y="40" width="350" height="300" rotation="0" direction="2">
 			<control tag="6" type="image" image="recombine/img_scrollview.png" x="343.2" y="-361" width="1024" height="1024" scaleX="1" scaleY="1" flipX="0" flipY="0" rotation="0" spriteFrame="0"></control>
 		</control>
-		<control tag="8" type="richText" text="<e type='label' tag='1' isUnderLine='1' r='225' g='100' b ='0' text='你好中国'></e><e type='label' tag='2' isOutLine='1' font='fonts/Arial.ttf' r='225' g='150' b ='0' r2='255' g2='255' b2 ='255' text='你好CocosWidget'></e><e type='label' tag='3' r='125' g='100' b ='0' text='你好Tui-x' size='24'></e><e type='image' tag='4' src='main/ctlv_left_joystick.png'></e><e type='image' tag='5' isAnim='1' src='anim_coin' plist='main/anim_coin.plist' isLoop='1' delay='0.1' ></e><e type='label' tag='7' r='255' g='0' b ='0' text='来个\n换行吧' size='20'></e>" max="20" x="-378.05" y="-229.05" width="384.8" height="85.2" rotation="0" spriteFrame="0"></control>
+		<control tag="8" type="richText" text="<e type='label' font='fonts/Arial.ttf' isUnderLine='1' r='225' g='100' b ='0' text='你好中国' data='数据' ></e><e type='label' isOutLine='1' font='fonts/Arial.ttf' r='225' g='150' b ='0' r2='255' g2='255' b2 ='255' text='你好CocosWidget'></e><e type='label'  r='125' g='100' b ='0' font='fonts/Arial.ttf' text='你好Tui-x' size='24'></e><e type='image' src='main/ctlv_left_joystick.png'></e><e type='newline'></e><e type='anim' src='anim_coin' plist='main/anim_coin.plist' isLoop='1' delay='0.1' ></e><e type='label' r='255' g='0' b ='0' text='来个换行吧aa' font='fonts/Arial.ttf' size='20'></e>" x="-200" y="100" width="384.8" height="85.2" rotation="0" spriteFrame="1"></control>
 	</control>
+
 	<control tag="9" type="cell" name="cell_grid" x="451.3" y="255.65" width="56" height="40" rotation="0">
 		<control tag="10" type="button" text="txt" textSize="18" textFont="fonts/Arial.ttf" red="255" green="255" blue="0" normal="recombine/btn_grid_normal.png" select="recombine/btn_grid_select.png" disable="recombine/btn_grid_disable.png" x="38" y="-38.65" width="56" height="40" rotation="0" spriteFrame="0"></control>
 	</control>
