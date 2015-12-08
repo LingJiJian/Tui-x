@@ -1,9 +1,9 @@
 ﻿/****************************************************************************
-Copyright (c) 2014 Lijunlin - Jason lee
+Copyright (c) 2015 Lingjijian
 
-Created by Lijunlin - Jason lee on 2014
+Created by Lingjijian on 2015
 
-jason.lee.c@foxmail.com
+342854406@qq.com
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -468,9 +468,13 @@ void CTextRich::formarRenderers()
 				}
 				_lastEleme = elem;
 			}
-			RenderElement _newElem = _lastDiffStarEleme.clone();
-			_newElem.strChar = oneLine;
-			_arr.push_back(_newElem);
+			// the last elementText
+			if (_lastDiffStarEleme._type == Type::TEXT )
+			{
+				RenderElement _newElem = _lastDiffStarEleme.clone();
+				_newElem.strChar = oneLine;
+				_arr.push_back(_newElem);
+			}
 			rendLineArrs.push_back(_arr);
 		}
 	}
