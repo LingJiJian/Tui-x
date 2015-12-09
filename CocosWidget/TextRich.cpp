@@ -321,6 +321,9 @@ void CTextRich::formarRenderers()
 
 			oneLine = 0;
 			lines++;
+			elem.width = 0;
+			elem.height = 27;
+			elem.pos = Vec2(oneLine,-lines*27);
 
 		}else{ // other elements
 
@@ -390,15 +393,12 @@ void CTextRich::formarRenderers()
 	for (int i=0;i<len;i++)
 	{
 		RenderElement elem = _elemRenderArr.at(i);
-		if ( !elem.isNewLine ){
-			
-			auto it = rendElemLineMap.find(elem.pos.y);
-			if(it == rendElemLineMap.end()) {
-				rendElemLineMap[ elem.pos.y ] = std::vector<RenderElement>();
-			}
-			rendElemLineMap[ elem.pos.y ].push_back( elem );
-			linePosYSet.insert( -1 * (elem.pos.y) );
+		auto it = rendElemLineMap.find(elem.pos.y);
+		if(it == rendElemLineMap.end()) {
+			rendElemLineMap[ elem.pos.y ] = std::vector<RenderElement>();
 		}
+		rendElemLineMap[ elem.pos.y ].push_back( elem );
+		linePosYSet.insert( -1 * (elem.pos.y) );
 	}
 	// all lines in arr
 	std::vector< std::vector<RenderElement> > rendLineArrs;
@@ -456,7 +456,19 @@ void CTextRich::formarRenderers()
 						_arr.push_back(_newElem);
 					}
 					_arr.push_back(elem);
-
+					
+				}else if ( elem._type == Type::NEWLINE )
+				{
+					//interrupt
+					if (_lastDiffStarEleme._type == Type::TEXT )
+					{
+						RenderElement _newElem = _lastDiffStarEleme.clone();
+						_newElem.strChar = oneLine;
+						oneLine = "";
+						_arr.push_back(_newElem);
+					}
+					_arr.push_back(elem);
+					
 				}else if ( _lastEleme._type != Type::TEXT )
 				{
 					//interrupt
