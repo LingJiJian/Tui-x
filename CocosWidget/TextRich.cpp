@@ -523,22 +523,25 @@ void CTextRich::formarRenderers()
 		int _lineWidth = 0;
 		for(auto& elem : lines)
 		{
-			if ( elem._type == Type::TEXT )
-			{
-				_obj = getCacheLabel();
-				makeLabel((Label*)_obj,elem,elem.strChar);
-				_lineWidth += _obj->getContentSize().width;
-			}else if (elem._type == Type::IMAGE){
-				_obj = getCacheImage();
-				makeImage((Sprite*)_obj,elem);
-				_lineWidth += _obj->getContentSize().width;
-			}else if (elem._type == Type::ANIM){
-				_obj = getCacheImage();
-				makeAnim((Sprite*)_obj,elem);
-				_lineWidth += elem.width;
+			if (elem._type != Type::NEWLINE)
+			{	
+				if ( elem._type == Type::TEXT )
+				{
+					_obj = getCacheLabel();
+					makeLabel((Label*)_obj,elem,elem.strChar);
+					_lineWidth += _obj->getContentSize().width;
+				}else if (elem._type == Type::IMAGE){
+					_obj = getCacheImage();
+					makeImage((Sprite*)_obj,elem);
+					_lineWidth += _obj->getContentSize().width;
+				}else if (elem._type == Type::ANIM){
+					_obj = getCacheImage();
+					makeAnim((Sprite*)_obj,elem);
+					_lineWidth += elem.width;
+				}
+				this->addChild(_obj);
+				_obj->setPosition(Vec2(elem.pos.x,elem.pos.y + _realLineHeight));
 			}
-			this->addChild(_obj);
-			_obj->setPosition(Vec2(elem.pos.x,elem.pos.y + _realLineHeight));
 		}
 		_realLineWidth = MAX(_lineWidth,_realLineWidth);
 	}
