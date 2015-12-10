@@ -312,11 +312,12 @@ void CTextRich::formarRenderers()
 	int charWidth = 0;
 	int oneLine = 0;
 	int lines = 1;
+	bool isReplaceInSpace = false;
 	int len = _elemRenderArr.size();
 	for (int i=0;i<len;i++)
 	{
+		isReplaceInSpace = false;
 		RenderElement elem = _elemRenderArr[i];
-
 		if (elem.isNewLine){ //new line
 
 			oneLine = 0;
@@ -361,12 +362,14 @@ void CTextRich::formarRenderers()
 
 							oneLine = 0;
 							lines++;
-
+							isReplaceInSpace = true; //reset cuting words position
+	
 							for (int _i = spaceIdx + 1; _i <= i; ++_i)
 							{
 								RenderElement _elem = _elemRenderArr.at(_i);
 								_elem.pos = Vec2( oneLine,-lines * 27 );
-								oneLine += elem.width;
+								oneLine += _elem.width;
+								_elemRenderArr[_i] = _elem;
 							}
 
 						}
@@ -382,8 +385,10 @@ void CTextRich::formarRenderers()
 				oneLine += elem.width;
 			}
 		}
-        
-        _elemRenderArr[i] = elem;
+		
+        if(isReplaceInSpace == false ){
+			_elemRenderArr[i] = elem;
+		}
 	}
 
 	//sort all lines
