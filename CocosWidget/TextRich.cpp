@@ -303,8 +303,11 @@ void CTextRich::reloadData()
 			_elemRenderArr.push_back( rendElem );
 		}
 	}
-
+	
+	_richElements.clear();
+	
 	formarRenderers();
+	
 }
 
 void CTextRich::formarRenderers()
