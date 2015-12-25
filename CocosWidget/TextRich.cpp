@@ -348,7 +348,8 @@ void CTextRich::formarRenderers()
 						int idx = i;
 						while( idx > 0) {
 							idx = idx - 1;
-							if ( _elemRenderArr.at(idx).strChar == " " )
+							if ( _elemRenderArr.at(idx).strChar == " " &&
+								 _elemRenderArr.at(idx).pos.y == _elemRenderArr.at(i-1).pos.y ) //just for the same line
 							{
 								spaceIdx = idx;
 								break;
