@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -24,6 +24,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v140_xp</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -32,6 +33,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v140_xp</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -96,7 +98,8 @@
       </Command>
     </PostBuildEvent>
     <PreLinkEvent>
-      <Command></Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup>
@@ -108,7 +111,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
       <Inputs>$(TargetFileName)</Inputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
-
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
@@ -139,17 +141,154 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
       </Command>
     </PostBuildEvent>
     <PreLinkEvent>
-      <Command></Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\CocosBase\CCBundle.cpp" />
+    <ClCompile Include="..\..\CocosBase\CCMsgDelegate.cpp" />
+    <ClCompile Include="..\..\CocosBase\CCMsgManager.cpp" />
+    <ClCompile Include="..\..\CocosBase\CCSceneExtension.cpp" />
+    <ClCompile Include="..\..\CocosBase\CCSceneExTransition.cpp" />
+    <ClCompile Include="..\..\CocosBase\CCSceneManager.cpp" />
+    <ClCompile Include="..\..\CocosNet\CCBuffer.cpp" />
+    <ClCompile Include="..\..\CocosNet\CCInetAddress.cpp" />
+    <ClCompile Include="..\..\CocosNet\CCNetDelegate.cpp" />
+    <ClCompile Include="..\..\CocosNet\CCSocket.cpp" />
+    <ClCompile Include="..\..\CocosWidget\ArmatureBtn.cpp" />
+    <ClCompile Include="..\..\CocosWidget\Button.cpp" />
+    <ClCompile Include="..\..\CocosWidget\CEditBox\CEditBox.cpp" />
+    <ClCompile Include="..\..\CocosWidget\CEditBox\CEditBoxImplNone.cpp" />
+    <ClCompile Include="..\..\CocosWidget\CEditBox\CEditBoxImplWin.cpp" />
+    <ClCompile Include="..\..\CocosWidget\CEditBox\Win32InputBox.cpp" />
+    <ClCompile Include="..\..\CocosWidget\CheckBox.cpp" />
+    <ClCompile Include="..\..\CocosWidget\CircleMenu.cpp" />
+    <ClCompile Include="..\..\CocosWidget\ColorView.cpp" />
+    <ClCompile Include="..\..\CocosWidget\ControlView.cpp" />
+    <ClCompile Include="..\..\CocosWidget\ExpandableListView.cpp" />
+    <ClCompile Include="..\..\CocosWidget\GradientView.cpp" />
+    <ClCompile Include="..\..\CocosWidget\GridPageView.cpp" />
+    <ClCompile Include="..\..\CocosWidget\GridView.cpp" />
+    <ClCompile Include="..\..\CocosWidget\ImageView.cpp" />
+    <ClCompile Include="..\..\CocosWidget\ImageViewScale9.cpp" />
+    <ClCompile Include="..\..\CocosWidget\Label.cpp" />
+    <ClCompile Include="..\..\CocosWidget\LabelAtlas.cpp" />
+    <ClCompile Include="..\..\CocosWidget\LabelBMFont.cpp" />
+    <ClCompile Include="..\..\CocosWidget\Layout.cpp" />
+    <ClCompile Include="..\..\CocosWidget\ListView.cpp" />
+    <ClCompile Include="..\..\CocosWidget\MapView.cpp" />
+    <ClCompile Include="..\..\CocosWidget\NumericStepper.cpp" />
+    <ClCompile Include="..\..\CocosWidget\PageView.cpp" />
+    <ClCompile Include="..\..\CocosWidget\ProgressBar.cpp" />
+    <ClCompile Include="..\..\CocosWidget\Scale9Sprite.cpp" />
+    <ClCompile Include="..\..\CocosWidget\ScrollView.cpp" />
+    <ClCompile Include="..\..\CocosWidget\Slider.cpp" />
+    <ClCompile Include="..\..\CocosWidget\TableView.cpp" />
+    <ClCompile Include="..\..\CocosWidget\TextRich.cpp" />
+    <ClCompile Include="..\..\CocosWidget\ToggleView.cpp" />
+    <ClCompile Include="..\..\CocosWidget\Widget.cpp" />
+    <ClCompile Include="..\..\CocosWidget\WidgetProtocol.cpp" />
+    <ClCompile Include="..\..\CocosWidget\WidgetWindow.cpp" />
+    <ClCompile Include="..\..\CocosWidget\WitlsMacros.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\module\ResoureMgr.cpp" />
+    <ClCompile Include="..\Classes\scene\Bag\Bagui.cpp" />
+    <ClCompile Include="..\Classes\scene\Guide\Guideui.cpp" />
+    <ClCompile Include="..\Classes\scene\Main\dialog\MsgBox.cpp" />
+    <ClCompile Include="..\Classes\scene\Main\Mainui.cpp" />
+    <ClCompile Include="..\Classes\scene\Map\Mapui.cpp" />
+    <ClCompile Include="..\Classes\scene\Recombine\Recombineui.cpp" />
+    <ClCompile Include="..\Classes\scene\ShowPhone\ShowPhoneui.cpp" />
+    <ClCompile Include="..\Classes\scene\Store\Storeui.cpp" />
+    <ClCompile Include="..\Classes\scene\Welcome\Welcomeui.cpp" />
+    <ClCompile Include="..\Classes\tui\TuiBase.cpp" />
+    <ClCompile Include="..\Classes\tui\TuiManager.cpp" />
+    <ClCompile Include="..\Classes\tui\TuiUtil.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\CocosBase\CCBaseMacros.h" />
+    <ClInclude Include="..\..\CocosBase\CCBundle.h" />
+    <ClInclude Include="..\..\CocosBase\CCMsgDelegate.h" />
+    <ClInclude Include="..\..\CocosBase\CCMsgManager.h" />
+    <ClInclude Include="..\..\CocosBase\CCSceneExtension.h" />
+    <ClInclude Include="..\..\CocosBase\CCSceneExTransition.h" />
+    <ClInclude Include="..\..\CocosBase\CCSceneManager.h" />
+    <ClInclude Include="..\..\CocosBase\cocos-base.h" />
+    <ClInclude Include="..\..\CocosNet\CCBuffer.h" />
+    <ClInclude Include="..\..\CocosNet\CCInetAddress.h" />
+    <ClInclude Include="..\..\CocosNet\CCNetDelegate.h" />
+    <ClInclude Include="..\..\CocosNet\CCNetMacros.h" />
+    <ClInclude Include="..\..\CocosNet\CCSocket.h" />
+    <ClInclude Include="..\..\CocosNet\cocos-net.h" />
+    <ClInclude Include="..\..\CocosWidget\ArmatureBtn.h" />
+    <ClInclude Include="..\..\CocosWidget\Button.h" />
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBox.h" />
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBoxImpl.h" />
+    <ClInclude Include="..\..\CocosWidget\CEditBox\CEditBoxImplWin.h" />
+    <ClInclude Include="..\..\CocosWidget\CEditBox\Win32InputBox.h" />
+    <ClInclude Include="..\..\CocosWidget\CheckBox.h" />
+    <ClInclude Include="..\..\CocosWidget\CircleMenu.h" />
+    <ClInclude Include="..\..\CocosWidget\cocos-widget.h" />
+    <ClInclude Include="..\..\CocosWidget\ColorView.h" />
+    <ClInclude Include="..\..\CocosWidget\ControlView.h" />
+    <ClInclude Include="..\..\CocosWidget\ExpandableListView.h" />
+    <ClInclude Include="..\..\CocosWidget\GradientView.h" />
+    <ClInclude Include="..\..\CocosWidget\GridPageView.h" />
+    <ClInclude Include="..\..\CocosWidget\GridView.h" />
+    <ClInclude Include="..\..\CocosWidget\ImageView.h" />
+    <ClInclude Include="..\..\CocosWidget\ImageViewScale9.h" />
+    <ClInclude Include="..\..\CocosWidget\Label.h" />
+    <ClInclude Include="..\..\CocosWidget\LabelAtlas.h" />
+    <ClInclude Include="..\..\CocosWidget\LabelBMFont.h" />
+    <ClInclude Include="..\..\CocosWidget\Layout.h" />
+    <ClInclude Include="..\..\CocosWidget\ListView.h" />
+    <ClInclude Include="..\..\CocosWidget\MapView.h" />
+    <ClInclude Include="..\..\CocosWidget\NumericStepper.h" />
+    <ClInclude Include="..\..\CocosWidget\PageView.h" />
+    <ClInclude Include="..\..\CocosWidget\ProgressBar.h" />
+    <ClInclude Include="..\..\CocosWidget\Scale9Sprite.h" />
+    <ClInclude Include="..\..\CocosWidget\ScrollView.h" />
+    <ClInclude Include="..\..\CocosWidget\Slider.h" />
+    <ClInclude Include="..\..\CocosWidget\TableView.h" />
+    <ClInclude Include="..\..\CocosWidget\TextRich.h" />
+    <ClInclude Include="..\..\CocosWidget\ToggleView.h" />
+    <ClInclude Include="..\..\CocosWidget\Widget.h" />
+    <ClInclude Include="..\..\CocosWidget\WidgetMacros.h" />
+    <ClInclude Include="..\..\CocosWidget\WidgetProtocol.h" />
+    <ClInclude Include="..\..\CocosWidget\WidgetWindow.h" />
+    <ClInclude Include="..\..\CocosWidget\WitlsMacros.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\module\ResoureMgr.h" />
+    <ClInclude Include="..\Classes\scene\Bag\BagCfg.h" />
+    <ClInclude Include="..\Classes\scene\Bag\Bagui.h" />
+    <ClInclude Include="..\Classes\scene\Guide\Guideui.h" />
+    <ClInclude Include="..\Classes\scene\Main\dialog\MsgBox.h" />
+    <ClInclude Include="..\Classes\scene\Main\MainCfg.h" />
+    <ClInclude Include="..\Classes\scene\Main\Mainui.h" />
+    <ClInclude Include="..\Classes\scene\Map\MapCfg.h" />
+    <ClInclude Include="..\Classes\scene\Map\Mapui.h" />
+    <ClInclude Include="..\Classes\scene\Recombine\Recombineui.h" />
+    <ClInclude Include="..\Classes\scene\ShowPhone\ShowPhoneCfg.h" />
+    <ClInclude Include="..\Classes\scene\ShowPhone\ShowPhoneui.h" />
+    <ClInclude Include="..\Classes\scene\Store\StoreCfg.h" />
+    <ClInclude Include="..\Classes\scene\Store\Storeui.h" />
+    <ClInclude Include="..\Classes\scene\Welcome\WelcomeCfg.h" />
+    <ClInclude Include="..\Classes\scene\Welcome\Welcomeui.h" />
+    <ClInclude Include="..\Classes\tagMap\Tag_map.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_bag.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_main.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_map.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_recombineui.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_showPhone.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_store.h" />
+    <ClInclude Include="..\Classes\tui\tagMap\Tag_welcome.h" />
+    <ClInclude Include="..\Classes\tui\TuiBase.h" />
+    <ClInclude Include="..\Classes\tui\tuiconsts.h" />
+    <ClInclude Include="..\Classes\tui\TuiMacros.h" />
+    <ClInclude Include="..\Classes\tui\TuiManager.h" />
+    <ClInclude Include="..\Classes\tui\TuiUtil.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
