@@ -4,7 +4,6 @@ Copyright (c) 2014 Lijunlin - Jason lee
 Created by Lijunlin - Jason lee on 2014
 
 jason.lee.c@foxmail.com
-http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -31,7 +31,7 @@
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 
 #include "extensions/ExtensionMacros.h"
-#include "CCEditBoxImpl.h"
+#include "CEditBoxImpl.h"
 
 NS_CC_WIDGET_BEGIN
 
@@ -43,7 +43,7 @@ public:
     /**
      * @js NA
      */
-    EditBoxImplAndroid(EditBox* pEditText);
+    EditBoxImplAndroid(CEditBox* pEditText);
     /**
      * @js NA
      * @lua NA

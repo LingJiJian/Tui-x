@@ -33,18 +33,18 @@
 
 NS_CC_WIDGET_BEGIN
 
-EditBoxImpl* __createSystemEditBox(EditBox* pEditBox)
+EditBoxImpl* __createSystemEditBox(CEditBox* pEditBox)
 {
     return new EditBoxImplAndroid(pEditBox);
 }
 
-EditBoxImplAndroid::EditBoxImplAndroid(EditBox* pEditText)
+EditBoxImplAndroid::EditBoxImplAndroid(CEditBox* pEditText)
 : EditBoxImpl(pEditText)
 , _label(nullptr)
 , _labelPlaceHolder(nullptr)
-, _editBoxInputMode(EditBox::InputMode::SINGLE_LINE)
-, _editBoxInputFlag(EditBox::InputFlag::INTIAL_CAPS_ALL_CHARACTERS)
-, _keyboardReturnType(EditBox::KeyboardReturnType::DEFAULT)
+, _editBoxInputMode(CEditBox::InputMode::SINGLE_LINE)
+, _editBoxInputFlag(CEditBox::InputFlag::INTIAL_CAPS_ALL_CHARACTERS)
+, _keyboardReturnType(CEditBox::KeyboardReturnType::DEFAULT)
 , _colText(Color3B::WHITE)
 , _colPlaceHolder(Color3B::GRAY)
 , _maxLength(-1)
@@ -121,7 +121,7 @@ void EditBoxImplAndroid::setPlaceholderFontColor(const Color3B& color)
     _labelPlaceHolder->setColor(color);
 }
 
-void EditBoxImplAndroid::setInputMode(EditBox::InputMode inputMode)
+void EditBoxImplAndroid::setInputMode(CEditBox::InputMode inputMode)
 {
     _editBoxInputMode = inputMode;
 }
@@ -136,12 +136,12 @@ int EditBoxImplAndroid::getMaxLength()
     return _maxLength;
 }
 
-void EditBoxImplAndroid::setInputFlag(EditBox::InputFlag inputFlag)
+void EditBoxImplAndroid::setInputFlag(CEditBox::InputFlag inputFlag)
 {
     _editBoxInputFlag = inputFlag;
 }
 
-void EditBoxImplAndroid::setReturnType(EditBox::KeyboardReturnType returnType)
+void EditBoxImplAndroid::setReturnType(CEditBox::KeyboardReturnType returnType)
 {
     _keyboardReturnType = returnType;
 }
@@ -163,7 +163,7 @@ void EditBoxImplAndroid::setText(const char* pText)
 			
             std::string strToShow;
 			
-            if (EditBox::InputFlag::PASSWORD == _editBoxInputFlag)
+            if (CEditBox::InputFlag::PASSWORD == _editBoxInputFlag)
             {
                 long length = cc_utf8_strlen(_text.c_str(), -1);
                 for (long i = 0; i < length; i++)
@@ -257,7 +257,7 @@ static void editBoxCallbackFunc(const char* pText, void* ctx)
     }
     
 #if CC_ENABLE_SCRIPT_BINDING
-    EditBox* pEditBox = thiz->getEditBox();
+    CEditBox* pEditBox = thiz->getEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {        
         CommonScriptData data(pEditBox->getScriptEditBoxHandler(), "changed",pEditBox);
@@ -283,7 +283,7 @@ void EditBoxImplAndroid::openKeyboard()
     }
     
 #if CC_ENABLE_SCRIPT_BINDING
-    EditBox* pEditBox = this->getEditBox();
+    CEditBox* pEditBox = this->getEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {        
         CommonScriptData data(pEditBox->getScriptEditBoxHandler(), "began",pEditBox);
@@ -291,7 +291,7 @@ void EditBoxImplAndroid::openKeyboard()
         ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&event);
     }
 #endif
-	
+	/** 触控把jni删了 我晚点更新 如果你是3.5或以下的版本 可以去掉注释
     showEditTextDialogJNI(  _placeHolder.c_str(),
 						  _text.c_str(),
 						  (int)_editBoxInputMode,
@@ -300,6 +300,7 @@ void EditBoxImplAndroid::openKeyboard()
 						  _maxLength,
 						  editBoxCallbackFunc,
 						  (void*)this  );
+						  **/
 	
 }
 
