@@ -47,7 +47,7 @@ void Storeui::event_btn_pay(Ref* pSender)
 
 void Storeui::event_rtf_test( Ref* pSender,const char* data )
 {
-	CCLOG(data);
+	//CCLOG(data);
 }
 
 /************************************************************************/
